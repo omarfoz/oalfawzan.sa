@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar Alfawzan | Experience</title>
+    
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/cloud.png">
+    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/fluency/48/cloud.png">
+    
+    <style>
+        :root {
+            --bg: #010204;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-shine: rgba(255, 255, 255, 0.22);
+            --accent: #007AFF;
+            --text-p: #ffffff;
+            --text-s: rgba(255, 255, 255, 0.55);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            color: var(--text-p);
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+            background: 
+                linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)), 
+                url('image.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-color: var(--bg);
+        }
+
+        .container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid var(--glass-border);
+            box-shadow: inset 0 1px 0 0 var(--glass-shine);
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .nav {
+            position: relative;
+            height: 64px; border-radius: 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 24px; margin: 20px 0 60px;
+        }
+
+        .nav-name { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
+        .nav-buttons { display: flex; gap: 8px; }
+        
+        .btn-sm {
+            text-decoration: none;
+            color: var(--text-p);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            transition: 0.3s;
+        }
+        .btn-sm:hover { background: var(--accent); border-color: var(--accent); }
+
+        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
+        .headline { color: var(--accent); font-size: 1.2rem; font-weight: 600; margin-bottom: 32px; }
+        
+        .section-title { 
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; 
+            color: var(--text-s); margin: 60px 0 24px; font-weight: 700; 
+        }
+
+        .exp-item { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--glass-border); }
+        .exp-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        
+        .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+        .company { font-size: 1.25rem; font-weight: 700; }
+        .period { font-size: 0.85rem; color: var(--text-s); }
+        .pos { color: var(--accent); font-weight: 600; margin-bottom: 12px; display: block; }
+        
+        .desc-list { list-style: none; color: var(--text-s); font-size: 0.95rem; line-height: 1.6; }
+        .desc-list li { margin-bottom: 8px; position: relative; padding-left: 18px; }
+        .desc-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+        .pill { 
+            display: inline-block; background: rgba(255,255,255,0.05); 
+            border: 1px solid var(--glass-border); padding: 4px 12px; 
+            border-radius: 8px; font-size: 0.8rem; margin: 0 4px 8px 0;
+        }
+
+        .social-link {
+            text-decoration: none; color: var(--text-p);
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 16px; border-radius: 12px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            font-weight: 600; transition: 0.3s;
+        }
+        .social-link:hover { background: rgba(0, 122, 255, 0.1); border-color: var(--accent); }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .row { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="nav glass-card">
+            <div class="nav-name">Omar Alfawzan</div>
+            <div class="nav-buttons">
+                <a href="index.html" class="btn-sm">Home</a>
+                <a href="experience.html" class="btn-sm active">Experience</a>
+                <a href="blog.html" class="btn-sm">Blog</a>
+                    <a href="https://wa.me/966533553665" target="_blank" class="btn-sm">Contact</a>
+            </div>
+        </nav>
+
+        <header style="text-align: center; margin-bottom: 60px;">
+            <img src="/omaralfawzan.png" alt="Omar Alfawzan" 
+                 style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--glass-border); margin-bottom: 24px;">
+            <h1>Omar Alfawzan</h1>
+            <p class="headline">Cloud Technical Lead @ SITE | Cloud Pre-Sales & Delivery</p>
+        </header>
+
+        <h2 class="section-title">Summary</h2>
+        <div class="glass-card">
+            <p style="color: var(--text-p); line-height: 1.6;">
+                Cloud Technical Lead with 8+ years of experience in technical pre-sales, working closely with customers to shape cloud solutions. Brings together exposure to AI, cloud product management, solution delivery, and hands-on experience with containers and cloud infrastructure.
+            </p>
+        </div>
+
+        <h2 class="section-title" id="connect">Connect</h2>
+        <div class="grid" style="margin-bottom: 24px;">
+            <a href="https://www.linkedin.com/in/omarfoz" target="_blank" class="social-link">
+                <span style="color: var(--accent);">in</span> LinkedIn Profile
+            </a>
+
+            <a href="https://wa.me/966533553665" target="_blank" class="social-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#25D366" viewBox="0 0 24 24">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.058-4.51 10.06-10.059 0-2.689-1.047-5.215-2.951-7.119C17.118 2.703 14.59 1.65 11.905 1.65c-5.548 0-10.06 4.51-10.063 10.06 0 2.12.569 4.191 1.644 5.943l-.992 3.626 3.716-.974zm11.368-7.316c-.313-.156-1.853-.914-2.141-1.018-.288-.106-.499-.156-.709.156-.21.314-.813 1.018-1 1.226-.186.209-.373.235-.686.079-1.323-.662-2.183-1.096-3.045-2.57-.23-.393.23-.365.659-1.22.08-.163.04-.306-.02-.462-.061-.156-.499-1.205-.684-1.651-.18-.435-.363-.376-.499-.383-.129-.006-.277-.008-.426-.008-.149 0-.391.056-.596.28-.205.223-.781.763-.781 1.861s.8 2.162.911 2.311c.112.15 1.574 2.405 3.812 3.372.533.23.95.368 1.275.47.535.17 1.022.146 1.407.089.43-.064 1.853-.758 2.112-1.49.259-.732.259-1.36.182-1.49-.077-.13-.284-.209-.597-.365z"/>
+                </svg>
+                <span>WhatsApp</span>
+            </a>
+        </div>
+
+        
+<h2 class="section-title">Experience</h2>
+        <div class="glass-card">
+            <div class="exp-item">
+                <div class="row"><span class="company">SITE</span><span class="period">Sep 2024 - Present</span></div>
+                <span class="pos">Technical Lead II, Cloud Engineering</span>
+                <ul class="desc-list">
+                    <li>Lead pre-sales activities including discovery, solution design, and customer workshops.</li>
+                    <li>Respond to RFPs by scoping cloud projects, PS, and MS, creating BoQs, and designing customized solutions aligned to customer requirements.</li>
+                    <li>Contributed to AI technical pre-sales by assessing applied AI use cases and validating their feasibility within cloud environments.</li>
+                    <li>Lead cloud delivery, executing components from provisioning to handover while overseeing customized scope such as migrations, PS, and MS.</li>
+                    <li><strong>Led large-scale cloud migration delivery</strong>, migrating 15,000 email users and 400+ virtual machines from on-premises to cloud with refactoring and re-architecture.</li>
+                    <li>Deployed a scalable file-sharing solution designed to support up to 15,000 users, ensuring performance and security.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">Mobily</span><span class="period">Mar 2023 - Sep 2024</span></div>
+                <span class="pos">DC & Cloud Solutions Principal</span>
+                <ul class="desc-list">
+                    <li>Managed Mobily Cloud Products including Public Cloud, DRaaS, Co-location, and Customized solutions.</li>
+                    <li>Engaged in sales initiatives and enabled sales effectiveness.</li>
+                    <li>Monitored and initiated improvements to maintain competitive advantage.</li>
+                    <li>Developed Cloud Partnership Program and Cloud Life Cycle Process.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">solutions by stc</span><span class="period">Sep 2021 - Mar 2023</span></div>
+                <span class="pos">Product Manager</span>
+                <ul class="desc-list">
+                    <li>Developed a new Disaster Recovery (DRaaS) product on top of stc cloud.</li>
+                    <li>Managed VDC, Co-Location, and FWaaS portfolios including vendor invoicing and business case development.</li>
+                    <li>Participated in sales activities and triggered product enhancements.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">solutions by stc</span><span class="period">Aug 2019 - Sep 2021</span></div>
+                <span class="pos">Business Development Specialist</span>
+                <ul class="desc-list">
+                    <li>Developed digital products competitive analysis and pipeline reporting.</li>
+                    <li>Managed cloud service partners in the stc marketplace.</li>
+                    <li>Arranged meetups and webinars for cloud and IoT portfolios.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">IBM</span><span class="period">Jul 2018 - Jul 2019</span></div>
+                <span class="pos">Developer Advocate</span>
+                <ul class="desc-list">
+                    <li>Delivered and mentored on over 35 workshops for the IBM Cloud community.</li>
+                    <li>Set up IBM Private Cloud using RHEL 7, Docker, and Kubernetes.</li>
+                    <li>Created chatbots using Watson Assistant, Node.js, and Telegram.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">Dell EMC</span><span class="period">Jul 2017 - Nov 2017</span></div>
+                <span class="pos">IT Support & Cloud Deployment</span>
+                <ul class="desc-list">
+                    <li>Practical training in storage systems (VMAX, Unity, VNX) and cloud infrastructure.</li>
+                </ul>
+            </div>
+
+            <div class="exp-item">
+                <div class="row"><span class="company">Al Tayyar Travel Group</span><span class="period">May 2017 - Jul 2017</span></div>
+                <span class="pos">Networking and Basic Security</span>
+                <ul class="desc-list">
+                    <li>Configured switches and routers; secured networks via VLANs and firewalls.</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="grid">
+            <div class="glass-card">
+                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">Pre-Sales & Delivery</p>
+                <div class="pill">Technical Pre-Sales</div><div class="pill">Solution Design</div>
+                <div class="pill">Proposal Creation</div><div class="pill">Client Onboarding</div>
+            </div>
+            <div class="glass-card">
+                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">Cloud Computing</p>
+                <div class="pill">Docker</div><div class="pill">Kubernetes</div>
+                <div class="pill">Cloud Migration</div><div class="pill">Private Cloud</div>
+            </div>
+            <div class="glass-card">
+                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">AI & Automation</p>
+                <div class="pill">GenAI</div><div class="pill">LLMs</div>
+                <div class="pill">RAG</div><div class="pill">AI Workflows</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Education</h2>
+        <div class="glass-card">
+            <div class="row"><span class="company">King Saud University</span><span class="period">2014 - 2018</span></div>
+            <span class="pos">Bachelor's degree, Computer Information Systems</span>
+            <p style="color: var(--text-s); font-size: 0.9rem;">Grade: 4.59/5</p>
+        </div>
+
+        <footer style="padding: 40px 0; text-align: center; font-size: 0.9rem; color: va

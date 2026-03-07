@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omar Alfawzan | Portfolio</title>
-    
+    <title>Omar Alfawzan</title>
     <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/cloud.png">
-    <link rel="shortcut icon" type="image/png" href="https://img.icons8.com/fluency/48/cloud.png">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #010204;
@@ -18,240 +17,353 @@
             --text-p: #ffffff;
             --text-s: rgba(255, 255, 255, 0.55);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
-
         body {
             color: var(--text-p);
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            background: 
-                linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)), 
-                url('image.jpg'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(rgba(13, 22, 45, 0.85), rgba(1, 2, 4, 0.95)), url('image.jpg');
+            background-size: cover; background-position: center;
+            background-attachment: fixed; background-repeat: no-repeat;
             background-color: var(--bg);
         }
-
         .container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px; }
-
         .glass-card {
             background: var(--glass);
             backdrop-filter: blur(50px) saturate(200%);
             -webkit-backdrop-filter: blur(50px) saturate(200%);
             border: 1px solid var(--glass-border);
             box-shadow: inset 0 1px 0 0 var(--glass-shine);
-            border-radius: 24px;
-            padding: 32px;
-            margin-bottom: 24px;
+            border-radius: 24px; padding: 32px; margin-bottom: 24px;
         }
 
+        /* Nav */
         .nav {
-            position: relative;
-            height: 64px; border-radius: 32px;
+            position: relative; height: 64px; border-radius: 32px;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 24px; margin: 20px 0 60px;
         }
-
         .nav-name { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
-        .nav-buttons { display: flex; gap: 8px; }
-        
+        .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
         .btn-sm {
-            text-decoration: none;
-            color: var(--text-p);
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 6px 14px;
-            border-radius: 20px;
+            text-decoration: none; color: var(--text-p);
+            font-size: 0.75rem; font-weight: 600;
+            padding: 6px 14px; border-radius: 20px;
             background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            transition: 0.3s;
+            border: 1px solid var(--glass-border); transition: 0.3s;
         }
         .btn-sm:hover { background: var(--accent); border-color: var(--accent); }
+        .btn-sm.active { background: var(--accent); border-color: var(--accent); }
 
-        h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
-        .headline { color: var(--accent); font-size: 1.2rem; font-weight: 600; margin-bottom: 32px; }
-        
-        .section-title { 
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; 
-            color: var(--text-s); margin: 60px 0 24px; font-weight: 700; 
+        /* Hero */
+        .hero { text-align: center; padding: 20px 0 56px; }
+        .hero img {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 2px solid var(--glass-border); margin-bottom: 24px;
+            display: block; margin-left: auto; margin-right: auto;
         }
-
-        .exp-item { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--glass-border); }
-        .exp-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-        
-        .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
-        .company { font-size: 1.25rem; font-weight: 700; }
-        .period { font-size: 0.85rem; color: var(--text-s); }
-        .pos { color: var(--accent); font-weight: 600; margin-bottom: 12px; display: block; }
-        
-        .desc-list { list-style: none; color: var(--text-s); font-size: 0.95rem; line-height: 1.6; }
-        .desc-list li { margin-bottom: 8px; position: relative; padding-left: 18px; }
-        .desc-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .pill { 
-            display: inline-block; background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--glass-border); padding: 4px 12px; 
-            border-radius: 8px; font-size: 0.8rem; margin: 0 4px 8px 0;
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            font-weight: 900; letter-spacing: -0.03em; margin-bottom: 10px;
+            line-height: 1.1;
         }
-
-        .social-link {
+        .hero h1 em { font-style: italic; color: var(--accent); }
+        .hero-role {
+            color: var(--accent); font-size: 1.05rem; font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .hero-sub {
+            color: var(--text-s); font-size: 0.95rem; font-weight: 300;
+            max-width: 520px; margin: 0 auto 28px; line-height: 1.6;
+        }
+        .hero-ctas { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .cta-primary {
+            text-decoration: none; color: #fff;
+            font-size: 0.82rem; font-weight: 600;
+            padding: 10px 22px; border-radius: 22px;
+            background: var(--accent); border: 1px solid var(--accent); transition: 0.3s;
+        }
+        .cta-primary:hover { opacity: 0.85; }
+        .cta-secondary {
             text-decoration: none; color: var(--text-p);
-            display: flex; align-items: center; gap: 12px;
-            padding: 12px 16px; border-radius: 12px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
-            font-weight: 600; transition: 0.3s;
+            font-size: 0.82rem; font-weight: 600;
+            padding: 10px 22px; border-radius: 22px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border); transition: 0.3s;
         }
-        .social-link:hover { background: rgba(0, 122, 255, 0.1); border-color: var(--accent); }
+        .cta-secondary:hover { border-color: rgba(255,255,255,0.3); }
+
+        /* Worked With */
+        .worked-section { margin-bottom: 64px; }
+        .worked-label {
+            font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--text-s); font-weight: 600; margin-bottom: 16px;
+        }
+        .logos-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .logo-pill {
+            display: flex; align-items: center; justify-content: center;
+            padding: 10px 20px; border-radius: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+            font-size: 0.83rem; font-weight: 600;
+            color: rgba(255,255,255,0.7); transition: 0.3s;
+            height: 48px;
+        }
+        .logo-pill:hover { border-color: rgba(255,255,255,0.22); color: #fff; background: rgba(255,255,255,0.07); }
+        .logo-pill svg { height: 20px; width: auto; display: block; }
+        .logo-pill img { filter: brightness(0) invert(1); opacity: 0.7; height: 20px; width: auto; object-fit: contain; }
+        .logo-pill:hover img { opacity: 1; }
+
+        /* Section title */
+        .section-title {
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.22em;
+            color: var(--text-s); font-weight: 600; margin-bottom: 32px;
+            display: flex; align-items: center; gap: 16px;
+        }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
+
+        /* Summary */
+        .summary-section { margin-bottom: 64px; }
+
+        /* Timeline */
+        .bio-section { margin-bottom: 80px; }
+        .timeline { position: relative; padding-left: 32px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
+            width: 1px; background: linear-gradient(to bottom, var(--accent), rgba(0,122,255,0.1));
+        }
+        .tl-item {
+            position: relative; margin-bottom: 48px;
+            opacity: 0; transform: translateX(-16px);
+            animation: slideIn 0.6s ease forwards;
+        }
+        .tl-item:nth-child(1) { animation-delay: 0.1s; }
+        .tl-item:nth-child(2) { animation-delay: 0.2s; }
+        .tl-item:nth-child(3) { animation-delay: 0.3s; }
+        .tl-item:nth-child(4) { animation-delay: 0.4s; }
+        .tl-item:nth-child(5) { animation-delay: 0.5s; }
+        .tl-item:nth-child(6) { animation-delay: 0.6s; }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+        .tl-dot {
+            position: absolute; left: -28px; top: 6px;
+            width: 13px; height: 13px; border-radius: 50%;
+            background: var(--bg); border: 2px solid var(--accent);
+            box-shadow: 0 0 10px rgba(0,122,255,0.5);
+        }
+        .tl-dot.big {
+            width: 16px; height: 16px; left: -29px; top: 4px;
+            background: var(--accent); box-shadow: 0 0 16px rgba(0,122,255,0.7);
+        }
+        .tl-year { font-size: 0.72rem; font-weight: 600; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+        .tl-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+        .tl-body { color: var(--text-s); font-size: 0.92rem; line-height: 1.7; font-weight: 300; }
+        .tl-body strong { color: var(--text-p); font-weight: 500; }
+
+        /* Projects */
+        .projects-section { margin-bottom: 80px; }
+        .project-card {
+            background: var(--glass);
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid var(--glass-border);
+            box-shadow: inset 0 1px 0 0 var(--glass-shine);
+            border-radius: 24px; overflow: hidden; margin-bottom: 20px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            border-color: rgba(0,122,255,0.35);
+            box-shadow: inset 0 1px 0 0 var(--glass-shine), 0 16px 48px rgba(0,122,255,0.1);
+        }
+        .project-banner {
+            width: 100%; height: 130px;
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .banner-elhaq   { background: linear-gradient(135deg, #001a10, #003320, #001a10); }
+        .banner-podcast { background: linear-gradient(135deg, #1a0a00, #3a1500, #1a0800); }
+        .banner-restate { background: linear-gradient(135deg, #00101a, #002233, #00101a); }
+        .banner-coffee  { background: linear-gradient(135deg, #1a0e00, #2e1a00, #1a0e00); }
+        .banner-icon { font-size: 3rem; position: relative; z-index: 1; }
+        .banner-grid {
+            position: absolute; inset: 0; opacity: 0.07;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(255,255,255,0.5) 24px, rgba(255,255,255,0.5) 25px),
+                repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(255,255,255,0.5) 24px, rgba(255,255,255,0.5) 25px);
+        }
+        .project-body { padding: 24px 28px 22px; }
+        .project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+        .ptag {
+            font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; padding: 3px 10px; border-radius: 6px;
+            background: rgba(0,122,255,0.12); border: 1px solid rgba(0,122,255,0.25); color: var(--accent);
+        }
+        .ptag.year { background: rgba(255,255,255,0.05); border-color: var(--glass-border); color: var(--text-s); }
+        .project-name { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; line-height: 1.2; }
+        .project-desc { color: var(--text-s); font-size: 0.9rem; line-height: 1.7; font-weight: 300; margin-bottom: 18px; }
+        .project-desc strong { color: var(--text-p); font-weight: 500; }
+        .project-learned {
+            background: rgba(0,122,255,0.06); border: 1px solid rgba(0,122,255,0.15);
+            border-radius: 12px; padding: 14px 16px; margin-bottom: 18px;
+        }
+        .learned-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 6px; }
+        .learned-text { font-size: 0.86rem; color: var(--text-s); line-height: 1.6; font-weight: 300; }
+        .project-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            text-decoration: none; color: var(--text-p);
+            font-size: 0.8rem; font-weight: 600;
+            padding: 8px 18px; border-radius: 20px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); transition: 0.3s;
+        }
+        .project-link:hover { background: var(--accent); border-color: var(--accent); }
+
+        footer { padding: 40px 0; text-align: center; font-size: 0.9rem; color: var(--text-s); border-top: 1px solid var(--glass-border); }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.2rem; }
-            .row { flex-direction: column; }
+            .hero h1 { font-size: 2.4rem; }
+            .tl-title { font-size: 1.1rem; }
+            .project-body { padding: 18px; }
         }
     </style>
 </head>
 <body>
+<div class="container">
 
-    <div class="container">
-        <nav class="nav glass-card">
-            <div class="nav-name">Omar Alfawzan</div>
-            <div class="nav-buttons">
-                <a href="#experience" class="btn-sm">Experience</a>
-                <a href="blog.html" class="btn-sm">Blog</a>
-                <a href="https://wa.me/966533553665" target="_blank" class="btn-sm">Contact</a>
+    <!-- Nav -->
+    <nav class="nav glass-card">
+        <div class="nav-name">Omar Alfawzan</div>
+        <div class="nav-buttons">
+            <a href="index.html" class="btn-sm active">Home</a>
+            <a href="experience.html" class="btn-sm">Experience</a>
+            <a href="blog.html" class="btn-sm">Blog</a>
+            <a href="https://wa.me/966533553665" target="_blank" class="btn-sm">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <img src="/omaralfawzan.png" alt="Omar Alfawzan">
+        <h1>Omar <em>Alfawzan</em></h1>
+        <p class="hero-role">Cloud Technical Lead @ SITE</p>
+        <p class="hero-sub">Cloud Technical Lead with 8+ years of experience shaping cloud solutions — from pre-sales to delivery, containers to AI.</p>
+        <div class="hero-ctas">
+            <a href="experience.html" class="cta-primary">View Experience</a>
+            <a href="blog.html" class="cta-secondary">Blog</a>
+        </div>
+    </div>
+
+    <!-- Worked With -->
+    <div class="worked-section">
+        <p class="worked-label">Worked with</p>
+        <div class="logos-row">
+            <div class="logo-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1716 463" fill="white" opacity="0.75" style="height:18px;width:auto;">
+                    <path d="M1576,266.7l-37,50h169v-50h-132ZM1576,266.7l-37,50h169v-50h-132ZM486,125.7c34,0,61-27,61-60s-27-60-61-60-60,27-60,60,27,60,60,60ZM1422,94.7l37-50h-169v50h132ZM1708,44.7h-97v80h-35V44.7h-97v80h-189v116h418V44.7ZM1389,346.7h-2v-80h-97v196h418v-116h-319ZM1193,337.7c13-115-55-200-160-200s-166,72-166,167,56,167,164,167,139-38,160-110h-101c-10,15-32,24-54,24s-61-14-71-48h228ZM1097,264.7h-130c8-25,34-41,65-41s55,15,65,41ZM448,144.7h-70l70,94v224h97V144.7h-97ZM733,144.7V44.7h-97v100h-70l70,94v126c0,59,41,98,101,98h112v-100h-94c-14,0-22-8-22-20v-104h116v-94h-116ZM250,462.7c77,0,131-50,131-121s-38-106-108-122c-41-10-104-23-143-32-17-4-26-14-25-24,1-12,10-19,29-19h217V44.7h-216C52,44.7,8,104.7,8,164.7s32,103,97,118c45,11,106,23,149,33,22,5,29,15,28,25-1,12-10,22-35,22H17v100h233Z"/>
+                </svg>
             </div>
-        </nav>
+            <div class="logo-pill">
+                <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 969 1540" style="height:28px;width:auto;opacity:0.75;">
+                    <g id="icon-MobilyLogo">
+                        <path fill="#ffffff" d="m920.1 773c2.1 1 4.1 2.3 5.9 3.8c1.7 1.6 3.3 3.3 4.5 5.3c1.3 2 2.3 4.1 3 6.3c0.7 2.3 1 4.6 1.1 6.9c0 3.1-0.6 6.2-1.8 9.1c-1.2 2.8-2.9 5.4-5.1 7.6c-2.2 2.2-4.8 4-7.7 5.1c-2.9 1.2-5.9 1.8-9.1 1.8q-0.8 0.1-1.6 0q-0.9 0-1.7-0.2q-0.9-0.1-1.7-0.4q-0.8-0.3-1.5-0.7l-801.3-203.2c-10.2-2.7-19.9-7.1-28.7-13c-8.8-5.8-16.6-13-23-21.4c-6.5-8.3-11.6-17.7-15-27.7c-3.5-10-5.3-20.4-5.4-31v-423.5c0-12.7 2.5-25.4 7.3-37.2c4.9-11.7 12-22.5 21.1-31.5c9-9 19.7-16.1 31.5-21c11.8-4.9 24.4-7.3 37.2-7.3h710.7c12.8 0 25.4 2.4 37.2 7.3c11.8 4.9 22.5 12 31.5 21c9 9 16.2 19.8 21 31.5c4.9 11.8 7.4 24.5 7.4 37.2v464.1c0 3.1-0.6 6.2-1.8 9.1c-1.2 2.9-2.9 5.5-5.1 7.7c-2.2 2.2-4.8 3.9-7.7 5.1c-2.9 1.2-5.9 1.8-9 1.7q-1.2 0-2.4-0.2q-1.2-0.2-2.4-0.5q-1.2-0.3-2.3-0.8q-1.1-0.5-2.1-1.1l-160-72.1c-4.1-2-7.8-4.5-11.2-7.5c-3.4-3-6.3-6.4-8.7-10.2c-2.4-3.8-4.3-7.9-5.6-12.3c-1.3-4.3-2-8.8-2-13.3v-196.6c0-6.4-1.3-12.7-3.7-18.6c-2.4-5.9-6-11.3-10.5-15.8c-4.5-4.5-9.9-8-15.8-10.5c-5.9-2.4-12.2-3.7-18.6-3.6h-365.8c-6.4-0.1-12.7 1.2-18.6 3.6c-5.9 2.5-11.3 6-15.8 10.5c-4.5 4.5-8.1 9.9-10.5 15.8c-2.4 5.9-3.7 12.2-3.7 18.6v137.6c0 9.2 1.3 18.4 3.9 27.3c2.6 8.8 6.4 17.2 11.4 25c4.9 7.7 11 14.7 18 20.8c6.9 6 14.7 11 23.1 14.8c13.1 5.2 611.1 276.6 611.1 276.6z" />
+                        <path fill="#ffffff" fill-rule="evenodd" d="m135.3 1164.3c2.8 0.9 5.3 2.5 7.3 4.5c2.1 2.1 3.6 4.6 4.5 7.3c0.9 2.8 1.1 5.7 0.6 8.6c0.5 2.9 0.3 5.8-0.6 8.6c-0.9 2.7-2.4 5.2-4.5 7.3c-2 2-4.5 3.6-7.3 4.5c-2.8 0.8-5.7 1.1-8.6 0.6c-2.8 0.5-5.8 0.2-8.5-0.6c-2.8-0.9-5.3-2.5-7.3-4.5c-2.1-2.1-3.6-4.6-4.5-7.3c-0.9-2.8-1.1-5.7-0.6-8.6c-0.5-2.9-0.3-5.8 0.6-8.6c0.9-2.7 2.4-5.2 4.5-7.3c2-2 4.5-3.6 7.3-4.5c2.7-0.8 5.7-1.1 8.5-0.6c2.9-0.5 5.8-0.2 8.6 0.6zm-51.1 0c2.7 0.9 5.2 2.5 7.3 4.5c2 2.1 3.6 4.6 4.5 7.3c0.8 2.8 1.1 5.7 0.6 8.6c0.5 2.9 0.2 5.8-0.6 8.6c-0.9 2.7-2.5 5.2-4.5 7.3c-2.1 2-4.6 3.6-7.3 4.5c-2.8 0.8-5.7 1.1-8.6 0.6c-2.9 0.5-5.8 0.2-8.6-0.6c-2.7-0.9-5.2-2.5-7.3-4.5c-2-2.1-3.6-4.6-4.5-7.3c-0.8-2.8-1.1-5.7-0.6-8.6c-0.5-2.9-0.2-5.8 0.6-8.6c0.9-2.7 2.5-5.2 4.5-7.3c2.1-2 4.6-3.6 7.3-4.5c2.8-0.8 5.7-1.1 8.6-0.6c2.9-0.5 5.8-0.2 8.6 0.6zm306.7-65.3c2.7 0.9 5.2 2.5 7.2 4.5c2 2 3.6 4.5 4.5 7.2c0.9 2.7 1.2 5.6 0.8 8.4q0.2 2.2 0 4.3q-0.3 2.1-0.9 4.2q-0.7 2-1.8 3.8q-1.1 1.9-2.5 3.5c-2.6 3.9-7.9 5.2-15.7 5.2c-2.9 0.5-5.8 0.3-8.6-0.6c-2.8-0.9-5.3-2.4-7.3-4.5c-2.1-2-3.6-4.5-4.5-7.3c-0.9-2.8-1.1-5.7-0.6-8.6c-0.5-2.8-0.3-5.8 0.6-8.5c0.9-2.8 2.4-5.3 4.5-7.3c2-2.1 4.5-3.6 7.3-4.5c2.8-0.9 5.7-1.1 8.6-0.6c2.8-0.4 5.7-0.1 8.4 0.8zm-51.1 0c2.7 0.9 5.1 2.5 7.2 4.5c2 2 3.5 4.5 4.4 7.2c1 2.7 1.3 5.6 0.9 8.4c0.5 2.9 0.3 5.8-0.6 8.6c-0.9 2.8-2.4 5.3-4.5 7.3c-2 2.1-4.6 3.6-7.3 4.5c-2.8 0.9-5.7 1.1-8.6 0.6c-2.8 0.5-5.8 0.3-8.5-0.6c-2.8-0.9-5.3-2.4-7.4-4.5c-2-2-3.6-4.5-4.4-7.3c-0.9-2.8-1.1-5.7-0.7-8.6c-0.4-2.8-0.2-5.8 0.7-8.5c0.8-2.8 2.4-5.3 4.4-7.3c2.1-2.1 4.6-3.6 7.4-4.5c2.7-0.9 5.7-1.1 8.5-0.6c2.9-0.4 5.7-0.1 8.5 0.8zm21.7-177.8h32.8l11.8 14.4v74.7c0.3 4.6 0.2 9.3-0.5 13.9c-0.7 4.5-1.9 9-3.6 13.3c-1.7 4.3-3.8 8.4-6.5 12.2c-2.6 3.8-5.7 7.3-9.1 10.4q-4.7 3.8-10 6.6q-5.3 2.8-11 4.7q-5.7 1.8-11.7 2.6q-5.9 0.8-11.9 0.6h-43.3c-4.1 0.3-8.3 0.1-12.4-0.6c-4.1-0.7-8.1-1.8-12-3.4c-3.9-1.6-7.5-3.6-10.9-6c-3.4-2.5-6.5-5.3-9.3-8.4c-3.1 3.2-6.5 6.1-10.3 8.5c-3.7 2.5-7.7 4.5-11.9 6.1c-4.2 1.6-8.5 2.7-12.9 3.3c-4.4 0.7-8.9 0.8-13.4 0.5h-7.8c-0.1 5.6-0.9 11.2-2.3 16.6c-1.5 5.4-3.6 10.6-6.3 15.5c-2.8 4.9-6.1 9.5-10 13.6c-3.8 4-8.2 7.6-12.9 10.6q-7.8 4.7-16.3 8.1q-8.4 3.4-17.2 5.6q-8.8 2.1-17.9 3q-9 0.9-18.1 0.4c-6.7 0.3-13.4-0.1-20-1.2c-6.6-1.1-13-2.9-19.2-5.4c-6.2-2.5-12.1-5.6-17.7-9.4c-5.5-3.7-10.6-8-15.2-12.9c-3.2-3.4-6.1-7.1-8.6-11.1c-2.4-4-4.5-8.2-6.2-12.5c-1.7-4.4-3-8.9-3.8-13.5c-0.8-4.6-1.2-9.3-1.1-14q0-3.8 0.3-7.7q0.3-3.8 1-7.6q0.6-3.8 1.6-7.5q1-3.7 2.3-7.3q1.3-3.7 2.9-7.2q1.6-3.5 3.6-6.8q2-3.3 4.3-6.4q2.3-3 5-5.9l19.6 14.5l2.7 14.4q-1.9 3.1-3.4 6.4q-1.4 3.3-2.4 6.8q-1 3.5-1.5 7.1q-0.5 3.6-0.6 7.2c-0.2 3.6 0.1 7.1 0.7 10.6c0.6 3.5 1.6 6.9 2.9 10.2c1.4 3.2 3.1 6.4 5.1 9.3c2.1 2.9 4.4 5.5 7 7.9q4.3 3.5 9.1 6.1q4.8 2.7 10 4.3q5.2 1.7 10.7 2.4q5.4 0.7 10.9 0.3c35.4 0 53.7-14.4 56.4-43.2h-19.7v-24.9l11.8-11.8h57.7q2.7 0.2 5.3-0.2q2.7-0.3 5.2-1.2q2.5-0.8 4.8-2.1q2.4-1.3 4.4-3.1q1.5-2.5 2.7-5.2q1.1-2.6 1.8-5.5q0.6-2.8 0.8-5.8q0.2-2.9-0.1-5.8v-153.4h31.5l11.8 14.4v137.7q-0.4 2.9-0.2 5.8q0.1 3 0.8 5.8q0.7 2.9 1.8 5.6q1.2 2.7 2.8 5.1q2.1 1.7 4.4 3.1q2.3 1.3 4.8 2.1q2.6 0.9 5.2 1.2q2.7 0.3 5.3 0.2h40.7q2.6 0.1 5.3-0.2q2.6-0.3 5.2-1.2q2.5-0.8 4.8-2.1q2.3-1.4 4.3-3.1q1.6-2.5 2.7-5.2q1.2-2.7 1.8-5.5q0.7-2.8 0.9-5.8q0.2-2.9-0.1-5.8zm199.3 1.3h30.2l11.8 14.4v74.8c0.5 4.5 0.4 9.1-0.2 13.7c-0.5 4.5-1.6 9-3.2 13.3c-1.6 4.3-3.7 8.4-6.2 12.3c-2.5 3.8-5.5 7.3-8.8 10.5q-4.7 3.7-10 6.5q-5.3 2.9-11 4.7q-5.7 1.9-11.6 2.7q-6 0.8-12 0.5h-34.1c-4.4 0.4-8.9 0.4-13.4-0.2c-4.4-0.6-8.8-1.7-13-3.3c-4.2-1.6-8.1-3.7-11.9-6.2c-3.7-2.5-7.1-5.4-10.2-8.6q-3.8-4.9-6.6-10.3q-2.9-5.5-4.8-11.4q-1.8-5.8-2.6-12q-0.7-6.1-0.4-12.2v-154.7h31.5l11.8 14.4v137.7q-0.4 2.9-0.3 5.8q0.2 2.9 0.9 5.8q0.6 2.8 1.8 5.5q1.2 2.7 2.8 5.1q2 1.8 4.3 3.1q2.4 1.3 4.9 2.2q2.5 0.8 5.2 1.2q2.6 0.3 5.3 0.1h24.9q2.7 0.2 5.3-0.1q2.6-0.4 5.2-1.2q2.5-0.9 4.8-2.2q2.3-1.3 4.4-3.1q1.5-2.4 2.7-5.1q1.1-2.7 1.8-5.6q0.6-2.8 0.8-5.7q0.2-2.9-0.1-5.8zm15 176.5c2.7 0.9 5.2 2.5 7.2 4.5c2 2 3.6 4.5 4.5 7.2c0.9 2.7 1.2 5.6 0.8 8.4c0.5 2.9 0.3 5.8-0.6 8.6c-0.9 2.7-2.4 5.3-4.4 7.3c-2.1 2.1-4.6 3.6-7.4 4.5c-2.7 0.9-5.7 1.1-8.5 0.6c-2.9 0.5-5.8 0.3-8.6-0.6c-2.8-0.9-5.3-2.4-7.3-4.5c-2.1-2-3.6-4.6-4.5-7.3c-0.9-2.8-1.1-5.7-0.6-8.6c-0.5-2.8-0.3-5.8 0.6-8.5c0.9-2.8 2.4-5.3 4.5-7.4c2-2 4.5-3.6 7.3-4.4c2.8-0.9 5.7-1.1 8.6-0.7c2.8-0.3 5.7 0 8.4 0.9zm380.5-138.7q3.1 6.8 4.9 14q1.8 7.2 2.4 14.6q0.6 7.4-0.2 14.8c0.4 5.6 0.2 11.2-0.7 16.7c-0.8 5.6-2.2 11-4.3 16.2c-2 5.2-4.6 10.1-7.8 14.7c-3.1 4.7-6.7 8.9-10.8 12.8q-5 4-10.5 7q-5.6 3.1-11.7 5.1q-6 2-12.3 2.9q-6.3 0.9-12.7 0.7c-4.4 0.1-8.7-0.2-13-0.9c-4.3-0.7-8.5-1.9-12.5-3.4c-4.1-1.6-7.9-3.6-11.6-6c-3.6-2.3-7-5-10.1-8.1c-2.5 2.7-5.3 5.1-8.3 7.2c-3 2-6.2 3.8-9.6 5.1c-3.4 1.4-6.9 2.4-10.6 2.9c-3.6 0.6-7.2 0.8-10.9 0.6h-36.7v14.4c0.3 4.3 0 8.6-0.7 12.9c-0.8 4.2-2 8.4-3.7 12.3c-1.7 4-3.9 7.8-6.4 11.2c-2.6 3.5-5.6 6.7-8.9 9.5q-3.9 3.4-8.3 5.9q-4.5 2.6-9.4 4.3q-4.9 1.7-10 2.4q-5.1 0.7-10.3 0.5q-5.2 0-10.4-0.5q-5.2-0.5-10.3-1.5q-5.1-1-10.1-2.4q-5-1.5-9.8-3.5l3.9-17l6.6-6.6q2.5 0.9 5.1 1.6q2.6 0.7 5.2 1.2q2.6 0.5 5.3 0.8q2.7 0.3 5.3 0.4q23.6 0 23.6-27.6v-17h-9.1c-6.2 0.3-12.3 0-18.4-1c-6-1.1-12-2.8-17.6-5.2c-5.7-2.3-11.1-5.4-16-9c-5-3.6-9.6-7.7-13.6-12.4q-4.6-5.6-8.1-12q-3.5-6.4-5.8-13.2q-2.4-6.9-3.5-14.1q-1.1-7.2-1-14.4c-0.2-5 0-10 0.8-15c0.7-4.9 1.9-9.8 3.6-14.5c1.7-4.7 3.8-9.2 6.4-13.5c2.6-4.3 5.6-8.4 8.9-12.1c3.1-3.5 6.5-6.7 10.3-9.4c3.8-2.8 7.9-5.1 12.2-6.9c4.3-1.8 8.8-3.1 13.4-3.9c4.6-0.8 9.3-1 13.9-0.8h28.9c24.9 0 38 13.2 38 40.7v77.3h32.8q2.7 0.2 5.3-0.1q2.7-0.3 5.2-1.2q2.5-0.8 4.8-2.1q2.4-1.4 4.4-3.1q1.5-2.5 2.7-5.2q1.1-2.7 1.8-5.5q0.6-2.9 0.8-5.8q0.2-2.9-0.1-5.8v-49.8c0-27.6 13.1-40.7 38-40.7h27.6c5.4-0.3 10.9 0.1 16.3 1.2c5.3 1.1 10.5 2.9 15.5 5.3c4.9 2.4 9.5 5.4 13.6 9c4.2 3.5 7.8 7.6 11 12.1q4.2 6.1 7.3 12.9zm-230.3-2.4c0-6.6-2.6-9.2-9.1-9.2h-11.8q-4.1-0.1-8.1 0.9q-3.9 0.9-7.5 2.8q-3.7 1.9-6.7 4.6q-3 2.7-5.3 6.1q-2 3-3.6 6.3q-1.5 3.3-2.5 6.8q-1 3.5-1.5 7.2q-0.4 3.6-0.2 7.2q-0.1 5 0.8 9.8q0.9 4.9 2.7 9.4q1.9 4.6 4.6 8.7q2.8 4.1 6.3 7.5q3.1 3 6.8 5.3q3.6 2.4 7.7 3.9q4.1 1.5 8.3 2.2q4.3 0.6 8.7 0.4h10.4zm193.3 66.9q1.3-4 2.1-8.1q0.8-4.2 1.2-8.4q0.3-4.2 0.1-8.4q0.4-5 0-9.9q-0.5-5-1.6-9.8q-1.2-4.9-3.1-9.5q-1.9-4.6-4.4-8.8q-2-3.2-4.8-5.7q-2.7-2.5-6-4.2q-3.2-1.7-6.8-2.5q-3.6-0.9-7.3-0.7h-10.5c-6.6 0-9.2 2.6-9.2 9.1v66.9c0 15.7 6.5 23.6 22.3 23.6c2.6 0 5.2-0.3 7.7-1c2.5-0.7 4.9-1.8 7.1-3.2c2.2-1.4 4.2-3.1 5.9-5c1.7-2 3.1-4.2 4.2-6.5q1.8-3.9 3.1-7.9zm-707.3 218.9v221.6h-45.9v-137.6l-44.6 97h-31.5l-41.9-97v137.6h-47.2v-237.3h44.5l61.7 133.7l60.3-133.7h31.5zm204.5 137.7c0 57.7-27.5 87.8-81.3 87.8c-53.7 0-81.3-28.8-81.3-87.8c0-59 27.6-87.9 81.3-87.9c53.8 0 81.3 30.2 81.3 87.9zm-44.5 0q0.4-5.1 0.1-10.2q-0.3-5-1.3-10q-1-5-2.7-9.8q-1.7-4.8-4-9.4q-2.6-3.1-5.9-5.5q-3.3-2.4-7.1-4q-3.7-1.5-7.8-2.1q-4-0.6-8.1-0.2q-4-0.3-8 0.4q-4 0.6-7.8 2.1q-3.7 1.6-7 3.9q-3.3 2.4-6 5.4q-2.8 4.6-4.8 9.5q-2 4.9-3.2 10.1q-1.2 5.2-1.5 10.5q-0.3 5.3 0.3 10.6q-0.4 5.1-0.1 10.1q0.3 5.1 1.3 10.1q1 5 2.7 9.8q1.7 4.8 4 9.3q2.6 3.2 5.9 5.6q3.3 2.4 7 3.9q3.8 1.6 7.8 2.1q4.1 0.6 8.1 0.2q4.1 0.3 8.1-0.3q4-0.6 7.7-2.2q3.8-1.5 7.1-3.9q3.3-2.3 6-5.4q2.8-4.5 4.8-9.4q2-4.9 3.2-10.1q1.1-5.2 1.4-10.5q0.3-5.3-0.2-10.6zm242.6 2.6c0 57.7-30.2 85.2-89.2 85.2q-8.6 0-17.2-0.5q-8.5-0.4-17.1-1.2q-8.5-0.8-17-2q-8.5-1.2-16.9-2.8v-236h31.5l13.1 15.7v56.4q4.9-1.4 10-2.5q5-1 10.1-1.7q5.1-0.6 10.3-0.9q5.1-0.3 10.2-0.2c5.7-0.3 11.4 0 16.9 1.1c5.6 1 11 2.8 16.2 5.2c5.1 2.3 9.9 5.4 14.3 9c4.4 3.6 8.3 7.7 11.6 12.3q3.5 7.3 6 15q2.6 7.7 4.3 15.7q1.6 7.9 2.3 16q0.8 8.1 0.6 16.2zm-43.3 0q0-55.1-39.4-55.1q-4 0.1-8 0.6q-4 0.5-8 1.3q-3.9 0.8-7.8 2q-3.9 1.2-7.6 2.7v97q3.5 0.6 7.1 1.1q3.6 0.4 7.2 0.8q3.7 0.3 7.3 0.5q3.6 0.2 7.2 0.2c27.6 1.3 42-15.7 42-51.1zm129.8-133.7q0.3 2.6 0.1 5.2q-0.1 2.6-0.8 5.1q-0.7 2.5-1.8 4.9q-1.2 2.3-2.7 4.4c-2.8 1.7-5.7 3.1-8.8 3.9c-3.1 0.9-6.4 1.4-9.6 1.4c-3.2 0-6.4-0.5-9.5-1.4c-3.1-0.8-6.1-2.2-8.9-3.9q-1.5-2.1-2.7-4.4q-1.1-2.4-1.8-4.9q-0.7-2.5-0.8-5.1q-0.2-2.6 0.1-5.2q-0.3-2.6-0.1-5.2q0.1-2.6 0.8-5.2q0.7-2.5 1.8-4.9q1.2-2.3 2.7-4.4q2-1.5 4.2-2.6q2.2-1.1 4.5-1.8q2.4-0.6 4.8-0.8q2.5-0.3 4.9 0c9.2 0 15.7 1.3 18.4 5.2q1.2 2.3 2.1 4.6q1 2.4 1.7 4.9q0.6 2.5 1 5.1q0.4 2.5 0.4 5.1zm-2.6 64.2v150.8h-43.3v-167.8h31.5zm89.2-70.8v221.5h-43.3v-237.3h31.5zm180.9 70.8l-85.2 225.5h-42l28.9-74.7l-57.7-166.5h45.9l34.1 111.4l36.7-111.4h26.2z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="logo-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1237.7 345.2" style="height:18px;width:auto;">
+                    <polygon fill="white" points="168.8,56.2 112.5,0 0,112.5 112.5,225.1 168.8,168.8 112.5,112.5"/>
+                    <rect fill="#FF375E" x="129" y="72.7" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -30.111 152.3079)" width="79.6" height="79.6"/>
+                    <path fill="white" d="M300.3,137.3h26.4c2.3,8.9,9.9,14,22.5,14c13.2,0,21.2-4.7,21.2-12.8c0-7.8-3.1-11.8-22.9-12.6c-33.8-1.4-44.3-12.4-44.3-31.1c0-21,16.7-33.4,44.8-33.4c27.4,0,42.9,12.6,46,31.5h-25.8c-2.5-5.6-7.8-10.1-20.4-10.1c-12,0-19.4,4.1-19.4,10.9c0,7,3.1,9.9,22.3,10.7c34.4,1.4,45.2,12.2,45.2,33c0,22.3-17.3,35.7-46.2,35.7C319.5,173.2,302.4,158.6,300.3,137.3"/>
+                    <path fill="white" d="M467.7,150.1c18.6,0,29.9-13,29.9-33c0-19.6-11.3-32.6-29.9-32.6c-18.8,0-29.9,13-29.9,32.6C437.8,137.1,448.9,150.1,467.7,150.1 M467.7,173.2c-33.4,0-56.1-23.5-56.1-56.1c0-32.4,22.7-55.7,56.1-55.7c33.6,0,56.1,23.3,56.1,55.7C523.8,149.7,501.3,173.2,467.7,173.2"/>
+                    <path fill="white" d="M574.9,170.1c-21,0-30.9-11.3-30.9-28.9V18.5h25.8v120.2c0,6,3.1,8.7,8,8.7h11.1v22.7L574.9,170.1z"/>
+                    <path fill="white" d="M682.3,170.1v-12.8c-8.5,10.1-20.8,15.9-35.7,15.9c-23.9,0-38.4-16.5-38.4-41.2V64.4H634v61.5c0,13.8,6.4,23.9,20.4,23.9c10.9,0,23.1-7.4,27.8-18.1V64.5H708v105.8h-25.7V170.1z"/>
+                    <path fill="white" d="M767.7,170.1c-22.5,0-33-11.6-33-29.1V29.5h25.8v34.9h33.8V87h-33.8v50.7c0,6.6,3.5,9.7,9.3,9.7h24.5v22.7L767.7,170.1z"/>
+                    <path fill="white" d="M837.3,18.5h25.8v26.2h-25.8V18.5z M837.3,87h-24.2V64.3h50v105.8h-25.8V87z"/>
+                    <path fill="white" d="M941.4,150.1c18.6,0,29.9-13,29.9-33c0-19.6-11.3-32.6-29.9-32.6c-18.8,0-29.9,13-29.9,32.6C911.5,137.1,922.7,150.1,941.4,150.1 M941.4,173.2c-33.4,0-56.1-23.5-56.1-56.1c0-32.4,22.7-55.7,56.1-55.7c33.6,0,56.1,23.3,56.1,55.7C997.5,149.7,975.1,173.2,941.4,173.2"/>
+                    <path fill="white" d="M1019.5,170.1V64.3h25.8v13.2c8.7-10.3,21.4-16.1,36.7-16.1c24.7,0,39.6,16.5,39.6,41V170h-25.8v-61.2c0-13.8-6.6-23.9-21.7-23.9c-11.3,0-23.9,7.4-28.9,18.1v67h-25.7V170.1z"/>
+                    <path fill="white" d="M1142.1,137.3h26.4c2.3,8.9,9.9,14,22.5,14c13.2,0,21.2-4.7,21.2-12.8c0-7.8-3.1-11.8-22.9-12.6c-33.8-1.4-44.3-12.4-44.3-31.1c0-21,16.7-33.4,44.8-33.4c27.4,0,42.9,12.6,46,31.5H1210c-2.5-5.6-7.8-10.1-20.4-10.1c-12,0-19.4,4.1-19.4,10.9c0,7,3.1,9.9,22.3,10.7c34.4,1.4,45.2,12.2,45.2,33c0,22.3-17.3,35.7-46.2,35.7C1161.3,173.2,1144.2,158.6,1142.1,137.3"/>
+                    <path fill="white" d="M905.1,287.7c0,3.1,0.4,5.9,1.2,8.6c0.8,2.7,1.9,5,3.3,7c1.4,2,3.2,3.5,5.3,4.7c2.1,1.1,4.5,1.7,7.2,1.7c2.6,0,5-0.6,7.1-1.7c2.1-1.1,3.9-2.7,5.4-4.7s2.6-4.3,3.4-7c0.8-2.7,1.2-5.5,1.2-8.6s-0.4-5.9-1.2-8.6c-0.8-2.7-1.9-5-3.4-7c-1.5-1.9-3.3-3.5-5.4-4.6c-2.1-1.1-4.5-1.7-7.1-1.7c-2.7,0-5.1,0.6-7.2,1.7c-2.1,1.1-3.9,2.7-5.3,4.6c-1.4,1.9-2.6,4.3-3.3,7C905.5,281.7,905.1,284.6,905.1,287.7 M905.3,318.5h-11.1v-91.7h11.1v40.3c0.3-0.7,0.9-1.8,1.9-3.1c0.9-1.3,2.1-2.6,3.6-3.9c1.5-1.3,3.4-2.4,5.6-3.3c2.2-0.9,4.9-1.4,7.9-1.4c3.6,0,7,0.7,10.2,2.2s6,3.6,8.3,6.4c2.4,2.8,4.3,6.2,5.7,10.2s2.1,8.6,2.1,13.7c0,5.1-0.7,9.6-2.1,13.6c-1.4,4-3.3,7.4-5.7,10.2s-5.2,4.9-8.3,6.4c-3.2,1.5-6.6,2.2-10.2,2.2c-3.1,0-5.7-0.5-7.9-1.4s-4.1-2-5.6-3.2s-2.7-2.4-3.6-3.7c-0.9-1.2-1.5-2.2-1.9-2.9V318.5z"/>
+                    <polygon fill="white" points="981.5,345.2 970.3,345.2 981.2,317.5 956.6,257 968.9,257 987,302.7 1005,257 1016.5,257"/>
+                    <path fill="white" d="M1147.3,318.2c7.4,0,12.7-2.3,15-4.3v-15.4c-1.7,1.3-5.1,2.8-9.5,2.8c-3.1,0-5.4-0.7-7.1-2.3c-1.4-1.4-2.1-3.8-2.1-7.1v-65.2h-18.8V246h37.6v18.2h-37.6v32.3c0,6.6,2,11.8,5.6,15.5C1134.2,316.1,1140,318.2,1147.3,318.2 M1204.8,318.2c10.5,0,18.7-3.8,24.2-9.3c4.4-4.3,7.1-9.3,8.5-14.4l-16.7-5.6c-0.7,2.6-2.1,5.3-4.4,7.4c-2.7,2.6-6.4,4.4-11.7,4.4c-4.8,0-9.4-1.9-12.7-5.1c-3.3-3.4-5.3-8.4-5.3-14.7c0-6.4,2-11.3,5.3-14.7c3.3-3.3,7.7-5,12.5-5c5.1,0,8.7,1.7,11.3,4.3c2.1,2.1,3.4,4.8,4.3,7.5l16.9-5.7c-1.3-5-4-10-8-14.1c-5.7-5.6-14-9.5-24.9-9.5c-10.1,0-19.2,3.8-25.8,10.4c-6.6,6.7-10.5,15.9-10.5,26.8c0,10.8,4.1,20.1,10.8,26.8C1185.3,314.4,1194.6,318.2,1204.8,318.2 M1084.6,318.2c9.5,0,17.4-3,22.5-8c3.8-3.8,6.1-9,6.1-15c0-5.4-2-10.3-5.7-14s-9-6.4-15.7-7.7l-11-2.1c-4.6-0.9-7.1-3.1-7.1-6.3c0-4.1,4-7,10.4-7c4,0,7.4,1.3,9.7,3.6c1.4,1.6,2.4,3.6,2.7,5.8l15.8-3.6c-0.4-4.6-2.6-8.5-5.8-11.8c-5.1-5.1-13.1-8.4-22.5-8.4c-8.7,0-15.9,2.8-20.9,7.4c-4.3,4-6.7,9.4-6.7,15.4c0,5.3,1.7,9.7,5.1,13.1c3.4,3.4,8.4,6,15,7.5l10.8,2.6c5.4,1.3,7.8,3.3,7.8,6.8c0,4.4-4,7-10.5,7c-4.7,0-8.5-1.6-11-4.1c-1.7-1.7-2.7-4-2.8-6.6l-16.2,3.6c0.4,4.8,2.7,9.1,6.1,12.5C1066.1,314.8,1074.8,318.2,1084.6,318.2"/>
+                </svg>
+            </div>
+            <div class="logo-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 23" fill="white" opacity="0.75" style="height:18px;width:auto;">
+                    <path d="M58,21.4666667 L58,23 L50.3684211,23 L50.3684211,21.4666667 L58,21.4666667 Z M39.6842105,21.4666667 L39.6842105,23 L32.0526316,23 L32.0526316,21.4666667 L39.6842105,21.4666667 Z M45.6385329,21.4666667 L45.0245693,23 L44.41871,21.4666667 L45.6385329,21.4666667 Z M28.5421053,21.4666667 C27.4471432,22.4188667 26.0029202,23 24.3905263,23 L24.3905263,23 L12.2105263,23 L12.2105263,21.4666667 Z M10.6842105,21.4666667 L10.6842105,23 L0,23 L0,21.4666667 L10.6842105,21.4666667 Z M39.6842105,18.4 L39.6842105,19.9333333 L32.0526316,19.9333333 L32.0526316,18.4 L39.6842105,18.4 Z M46.8318522,18.4 L46.2377311,19.9333333 L43.8212353,19.9333333 L43.2226426,18.4 L46.8318522,18.4 Z M30.0684211,18.4 C29.9306437,18.9451697 29.7105614,19.4599515 29.4273684,19.9333333 L29.4273684,19.9333333 L12.2105263,19.9333333 L12.2105263,18.4 Z M10.6842105,18.4 L10.6842105,19.9333333 L0,19.9333333 L0,18.4 L10.6842105,18.4 Z M58,18.4 L58,19.9333333 L50.3684211,19.9333333 L50.3684211,18.4 L58,18.4 Z M54.9473684,15.3333333 L54.9473684,16.8666667 L50.3684211,16.8666667 L50.3684211,15.3333333 L54.9473684,15.3333333 Z M39.6842105,15.3333333 L39.6842105,16.8666667 L35.1052632,16.8666667 L35.1052632,15.3333333 L39.6842105,15.3333333 Z M48.0292704,15.3333333 L47.4295831,16.8666667 L42.6233978,16.8666667 L42.019006,15.3333333 L48.0292704,15.3333333 Z M29.8547368,15.3333333 C29.991899,15.8221879 30.0684211,16.3357152 30.0684211,16.8666667 L30.0684211,16.8666667 L24.4210526,16.8666667 L24.4210526,15.3333333 Z M19.8421053,15.3333333 L19.8421053,16.8666667 L15.2631579,16.8666667 L15.2631579,15.3333333 L19.8421053,15.3333333 Z M7.63157895,15.3333333 L7.63157895,16.8666667 L3.05263158,16.8666667 L3.05263158,15.3333333 L7.63157895,15.3333333 Z M54.9473684,12.2666667 L54.9473684,13.8 L50.3684211,13.8 L50.3684211,12.2666667 L54.9473684,12.2666667 Z M39.6842105,12.2666667 L39.6842105,13.8 L35.1052632,13.8 L35.1052632,12.2666667 L39.6842105,12.2666667 Z M49.2252679,12.2666667 L48.6284686,13.8 L41.4089474,13.8 L40.8168134,12.2666667 L49.2252679,12.2666667 Z M27.9773684,12.2666667 C28.5037637,12.6994848 28.9570701,13.2181697 29.3052632,13.8 L29.3052632,13.8 L15.2631579,13.8 L15.2631579,12.2666667 Z M7.63157895,12.2666667 L7.63157895,13.8 L3.05263158,13.8 L3.05263158,12.2666667 L7.63157895,12.2666667 Z M44.5987396,9.2 L45.0263158,10.4393515 L45.4535426,9.2 L54.9473684,9.2 L54.9473684,10.7333333 L50.3684211,10.7333333 L50.3684211,9.32433939 L49.8494737,10.7333333 L40.1878947,10.7333333 L39.6842105,9.3242 L39.6842105,10.7333333 L35.1052632,10.7333333 L35.1052632,9.2 L44.5987396,9.2 Z M7.63157895,9.2 L7.63157895,10.7333333 L3.05263158,10.7333333 L3.05263158,9.2 L7.63157895,9.2 Z M29.3052632,9.2 C28.9570701,9.7818303 28.5037637,10.3003758 27.9773684,10.7333333 L27.9773684,10.7333333 L15.2631579,10.7333333 L15.2631579,9.2 Z M54.9473684,6.13333333 L54.9473684,7.66666667 L45.9831118,7.66666667 L46.5234001,6.13333333 L54.9473684,6.13333333 Z M43.534302,6.13333333 L44.0745993,7.66666667 L35.1052632,7.66666667 L35.1052632,6.13333333 L43.534302,6.13333333 Z M30.0684211,6.13333333 C30.0684211,6.66414545 29.991899,7.17767273 29.8547368,7.66666667 L29.8547368,7.66666667 L24.4210526,7.66666667 L24.4210526,6.13333333 Z M19.8421053,6.13333333 L19.8421053,7.66666667 L15.2631579,7.66666667 L15.2631579,6.13333333 L19.8421053,6.13333333 Z M7.63157895,6.13333333 L7.63157895,7.66666667 L3.05263158,7.66666667 L3.05263158,6.13333333 L7.63157895,6.13333333 Z M42.4774196,3.06666667 L43.0079113,4.6 L32.0527757,4.6 L32.0526316,3.06666667 L42.4774196,3.06666667 Z M58,3.06666667 L58,4.6 L47.0390632,4.6 L47.5903678,3.06666667 L58,3.06666667 Z M29.4273684,3.06666667 C29.7105614,3.54004848 29.9306437,4.0548303 30.0684211,4.6 L30.0684211,4.6 L12.2105263,4.6 L12.2105263,3.06666667 Z M10.6842105,3.06666667 L10.6842105,4.6 L0,4.6 L0,3.06666667 L10.6842105,3.06666667 Z M41.4056725,0 L41.9462722,1.53333333 L32.05278,1.53333333 L32.0526316,0 L41.4056725,0 Z M58,0 L58,1.53333333 L48.1188427,1.53333333 L48.6466706,0 L58,0 Z M24.3905263,0 C25.9912083,0 27.4472798,0.581133333 28.5421053,1.53333333 L28.5421053,1.53333333 L12.2105263,1.53333333 L12.2105263,0 Z M10.6842105,0 L10.6842105,1.53333333 L0,1.53333333 L0,0 L10.6842105,0 Z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
 
-        <header style="text-align: center; margin-bottom: 60px;">
-            <img src="/omaralfawzan.png" alt="Omar Alfawzan" 
-                 style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--glass-border); margin-bottom: 24px;">
-            <h1>Omar Alfawzan</h1>
-            <p class="headline">Cloud Technical Lead @ SITE | Cloud Pre-Sales & Delivery</p>
-        </header>
-
-        <h2 class="section-title">Summary</h2>
+    <!-- Summary -->
+    <div class="summary-section">
+        <div class="section-title">Summary</div>
         <div class="glass-card">
-            <p style="color: var(--text-p); line-height: 1.6;">
+            <p style="color: var(--text-p); line-height: 1.75; font-weight: 300; font-size: 1rem;">
                 Cloud Technical Lead with 8+ years of experience in technical pre-sales, working closely with customers to shape cloud solutions. Brings together exposure to AI, cloud product management, solution delivery, and hands-on experience with containers and cloud infrastructure.
             </p>
         </div>
+    </div>
 
-        <h2 class="section-title" id="connect">Connect</h2>
-        <div class="grid" style="margin-bottom: 24px;">
-            <a href="https://www.linkedin.com/in/omarfoz" target="_blank" class="social-link">
-                <span style="color: var(--accent);">in</span> LinkedIn Profile
-            </a>
+    <!-- Biography -->
+    <div class="bio-section">
+        <div class="section-title">Biography</div>
+        <div class="timeline" id="timeline"></div>
+    </div>
 
-            <a href="https://wa.me/966533553665" target="_blank" class="social-link">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#25D366" viewBox="0 0 24 24">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.319 1.592 5.548 0 10.058-4.51 10.06-10.059 0-2.689-1.047-5.215-2.951-7.119C17.118 2.703 14.59 1.65 11.905 1.65c-5.548 0-10.06 4.51-10.063 10.06 0 2.12.569 4.191 1.644 5.943l-.992 3.626 3.716-.974zm11.368-7.316c-.313-.156-1.853-.914-2.141-1.018-.288-.106-.499-.156-.709.156-.21.314-.813 1.018-1 1.226-.186.209-.373.235-.686.079-1.323-.662-2.183-1.096-3.045-2.57-.23-.393.23-.365.659-1.22.08-.163.04-.306-.02-.462-.061-.156-.499-1.205-.684-1.651-.18-.435-.363-.376-.499-.383-.129-.006-.277-.008-.426-.008-.149 0-.391.056-.596.28-.205.223-.781.763-.781 1.861s.8 2.162.911 2.311c.112.15 1.574 2.405 3.812 3.372.533.23.95.368 1.275.47.535.17 1.022.146 1.407.089.43-.064 1.853-.758 2.112-1.49.259-.732.259-1.36.182-1.49-.077-.13-.284-.209-.597-.365z"/>
-                </svg>
-                <span>WhatsApp</span>
-            </a>
-        </div>
+    <!-- Projects -->
+    <div class="projects-section">
+        <div class="section-title">Personal Projects</div>
+        <div id="projects"></div>
+    </div>
 
-        
-<h2 class="section-title">Experience</h2>
-        <div class="glass-card">
-            <div class="exp-item">
-                <div class="row"><span class="company">SITE</span><span class="period">Sep 2024 - Present</span></div>
-                <span class="pos">Technical Lead II, Cloud Engineering</span>
-                <ul class="desc-list">
-                    <li>Lead pre-sales activities including discovery, solution design, and customer workshops.</li>
-                    <li>Respond to RFPs by scoping cloud projects, PS, and MS, creating BoQs, and designing customized solutions aligned to customer requirements.</li>
-                    <li>Contributed to AI technical pre-sales by assessing applied AI use cases and validating their feasibility within cloud environments.</li>
-                    <li>Lead cloud delivery, executing components from provisioning to handover while overseeing customized scope such as migrations, PS, and MS.</li>
-                    <li><strong>Led large-scale cloud migration delivery</strong>, migrating 15,000 email users and 400+ virtual machines from on-premises to cloud with refactoring and re-architecture.</li>
-                    <li>Deployed a scalable file-sharing solution designed to support up to 15,000 users, ensuring performance and security.</li>
-                </ul>
-            </div>
+    <footer>
+        Omar Alfawzan 2026 · <a href="experience.html" style="color:var(--accent);text-decoration:none;">View Full Experience ↗</a>
+    </footer>
 
-            <div class="exp-item">
-                <div class="row"><span class="company">Mobily</span><span class="period">Mar 2023 - Sep 2024</span></div>
-                <span class="pos">DC & Cloud Solutions Principal</span>
-                <ul class="desc-list">
-                    <li>Managed Mobily Cloud Products including Public Cloud, DRaaS, Co-location, and Customized solutions.</li>
-                    <li>Engaged in sales initiatives and enabled sales effectiveness.</li>
-                    <li>Monitored and initiated improvements to maintain competitive advantage.</li>
-                    <li>Developed Cloud Partnership Program and Cloud Life Cycle Process.</li>
-                </ul>
-            </div>
+</div>
 
-            <div class="exp-item">
-                <div class="row"><span class="company">solutions by stc</span><span class="period">Sep 2021 - Mar 2023</span></div>
-                <span class="pos">Product Manager</span>
-                <ul class="desc-list">
-                    <li>Developed a new Disaster Recovery (DRaaS) product on top of stc cloud.</li>
-                    <li>Managed VDC, Co-Location, and FWaaS portfolios including vendor invoicing and business case development.</li>
-                    <li>Participated in sales activities and triggered product enhancements.</li>
-                </ul>
-            </div>
+<script src="data.js"></script>
+<script>
+    // Render Timeline
+    const timeline = document.getElementById('timeline');
+    siteData.timeline.forEach((item, i) => {
+        const delay = (i + 1) * 0.1;
+        timeline.innerHTML += `
+            <div class="tl-item" style="animation-delay:${delay}s">
+                <div class="tl-dot ${item.big ? 'big' : ''}"></div>
+                <div class="tl-year">${item.year}</div>
+                <div class="tl-title">${item.title}</div>
+                <div class="tl-body">${item.body}</div>
+            </div>`;
+    });
 
-            <div class="exp-item">
-                <div class="row"><span class="company">solutions by stc</span><span class="period">Aug 2019 - Sep 2021</span></div>
-                <span class="pos">Business Development Specialist</span>
-                <ul class="desc-list">
-                    <li>Developed digital products competitive analysis and pipeline reporting.</li>
-                    <li>Managed cloud service partners in the stc marketplace.</li>
-                    <li>Arranged meetups and webinars for cloud and IoT portfolios.</li>
-                </ul>
-            </div>
-
-            <div class="exp-item">
-                <div class="row"><span class="company">IBM</span><span class="period">Jul 2018 - Jul 2019</span></div>
-                <span class="pos">Developer Advocate</span>
-                <ul class="desc-list">
-                    <li>Delivered and mentored on over 35 workshops for the IBM Cloud community.</li>
-                    <li>Set up IBM Private Cloud using RHEL 7, Docker, and Kubernetes.</li>
-                    <li>Created chatbots using Watson Assistant, Node.js, and Telegram.</li>
-                </ul>
-            </div>
-
-            <div class="exp-item">
-                <div class="row"><span class="company">Dell EMC</span><span class="period">Jul 2017 - Nov 2017</span></div>
-                <span class="pos">IT Support & Cloud Deployment</span>
-                <ul class="desc-list">
-                    <li>Practical training in storage systems (VMAX, Unity, VNX) and cloud infrastructure.</li>
-                </ul>
-            </div>
-
-            <div class="exp-item">
-                <div class="row"><span class="company">Al Tayyar Travel Group</span><span class="period">May 2017 - Jul 2017</span></div>
-                <span class="pos">Networking and Basic Security</span>
-                <ul class="desc-list">
-                    <li>Configured switches and routers; secured networks via VLANs and firewalls.</li>
-                </ul>
-            </div>
-        </div>
-
-
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="grid">
-            <div class="glass-card">
-                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">Pre-Sales & Delivery</p>
-                <div class="pill">Technical Pre-Sales</div><div class="pill">Solution Design</div>
-                <div class="pill">Proposal Creation</div><div class="pill">Client Onboarding</div>
-            </div>
-            <div class="glass-card">
-                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">Cloud Computing</p>
-                <div class="pill">Docker</div><div class="pill">Kubernetes</div>
-                <div class="pill">Cloud Migration</div><div class="pill">Private Cloud</div>
-            </div>
-            <div class="glass-card">
-                <p style="font-weight: 700; margin-bottom: 12px; color: var(--accent);">AI & Automation</p>
-                <div class="pill">GenAI</div><div class="pill">LLMs</div>
-                <div class="pill">RAG</div><div class="pill">AI Workflows</div>
-            </div>
-        </div>
-
-        <h2 class="section-title">Education</h2>
-        <div class="glass-card">
-            <div class="row"><span class="company">King Saud University</span><span class="period">2014 - 2018</span></div>
-            <span class="pos">Bachelor's degree, Computer Information Systems</span>
-            <p style="color: var(--text-s); font-size: 0.9rem;">Grade: 4.59/5</p>
-        </div>
-
-        <footer style="padding: 40px 0; text-align: center; font-size: 0.9rem; color: va
+    // Render Projects
+    const projects = document.getElementById('projects');
+    siteData.projects.forEach(p => {
+        const tagsHTML = p.tags.map(t => `<span class="ptag">${t}</span>`).join('') +
+                         `<span class="ptag year">${p.year}</span>`;
+        const linkHTML = p.link
+            ? `<a href="${p.link}" target="_blank" class="project-link">${p.linkLabel}</a>`
+            : '';
+        projects.innerHTML += `
+            <div class="project-card">
+                <div class="project-banner ${p.bannerClass}">
+                    <div class="banner-grid"></div>
+                    <span class="banner-icon">${p.emoji}</span>
+                </div>
+                <div class="project-body">
+                    <div class="project-tags">${tagsHTML}</div>
+                    <div class="project-name">${p.name}</div>
+                    <div class="project-desc">${p.description}</div>
+                    <div class="project-learned">
+                        <div class="learned-label">💡 What I Learned</div>
+                        <div class="learned-text">${p.learned}</div>
+                    </div>
+                    ${linkHTML}
+                </div>
+            </div>`;
+    });
+</script>
+</body>
+</html>
