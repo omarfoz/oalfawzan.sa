@@ -35,7 +35,7 @@ const siteData = {
       year: "Jul 2018 — IBM",
       title: "The IBM Chapter: Workshops, Containers & Watson",
       body: "Straight out of university, I landed a Developer Advocate role at IBM a graduate program. Over the next year, I delivered <strong>35+ workshops</strong> for the IBM Cloud community, set up a private cloud with RHEL 7, Docker, and Kubernetes, and built chatbots with Watson Assistant and Node.js. This was the year everything accelerated for me.",
-      big: true
+      big: false
     },
     {
       year: "2019 — ElHaq",
