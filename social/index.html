@@ -216,111 +216,149 @@
 </div>
 
 <script>
-// ── CONFIG ───────────────────────────────────────────────────────
-const PHOTO_COUNT = 200;  // total number of photos
-const BATCH_SIZE  = 9;    // how many to load per scroll batch
-// ─────────────────────────────────────────────────────────────────
-
-// Shuffle once per session — same order as you scroll, new order on next visit
+const PHOTO_COUNT = 193;
+const BATCH_SIZE = 9;
 const STORAGE_KEY = `photo_order_v${PHOTO_COUNT}`;
-let photoOrder = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
 
-if (!photoOrder) {
-    photoOrder = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
-    for (let i = photoOrder.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [photoOrder[i], photoOrder[j]] = [photoOrder[j], photoOrder[i]];
+const grid = document.getElementById('photoGrid');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+
+let lightboxIndex = 0;
+let loaded = 0;
+let isLoading = false;
+
+function getPhotoOrder() {
+    let saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length === PHOTO_COUNT) {
+                return parsed;
+            }
+        } catch (e) {}
     }
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(photoOrder));
+
+    const order = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
+
+    for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    return order;
 }
+
+const photoOrder = getPhotoOrder();
 
 const photos = photoOrder.map(n => ({
     src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
     caption: ""
 }));
 
-const grid = document.getElementById('photoGrid');
-let lightboxIndex = 0;
-let loaded = 0;
-let isLoading = false;
+function createPhotoItem(photo, index) {
+    const item = document.createElement('div');
+    item.className = 'photo-item';
+
+    const img = document.createElement('img');
+    img.src = photo.src;
+    img.alt = photo.caption || `Photo ${index + 1}`;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+
+    img.onerror = () => item.remove();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'photo-overlay';
+    overlay.innerHTML = `<span class="photo-caption">${photo.caption}</span>`;
+
+    item.appendChild(img);
+    item.appendChild(overlay);
+
+    item.addEventListener('click', () => openLightbox(index));
+    return item;
+}
 
 function loadBatch() {
     if (isLoading || loaded >= photos.length) return;
+
     isLoading = true;
 
-    const batch = photos.slice(loaded, loaded + BATCH_SIZE);
     const fragment = document.createDocumentFragment();
+    const end = Math.min(loaded + BATCH_SIZE, photos.length);
 
-    batch.forEach((photo, j) => {
-        const i = loaded + j;
-        const item = document.createElement('div');
-        item.className = 'photo-item';
-
-        const img = document.createElement('img');
-        img.src = photo.src;
-        img.alt = photo.caption;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        img.onerror = () => item.style.display = 'none';
-
-        const overlay = document.createElement('div');
-        overlay.className = 'photo-overlay';
-        overlay.innerHTML = `<span class="photo-caption">${photo.caption}</span>`;
-
-        item.appendChild(img);
-        item.appendChild(overlay);
-        item.addEventListener('click', () => openLightbox(i));
-        fragment.appendChild(item);
-    });
+    for (let i = loaded; i < end; i++) {
+        fragment.appendChild(createPhotoItem(photos[i], i));
+    }
 
     grid.appendChild(fragment);
-    loaded += batch.length;
+    loaded = end;
     isLoading = false;
 
-    if (loaded >= photos.length) sentinel.style.display = 'none';
+    if (loaded >= photos.length) {
+        observer.disconnect();
+        sentinel.remove();
+    }
 }
 
-// Sentinel for infinite scroll
 const sentinel = document.createElement('div');
-sentinel.style.cssText = 'height:60px;width:100%;';
-grid.parentNode.insertBefore(sentinel, grid.nextSibling);
+sentinel.style.cssText = 'height:1px;width:100%;';
+grid.after(sentinel);
 
 const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) loadBatch();
-}, { rootMargin: '300px' });
+    if (entries[0].isIntersecting) {
+        loadBatch();
+    }
+}, {
+    rootMargin: '300px 0px',
+    threshold: 0
+});
 
 observer.observe(sentinel);
 
-// Load first batch immediately
 loadBatch();
 
-// Lightbox
 function openLightbox(index) {
     lightboxIndex = index;
-    document.getElementById('lightboxImg').src = photos[index].src;
-    document.getElementById('lightbox').classList.add('open');
+    lightboxImg.src = photos[index].src;
+    lightbox.classList.add('open');
 }
-document.getElementById('lightboxClose').addEventListener('click', () => {
-    document.getElementById('lightbox').classList.remove('open');
-});
-document.getElementById('lightboxPrev').addEventListener('click', () => {
+
+function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightboxImg.src = '';
+}
+
+function showPrev() {
     lightboxIndex = (lightboxIndex - 1 + photos.length) % photos.length;
-    document.getElementById('lightboxImg').src = photos[lightboxIndex].src;
-});
-document.getElementById('lightboxNext').addEventListener('click', () => {
+    lightboxImg.src = photos[lightboxIndex].src;
+}
+
+function showNext() {
     lightboxIndex = (lightboxIndex + 1) % photos.length;
-    document.getElementById('lightboxImg').src = photos[lightboxIndex].src;
-});
-document.getElementById('lightbox').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
-});
-document.addEventListener('keydown', (e) => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
-    if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
-    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+    lightboxImg.src = photos[lightboxIndex].src;
+}
+
+lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', showPrev);
+lightboxNext.addEventListener('click', showNext);
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeLightbox();
 });
 
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeLightbox();
+});
 </script>
 </body>
 </html>
