@@ -146,11 +146,28 @@
         }
         .social-link:hover { background: rgba(0, 122, 255, 0.1); border-color: var(--accent); }
 
+        .exp-item:target ~ * { }
+        [id^="exp-"]:target + .company,
+        [id^="exp-"] { scroll-margin-top: 100px; }
+        @keyframes highlight-in {
+            0% { background: rgba(0,122,255,0.15); }
+            100% { background: transparent; }
+        }
+        .exp-item.highlighted { animation: highlight-in 2s ease forwards; border-radius: 12px; padding: 12px; margin: -12px; }
+
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
             .row { flex-direction: column; }
         }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FF5QTH48B5');
+    </script>
 </head>
 <body>
 
@@ -197,7 +214,7 @@
 <h2 class="section-title">Experience</h2>
         <div class="glass-card">
             <div class="exp-item">
-                <div class="row"><span class="company">SITE</span><span class="period">Sep 2024 - Present</span></div>
+                <div class="row" id="exp-site"><span class="company">SITE</span><span class="period">Sep 2024 - Present</span></div>
                 <span class="pos">Technical Lead II, Cloud Engineering</span>
                 <ul class="desc-list">
                     <li>Lead pre-sales activities including discovery, solution design, and customer workshops.</li>
@@ -210,7 +227,7 @@
             </div>
 
             <div class="exp-item">
-                <div class="row"><span class="company">Mobily</span><span class="period">Mar 2023 - Sep 2024</span></div>
+                <div class="row" id="exp-mobily"><span class="company">Mobily</span><span class="period">Mar 2023 - Sep 2024</span></div>
                 <span class="pos">DC & Cloud Solutions Principal</span>
                 <ul class="desc-list">
                     <li>Managed Mobily Cloud Products including Public Cloud, DRaaS, Co-location, and Customized solutions.</li>
@@ -221,7 +238,7 @@
             </div>
 
             <div class="exp-item">
-                <div class="row"><span class="company">solutions by stc</span><span class="period">Sep 2021 - Mar 2023</span></div>
+                <div class="row" id="exp-stc"><span class="company">solutions by stc</span><span class="period">Sep 2021 - Mar 2023</span></div>
                 <span class="pos">Product Manager</span>
                 <ul class="desc-list">
                     <li>Developed a new Disaster Recovery (DRaaS) product on top of stc cloud.</li>
@@ -241,7 +258,7 @@
             </div>
 
             <div class="exp-item">
-                <div class="row"><span class="company">IBM</span><span class="period">Jul 2018 - Jul 2019</span></div>
+                <div class="row" id="exp-ibm"><span class="company">IBM</span><span class="period">Jul 2018 - Jul 2019</span></div>
                 <span class="pos">Developer Advocate</span>
                 <ul class="desc-list">
                     <li>Delivered and mentored on over 35 workshops for the IBM Cloud community.</li>
