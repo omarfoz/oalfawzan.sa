@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social — Omar Alfawzan | Photography</title>
+    <meta name="description" content="Photography by Omar Alfawzan. Landscapes, street, and travel — shot on iPhone and Fujifilm X100F.">
+    <link rel="canonical" href="https://oalfawzan.sa/social/">
+    <meta property="og:title" content="Omar Alfawzan — Photography">
+    <meta property="og:description" content="Landscapes, street, and travel photography by Omar Alfawzan.">
+    <meta property="og:image" content="https://oalfawzan.sa/omaralfawzan.png">
+    <meta property="og:url" content="https://oalfawzan.sa/social/">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/fluency/48/cloud.png">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-FF5QTH48B5');</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg:#010204;--glass:rgba(255,255,255,0.03);--glass-border:rgba(255,255,255,0.12);--glass-shine:rgba(255,255,255,0.22);--accent:#007AFF;--text-p:#ffffff;--text-s:rgba(255,255,255,0.55);}
+        *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+        html{scroll-behavior:smooth;}
+        body{color:var(--text-p);font-family:'DM Sans',-apple-system,sans-serif;background:linear-gradient(rgba(13,22,45,0.85),rgba(1,2,4,0.95)),url('/image.jpg');background-size:cover;background-position:center;background-attachment:fixed;background-color:var(--bg);min-height:100vh;}
+        .container{width:100%;max-width:900px;margin:0 auto;padding:0 16px;}
+        .glass-card{background:var(--glass);backdrop-filter:blur(50px) saturate(200%);-webkit-backdrop-filter:blur(50px) saturate(200%);border:1px solid var(--glass-border);box-shadow:inset 0 1px 0 0 var(--glass-shine);border-radius:24px;}
+        .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;margin:20px 0 40px;border-radius:32px;flex-wrap:wrap;gap:10px;}
+        .nav-name{font-weight:800;font-size:1.05rem;letter-spacing:-0.02em;}
+        .nav-buttons{display:flex;gap:6px;flex-wrap:wrap;}
+        .btn-sm{text-decoration:none;color:var(--text-p);font-size:0.73rem;font-weight:600;padding:5px 11px;border-radius:20px;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);transition:0.3s;white-space:nowrap;}
+        .btn-sm:hover,.btn-sm.active{background:var(--accent);border-color:var(--accent);}
+        @media(max-width:480px){.nav{padding:10px 14px;margin:12px 0 28px;border-radius:20px;}.nav-name{font-size:0.9rem;}.btn-sm{font-size:0.68rem;padding:4px 9px;}}
+        .hero{text-align:center;margin-bottom:32px;padding:0 8px;}
+        .hero-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-s);margin-bottom:12px;}
+        .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.9rem,7vw,3.2rem);font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:14px;}
+        .hero h1 em{font-style:italic;color:var(--text-s);}
+        .hero-sub{font-size:0.93rem;color:var(--text-s);font-weight:300;line-height:1.65;max-width:380px;margin:0 auto 18px;}
+        .gear-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+        .gear-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:20px;padding:5px 14px;font-size:0.76rem;color:var(--text-s);}
+        .gear-tag span{color:var(--text-p);font-weight:600;}
+        .social-row{display:flex;gap:10px;justify-content:center;margin-bottom:36px;flex-wrap:wrap;}
+        .social-btn{text-decoration:none;display:flex;align-items:center;gap:9px;padding:11px 20px;border-radius:16px;font-weight:600;font-size:0.88rem;border:1px solid var(--glass-border);background:rgba(255,255,255,0.04);color:var(--text-p);transition:0.3s;}
+        .social-btn:hover{transform:translateY(-2px);}
+        .social-btn.instagram:hover{background:rgba(225,48,108,0.15);border-color:#E1306C;}
+        .social-btn.snapchat:hover{background:rgba(255,252,0,0.08);border-color:#FFFC00;}
+        .social-btn.vsco:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.5);}
+        .filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+        .filter-pill{padding:6px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;border:1px solid var(--glass-border);background:rgba(255,255,255,0.04);color:var(--text-s);cursor:pointer;transition:0.25s;}
+        .filter-pill.active,.filter-pill:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
+        .photo-grid{columns:2;column-gap:8px;margin-bottom:24px;}
+        @media(min-width:600px){.photo-grid{columns:3;}}
+        .photo-item{break-inside:avoid;margin-bottom:8px;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);}
+        .photo-item img{width:100%;display:block;transition:transform 0.4s ease;}
+        /* Story = natural tall ratio, Post = square */
+        .photo-item.type-post img{aspect-ratio:1/1;object-fit:cover;}
+        .photo-item.type-story img{aspect-ratio:9/16;object-fit:cover;}
+        .photo-item:hover img{transform:scale(1.04);}
+        .photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:10px 12px;}
+        .photo-item:hover .photo-overlay{opacity:1;}
+        .photo-caption{font-size:0.7rem;font-weight:600;color:rgba(255,255,255,0.9);text-transform:uppercase;letter-spacing:0.08em;}
+        #sentinel{height:40px;display:flex;align-items:center;justify-content:center;}
+        .loading-dots{display:none;gap:6px;}
+        .loading-dots.visible{display:flex;}
+        .loading-dots span{width:6px;height:6px;border-radius:50%;background:var(--text-s);animation:dot-bounce 1.2s infinite;}
+        .loading-dots span:nth-child(2){animation-delay:0.2s;}
+        .loading-dots span:nth-child(3){animation-delay:0.4s;}
+        @keyframes dot-bounce{0%,80%,100%{transform:scale(0.8);opacity:0.5;}40%{transform:scale(1.2);opacity:1;}}
+        .end-message{text-align:center;color:var(--text-s);font-size:0.82rem;padding:16px 0 40px;display:none;}
+        .end-message.visible{display:block;}
+        .empty-state{color:var(--text-s);font-size:0.85rem;padding:40px 0;text-align:center;line-height:1.8;}
+        .empty-state code{background:rgba(255,255,255,0.07);padding:2px 8px;border-radius:6px;font-size:0.8rem;}
+        .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.94);z-index:1000;align-items:center;justify-content:center;padding:16px;}
+        .lightbox.open{display:flex;}
+        .lightbox-inner{position:relative;max-width:100%;max-height:90vh;}
+        .lightbox img{max-width:100%;max-height:88vh;border-radius:10px;object-fit:contain;display:block;}
+        .lightbox-close{position:fixed;top:16px;right:16px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;width:38px;height:38px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.2s;}
+        .lightbox-close:hover{background:rgba(255,255,255,0.2);}
+        .lightbox-nav{position:fixed;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:white;width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.2s;}
+        .lightbox-nav:hover{background:rgba(255,255,255,0.18);}
+        .lightbox-prev{left:12px;}.lightbox-next{right:12px;}
+        .lightbox-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:0.78rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;background:rgba(0,0,0,0.5);padding:5px 14px;border-radius:20px;}
+        .ig-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 24px; }
+        @media(min-width: 600px) { .ig-grid { grid-template-columns: 1fr 1fr; } }
+        .ig-grid .instagram-media { margin: 0 !important; min-width: unset !important; width: 100% !important; border-radius: 16px !important; }
+        footer{padding:40px 0;text-align:center;font-size:0.85rem;color:var(--text-s);}
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="nav glass-card">
+        <div class="nav-name">Omar Alfawzan</div>
+        <div class="nav-buttons">
+            <a href="/" class="btn-sm">Home</a>
+            <a href="/experience/" class="btn-sm">Experience</a>
+            <a href="/blog/" class="btn-sm">Blog</a>
+            <a href="/social/" class="btn-sm active">Social</a>
+            <a href="https://wa.me/966533553665" target="_blank" class="btn-sm">Contact</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <p class="hero-eyebrow">Beyond the Cloud</p>
+        <h1>Seeing the world <em>one frame</em> at a time</h1>
+        <p class="hero-sub">Landscapes, streets, and places worth remembering. Photography is how I slow down and pay attention.</p>
+        <div class="gear-tags">
+            <span class="gear-tag">📷 <span>Fujifilm X100F</span></span>
+            <span class="gear-tag">📱 <span>iPhone</span></span>
+        </div>
+    </div>
+
+    <div class="social-row">
+        <a href="https://www.instagram.com/oyf_96" target="_blank" class="social-btn instagram glass-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig-g)" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4" stroke="url(#ig-g)" stroke-width="2"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="#E1306C"/>
+                <defs><linearGradient id="ig-g" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse"><stop stop-color="#F58529"/><stop offset="0.5" stop-color="#E1306C"/><stop offset="1" stop-color="#833AB4"/></linearGradient></defs>
+            </svg>
+            @oyf_96
+        </a>
+        <a href="https://www.snapchat.com/add/oyf_96" target="_blank" class="social-btn snapchat glass-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFC00"><path d="M12 2C8.5 2 6 4.5 6 8v1.5c-.5.2-1.5.5-2 1 0 .8.8 1.2 1.5 1.3-.3.6-.8 1.2-1.5 1.5.2.5.8.8 1.5.8.3 0 .6 0 .8-.1C7 15.8 9 17 12 17s5-1.2 5.7-3c.2.1.5.1.8.1.7 0 1.3-.3 1.5-.8-.7-.3-1.2-.9-1.5-1.5.7-.1 1.5-.5 1.5-1.3-.5-.5-1.5-.8-2-1V8c0-3.5-2.5-6-5-6z"/></svg>
+            oyf_96
+        </a>
+        <a href="https://vsco.co/omarfoz/gallery" target="_blank" class="social-btn vsco glass-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                <circle cx="12" cy="12" r="6" stroke="white" stroke-width="1.5" opacity="0.8"/>
+                <circle cx="12" cy="12" r="2" fill="white" opacity="0.8"/>
+            </svg>
+            VSCO Gallery
+        </a>
+    </div>
+
+    <!-- Instagram Posts -->
+    <p class="section-title">From Instagram</p>
+    <div class="ig-grid">
+
+        <blockquote class="instagram-media"
+            data-instgrm-captioned
+            data-instgrm-permalink="https://www.instagram.com/p/Cd8rem5Dvph/?utm_source=ig_embed&utm_campaign=loading"
+            data-instgrm-version="14">
+        </blockquote>
+
+        <!-- Add more posts: copy the blockquote above and change the URL -->
+
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <div style="text-align:center; margin: 32px 0 48px;">
+        <a href="https://www.instagram.com/oyf_96" target="_blank" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-p);background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);padding:10px 22px;border-radius:20px;font-size:0.85rem;font-weight:600;transition:0.3s;" onmouseover="this.style.borderColor='#E1306C'" onmouseout="this.style.borderColor='var(--glass-border)'">
+            See all photos on Instagram ↗
+        </a>
+    </div>
+
+    <footer>© Omar Alfawzan · oalfawzan.sa</footer>
+</div>
+
+<div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+    <div class="lightbox-inner"><img id="lightboxImg" src="" alt=""></div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
+<script>
+const PAGE_SIZE = 12;
+let allPhotos = [], filtered = [], loaded = 0, isLoading = false, currentFilter = 'all', lightboxIndex = 0;
+
+fetch('photos.json')
+    .then(r => r.json())
+    .then(data => { allPhotos = data; applyFilter('all'); })
+    .catch(() => {
+        document.getElementById('photoGrid').innerHTML =
+            '<div class="empty-state">No photos yet.<br>Add your images to <code>social/photos/</code> and list them in <code>photos.json</code>.</div>';
+    });
+
+function applyFilter(filter) {
+    currentFilter = filter;
+    filtered = filter === 'all' ? allPhotos : allPhotos.filter(p => p.category === filter);
+    loaded = 0;
+    document.getElementById('photoGrid').innerHTML = '';
+    document.getElementById('endMessage').classList.remove('visible');
+    loadNextBatch();
+}
+
+function loadNextBatch() {
+    if (isLoading || loaded >= filtered.length) return;
+    const batch = filtered.slice(loaded, loaded + PAGE_SIZE);
+    if (!batch.length) { document.getElementById('endMessage').classList.add('visible'); return; }
+    isLoading = true;
+    document.getElementById('loadingDots').classList.add('visible');
+    const grid = document.getElementById('photoGrid');
+    setTimeout(() => {
+        batch.forEach((photo, i) => {
+            const globalIndex = loaded + i;
+            const item = document.createElement('div');
+            item.className = 'photo-item';
+            const img = document.createElement('img');
+            img.src = photo.file;
+            img.alt = photo.caption || photo.category || '';
+            img.loading = 'lazy';
+            const overlay = document.createElement('div');
+            overlay.className = 'photo-overlay';
+            if (photo.caption || photo.category) {
+                const cap = document.createElement('span');
+                cap.className = 'photo-caption';
+                cap.textContent = photo.caption || photo.category;
+                overlay.appendChild(cap);
+            }
+            item.classList.add(photo.type === 'story' ? 'type-story' : 'type-post');
+            item.appendChild(img);
+            item.appendChild(overlay);
+            item.addEventListener('click', () => openLightbox(globalIndex));
+            grid.appendChild(item);
+        });
+        loaded += batch.length;
+        isLoading = false;
+        document.getElementById('loadingDots').classList.remove('visible');
+        if (loaded >= filtered.length) document.getElementById('endMessage').classList.add('visible');
+    }, 250);
+}
+
+const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !isLoading && loaded < filtered.length) loadNextBatch();
+}, { rootMargin: '300px' });
+observer.observe(document.getElementById('sentinel'));
+
+document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        applyFilter(pill.dataset.filter);
+    });
+});
+
+function openLightbox(index) {
+    lightboxIndex = index;
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+function updateLightbox() {
+    const photo = filtered[lightboxIndex];
+    if (!photo) return;
+    document.getElementById('lightboxImg').src = photo.file;
+    document.getElementById('lightboxCaption').textContent = photo.caption || photo.category || '';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+}
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); lightboxIndex = (lightboxIndex - 1 + filtered.length) % filtered.length; updateLightbox(); });
+document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); lightboxIndex = (lightboxIndex + 1) % filtered.length; updateLightbox(); });
+document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + filtered.length) % filtered.length; updateLightbox(); }
+    if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % filtered.length; updateLightbox(); }
+});
+</script>
+</body>
+</html>
