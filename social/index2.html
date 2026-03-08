@@ -206,42 +206,6 @@
         .lightbox-nav:hover { background:rgba(255,255,255,0.18); }
         .lightbox-prev { left:12px; } .lightbox-next { right:12px; }
         footer{padding:40px 0;text-align:center;font-size:0.85rem;color:var(--text-s);}
-
-        .section-title{font-size:0.95rem;font-weight:600;color:var(--text-p);margin:0 0 10px 2px;letter-spacing:-0.01em;}
-
-        /* Mobile scroll stability */
-        html{
-            scroll-behavior:smooth;
-            overflow-x:hidden;
-            overscroll-behavior-y:none;
-            -webkit-text-size-adjust:100%;
-        }
-        body{
-            overflow-x:hidden;
-            overscroll-behavior-y:none;
-            -webkit-overflow-scrolling:touch;
-            touch-action:pan-y;
-        }
-        #photoGrid,
-        #photoGrid *{
-            touch-action:pan-y;
-        }
-        .photo-item{
-            -webkit-tap-highlight-color:transparent;
-            transform:translateZ(0);
-        }
-        .photo-item img{
-            -webkit-user-drag:none;
-            user-select:none;
-            pointer-events:none;
-        }
-        .photo-overlay{
-            pointer-events:none;
-        }
-        .lightbox,
-        .lightbox *{
-            touch-action:manipulation;
-        }
     </style>
 </head>
 <body>
@@ -315,13 +279,12 @@
 
 <script>
 const PHOTO_COUNT = 193;
-const BATCH_SIZE = 8;
+const BATCH_SIZE = 9;
 const STORAGE_KEY = `photo_order_v${PHOTO_COUNT}`;
 
 const grid = document.getElementById('photoGrid');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxCaption = document.getElementById('lightboxCaption');
 const lightboxClose = document.getElementById('lightboxClose');
 const lightboxPrev = document.getElementById('lightboxPrev');
 const lightboxNext = document.getElementById('lightboxNext');
@@ -331,7 +294,7 @@ let loaded = 0;
 let isLoading = false;
 
 function getPhotoOrder() {
-    const saved = sessionStorage.getItem(STORAGE_KEY);
+    let saved = localStorage.getItem(STORAGE_KEY);
 
     if (saved) {
         try {
@@ -339,26 +302,25 @@ function getPhotoOrder() {
             if (Array.isArray(parsed) && parsed.length === PHOTO_COUNT) {
                 return parsed;
             }
-        } catch (error) {
-            sessionStorage.removeItem(STORAGE_KEY);
-        }
+        } catch (e) {}
     }
 
     const order = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
+
     for (let i = order.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [order[i], order[j]] = [order[j], order[i]];
     }
 
-    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
     return order;
 }
 
 const photoOrder = getPhotoOrder();
 
-const photos = photoOrder.map((n) => ({
+const photos = photoOrder.map(n => ({
     src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
-    caption: ''
+    caption: ""
 }));
 
 function createPhotoItem(photo, index) {
@@ -366,31 +328,21 @@ function createPhotoItem(photo, index) {
     item.className = 'photo-item';
 
     const img = document.createElement('img');
+    img.src = photo.src;
     img.alt = photo.caption || `Photo ${index + 1}`;
     img.loading = 'lazy';
     img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
-    img.src = photo.src;
 
-    img.onerror = () => {
-        item.remove();
-    };
+    img.onerror = () => item.remove();
 
     const overlay = document.createElement('div');
     overlay.className = 'photo-overlay';
-    overlay.innerHTML = photo.caption
-        ? `<span class="photo-caption">${photo.caption}</span>`
-        : '';
+    overlay.innerHTML = `<span class="photo-caption">${photo.caption}</span>`;
 
     item.appendChild(img);
     item.appendChild(overlay);
 
-    item.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        openLightbox(index);
-    }, { passive: false });
-
+    item.addEventListener('click', () => openLightbox(index));
     return item;
 }
 
@@ -399,83 +351,75 @@ function loadBatch() {
 
     isLoading = true;
 
-    requestAnimationFrame(() => {
-        const fragment = document.createDocumentFragment();
-        const end = Math.min(loaded + BATCH_SIZE, photos.length);
+    const fragment = document.createDocumentFragment();
+    const end = Math.min(loaded + BATCH_SIZE, photos.length);
 
-        for (let i = loaded; i < end; i++) {
-            fragment.appendChild(createPhotoItem(photos[i], i));
-        }
+    for (let i = loaded; i < end; i++) {
+        fragment.appendChild(createPhotoItem(photos[i], i));
+    }
 
-        grid.appendChild(fragment);
-        loaded = end;
-        isLoading = false;
+    grid.appendChild(fragment);
+    loaded = end;
+    isLoading = false;
 
-        if (loaded >= photos.length) {
-            observer.disconnect();
-            sentinel.remove();
-        }
-    });
+    if (loaded >= photos.length) {
+        observer.disconnect();
+        sentinel.remove();
+    }
 }
 
 const sentinel = document.createElement('div');
-sentinel.id = 'sentinel';
+sentinel.style.cssText = 'height:1px;width:100%;';
 grid.after(sentinel);
 
 const observer = new IntersectionObserver((entries) => {
-    if (entries[0] && entries[0].isIntersecting) {
+    if (entries[0].isIntersecting) {
         loadBatch();
     }
 }, {
-    root: null,
-    rootMargin: '350px 0px',
+    rootMargin: '300px 0px',
     threshold: 0
 });
 
 observer.observe(sentinel);
+
 loadBatch();
 
 function openLightbox(index) {
     lightboxIndex = index;
     lightboxImg.src = photos[index].src;
-    lightboxCaption.textContent = photos[index].caption || `${index + 1} / ${photos.length}`;
     lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
     lightbox.classList.remove('open');
     lightboxImg.src = '';
-    lightboxCaption.textContent = '';
-    document.body.style.overflow = '';
 }
 
 function showPrev() {
     lightboxIndex = (lightboxIndex - 1 + photos.length) % photos.length;
     lightboxImg.src = photos[lightboxIndex].src;
-    lightboxCaption.textContent = photos[lightboxIndex].caption || `${lightboxIndex + 1} / ${photos.length}`;
 }
 
 function showNext() {
     lightboxIndex = (lightboxIndex + 1) % photos.length;
     lightboxImg.src = photos[lightboxIndex].src;
-    lightboxCaption.textContent = photos[lightboxIndex].caption || `${lightboxIndex + 1} / ${photos.length}`;
 }
 
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxPrev.addEventListener('click', showPrev);
 lightboxNext.addEventListener('click', showNext);
 
-lightbox.addEventListener('click', (event) => {
-    if (event.target === lightbox) closeLightbox();
+lightbox.addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeLightbox();
 });
 
-document.addEventListener('keydown', (event) => {
+document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('open')) return;
 
-    if (event.key === 'ArrowRight') showNext();
-    if (event.key === 'ArrowLeft') showPrev();
-    if (event.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'Escape') closeLightbox();
 });
 </script>
 </body>
