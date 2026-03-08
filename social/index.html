@@ -77,9 +77,72 @@
         .lightbox-nav:hover{background:rgba(255,255,255,0.18);}
         .lightbox-prev{left:12px;}.lightbox-next{right:12px;}
         .lightbox-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:0.78rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;background:rgba(0,0,0,0.5);padding:5px 14px;border-radius:20px;}
-        .ig-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 24px; }
-        @media(min-width: 600px) { .ig-grid { grid-template-columns: 1fr 1fr; } }
-        .ig-grid .instagram-media { margin: 0 !important; min-width: unset !important; width: 100% !important; border-radius: 16px !important; }
+        .photo-grid {
+            columns: 2;
+            column-gap: 8px;
+            margin-bottom: 24px;
+        }
+        @media(min-width: 600px) { .photo-grid { columns: 3; } }
+        @media(min-width: 900px) { .photo-grid { columns: 4; } }
+
+        .photo-item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--glass-border);
+        }
+        .photo-item img {
+            width: 100%;
+            display: block;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .photo-item:hover img { transform: scale(1.04); }
+        .photo-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.3s;
+            display: flex; align-items: flex-end; padding: 10px 12px;
+        }
+        .photo-item:hover .photo-overlay { opacity: 1; }
+        .photo-caption {
+            font-size: 0.7rem; font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+        /* Placeholder shimmer for unloaded slots */
+        .photo-placeholder {
+            width: 100%; aspect-ratio: 9/16;
+            background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 12px;
+        }
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+        .see-more-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            text-decoration: none; color: var(--text-p);
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 22px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600; transition: 0.3s;
+        }
+        .see-more-btn:hover { border-color: #E1306C; }
+
+        /* Lightbox */
+        .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:1000; align-items:center; justify-content:center; }
+        .lightbox.open { display:flex; }
+        .lightbox img { max-height:92vh; max-width:92vw; object-fit:contain; border-radius:8px; display:block; }
+        .lightbox-close { position:fixed; top:16px; right:16px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:white; width:38px; height:38px; border-radius:50%; font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .lightbox-nav { position:fixed; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:white; width:40px; height:40px; border-radius:50%; font-size:1.4rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:0.2s; }
+        .lightbox-nav:hover { background:rgba(255,255,255,0.18); }
+        .lightbox-prev { left:12px; } .lightbox-next { right:12px; }
         footer{padding:40px 0;text-align:center;font-size:0.85rem;color:var(--text-s);}
     </style>
 </head>
@@ -99,11 +162,8 @@
     <div class="hero">
         <p class="hero-eyebrow">Beyond the Cloud</p>
         <h1>Seeing the world <em>one frame</em> at a time</h1>
-        <p class="hero-sub">Landscapes, streets, and places worth remembering. Photography is how I slow down and pay attention.</p>
-        <div class="gear-tags">
-            <span class="gear-tag">📷 <span>Fujifilm X100F</span></span>
-            <span class="gear-tag">📱 <span>iPhone</span></span>
-        </div>
+        <p class="hero-sub">Capturing moments between the clouds.</p>
+
     </div>
 
     <div class="social-row">
@@ -117,7 +177,9 @@
             @oyf_96
         </a>
         <a href="https://www.snapchat.com/add/oyf_96" target="_blank" class="social-btn snapchat glass-card">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFFC00"><path d="M12 2C8.5 2 6 4.5 6 8v1.5c-.5.2-1.5.5-2 1 0 .8.8 1.2 1.5 1.3-.3.6-.8 1.2-1.5 1.5.2.5.8.8 1.5.8.3 0 .6 0 .8-.1C7 15.8 9 17 12 17s5-1.2 5.7-3c.2.1.5.1.8.1.7 0 1.3-.3 1.5-.8-.7-.3-1.2-.9-1.5-1.5.7-.1 1.5-.5 1.5-1.3-.5-.5-1.5-.8-2-1V8c0-3.5-2.5-6-5-6z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 36 35.3" fill="#FFFC00">
+                <path d="M35.8336 26.7701C35.6786 26.2535 34.9294 25.8918 34.9294 25.8918C34.8623 25.8505 34.7951 25.8195 34.7434 25.7936C33.4983 25.1943 32.3978 24.471 31.473 23.6495C30.7291 22.9882 30.0884 22.2649 29.5769 21.49C28.9518 20.5497 28.6573 19.7592 28.5333 19.3355C28.461 19.0565 28.4765 18.948 28.5333 18.8034C28.585 18.6846 28.7245 18.5657 28.7968 18.5141C29.2153 18.2196 29.8921 17.7804 30.3054 17.5118C30.6619 17.2793 30.9719 17.0778 31.1527 16.9538C31.7365 16.5456 32.1344 16.1323 32.372 15.6828C32.6768 15.1042 32.713 14.4635 32.4753 13.8384C32.155 12.9911 31.3645 12.4848 30.3622 12.4848C30.1401 12.4848 29.9076 12.5106 29.6803 12.5571C29.1068 12.6811 28.5591 12.8878 28.1045 13.0634C28.0735 13.0789 28.0373 13.0531 28.0373 13.0169C28.0838 11.8855 28.1407 10.3665 28.0167 8.9199C27.903 7.61278 27.6343 6.51232 27.1952 5.55135C26.7509 4.58522 26.1826 3.87225 25.7279 3.36076C25.2991 2.86995 24.55 2.14664 23.4133 1.49566C21.8169 0.581195 19.9983 0.116211 18.0092 0.116211C16.0253 0.116211 14.2118 0.581195 12.6102 1.4905C11.4116 2.17764 10.6418 2.95261 10.2905 3.3556C9.84097 3.87225 9.26749 4.58522 8.82317 5.54619C8.38402 6.50715 8.11536 7.60761 8.0017 8.91473C7.8777 10.3614 7.92937 11.7615 7.98103 13.0118C7.98103 13.0479 7.94487 13.0738 7.91387 13.0583C7.45922 12.8826 6.91157 12.6759 6.33809 12.5519C6.11076 12.5003 5.88344 12.4796 5.65611 12.4796C4.65382 12.4796 3.86334 12.9859 3.54302 13.8332C3.30536 14.4635 3.34153 15.099 3.64635 15.6777C3.88401 16.1271 4.28183 16.5405 4.86564 16.9486C5.04647 17.0726 5.35646 17.2741 5.71295 17.5066C6.1211 17.7701 6.77724 18.1937 7.19573 18.4934C7.24739 18.5296 7.42305 18.6639 7.47988 18.8034C7.54188 18.9532 7.55221 19.0617 7.47472 19.3562C7.34555 19.785 7.05107 20.5652 6.43625 21.49C5.92477 22.2649 5.28413 22.9882 4.54015 23.6495C3.61019 24.471 2.50972 25.1943 1.26977 25.7936C1.21294 25.8195 1.14061 25.8556 1.06311 25.9021C0.985611 25.9486 0.319134 26.2793 0.179639 26.7701C-0.0270202 27.4934 0.520627 28.1702 1.08894 28.537C2.00858 29.1312 3.1297 29.4515 3.78068 29.622C3.96151 29.6685 4.12683 29.715 4.27666 29.7615C4.36966 29.7925 4.60215 29.8803 4.70548 30.0095C4.82948 30.1697 4.84498 30.3711 4.89147 30.5985C4.96381 30.9808 5.12397 31.4509 5.59412 31.7764C6.11076 32.1329 6.77208 32.1588 7.60388 32.1898C8.47702 32.2208 9.56198 32.2673 10.8019 32.6754C11.3754 32.8666 11.8972 33.1869 12.5017 33.5589C13.7623 34.3338 15.3329 35.3 18.0143 35.3C20.6958 35.3 22.2767 34.3287 23.5477 33.5537C24.147 33.1869 24.6636 32.8666 25.2268 32.6806C26.4667 32.2724 27.5517 32.2311 28.4248 32.1949C29.2566 32.1639 29.9179 32.1381 30.4346 31.7816C30.9409 31.4354 31.0856 30.9136 31.1527 30.521C31.1889 30.3298 31.2147 30.1542 31.3232 30.0095C31.4162 29.8855 31.6332 29.8028 31.7365 29.7667C31.8915 29.7202 32.0569 29.6737 32.248 29.622C32.899 29.4463 33.7101 29.2449 34.7021 28.6817C35.8749 28.0101 35.9576 27.1783 35.8336 26.7701Z"/>
+            </svg>
             oyf_96
         </a>
         <a href="https://vsco.co/omarfoz/gallery" target="_blank" class="social-btn vsco glass-card">
@@ -130,24 +192,15 @@
         </a>
     </div>
 
-    <!-- Instagram Posts -->
-    <p class="section-title">From Instagram</p>
-    <div class="ig-grid">
-
-        <blockquote class="instagram-media"
-            data-instgrm-captioned
-            data-instgrm-permalink="https://www.instagram.com/p/Cd8rem5Dvph/?utm_source=ig_embed&utm_campaign=loading"
-            data-instgrm-version="14">
-        </blockquote>
-
-        <!-- Add more posts: copy the blockquote above and change the URL -->
-
+    <!-- Photo Grid -->
+    <p class="section-title">Photos</p>
+    <div class="photo-grid" id="photoGrid">
+        <!-- Photos will be injected here by JS from the photos array below -->
     </div>
-    <script async src="//www.instagram.com/embed.js"></script>
 
-    <div style="text-align:center; margin: 32px 0 48px;">
-        <a href="https://www.instagram.com/oyf_96" target="_blank" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--text-p);background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);padding:10px 22px;border-radius:20px;font-size:0.85rem;font-weight:600;transition:0.3s;" onmouseover="this.style.borderColor='#E1306C'" onmouseout="this.style.borderColor='var(--glass-border)'">
-            See all photos on Instagram ↗
+    <div style="text-align:center; margin: 8px 0 48px;">
+        <a href="https://www.instagram.com/oyf_96" target="_blank" class="see-more-btn">
+            See more on Instagram ↗
         </a>
     </div>
 
@@ -163,102 +216,111 @@
 </div>
 
 <script>
-const PAGE_SIZE = 12;
-let allPhotos = [], filtered = [], loaded = 0, isLoading = false, currentFilter = 'all', lightboxIndex = 0;
+// ── CONFIG ───────────────────────────────────────────────────────
+const PHOTO_COUNT = 200;  // total number of photos
+const BATCH_SIZE  = 9;    // how many to load per scroll batch
+// ─────────────────────────────────────────────────────────────────
 
-fetch('photos.json')
-    .then(r => r.json())
-    .then(data => { allPhotos = data; applyFilter('all'); })
-    .catch(() => {
-        document.getElementById('photoGrid').innerHTML =
-            '<div class="empty-state">No photos yet.<br>Add your images to <code>social/photos/</code> and list them in <code>photos.json</code>.</div>';
-    });
+// Shuffle once per session — same order as you scroll, new order on next visit
+const STORAGE_KEY = `photo_order_v${PHOTO_COUNT}`;
+let photoOrder = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || 'null');
 
-function applyFilter(filter) {
-    currentFilter = filter;
-    filtered = filter === 'all' ? allPhotos : allPhotos.filter(p => p.category === filter);
-    loaded = 0;
-    document.getElementById('photoGrid').innerHTML = '';
-    document.getElementById('endMessage').classList.remove('visible');
-    loadNextBatch();
+if (!photoOrder) {
+    photoOrder = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
+    for (let i = photoOrder.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [photoOrder[i], photoOrder[j]] = [photoOrder[j], photoOrder[i]];
+    }
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(photoOrder));
 }
 
-function loadNextBatch() {
-    if (isLoading || loaded >= filtered.length) return;
-    const batch = filtered.slice(loaded, loaded + PAGE_SIZE);
-    if (!batch.length) { document.getElementById('endMessage').classList.add('visible'); return; }
+const photos = photoOrder.map(n => ({
+    src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
+    caption: ""
+}));
+
+const grid = document.getElementById('photoGrid');
+let lightboxIndex = 0;
+let loaded = 0;
+let isLoading = false;
+
+function loadBatch() {
+    if (isLoading || loaded >= photos.length) return;
     isLoading = true;
-    document.getElementById('loadingDots').classList.add('visible');
-    const grid = document.getElementById('photoGrid');
-    setTimeout(() => {
-        batch.forEach((photo, i) => {
-            const globalIndex = loaded + i;
-            const item = document.createElement('div');
-            item.className = 'photo-item';
-            const img = document.createElement('img');
-            img.src = photo.file;
-            img.alt = photo.caption || photo.category || '';
-            img.loading = 'lazy';
-            const overlay = document.createElement('div');
-            overlay.className = 'photo-overlay';
-            if (photo.caption || photo.category) {
-                const cap = document.createElement('span');
-                cap.className = 'photo-caption';
-                cap.textContent = photo.caption || photo.category;
-                overlay.appendChild(cap);
-            }
-            item.classList.add(photo.type === 'story' ? 'type-story' : 'type-post');
-            item.appendChild(img);
-            item.appendChild(overlay);
-            item.addEventListener('click', () => openLightbox(globalIndex));
-            grid.appendChild(item);
-        });
-        loaded += batch.length;
-        isLoading = false;
-        document.getElementById('loadingDots').classList.remove('visible');
-        if (loaded >= filtered.length) document.getElementById('endMessage').classList.add('visible');
-    }, 250);
+
+    const batch = photos.slice(loaded, loaded + BATCH_SIZE);
+    const fragment = document.createDocumentFragment();
+
+    batch.forEach((photo, j) => {
+        const i = loaded + j;
+        const item = document.createElement('div');
+        item.className = 'photo-item';
+
+        const img = document.createElement('img');
+        img.src = photo.src;
+        img.alt = photo.caption;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.onerror = () => item.style.display = 'none';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'photo-overlay';
+        overlay.innerHTML = `<span class="photo-caption">${photo.caption}</span>`;
+
+        item.appendChild(img);
+        item.appendChild(overlay);
+        item.addEventListener('click', () => openLightbox(i));
+        fragment.appendChild(item);
+    });
+
+    grid.appendChild(fragment);
+    loaded += batch.length;
+    isLoading = false;
+
+    if (loaded >= photos.length) sentinel.style.display = 'none';
 }
 
-const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !isLoading && loaded < filtered.length) loadNextBatch();
+// Sentinel for infinite scroll
+const sentinel = document.createElement('div');
+sentinel.style.cssText = 'height:60px;width:100%;';
+grid.parentNode.insertBefore(sentinel, grid.nextSibling);
+
+const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) loadBatch();
 }, { rootMargin: '300px' });
-observer.observe(document.getElementById('sentinel'));
 
-document.querySelectorAll('.filter-pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-        pill.classList.add('active');
-        applyFilter(pill.dataset.filter);
-    });
-});
+observer.observe(sentinel);
 
+// Load first batch immediately
+loadBatch();
+
+// Lightbox
 function openLightbox(index) {
     lightboxIndex = index;
-    updateLightbox();
+    document.getElementById('lightboxImg').src = photos[index].src;
     document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
 }
-function updateLightbox() {
-    const photo = filtered[lightboxIndex];
-    if (!photo) return;
-    document.getElementById('lightboxImg').src = photo.file;
-    document.getElementById('lightboxCaption').textContent = photo.caption || photo.category || '';
-}
-function closeLightbox() {
+document.getElementById('lightboxClose').addEventListener('click', () => {
     document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-}
-document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
-document.getElementById('lightboxPrev').addEventListener('click', e => { e.stopPropagation(); lightboxIndex = (lightboxIndex - 1 + filtered.length) % filtered.length; updateLightbox(); });
-document.getElementById('lightboxNext').addEventListener('click', e => { e.stopPropagation(); lightboxIndex = (lightboxIndex + 1) % filtered.length; updateLightbox(); });
-document.addEventListener('keydown', e => {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') { lightboxIndex = (lightboxIndex - 1 + filtered.length) % filtered.length; updateLightbox(); }
-    if (e.key === 'ArrowRight') { lightboxIndex = (lightboxIndex + 1) % filtered.length; updateLightbox(); }
 });
+document.getElementById('lightboxPrev').addEventListener('click', () => {
+    lightboxIndex = (lightboxIndex - 1 + photos.length) % photos.length;
+    document.getElementById('lightboxImg').src = photos[lightboxIndex].src;
+});
+document.getElementById('lightboxNext').addEventListener('click', () => {
+    lightboxIndex = (lightboxIndex + 1) % photos.length;
+    document.getElementById('lightboxImg').src = photos[lightboxIndex].src;
+});
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) e.currentTarget.classList.remove('open');
+});
+document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'ArrowRight') document.getElementById('lightboxNext').click();
+    if (e.key === 'ArrowLeft') document.getElementById('lightboxPrev').click();
+    if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('open');
+});
+
 </script>
 </body>
 </html>
