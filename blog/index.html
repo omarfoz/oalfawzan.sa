@@ -89,6 +89,17 @@
     gap:10px;
 }
 
+/* NAV CONTAINER */
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 20px;
+    margin:20px 0 40px;
+    border-radius:32px;
+    gap:10px;
+}
+
 /* NAME */
 .nav-name{
     font-weight:800;
@@ -100,7 +111,14 @@
 .nav-buttons{
     display:flex;
     gap:8px;
-    flex-wrap:wrap;
+    overflow-x:auto;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+}
+
+/* hide scrollbar */
+.nav-buttons::-webkit-scrollbar{
+    display:none;
 }
 
 /* BUTTON STYLE */
@@ -126,24 +144,6 @@
 .btn-sm.active{
     background:var(--accent);
     border-color:var(--accent);
-}
-
-/* MOBILE FIX */
-@media (max-width:600px){
-
-    .nav{
-        justify-content:center;
-        text-align:center;
-    }
-
-    .nav-name{
-        width:100%;
-    }
-
-    .nav-buttons{
-        justify-content:center;
-    }
-
 }
         .section-title {
             font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em;
