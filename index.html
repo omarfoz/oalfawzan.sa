@@ -76,29 +76,74 @@
         }
 
         /* Nav */
-       .nav{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:12px 20px;
-margin:20px 0 40px;
-border-radius:32px;
-flex-wrap:wrap;
-gap:10px;
+      /* NAV CONTAINER */
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 20px;
+    margin:20px 0 40px;
+    border-radius:32px;
+    flex-wrap:wrap;
+    gap:10px;
 }
 
-        .nav-name { font-weight: 800; font-size: 1.1rem; letter-spacing: -0.02em; }
-        .nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
-        .btn-sm {
-            text-decoration: none; color: var(--text-p);
-            font-size: 0.75rem; font-weight: 600;
-            padding: 6px 14px; border-radius: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border); transition: 0.3s;
-        }
-        .btn-sm:hover { background: var(--accent); border-color: var(--accent); }
-        .btn-sm.active { background: var(--accent); border-color: var(--accent); }
+/* NAME */
+.nav-name{
+    font-weight:800;
+    font-size:1.1rem;
+    letter-spacing:-0.02em;
+}
 
+/* BUTTON CONTAINER */
+.nav-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+/* BUTTON STYLE */
+.btn-sm{
+    text-decoration:none;
+    color:var(--text-p);
+    font-size:0.75rem;
+    font-weight:600;
+    padding:6px 14px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid var(--glass-border);
+    transition:0.25s ease;
+}
+
+/* HOVER */
+.btn-sm:hover{
+    background:var(--accent);
+    border-color:var(--accent);
+}
+
+/* ACTIVE PAGE */
+.btn-sm.active{
+    background:var(--accent);
+    border-color:var(--accent);
+}
+
+/* MOBILE FIX */
+@media (max-width:600px){
+
+    .nav{
+        justify-content:center;
+        text-align:center;
+    }
+
+    .nav-name{
+        width:100%;
+    }
+
+    .nav-buttons{
+        justify-content:center;
+    }
+
+}
         /* Hero */
         .hero { text-align: center; padding: 20px 0 56px; }
         .hero img {
