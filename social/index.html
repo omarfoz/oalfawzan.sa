@@ -288,7 +288,13 @@
         <!-- Photos will be injected here by JS from the photos array below -->
     </div>
 
-    <div style="text-align:center; margin: 8px 0 48px;">
+    <div style="text-align:center; margin: 8px 0 24px;">
+        <button id="loadMoreBtn" class="see-more-btn" style="cursor:pointer; border:1px solid var(--glass-border);">
+            Load more
+        </button>
+    </div>
+
+    <div style="text-align:center; margin: 0 0 48px;">
         <a href="https://www.instagram.com/oyf_96" target="_blank" class="see-more-btn">
             See more on Instagram ↗
         </a>
@@ -307,21 +313,23 @@
 
 <script>
 const PHOTO_COUNT = 193;
-const DISPLAY_COUNT = 12;
+const PAGE_SIZE = 12; // photos shown initially and added per "Load more" click
 
-// Three predefined seeds — change these numbers to get a different fixed set of 12 photos.
-// Each must be a positive integer. They drive a seeded PRNG so the selection is always
+// Three predefined seeds — change these numbers to get a different fixed order.
+// Each must be a positive integer. They drive a seeded PRNG so the order is always
 // identical for every visitor without any storage or runtime randomisation.
 const SEEDS = [482751, 193047, 867324];
 
 const grid = document.getElementById('photoGrid');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
+const loadMoreBtn = document.getElementById('loadMoreBtn');
 
 let lightboxIndex = 0;
+let loadedCount = 0;   // how many photos are currently in the DOM
+let photos = [];       // full seeded-shuffled list (built once, never changes)
 
 /* -------- Seeded PRNG (mulberry32) -------- */
-// Combines the three seeds into one 32-bit starting value.
 function makeRng(seeds) {
     let h = (seeds[0] ^ (seeds[1] << 13) ^ (seeds[2] >> 7)) >>> 0;
     return function() {
@@ -332,29 +340,21 @@ function makeRng(seeds) {
     };
 }
 
-/* -------- Pick fixed subset of photo numbers -------- */
-function getFixedPhotoSelection() {
+/* -------- Build full shuffled photo list (seeded, no Math.random) -------- */
+function buildPhotoList() {
     const rng = makeRng(SEEDS);
-
-    // Fisher-Yates on a full index array using the seeded RNG,
-    // then take only the first DISPLAY_COUNT entries.
     const pool = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
     for (let i = pool.length - 1; i > 0; i--) {
         const j = Math.floor(rng() * (i + 1));
         [pool[i], pool[j]] = [pool[j], pool[i]];
     }
-    return pool.slice(0, DISPLAY_COUNT);
+    return pool.map(n => ({
+        src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
+        caption: ""
+    }));
 }
 
-const selectedNums = getFixedPhotoSelection();
-
-/* -------- Build photo list -------- */
-const photos = selectedNums.map(n => ({
-    src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
-    caption: ""
-}));
-
-/* -------- Create photo element -------- */
+/* -------- Create a single photo element -------- */
 function createPhotoItem(photo, index) {
     const item = document.createElement('div');
     item.className = 'photo-item';
@@ -376,16 +376,29 @@ function createPhotoItem(photo, index) {
     return item;
 }
 
-/* -------- Render the 12 selected photos -------- */
-function loadSelectedPhotos() {
+/* -------- Append the next PAGE_SIZE photos to the grid -------- */
+function renderNextPage() {
+    const end = Math.min(loadedCount + PAGE_SIZE, photos.length);
     const fragment = document.createDocumentFragment();
-    photos.forEach((photo, index) => {
-        fragment.appendChild(createPhotoItem(photo, index));
-    });
+
+    for (let i = loadedCount; i < end; i++) {
+        fragment.appendChild(createPhotoItem(photos[i], i));
+    }
+
     grid.appendChild(fragment);
+    loadedCount = end;
+
+    // Hide button once all photos are loaded
+    if (loadedCount >= photos.length) {
+        loadMoreBtn.style.display = 'none';
+    }
 }
 
-loadSelectedPhotos();
+/* -------- Init -------- */
+photos = buildPhotoList();
+renderNextPage(); // load first page immediately
+
+loadMoreBtn.addEventListener('click', renderNextPage);
 
 /* -------- Lightbox -------- */
 
