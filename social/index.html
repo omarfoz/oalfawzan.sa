@@ -307,22 +307,19 @@
 
 <script>
 const PHOTO_COUNT = 193;
-const BATCH_SIZE = 9;
 const STORAGE_KEY = `photo_order_v${PHOTO_COUNT}`;
 
 const grid = document.getElementById('photoGrid');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
 
 let lightboxIndex = 0;
-let loaded = 0;
-let isLoading = false;
+
+/* -------- Random order once -------- */
 
 function getPhotoOrder() {
-    let saved = localStorage.getItem(STORAGE_KEY);
+
+    let saved = sessionStorage.getItem(STORAGE_KEY);
 
     if (saved) {
         try {
@@ -330,7 +327,7 @@ function getPhotoOrder() {
             if (Array.isArray(parsed) && parsed.length === PHOTO_COUNT) {
                 return parsed;
             }
-        } catch (e) {}
+        } catch {}
     }
 
     const order = Array.from({ length: PHOTO_COUNT }, (_, i) => i + 1);
@@ -340,28 +337,32 @@ function getPhotoOrder() {
         [order[i], order[j]] = [order[j], order[i]];
     }
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(order));
     return order;
 }
 
 const photoOrder = getPhotoOrder();
 
+/* -------- Build photo list -------- */
+
 const photos = photoOrder.map(n => ({
-    src: `photos/photo_${String(n).padStart(3, '0')}.jpg`,
+    src: `photos/photo_${String(n).padStart(3,'0')}.jpg`,
     caption: ""
 }));
 
+/* -------- Create photo element -------- */
+
 function createPhotoItem(photo, index) {
+
     const item = document.createElement('div');
     item.className = 'photo-item';
 
     const img = document.createElement('img');
-    img.src = photo.src;
-    img.alt = photo.caption || `Photo ${index + 1}`;
-    img.loading = 'lazy';
-    img.decoding = 'async';
 
-    img.onerror = () => item.remove();
+    img.src = photo.src;
+    img.loading = "lazy";          // keeps performance good
+    img.decoding = "async";
+    img.alt = photo.caption || `Photo ${index+1}`;
 
     const overlay = document.createElement('div');
     overlay.className = 'photo-overlay';
@@ -370,84 +371,56 @@ function createPhotoItem(photo, index) {
     item.appendChild(img);
     item.appendChild(overlay);
 
-    item.addEventListener('click', () => openLightbox(index));
+    item.onclick = () => openLightbox(index);
+
     return item;
 }
 
-function loadBatch() {
-    if (isLoading || loaded >= photos.length) return;
+/* -------- Load ALL images -------- */
 
-    isLoading = true;
+function loadAllPhotos(){
 
     const fragment = document.createDocumentFragment();
-    const end = Math.min(loaded + BATCH_SIZE, photos.length);
 
-    for (let i = loaded; i < end; i++) {
-        fragment.appendChild(createPhotoItem(photos[i], i));
-    }
+    photos.forEach((photo, index)=>{
+        fragment.appendChild(createPhotoItem(photo, index));
+    });
 
     grid.appendChild(fragment);
-    loaded = end;
-    isLoading = false;
-
-    if (loaded >= photos.length) {
-        observer.disconnect();
-        sentinel.remove();
-    }
 }
 
-const sentinel = document.createElement('div');
-sentinel.style.cssText = 'height:1px;width:100%;';
-grid.after(sentinel);
+loadAllPhotos();
 
-const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-        loadBatch();
-    }
-}, {
-    rootMargin: '300px 0px',
-    threshold: 0
-});
+/* -------- Lightbox -------- */
 
-observer.observe(sentinel);
-
-loadBatch();
-
-function openLightbox(index) {
+function openLightbox(index){
     lightboxIndex = index;
     lightboxImg.src = photos[index].src;
     lightbox.classList.add('open');
 }
 
-function closeLightbox() {
+function closeLightbox(){
     lightbox.classList.remove('open');
-    lightboxImg.src = '';
 }
 
-function showPrev() {
+document.getElementById('lightboxClose').onclick = closeLightbox;
+
+document.getElementById('lightboxPrev').onclick = () => {
     lightboxIndex = (lightboxIndex - 1 + photos.length) % photos.length;
     lightboxImg.src = photos[lightboxIndex].src;
-}
+};
 
-function showNext() {
+document.getElementById('lightboxNext').onclick = () => {
     lightboxIndex = (lightboxIndex + 1) % photos.length;
     lightboxImg.src = photos[lightboxIndex].src;
-}
+};
 
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxPrev.addEventListener('click', showPrev);
-lightboxNext.addEventListener('click', showNext);
+document.addEventListener('keydown',(e)=>{
+    if(!lightbox.classList.contains('open')) return;
 
-lightbox.addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) closeLightbox();
-});
-
-document.addEventListener('keydown', (e) => {
-    if (!lightbox.classList.contains('open')) return;
-
-    if (e.key === 'ArrowRight') showNext();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'Escape') closeLightbox();
+    if(e.key==="ArrowRight") document.getElementById('lightboxNext').click();
+    if(e.key==="ArrowLeft") document.getElementById('lightboxPrev').click();
+    if(e.key==="Escape") closeLightbox();
 });
 </script>
 </body>
