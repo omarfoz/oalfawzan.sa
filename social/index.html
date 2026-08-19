@@ -130,9 +130,9 @@
         .filter-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
         .filter-pill{padding:6px 16px;border-radius:20px;font-size:0.78rem;font-weight:600;border:1px solid var(--glass-border);background:rgba(255,255,255,0.04);color:var(--text-s);cursor:pointer;transition:0.25s;}
         .filter-pill.active,.filter-pill:hover{background:var(--accent);border-color:var(--accent);color:#fff;}
-        .photo-grid{columns:2;column-gap:8px;margin-bottom:24px;}
-        @media(min-width:600px){.photo-grid{columns:3;}}
-        .photo-item{break-inside:avoid;margin-bottom:8px;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);}
+         .photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:24px;}
+         @media(min-width:600px){.photo-grid{grid-template-columns:repeat(3,minmax(0,1fr));}}
+         .photo-item{break-inside:avoid;margin-bottom:0;border-radius:12px;overflow:hidden;position:relative;cursor:pointer;background:rgba(255,255,255,0.04);border:1px solid var(--glass-border);}
         .photo-item img{width:100%;display:block;transition:transform 0.4s ease;}
         /* Story = natural tall ratio, Post = square */
         .photo-item.type-post img{aspect-ratio:1/1;object-fit:cover;}
@@ -162,17 +162,17 @@
         .lightbox-nav:hover{background:rgba(255,255,255,0.18);}
         .lightbox-prev{left:12px;}.lightbox-next{right:12px;}
         .lightbox-caption{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);font-size:0.78rem;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:0.1em;background:rgba(0,0,0,0.5);padding:5px 14px;border-radius:20px;}
-        .photo-grid {
-            columns: 2;
-            column-gap: 8px;
-            margin-bottom: 24px;
-        }
-        @media(min-width: 600px) { .photo-grid { columns: 3; } }
-        @media(min-width: 900px) { .photo-grid { columns: 4; } }
+         .photo-grid {
+             display: grid;
+             grid-template-columns: repeat(2, minmax(0, 1fr));
+             gap: 8px;
+             margin-bottom: 24px;
+         }
+         @media(min-width: 600px) { .photo-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+         @media(min-width: 900px) { .photo-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
         .photo-item {
-            break-inside: avoid;
-            margin-bottom: 8px;
+             margin-bottom: 0;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
