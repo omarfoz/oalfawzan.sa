@@ -59,6 +59,7 @@
     </script>
 
     <link rel="icon" type="image/svg+xml" href="/cloud-favicon.svg">
+    <script src="/theme.js"></script>
     <style>
         :root {
             --bg: #010204;
@@ -229,6 +230,7 @@
             .blog-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="stylesheet" href="/theme.css">
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
     <script>
@@ -248,6 +250,7 @@
             <a href="/experience/" class="btn-sm">Experience</a>
             <a href="/blog/" class="btn-sm active">Blog</a>
 	    <a href="/social/" class="btn-sm">Social</a>
+            <button type="button" class="btn-sm theme-toggle" data-theme-toggle aria-label="Switch theme"></button>
         </div>
     </nav>
 
@@ -258,18 +261,19 @@
 
     <h2 class="section-title">Browse Articles</h2>
     <div class="filter-row">
-        <span class="filter-pill active" onclick="filter('all',this)">All</span>
-        <span class="filter-pill" onclick="filter('ai',this)">AI & LLMs</span>
-        <span class="filter-pill" onclick="filter('cloud',this)">Cloud</span>
-        <span class="filter-pill" onclick="filter('product',this)">Product</span>
-        <span class="filter-pill" onclick="filter('containers',this)">Containers</span>
+        <button type="button" class="filter-pill active" aria-pressed="true" onclick="filter('all',this)">All</button>
+        <button type="button" class="filter-pill" aria-pressed="false" onclick="filter('ai',this)">AI & LLMs</button>
+        <button type="button" class="filter-pill" aria-pressed="false" onclick="filter('cloud',this)">Cloud</button>
+        <button type="button" class="filter-pill" aria-pressed="false" onclick="filter('product',this)">Product</button>
+        <button type="button" class="filter-pill" aria-pressed="false" onclick="filter('containers',this)">Containers</button>
     </div>
+    <p id="filterStatus" class="sr-only" aria-live="polite">Showing all articles.</p>
 
     <div class="blog-grid" id="grid">
 
         <a class="blog-card" data-tag="ai"
            href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AC%25D8%25B1%25D8%25A8%25D8%25AA%25D9%258A-%25D9%2584%25D8%25A8%25D9%2586%25D8%25A7%25D8%25A1-%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25B0%25D9%2583%25D8%25A7%25D8%25A1-%25D8%25A7%25D9%2584%25D8%25A7%25D8%25B5%25D8%25B7%25D9%2586%25D8%25A7%25D8%25B9%25D9%258A-%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D9%258A-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A9-alfawzan-rabkf/?trackingId=t0bYSuVBS%2FKDQwp%2BFz9lVQ%3D%3D"
-           target="_blank">
+             target="_blank" rel="noopener noreferrer">
             <div class="blog-cover cv-ai">
                 <span style="font-family:monospace;font-size:0.9rem;font-weight:800;color:rgba(255,255,255,0.85);padding:0 12px;text-align:center;">LLMs → RAG → Agentic</span>
             </div>
@@ -399,12 +403,24 @@
 
 </div>
 <script>
+    document.querySelectorAll('a[target="_blank"]').forEach(link => {
+        link.rel = 'noopener noreferrer';
+    });
+
     function filter(tag, el) {
-        document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
-        el.classList.add('active');
-        document.querySelectorAll('.blog-card').forEach(card => {
-            card.style.display = (tag === 'all' || card.dataset.tag === tag) ? 'flex' : 'none';
+        document.querySelectorAll('.filter-pill').forEach(p => {
+            p.classList.remove('active');
+            p.setAttribute('aria-pressed', 'false');
         });
+        el.classList.add('active');
+        el.setAttribute('aria-pressed', 'true');
+        let visibleCount = 0;
+        document.querySelectorAll('.blog-card').forEach(card => {
+            const visible = tag === 'all' || card.dataset.tag === tag;
+            card.style.display = visible ? 'flex' : 'none';
+            if (visible) visibleCount += 1;
+        });
+        document.getElementById('filterStatus').textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'article' : 'articles'}.`;
     }
 </script>
 </body>
