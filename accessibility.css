@@ -1,3 +1,43 @@
+/* Shared final-layer rules loaded after each page's inline styles. */
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px 20px;
+    margin: 20px 0 40px;
+    border-radius: 32px;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nav-buttons::-webkit-scrollbar {
+    display: none;
+}
+
+.btn-sm {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Keep the glass effect while reducing GPU cost on mobile and Safari. */
+.glass-card,
+.project-card {
+    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    backdrop-filter: blur(24px) saturate(160%) !important;
+}
+
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
@@ -34,6 +74,17 @@ a {
 @media (max-width: 700px), (pointer: coarse) {
     body {
         background-attachment: scroll !important;
+    }
+
+    .nav {
+        padding: 11px 14px;
+        margin-top: 14px;
+    }
+
+    .glass-card,
+    .project-card {
+        -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
+        backdrop-filter: blur(16px) saturate(145%) !important;
     }
 }
 
