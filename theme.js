@@ -5,6 +5,7 @@
   const root = document.documentElement;
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+  const touchOnly = window.matchMedia('(hover: none), (pointer: coarse)');
   const storageKey = 'oalfawzan-theme';
 
   const toggle = document.createElement('button');
@@ -13,11 +14,11 @@
   toggle.type = 'button';
   toggle.innerHTML = `
     <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M19.6 15.1A7.7 7.7 0 0 1 8.9 4.4 7.8 7.8 0 1 0 19.6 15.1Z"></path>
+      <path d="M19.8 15.1A8 8 0 0 1 8.9 4.2 8 8 0 1 0 19.8 15.1Z"></path>
     </svg>
     <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="4"></circle>
-      <path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.64 5.64l1.56 1.56M16.8 16.8l1.56 1.56M5.64 18.36l1.56-1.56M16.8 7.2l1.56-1.56"></path>
+      <circle cx="12" cy="12" r="3.4"></circle>
+      <path d="M12 3v1.8M12 19.2V21M3 12h1.8M19.2 12H21M5.64 5.64l1.27 1.27M17.09 17.09l1.27 1.27M5.64 18.36l1.27-1.27M17.09 6.91l1.27-1.27"></path>
     </svg>`;
 
   nav.appendChild(toggle);
@@ -48,12 +49,27 @@
     }
   };
 
+  const clearTouchState = () => {
+    if (!touchOnly.matches) return;
+    toggle.blur();
+    toggle.style.background = 'transparent';
+    toggle.style.borderColor = 'transparent';
+    requestAnimationFrame(() => {
+      toggle.style.background = 'transparent';
+      toggle.style.borderColor = 'transparent';
+    });
+  };
+
   const savedTheme = getSavedTheme();
   setTheme(savedTheme || (systemTheme.matches ? 'light' : 'dark'));
 
   toggle.addEventListener('click', () => {
     setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
+    clearTouchState();
   });
+
+  toggle.addEventListener('pointerup', clearTouchState);
+  toggle.addEventListener('touchend', clearTouchState, { passive: true });
 
   const syncSystemTheme = event => {
     if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
