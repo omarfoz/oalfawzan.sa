@@ -7,29 +7,54 @@ html {
 html[data-theme="light"] {
     color-scheme: light;
     --bg: #edf4fc;
-    --glass: rgba(255, 255, 255, 0.58);
+    --glass: rgba(255, 255, 255, 0.62);
     --glass-border: rgba(15, 23, 42, 0.14);
-    --glass-shine: rgba(255, 255, 255, 0.82);
+    --glass-shine: rgba(255, 255, 255, 0.86);
     --text-p: #0f172a;
-    --text-s: rgba(15, 23, 42, 0.62);
+    --text-s: rgba(15, 23, 42, 0.64);
+    --surface: rgba(255, 255, 255, 0.62);
+    --surface-strong: rgba(255, 255, 255, 0.82);
+    --border: rgba(15, 23, 42, 0.14);
+    --border-strong: rgba(15, 23, 42, 0.24);
+    --text: #0f172a;
+    --muted: rgba(15, 23, 42, 0.64);
 }
 
 html[data-theme="light"] body {
-    background: linear-gradient(rgba(247, 250, 255, 0.91), rgba(237, 244, 252, 0.96)), url('/image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-color: var(--bg);
+    background: linear-gradient(rgba(247, 250, 255, 0.91), rgba(237, 244, 252, 0.96)), url('/image.jpg') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-color: var(--bg) !important;
+}
+
+html[data-theme="light"] .glass,
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .project-card,
+html[data-theme="light"] .blog-card,
+html[data-theme="light"] .photo-item,
+html[data-theme="light"] .social-link,
+html[data-theme="light"] .meta-pill,
+html[data-theme="light"] .action-btn {
+    background-color: rgba(255, 255, 255, 0.58);
+    border-color: rgba(15, 23, 42, 0.14);
+    color: var(--text-p, var(--text));
 }
 
 html[data-theme="light"] .btn-sm,
 html[data-theme="light"] .logo-pill,
-html[data-theme="light"] .project-link {
-    background: rgba(255, 255, 255, 0.52);
+html[data-theme="light"] .project-link,
+html[data-theme="light"] .filter-pill,
+html[data-theme="light"] .social-btn {
+    background: rgba(255, 255, 255, 0.56);
+    border-color: rgba(15, 23, 42, 0.14);
+    color: var(--text-p, var(--text));
 }
 
-html[data-theme="light"] .btn-sm.active {
+html[data-theme="light"] .btn-sm.active,
+html[data-theme="light"] .filter-pill.active,
+html[data-theme="light"] .action-btn.primary {
     color: #fff;
     background: var(--accent);
     border-color: var(--accent);
@@ -38,6 +63,40 @@ html[data-theme="light"] .btn-sm.active {
 html[data-theme="light"] .logo-pill svg {
     filter: brightness(0);
     opacity: 0.76;
+}
+
+html[data-theme="light"] .logo-pill img {
+    filter: none;
+    opacity: 0.78;
+}
+
+html[data-theme="light"] .hero h1,
+html[data-theme="light"] .gallery-title,
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] .company,
+html[data-theme="light"] .blog-title,
+html[data-theme="light"] .project-name {
+    color: var(--text-p, var(--text));
+}
+
+html[data-theme="light"] .hero-sub,
+html[data-theme="light"] .gallery-copy,
+html[data-theme="light"] .gallery-counter,
+html[data-theme="light"] .intro,
+html[data-theme="light"] p,
+html[data-theme="light"] li,
+html[data-theme="light"] .period,
+html[data-theme="light"] .blog-excerpt,
+html[data-theme="light"] .blog-meta,
+html[data-theme="light"] .project-desc,
+html[data-theme="light"] .learned-text {
+    color: var(--text-s, var(--muted));
+}
+
+html[data-theme="light"] footer {
+    color: rgba(15, 23, 42, 0.48) !important;
+    border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
 .nav {
@@ -80,7 +139,7 @@ html[data-theme="light"] .logo-pill svg {
     padding: 0;
     border: 1px solid transparent;
     border-radius: 50%;
-    color: var(--text-p);
+    color: var(--text-p, var(--text));
     background: transparent;
     cursor: pointer;
     transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -88,7 +147,11 @@ html[data-theme="light"] .logo-pill svg {
 
 .theme-toggle:hover {
     background: rgba(255, 255, 255, 0.08);
-    border-color: var(--glass-border);
+    border-color: var(--glass-border, var(--border));
+}
+
+html[data-theme="light"] .theme-toggle:hover {
+    background: rgba(15, 23, 42, 0.06);
 }
 
 .theme-toggle:active {
@@ -119,8 +182,10 @@ html[data-theme="light"] .theme-icon-moon {
 }
 
 /* Keep the glass effect while reducing GPU cost on mobile and Safari. */
+.glass,
 .glass-card,
-.project-card {
+.project-card,
+.blog-card {
     -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
     backdrop-filter: blur(24px) saturate(160%) !important;
 }
@@ -213,8 +278,10 @@ a {
         flex-basis: 100%;
     }
 
+    .glass,
     .glass-card,
-    .project-card {
+    .project-card,
+    .blog-card {
         -webkit-backdrop-filter: blur(16px) saturate(145%) !important;
         backdrop-filter: blur(16px) saturate(145%) !important;
     }
