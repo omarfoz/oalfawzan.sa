@@ -57,9 +57,8 @@
     }
     </script>
 
-    
     <link rel="icon" type="image/svg+xml" href="/cloud-favicon.svg">
-    
+
     <style>
         :root {
             --bg: #010204;
@@ -77,9 +76,9 @@
         body {
             color: var(--text-p);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            background: 
-                linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)), 
-                url('/image.jpg'); 
+            background:
+                linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)),
+                url('/image.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -100,7 +99,6 @@
             margin-bottom: 24px;
         }
 
-       /* NAV CONTAINER */
 .nav{
     display:flex;
     align-items:center;
@@ -112,25 +110,12 @@
     gap:10px;
 }
 
-/* NAV CONTAINER */
-.nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px;
-    margin:20px 0 40px;
-    border-radius:32px;
-    gap:10px;
-}
-
-/* NAME */
 .nav-name{
     font-weight:800;
     font-size:1.1rem;
     letter-spacing:-0.02em;
 }
 
-/* BUTTON CONTAINER */
 .nav-buttons{
     display:flex;
     gap:8px;
@@ -139,12 +124,8 @@
     -webkit-overflow-scrolling:touch;
 }
 
-/* hide scrollbar */
-.nav-buttons::-webkit-scrollbar{
-    display:none;
-}
+.nav-buttons::-webkit-scrollbar{ display:none; }
 
-/* BUTTON STYLE */
 .btn-sm{
     text-decoration:none;
     color:var(--text-p);
@@ -157,13 +138,11 @@
     transition:0.25s ease;
 }
 
-/* HOVER */
 .btn-sm:hover{
     background:var(--accent);
     border-color:var(--accent);
 }
 
-/* ACTIVE PAGE */
 .btn-sm.active{
     background:var(--accent);
     border-color:var(--accent);
@@ -171,28 +150,28 @@
 
         h1 { font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 8px; }
         .headline { color: var(--accent); font-size: 1.2rem; font-weight: 600; margin-bottom: 32px; }
-        
-        .section-title { 
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em; 
-            color: var(--text-s); margin: 60px 0 24px; font-weight: 700; 
+
+        .section-title {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.2em;
+            color: var(--text-s); margin: 60px 0 24px; font-weight: 700;
         }
 
         .exp-item { margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1px solid var(--glass-border); }
         .exp-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-        
+
         .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
         .company { font-size: 1.25rem; font-weight: 700; }
         .period { font-size: 0.85rem; color: var(--text-s); }
         .pos { color: var(--accent); font-weight: 600; margin-bottom: 12px; display: block; }
-        
+
         .desc-list { list-style: none; color: var(--text-s); font-size: 0.95rem; line-height: 1.6; }
         .desc-list li { margin-bottom: 8px; position: relative; padding-left: 18px; }
         .desc-list li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
-        .pill { 
-            display: inline-block; background: rgba(255,255,255,0.05); 
-            border: 1px solid var(--glass-border); padding: 4px 12px; 
+        .pill {
+            display: inline-block; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border); padding: 4px 12px;
             border-radius: 8px; font-size: 0.8rem; margin: 0 4px 8px 0;
         }
 
@@ -220,6 +199,7 @@
         }
     </style>
     <link rel="stylesheet" href="/accessibility.css">
+    <script src="/theme.js" defer></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
     <script>
@@ -238,12 +218,12 @@
                 <a href="/" class="btn-sm">Home</a>
                 <a href="/experience/" class="btn-sm active">Experience</a>
                 <a href="/blog/" class="btn-sm">Blog</a>
-		<a href="/social/" class="btn-sm">Social</a>
+                <a href="/social/" class="btn-sm">Social</a>
             </div>
         </nav>
 
         <header style="text-align: center; margin-bottom: 60px;">
-            <img src="/omaralfawzan.png" alt="Omar Alfawzan" 
+            <img src="/omaralfawzan.png" alt="Omar Alfawzan"
                  style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--glass-border); margin-bottom: 24px;">
             <h1>Omar Alfawzan</h1>
             <p class="headline">Cloud Technical Lead @ SITE | Cloud Pre-Sales & Delivery</p>
@@ -268,17 +248,16 @@
                 </svg>
                 <span>WhatsApp</span>
             </a>
-			
+
 <a href="mailto:contact@oalfawzan.sa" target="_blank" rel="noopener noreferrer" class="social-link">
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#FFFFFF" viewBox="0 0 24 24">
         <path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 2v.511l9 5.4 9-5.4V7H3zm18 2.489-8.486 5.092a1 1 0 0 1-1.028 0L3 9.489V17h18V9.489z"/>
     </svg>
     <span>contact@oalfawzan.sa</span>
 </a>
-			
+
         </div>
 
-        
 <h2 class="section-title">Experience</h2>
         <div class="glass-card">
             <div class="exp-item">
@@ -351,7 +330,6 @@
                 </ul>
             </div>
         </div>
-
 
         <h2 class="section-title">Skills & Expertise</h2>
         <div class="grid">
