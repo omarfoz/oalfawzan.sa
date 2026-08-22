@@ -92,7 +92,6 @@
             padding: 32px;
             margin-bottom: 24px;
         }
-     /* NAV CONTAINER */
 .nav{
     display:flex;
     align-items:center;
@@ -103,26 +102,11 @@
     flex-wrap:wrap;
     gap:10px;
 }
-
-/* NAV CONTAINER */
-.nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px;
-    margin:20px 0 40px;
-    border-radius:32px;
-    gap:10px;
-}
-
-/* NAME */
 .nav-name{
     font-weight:800;
     font-size:1.1rem;
     letter-spacing:-0.02em;
 }
-
-/* BUTTON CONTAINER */
 .nav-buttons{
     display:flex;
     gap:8px;
@@ -130,13 +114,7 @@
     white-space:nowrap;
     -webkit-overflow-scrolling:touch;
 }
-
-/* hide scrollbar */
-.nav-buttons::-webkit-scrollbar{
-    display:none;
-}
-
-/* BUTTON STYLE */
+.nav-buttons::-webkit-scrollbar{display:none;}
 .btn-sm{
     text-decoration:none;
     color:var(--text-p);
@@ -148,14 +126,10 @@
     border:1px solid var(--glass-border);
     transition:0.25s ease;
 }
-
-/* HOVER */
 .btn-sm:hover{
     background:var(--accent);
     border-color:var(--accent);
 }
-
-/* ACTIVE PAGE */
 .btn-sm.active{
     background:var(--accent);
     border-color:var(--accent);
@@ -230,6 +204,7 @@
         }
     </style>
     <link rel="stylesheet" href="/accessibility.css">
+    <script src="/theme.js" defer></script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
     <script>
@@ -248,7 +223,7 @@
             <a href="/" class="btn-sm">Home</a>
             <a href="/experience/" class="btn-sm">Experience</a>
             <a href="/blog/" class="btn-sm active">Blog</a>
-	    <a href="/social/" class="btn-sm">Social</a>
+            <a href="/social/" class="btn-sm">Social</a>
         </div>
     </nav>
 
@@ -268,137 +243,55 @@
     <p id="filterStatus" class="sr-only" aria-live="polite">Showing all articles.</p>
 
     <div class="blog-grid" id="grid">
-
-        <a class="blog-card" data-tag="ai"
-           href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AC%25D8%25B1%25D8%25A8%25D8%25AA%25D9%258A-%25D9%2584%25D8%25A8%25D9%2586%25D8%25A7%25D8%25A1-%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25B0%25D9%2583%25D8%25A7%25D8%25A1-%25D8%25A7%25D9%2584%25D8%25A7%25D8%25B5%25D8%25B7%25D9%2586%25D8%25A7%25D8%25B9%25D9%258A-%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D9%258A-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A9-alfawzan-rabkf/?trackingId=t0bYSuVBS%2FKDQwp%2BFz9lVQ%3D%3D"
-             target="_blank" rel="noopener noreferrer">
-            <div class="blog-cover cv-ai">
-                <span style="font-family:monospace;font-size:0.9rem;font-weight:800;color:rgba(255,255,255,0.85);padding:0 12px;text-align:center;">LLMs → RAG → Agentic</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">AI & LLMs</span>
-                <div class="blog-title">تجربتي لبناء تطبيقات الذكاء الاصطناعي التطبيقي في السحابة</div>
-                <div class="blog-excerpt">My experience building practical AI applications in sovereign cloud — the journey from LLMs to RAG pipelines to agentic workflows.</div>
-                <div class="blog-meta"><span>4 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="ai" href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AC%25D8%25B1%25D8%25A8%25D8%25AA%25D9%258A-%25D9%2584%25D8%25A8%25D9%2586%25D8%25A7%25D8%25A1-%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25B0%25D9%2583%25D8%25A7%25D8%25A1-%25D8%25A7%25D9%2584%25D8%25A7%25D8%25B5%25D8%25B7%25D9%2586%25D8%25A7%25D8%25B9%25D9%258A-%25D8%25A7%25D9%2584%25D8%25AA%25D8%25B7%25D8%25A8%25D9%258A%25D9%2582%25D9%258A-%25D9%2581%25D9%258A-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A9-alfawzan-rabkf/?trackingId=t0bYSuVBS%2FKDQwp%2BFz9lVQ%3D%3D" target="_blank" rel="noopener noreferrer">
+            <div class="blog-cover cv-ai"><span style="font-family:monospace;font-size:0.9rem;font-weight:800;color:rgba(255,255,255,0.85);padding:0 12px;text-align:center;">LLMs → RAG → Agentic</span></div>
+            <div class="blog-body"><span class="blog-tag">AI & LLMs</span><div class="blog-title">تجربتي لبناء تطبيقات الذكاء الاصطناعي التطبيقي في السحابة</div><div class="blog-excerpt">My experience building practical AI applications in sovereign cloud — the journey from LLMs to RAG pipelines to agentic workflows.</div><div class="blog-meta"><span>4 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="cloud"
-           href="https://www.linkedin.com/pulse/%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D9%258A%25D8%25A7%25D8%25AF%25D9%258A%25D8%25A9-omar-alfawzan-pwnuf?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-cloud">
-                <span style="font-size:3rem;">🔒</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Cloud</span>
-                <div class="blog-title">السحابة السيادية</div>
-                <div class="blog-excerpt">As digital transformation accelerates, digital sovereignty has become a top strategic priority for nations — the side of public cloud we rarely discuss.</div>
-                <div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="cloud" href="https://www.linkedin.com/pulse/%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D9%258A%25D8%25A7%25D8%25AF%25D9%258A%25D8%25A9-omar-alfawzan-pwnuf?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-cloud"><span style="font-size:3rem;">🔒</span></div>
+            <div class="blog-body"><span class="blog-tag">Cloud</span><div class="blog-title">السحابة السيادية</div><div class="blog-excerpt">As digital transformation accelerates, digital sovereignty has become a top strategic priority for nations — the side of public cloud we rarely discuss.</div><div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="product"
-           href="https://www.linkedin.com/pulse/%25D9%2585%25D9%2586-%25D8%25A5%25D8%25AF%25D8%25A7%25D8%25B1%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA-%25D8%25A5%25D9%2584%25D9%2589-%25D8%25A7%25D9%2584%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9-omar-alfawzan-t4s0f?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-stc">
-                <span style="font-size:3rem;">☁️</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Product & Cloud</span>
-                <div class="blog-title">من إدارة المنتجات إلى الهندسة السحابية</div>
-                <div class="blog-excerpt">The real challenge isn't building the product — it's tying it to customer requirements. How my path moved from product management into cloud engineering.</div>
-                <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="product" href="https://www.linkedin.com/pulse/%25D9%2585%25D9%2586-%25D8%25A5%25D8%25AF%25D8%25A7%25D8%25B1%25D8%25A9-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC%25D8%25A7%25D8%25AA-%25D8%25A5%25D9%2584%25D9%2589-%25D8%25A7%25D9%2584%25D9%2587%25D9%2586%25D8%25AF%25D8%25B3%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9-omar-alfawzan-t4s0f?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-stc"><span style="font-size:3rem;">☁️</span></div>
+            <div class="blog-body"><span class="blog-tag">Product & Cloud</span><div class="blog-title">من إدارة المنتجات إلى الهندسة السحابية</div><div class="blog-excerpt">The real challenge isn't building the product — it's tying it to customer requirements. How my path moved from product management into cloud engineering.</div><div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="cloud"
-           href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AD%25D8%25AF%25D9%258A%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25AD%25D9%2588%25D8%25B3%25D8%25A8%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9-%25D9%2585%25D9%2586-%25D9%2585%25D9%2586%25D8%25B8%25D9%2588%25D8%25B1-%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-omar-alfawzan-zbtkf?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-cloud">
-                <span style="font-size:3rem;">⚡</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Cloud</span>
-                <div class="blog-title">تحديات الحوسبة السحابية من منظور مدير منتج</div>
-                <div class="blog-excerpt">With strong government support pushing every sector toward cloud, here are the real challenges as seen through the lens of a product manager.</div>
-                <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="cloud" href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AD%25D8%25AF%25D9%258A%25D8%25A7%25D8%25AA-%25D8%25A7%25D9%2584%25D8%25AD%25D9%2588%25D8%25B3%25D8%25A8%25D8%25A9-%25D8%25A7%25D9%2584%25D8%25B3%25D8%25AD%25D8%25A7%25D8%25A8%25D9%258A%25D8%25A9-%25D9%2585%25D9%2586-%25D9%2585%25D9%2586%25D8%25B8%25D9%2588%25D8%25B1-%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-omar-alfawzan-zbtkf?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-cloud"><span style="font-size:3rem;">⚡</span></div>
+            <div class="blog-body"><span class="blog-tag">Cloud</span><div class="blog-title">تحديات الحوسبة السحابية من منظور مدير منتج</div><div class="blog-excerpt">With strong government support pushing every sector toward cloud, here are the real challenges as seen through the lens of a product manager.</div><div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="product"
-           href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AD%25D8%25AF%25D9%258A%25D8%25A7%25D8%25AA-%25D8%25AA%25D9%2588%25D8%25A7%25D8%25AC%25D9%2587-%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-%25D9%2581%25D9%258A-%25D8%25B3%25D9%2588%25D9%2582-%25D8%25A7%25D9%2584%25D8%25B9%25D9%2585%25D9%2584-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-product">
-                <span style="font-size:3rem;">🏆</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Product</span>
-                <div class="blog-title">تحديات تواجه مدير المنتج في سوق العمل</div>
-                <div class="blog-excerpt">The role of Product Manager means different things across different companies. A breakdown of the top challenges PMs face in today's job market.</div>
-                <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="product" href="https://www.linkedin.com/pulse/%25D8%25AA%25D8%25AD%25D9%258A%25D8%25A7%25D8%25AA-%25D8%25AA%25D9%2588%25D8%25A7%25D8%25AC%25D9%2587-%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D8%25A7%25D9%2584%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-%25D9%2581%25D9%258A-%25D8%25B3%25D9%2588%25D9%2582-%25D8%25A7%25D9%2584%25D8%25B9%25D9%2585%25D9%2584-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-product"><span style="font-size:3rem;">🏆</span></div>
+            <div class="blog-body"><span class="blog-tag">Product</span><div class="blog-title">تحديات تواجه مدير المنتج في سوق العمل</div><div class="blog-excerpt">The role of Product Manager means different things across different companies. A breakdown of the top challenges PMs face in today's job market.</div><div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="product"
-           href="https://www.linkedin.com/pulse/product-manager-%25D8%25AA%25D8%25AC%25D8%25B1%25D8%25A8%25D8%25AA%25D9%258A-%25D9%2583%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-stc">
-                <span style="font-size:1rem;font-weight:800;color:rgba(255,255,255,0.85);">Product Manager</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Product</span>
-                <div class="blog-title">تجربتي كمدير منتج | Product Manager</div>
-                <div class="blog-excerpt">After moving to the cloud computing product management division, I share my early experience and what I learned starting out as a PM.</div>
-                <div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="product" href="https://www.linkedin.com/pulse/product-manager-%25D8%25AA%25D8%25AC%25D8%25B1%25D8%25A8%25D8%25AA%25D9%258A-%25D9%2583%25D9%2585%25D8%25AF%25D9%258A%25D8%25B1-%25D9%2585%25D9%2586%25D8%25AA%25D8%25AC-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-stc"><span style="font-size:1rem;font-weight:800;color:rgba(255,255,255,0.85);">Product Manager</span></div>
+            <div class="blog-body"><span class="blog-tag">Product</span><div class="blog-title">تجربتي كمدير منتج | Product Manager</div><div class="blog-excerpt">After moving to the cloud computing product management division, I share my early experience and what I learned starting out as a PM.</div><div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="containers"
-           href="https://www.linkedin.com/pulse/container-102-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-cont">
-                <div style="text-align:center;">
-                    <div style="font-size:2rem;margin-bottom:4px;">🚢</div>
-                    <div style="font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">CONTAINER 102</div>
-                </div>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Containers</span>
-                <div class="blog-title">Container 102</div>
-                <div class="blog-excerpt">Following Container 101 — going deeper into container orchestration, Kubernetes architecture, and running containers at scale in production.</div>
-                <div class="blog-meta"><span>6 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="containers" href="https://www.linkedin.com/pulse/container-102-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-cont"><div style="text-align:center;"><div style="font-size:2rem;margin-bottom:4px;">🚢</div><div style="font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">CONTAINER 102</div></div></div>
+            <div class="blog-body"><span class="blog-tag">Containers</span><div class="blog-title">Container 102</div><div class="blog-excerpt">Following Container 101 — going deeper into container orchestration, Kubernetes architecture, and running containers at scale in production.</div><div class="blog-meta"><span>6 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="cloud"
-           href="https://www.linkedin.com/pulse/so-many-clouds-little-time-jump-start-your-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-multi">
-                <span style="font-size:3rem;">🌐</span>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Cloud</span>
-                <div class="blog-title">So Many Clouds, So Little Time — Jump Start Your Multi-cloud Strategy</div>
-                <div class="blog-excerpt">A recap of the Dec 2018 meetup on Hybrid Cloud Integration — and a practical guide to getting started with a multi-cloud strategy.</div>
-                <div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="cloud" href="https://www.linkedin.com/pulse/so-many-clouds-little-time-jump-start-your-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-multi"><span style="font-size:3rem;">🌐</span></div>
+            <div class="blog-body"><span class="blog-tag">Cloud</span><div class="blog-title">So Many Clouds, So Little Time — Jump Start Your Multi-cloud Strategy</div><div class="blog-excerpt">A recap of the Dec 2018 meetup on Hybrid Cloud Integration — and a practical guide to getting started with a multi-cloud strategy.</div><div class="blog-meta"><span>2 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
 
-        <a class="blog-card" data-tag="containers"
-           href="https://www.linkedin.com/pulse/container-101-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
-            <div class="blog-cover cv-cont">
-                <div style="text-align:center;">
-                    <div style="font-size:2rem;margin-bottom:4px;">🐳</div>
-                    <div style="font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">CONTAINER 101</div>
-                </div>
-            </div>
-            <div class="blog-body">
-                <span class="blog-tag">Containers</span>
-                <div class="blog-title">Container 101</div>
-                <div class="blog-excerpt">Container Technology — a standard way to package applications and their dependencies so they can be reliably moved and deployed across environments.</div>
-                <div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div>
-            </div>
+        <a class="blog-card" data-tag="containers" href="https://www.linkedin.com/pulse/container-101-omar-alfawzan?trackingId=AIaGWjdoRWSgwxQG2TkYWw%3D%3D&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_recent_activity_content_view%3B270uhg9QRNGPJoP7uGyPAw%3D%3D" target="_blank">
+            <div class="blog-cover cv-cont"><div style="text-align:center;"><div style="font-size:2rem;margin-bottom:4px;">🐳</div><div style="font-size:0.8rem;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:0.08em;">CONTAINER 101</div></div></div>
+            <div class="blog-body"><span class="blog-tag">Containers</span><div class="blog-title">Container 101</div><div class="blog-excerpt">Container Technology — a standard way to package applications and their dependencies so they can be reliably moved and deployed across environments.</div><div class="blog-meta"><span>3 min read</span><span class="blog-read">Read on LinkedIn ↗</span></div></div>
         </a>
-
     </div>
 
     <footer style="padding:40px 0;text-align:center;font-size:0.9rem;color:var(--text-s);border-top:1px solid var(--glass-border);">
         © 2026 Omar Alfawzan . oalfawzan.sa
     </footer>
-
 </div>
 <script>
     document.querySelectorAll('a[target="_blank"]').forEach(link => {
