@@ -13,11 +13,11 @@
   toggle.type = 'button';
   toggle.innerHTML = `
     <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.6 15.3A8.5 8.5 0 0 1 8.7 3.4 8.6 8.6 0 1 0 20.6 15.3Z"></path>
+      <path d="M19.6 15.1A7.7 7.7 0 0 1 8.9 4.4 7.8 7.8 0 1 0 19.6 15.1Z"></path>
     </svg>
     <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="3.75"></circle>
-      <path d="M12 2.25v2.1M12 19.65v2.1M4.25 4.25l1.5 1.5M18.25 18.25l1.5 1.5M2.25 12h2.1M19.65 12h2.1M4.25 19.75l1.5-1.5M18.25 5.75l1.5-1.5"></path>
+      <circle cx="12" cy="12" r="4"></circle>
+      <path d="M12 3v2.2M12 18.8V21M3 12h2.2M18.8 12H21M5.64 5.64l1.56 1.56M16.8 16.8l1.56 1.56M5.64 18.36l1.56-1.56M16.8 7.2l1.56-1.56"></path>
     </svg>`;
 
   nav.appendChild(toggle);
@@ -38,7 +38,7 @@
     toggle.setAttribute('aria-pressed', String(isLight));
 
     if (themeMeta) {
-      themeMeta.setAttribute('content', isLight ? '#edf4fc' : '#010204');
+      themeMeta.setAttribute('content', isLight ? '#f3f6fb' : '#010204');
     }
 
     if (persist) {
