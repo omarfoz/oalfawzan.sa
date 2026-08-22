@@ -94,7 +94,6 @@
             box-shadow: inset 0 1px rgba(255,255,255,.08), 0 18px 60px rgba(0,0,0,.16);
         }
 
-        /* Navigation */
         .nav {
             display: flex;
             align-items: center;
@@ -136,7 +135,6 @@
             border-color: rgba(255,255,255,.16);
         }
 
-        /* Hero */
         .hero {
             text-align: center;
             max-width: 720px;
@@ -200,7 +198,6 @@
             font-weight: 500;
         }
 
-        /* Social links */
         .social-row {
             display: flex;
             justify-content: center;
@@ -242,7 +239,6 @@
         .social-btn.instagram:hover .social-icon { background: rgba(225,48,108,.2); }
         .social-btn.snapchat:hover .social-icon { background: rgba(255,252,0,.16); }
 
-        /* Gallery header */
         .gallery-head {
             display: flex;
             align-items: flex-end;
@@ -276,7 +272,6 @@
             font-weight: 600;
         }
 
-        /* Natural-ratio masonry gallery — originals are never cropped or recompressed */
         .photo-grid {
             column-count: 4;
             column-gap: 10px;
@@ -367,7 +362,6 @@
         }
         .action-btn[hidden] { display: none; }
 
-        /* Full-quality lightbox */
         .lightbox {
             display: none;
             position: fixed;
@@ -507,6 +501,7 @@
         }
     </style>
     <link rel="stylesheet" href="/accessibility.css">
+    <script src="/theme.js" defer></script>
 </head>
 <body>
 <div class="container">
@@ -532,22 +527,10 @@
     </header>
 
     <div class="social-row" aria-label="Social profiles">
-        <a href="https://www.instagram.com/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn instagram">
-            <span class="social-icon" aria-hidden="true">IG</span>
-            @oyf_96
-        </a>
-        <a href="https://www.snapchat.com/add/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn snapchat">
-            <span class="social-icon" aria-hidden="true">SC</span>
-            oyf_96
-        </a>
-        <a href="https://x.com/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <span class="social-icon" aria-hidden="true">X</span>
-            oyf_96
-        </a>
-        <a href="https://vsco.co/omarfoz/gallery" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <span class="social-icon" aria-hidden="true">VS</span>
-            VSCO
-        </a>
+        <a href="https://www.instagram.com/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn instagram"><span class="social-icon" aria-hidden="true">IG</span>@oyf_96</a>
+        <a href="https://www.snapchat.com/add/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn snapchat"><span class="social-icon" aria-hidden="true">SC</span>oyf_96</a>
+        <a href="https://x.com/oyf_96" target="_blank" rel="noopener noreferrer" class="social-btn"><span class="social-icon" aria-hidden="true">X</span>oyf_96</a>
+        <a href="https://vsco.co/omarfoz/gallery" target="_blank" rel="noopener noreferrer" class="social-btn"><span class="social-icon" aria-hidden="true">VS</span>VSCO</a>
     </div>
 
     <main>
@@ -577,14 +560,9 @@
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" aria-hidden="true" tabindex="-1">
     <button class="lightbox-control lightbox-close" id="lightboxClose" type="button" aria-label="Close photo">✕</button>
     <button class="lightbox-control lightbox-prev" id="lightboxPrev" type="button" aria-label="Previous photo">‹</button>
-    <div class="lightbox-stage" id="lightboxStage">
-        <img id="lightboxImg" src="" alt="">
-    </div>
+    <div class="lightbox-stage" id="lightboxStage"><img id="lightboxImg" src="" alt=""></div>
     <button class="lightbox-control lightbox-next" id="lightboxNext" type="button" aria-label="Next photo">›</button>
-    <div class="lightbox-info" id="lightboxCaption">
-        <span id="lightboxCount">Photo 1 of 193</span>
-        <span>Original quality</span>
-    </div>
+    <div class="lightbox-info" id="lightboxCaption"><span id="lightboxCount">Photo 1 of 193</span><span>Original quality</span></div>
 </div>
 
 <script>
@@ -638,9 +616,7 @@ function getPhotoOrder(forceNew = false) {
 }
 
 function buildPhotoList(forceNew = false) {
-    return getPhotoOrder(forceNew).map(n => ({
-        src: `photos/photo_${String(n).padStart(3, '0')}.jpg`
-    }));
+    return getPhotoOrder(forceNew).map(n => ({ src: `photos/photo_${String(n).padStart(3, '0')}.jpg` }));
 }
 
 function createPhotoItem(photo, index) {
@@ -662,18 +638,12 @@ function createPhotoItem(photo, index) {
     return button;
 }
 
-function updateGalleryCounter() {
-    galleryCounter.textContent = `${loadedCount} / ${PHOTO_COUNT}`;
-}
+function updateGalleryCounter() { galleryCounter.textContent = `${loadedCount} / ${PHOTO_COUNT}`; }
 
 function renderNextPage() {
     const end = Math.min(loadedCount + PAGE_SIZE, photos.length);
     const fragment = document.createDocumentFragment();
-
-    for (let i = loadedCount; i < end; i++) {
-        fragment.appendChild(createPhotoItem(photos[i], i));
-    }
-
+    for (let i = loadedCount; i < end; i++) fragment.appendChild(createPhotoItem(photos[i], i));
     grid.appendChild(fragment);
     loadedCount = end;
     updateGalleryCounter();
@@ -690,14 +660,8 @@ function renderFreshMix() {
 }
 
 function preloadAdjacent(index) {
-    const indexes = [
-        (index - 1 + photos.length) % photos.length,
-        (index + 1) % photos.length
-    ];
-    indexes.forEach(i => {
-        const image = new Image();
-        image.src = photos[i].src;
-    });
+    const indexes = [(index - 1 + photos.length) % photos.length, (index + 1) % photos.length];
+    indexes.forEach(i => { const image = new Image(); image.src = photos[i].src; });
 }
 
 function showLightboxPhoto(index) {
@@ -723,9 +687,7 @@ function closeLightbox() {
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('lightbox-open');
     lightboxImg.removeAttribute('src');
-    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-        lastFocusedElement.focus();
-    }
+    if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') lastFocusedElement.focus();
 }
 
 function nextPhoto() { showLightboxPhoto(lightboxIndex + 1); }
@@ -754,25 +716,20 @@ lightboxStage.addEventListener('touchend', event => {
     const touch = event.changedTouches[0];
     const dx = touch.clientX - touchStartX;
     const dy = touch.clientY - touchStartY;
-
     if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.25) {
-        if (dx < 0) nextPhoto();
-        else previousPhoto();
+        if (dx < 0) nextPhoto(); else previousPhoto();
     }
 }, { passive: true });
 
 document.addEventListener('keydown', event => {
     if (!lightbox.classList.contains('open')) return;
-
     if (event.key === 'ArrowRight') nextPhoto();
     else if (event.key === 'ArrowLeft') previousPhoto();
     else if (event.key === 'Escape') closeLightbox();
     else if (event.key === 'Tab') {
         const controls = [lightboxClose, lightboxPrev, lightboxNext];
         const current = controls.indexOf(document.activeElement);
-        const next = event.shiftKey
-            ? (current - 1 + controls.length) % controls.length
-            : (current + 1) % controls.length;
+        const next = event.shiftKey ? (current - 1 + controls.length) % controls.length : (current + 1) % controls.length;
         event.preventDefault();
         controls[next].focus();
     }
