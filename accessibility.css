@@ -6,22 +6,22 @@ html {
 
 html[data-theme="light"] {
     color-scheme: light;
-    --bg: #edf4fc;
-    --glass: rgba(255, 255, 255, 0.62);
+    --bg: #f3f6fb;
+    --glass: rgba(255, 255, 255, 0.76);
     --glass-border: rgba(15, 23, 42, 0.14);
-    --glass-shine: rgba(255, 255, 255, 0.86);
+    --glass-shine: rgba(255, 255, 255, 0.9);
     --text-p: #0f172a;
-    --text-s: rgba(15, 23, 42, 0.64);
-    --surface: rgba(255, 255, 255, 0.62);
-    --surface-strong: rgba(255, 255, 255, 0.82);
+    --text-s: rgba(15, 23, 42, 0.68);
+    --surface: rgba(255, 255, 255, 0.76);
+    --surface-strong: rgba(255, 255, 255, 0.9);
     --border: rgba(15, 23, 42, 0.14);
     --border-strong: rgba(15, 23, 42, 0.24);
     --text: #0f172a;
-    --muted: rgba(15, 23, 42, 0.64);
+    --muted: rgba(15, 23, 42, 0.68);
 }
 
 html[data-theme="light"] body {
-    background: linear-gradient(rgba(247, 250, 255, 0.91), rgba(237, 244, 252, 0.96)), url('/image.jpg') !important;
+    background: linear-gradient(rgba(248, 250, 253, 0.96), rgba(241, 245, 249, 0.98)), url('/image.jpg') !important;
     background-size: cover !important;
     background-position: center !important;
     background-attachment: fixed !important;
@@ -37,7 +37,7 @@ html[data-theme="light"] .photo-item,
 html[data-theme="light"] .social-link,
 html[data-theme="light"] .meta-pill,
 html[data-theme="light"] .action-btn {
-    background-color: rgba(255, 255, 255, 0.58);
+    background-color: rgba(255, 255, 255, 0.74);
     border-color: rgba(15, 23, 42, 0.14);
     color: var(--text-p, var(--text));
 }
@@ -47,7 +47,7 @@ html[data-theme="light"] .logo-pill,
 html[data-theme="light"] .project-link,
 html[data-theme="light"] .filter-pill,
 html[data-theme="light"] .social-btn {
-    background: rgba(255, 255, 255, 0.56);
+    background: rgba(255, 255, 255, 0.78);
     border-color: rgba(15, 23, 42, 0.14);
     color: var(--text-p, var(--text));
 }
@@ -80,6 +80,40 @@ html[data-theme="light"] .project-name {
     color: var(--text-p, var(--text));
 }
 
+html[data-theme="light"] .hero h1 em {
+    color: #2563eb !important;
+}
+
+html[data-theme="light"] .hero-eyebrow,
+html[data-theme="light"] .meta-pill,
+html[data-theme="light"] .social-btn,
+html[data-theme="light"] .social-icon,
+html[data-theme="light"] .gallery-counter,
+html[data-theme="light"] .gallery-copy,
+html[data-theme="light"] .hero-sub {
+    color: #475569 !important;
+}
+
+html[data-theme="light"] .hero-eyebrow {
+    color: #64748b !important;
+}
+
+html[data-theme="light"] .hero-eyebrow::before {
+    box-shadow: none;
+}
+
+html[data-theme="light"] .social-btn:hover,
+html[data-theme="light"] .action-btn:hover,
+html[data-theme="light"] .btn-sm:hover {
+    color: #0f172a !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border-color: rgba(15, 23, 42, 0.22) !important;
+}
+
+html[data-theme="light"] .social-icon {
+    background: rgba(15, 23, 42, 0.06) !important;
+}
+
 html[data-theme="light"] .hero-sub,
 html[data-theme="light"] .gallery-copy,
 html[data-theme="light"] .gallery-counter,
@@ -95,7 +129,7 @@ html[data-theme="light"] .learned-text {
 }
 
 html[data-theme="light"] footer {
-    color: rgba(15, 23, 42, 0.48) !important;
+    color: rgba(15, 23, 42, 0.52) !important;
     border-color: rgba(15, 23, 42, 0.12) !important;
 }
 
@@ -107,7 +141,7 @@ html[data-theme="light"] footer {
     gap: 10px;
     padding: 12px 20px;
     margin: 20px 0 40px;
-    border-radius: 32px;
+    border-radius: 32px !important;
 }
 
 .nav-buttons {
@@ -131,9 +165,9 @@ html[data-theme="light"] footer {
 }
 
 .theme-toggle {
-    width: 42px;
-    height: 42px;
-    flex: 0 0 42px;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
     display: inline-grid;
     place-items: center;
     padding: 0;
@@ -151,7 +185,7 @@ html[data-theme="light"] footer {
 }
 
 html[data-theme="light"] .theme-toggle:hover {
-    background: rgba(15, 23, 42, 0.06);
+    background: rgba(15, 23, 42, 0.05);
 }
 
 .theme-toggle:active {
@@ -159,12 +193,12 @@ html[data-theme="light"] .theme-toggle:hover {
 }
 
 .theme-toggle svg {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     display: block;
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.8;
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
@@ -179,6 +213,34 @@ html[data-theme="light"] .theme-icon-sun {
 
 html[data-theme="light"] .theme-icon-moon {
     display: none !important;
+}
+
+/* Keep every page aligned to the same content rhythm. */
+body:has(.photo-grid) .container {
+    max-width: 900px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+body:has(.photo-grid) .nav {
+    margin: 20px 0 40px !important;
+    padding: 12px 20px !important;
+    border-radius: 32px !important;
+}
+
+body:has(.photo-grid) .nav-name {
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+}
+
+body:has(.photo-grid) .nav-buttons {
+    gap: 8px !important;
+}
+
+body:has(.photo-grid) .btn-sm {
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
 }
 
 /* Keep the glass effect while reducing GPU cost on mobile and Safari. */
@@ -259,9 +321,11 @@ a {
         background-attachment: scroll !important;
     }
 
-    .nav {
-        padding: 11px 14px;
-        margin-top: 14px;
+    .nav,
+    body:has(.photo-grid) .nav {
+        padding: 11px 14px !important;
+        margin-top: 14px !important;
+        margin-bottom: 40px !important;
     }
 
     .nav-name {
@@ -276,6 +340,10 @@ a {
     .nav-buttons {
         order: 3;
         flex-basis: 100%;
+    }
+
+    body:has(.photo-grid) .nav-name {
+        font-size: 1.1rem !important;
     }
 
     .glass,
