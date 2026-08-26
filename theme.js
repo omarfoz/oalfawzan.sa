@@ -1,3 +1,13 @@
+// Anthropic frontend-design visual system. Load before runtime work so all pages share one design floor.
+(() => {
+  if (document.querySelector('link[data-frontend-design]')) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/frontend-design.css';
+  link.dataset.frontendDesign = 'anthropic';
+  document.head.appendChild(link);
+})();
+
 (() => {
   const nav = document.querySelector('.nav');
   if (!nav || document.getElementById('themeToggle')) return;
