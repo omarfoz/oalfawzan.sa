@@ -81,3 +81,79 @@
     systemTheme.addListener(syncSystemTheme);
   }
 })();
+
+/* ScrollCraft enhancement layer: pointer depth + lightweight scroll state. */
+(() => {
+  const root = document.documentElement;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  root.dataset.scrollcraft = 'true';
+
+  const updateScrollState = () => {
+    const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, window.scrollY / max));
+    root.style.setProperty('--sc-progress', progress.toFixed(4));
+    root.style.setProperty('--sc-scroll-y', `${window.scrollY}px`);
+  };
+
+  let scrollTicking = false;
+  const onScroll = () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      updateScrollState();
+      scrollTicking = false;
+    });
+  };
+
+  updateScrollState();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  if (reducedMotion.matches || !finePointer.matches) return;
+
+  const depthTargets = [...document.querySelectorAll('.project-card, .blog-card, .photo-item, .glass-card:not(.nav)')];
+
+  depthTargets.forEach((target) => {
+    let frame = 0;
+
+    const reset = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        target.style.transform = '';
+      });
+    };
+
+    target.addEventListener('pointermove', (event) => {
+      const rect = target.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      const rotateX = (-y * 2.4).toFixed(2);
+      const rotateY = (x * 3.2).toFixed(2);
+
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        target.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+      });
+    }, { passive: true });
+
+    target.addEventListener('pointerleave', reset, { passive: true });
+    target.addEventListener('pointercancel', reset, { passive: true });
+  });
+
+  const hero = document.querySelector('.hero img, header img');
+  if (hero) {
+    let heroFrame = 0;
+    window.addEventListener('pointermove', (event) => {
+      const x = event.clientX / window.innerWidth - 0.5;
+      const y = event.clientY / window.innerHeight - 0.5;
+      cancelAnimationFrame(heroFrame);
+      heroFrame = requestAnimationFrame(() => {
+        hero.style.transform = `translate3d(${(x * 8).toFixed(2)}px, ${(y * 6).toFixed(2)}px, 0)`;
+      });
+    }, { passive: true });
+  }
+})();
