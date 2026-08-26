@@ -347,6 +347,162 @@ a {
     text-wrap: balance;
 }
 
+/* ScrollCraft: scroll is the timeline. Shared floor, page-specific devices. */
+body::before {
+    content: '';
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    pointer-events: none;
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    background: linear-gradient(90deg, var(--accent, #007AFF), rgba(124, 195, 255, .9));
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent, #007AFF) 50%, transparent);
+}
+
+@supports (animation-timeline: scroll()) {
+    body::before {
+        animation: sc-page-progress linear both;
+        animation-timeline: scroll(root block);
+    }
+
+    .hero,
+    .page-header,
+    body > .container > header,
+    .container > header {
+        animation: sc-hero-rise both cubic-bezier(.2,.75,.2,1);
+        animation-timeline: view(block);
+        animation-range: entry 0% entry 82%;
+    }
+
+    .section-title,
+    .gallery-head,
+    article > h2 {
+        animation: sc-title-wipe both cubic-bezier(.2,.75,.2,1);
+        animation-timeline: view(block);
+        animation-range: entry 5% entry 75%;
+    }
+
+    .project-card,
+    .blog-card,
+    .exp-item,
+    .glass-card:not(.nav),
+    .social-row,
+    .gallery-actions {
+        animation: sc-card-lift both cubic-bezier(.16,.84,.22,1);
+        animation-timeline: view(block);
+        animation-range: entry 0% entry 72%;
+    }
+
+    .project-card:nth-of-type(even),
+    .blog-card:nth-child(even),
+    .exp-item:nth-of-type(even) {
+        animation-name: sc-card-swing;
+    }
+
+    .project-card:nth-of-type(3n),
+    .blog-card:nth-child(3n),
+    .exp-item:nth-of-type(3n) {
+        animation-name: sc-card-focus;
+    }
+
+    .photo-item {
+        animation: sc-photo-depth both cubic-bezier(.16,.84,.22,1);
+        animation-timeline: view(block);
+        animation-range: entry 0% entry 68%;
+        transform-origin: 50% 80%;
+    }
+
+    .photo-item:nth-child(even) { animation-name: sc-photo-depth-alt; }
+    .photo-item:nth-child(3n) { animation-name: sc-photo-focus; }
+
+    .timeline::before {
+        transform-origin: 50% 0%;
+        animation: sc-timeline-draw linear both;
+        animation-timeline: view(block);
+        animation-range: entry 0% exit 90%;
+    }
+
+    article > p,
+    article > ul,
+    .tl-body,
+    .blog-excerpt,
+    .project-desc,
+    .gallery-copy {
+        animation: sc-copy-settle both ease-out;
+        animation-timeline: view(block);
+        animation-range: entry 0% entry 65%;
+    }
+}
+
+@keyframes sc-page-progress { to { transform: scaleX(1); } }
+@keyframes sc-hero-rise {
+    from { opacity: .2; transform: translateY(36px) scale(.985); filter: blur(8px); }
+    to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes sc-title-wipe {
+    from { opacity: .1; clip-path: inset(0 100% 0 0); transform: translateY(14px); }
+    to { opacity: 1; clip-path: inset(0 0 0 0); transform: none; }
+}
+@keyframes sc-card-lift {
+    from { opacity: .15; transform: translateY(40px) scale(.975); filter: saturate(.72); }
+    to { opacity: 1; transform: none; filter: saturate(1); }
+}
+@keyframes sc-card-swing {
+    from { opacity: .12; transform: translateX(28px) rotate(.8deg) scale(.98); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes sc-card-focus {
+    from { opacity: .1; transform: scale(.94); filter: blur(7px); }
+    to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+@keyframes sc-photo-depth {
+    from { opacity: .12; transform: translate3d(-12px,28px,0) rotate(-.7deg) scale(.97); filter: contrast(.9) saturate(.72); }
+    to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes sc-photo-depth-alt {
+    from { opacity: .12; transform: translate3d(12px,34px,0) rotate(.7deg) scale(.965); filter: contrast(.9) saturate(.76); }
+    to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes sc-photo-focus {
+    from { opacity: .08; transform: scale(.91); filter: blur(8px) saturate(.7); }
+    to { opacity: 1; transform: scale(1); filter: blur(0) saturate(1); }
+}
+@keyframes sc-timeline-draw {
+    from { transform: scaleY(0); opacity: .3; }
+    to { transform: scaleY(1); opacity: 1; }
+}
+@keyframes sc-copy-settle {
+    from { opacity: .2; transform: translateY(16px); }
+    to { opacity: 1; transform: none; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .project-card,
+    .blog-card,
+    .photo-item,
+    .glass-card:not(.nav) {
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
+
+    .project-banner,
+    .blog-cover,
+    .hero img,
+    .photo-item img {
+        transition: transform 420ms cubic-bezier(.2,.75,.2,1), filter 320ms ease;
+    }
+
+    .project-card:hover .project-banner,
+    .blog-card:hover .blog-cover,
+    .photo-item:hover img {
+        transform: scale(1.035);
+    }
+}
+
 @media (max-width: 700px), (pointer: coarse) {
     body,
     html[data-theme="light"] body {
@@ -406,6 +562,10 @@ a {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    body::before {
+        display: none !important;
     }
 
     .skip-link,
