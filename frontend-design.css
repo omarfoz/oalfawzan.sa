@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
 
 /*
   FRONTEND DESIGN DIRECTION — “Cloud Control Plane”
@@ -20,9 +20,9 @@
   --fd-text: #f5f8ff;
   --fd-muted: #96a7bf;
   --fd-radius: 18px;
-  --fd-display: 'Syne', 'IBM Plex Sans', sans-serif;
+  --fd-display: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --fd-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --fd-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fd-mono: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 html { background: var(--fd-ink); }
@@ -35,6 +35,11 @@ body {
     linear-gradient(rgba(5,9,20,.92), rgba(5,9,20,.97)),
     url('/image.jpg') center / cover fixed !important;
   color: var(--fd-text) !important;
+}
+
+/* One type family across the entire site, including display and utility text. */
+body, body * {
+  font-family: var(--fd-body) !important;
 }
 
 body::after {
@@ -99,7 +104,7 @@ body::after {
 }
 .theme-toggle { color: #93a5be !important; }
 
-/* Typography: display has identity, body remains technical and calm. */
+/* Typography: IBM Plex Sans carries display, body and utility roles. */
 h1, .hero h1, .page-header h1, .gallery-title, .project-name, .blog-title, .company, .tl-title {
   font-family: var(--fd-display) !important;
   letter-spacing: -.045em !important;
@@ -317,6 +322,29 @@ html[data-theme='light'] .gallery-copy { color: var(--fd-muted) !important; }
   .project-body, .blog-body { padding: 20px !important; }
   .section-title { margin-bottom: 22px !important; }
   .photo-grid { column-gap: 8px !important; }
+
+  /* Fix ScrollCraft mobile chapter overlays seen in Safari/Chrome on iPhone. */
+  html[data-scrollcraft-v2='true'][data-sc-page='experience'] .section-title,
+  html[data-scrollcraft-v2='true'][data-sc-page='home'] .bio-section > .section-title,
+  html[data-scrollcraft-v2='true'][data-sc-page='privacy'] article > h2 {
+    position: static !important;
+    top: auto !important;
+    z-index: auto !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Scroll motion can remain, but content must never become unreadably dim. */
+  html[data-scrollcraft-v2='true'] .tl-item,
+  html[data-scrollcraft-v2='true'] .exp-item {
+    opacity: 1 !important;
+    filter: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
