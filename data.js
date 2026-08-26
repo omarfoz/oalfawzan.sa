@@ -150,11 +150,7 @@ const siteData = {
   nav.appendChild(toggle);
 
   const getSavedTheme = () => {
-    try {
-      return localStorage.getItem(storageKey);
-    } catch (_) {
-      return null;
-    }
+    try { return localStorage.getItem(storageKey); } catch (_) { return null; }
   };
 
   const setTheme = (theme, persist = false) => {
@@ -163,35 +159,32 @@ const siteData = {
     toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
     toggle.setAttribute('title', isLight ? 'Dark mode' : 'Light mode');
     toggle.setAttribute('aria-pressed', String(isLight));
-
-    if (themeMeta) {
-      themeMeta.setAttribute('content', isLight ? '#edf4fc' : '#010204');
-    }
-
+    if (themeMeta) themeMeta.setAttribute('content', isLight ? '#edf4fc' : '#010204');
     if (persist) {
-      try {
-        localStorage.setItem(storageKey, isLight ? 'light' : 'dark');
-      } catch (_) {}
+      try { localStorage.setItem(storageKey, isLight ? 'light' : 'dark'); } catch (_) {}
     }
   };
 
-  const savedTheme = getSavedTheme();
-  setTheme(savedTheme || (systemTheme.matches ? 'light' : 'dark'));
-
+  setTheme(getSavedTheme() || (systemTheme.matches ? 'light' : 'dark'));
   toggle.addEventListener('click', () => {
-    const nextTheme = root.dataset.theme === 'light' ? 'dark' : 'light';
-    setTheme(nextTheme, true);
+    setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
   });
 
   const syncSystemTheme = event => {
-    if (!getSavedTheme()) {
-      setTheme(event.matches ? 'light' : 'dark');
-    }
+    if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
   };
+  if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
+  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
+})();
 
-  if (typeof systemTheme.addEventListener === 'function') {
-    systemTheme.addEventListener('change', syncSystemTheme);
-  } else if (typeof systemTheme.addListener === 'function') {
-    systemTheme.addListener(syncSystemTheme);
-  }
+// Home historically bundled theme handling in data.js. Load the shared ScrollCraft
+// runtime too so Home receives the same mobile-first interaction system as every
+// other page without changing its content/SEO structure.
+(() => {
+  if (document.querySelector('script[data-scrollcraft-runtime]')) return;
+  const script = document.createElement('script');
+  script.src = '/theme.js';
+  script.defer = true;
+  script.dataset.scrollcraftRuntime = 'true';
+  document.head.appendChild(script);
 })();
