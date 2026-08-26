@@ -1,3 +1,13 @@
+// Vercel Web Interface Guidelines compliance layer.
+(() => {
+  if (document.querySelector('script[data-web-guidelines]')) return;
+  const script = document.createElement('script');
+  script.src = '/web-guidelines.js';
+  script.async = false;
+  script.dataset.webGuidelines = 'vercel';
+  document.head.appendChild(script);
+})();
+
 // Anthropic frontend-design visual system. Load before runtime work so all pages share one design floor.
 (() => {
   if (document.querySelector('link[data-frontend-design]')) return;
