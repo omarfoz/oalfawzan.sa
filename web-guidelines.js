@@ -29,13 +29,54 @@
         filter: none !important;
         clip-path: none !important;
       }
+
+      /* Accessibility skip link: completely off-canvas until keyboard focus. */
       .skip-link {
-        top: max(10px, env(safe-area-inset-top));
-        left: max(10px, env(safe-area-inset-left));
+        position: fixed !important;
+        z-index: 10000 !important;
+        top: max(10px, env(safe-area-inset-top)) !important;
+        left: max(10px, env(safe-area-inset-left)) !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 10px 14px !important;
+        overflow: visible !important;
+        clip: auto !important;
+        clip-path: none !important;
+        white-space: nowrap !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: translateY(calc(-100% - 48px)) !important;
+        transition: transform .16s ease, opacity .16s ease !important;
       }
+      .skip-link:focus,
+      .skip-link:focus-visible {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: translateY(0) !important;
+      }
+
       :where(a,button,[tabindex]):focus-visible {
         scroll-margin-block: 7rem;
       }
+
+      /* On touch screens, ScrollCraft may move content but never dim readability. */
+      @media (max-width: 760px) {
+        html[data-scrollcraft-v2='true'] .sc-motion,
+        html[data-scrollcraft-v2='true'] .section-title,
+        html[data-scrollcraft-v2='true'] .gallery-head,
+        html[data-scrollcraft-v2='true'] .tl-item,
+        html[data-scrollcraft-v2='true'] .exp-item,
+        html[data-scrollcraft-v2='true'] .social-link,
+        html[data-scrollcraft-v2='true'] .glass-card:not(.nav),
+        html[data-scrollcraft-v2='true'] article > h2,
+        html[data-scrollcraft-v2='true'] article > p,
+        html[data-scrollcraft-v2='true'] article > ul {
+          opacity: 1 !important;
+          filter: none !important;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto !important; }
       }
