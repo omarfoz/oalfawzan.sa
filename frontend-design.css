@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap');
+
+/*
+  FRONTEND DESIGN DIRECTION — “Cloud Control Plane”
+  Subject: a Saudi cloud engineering / technical leadership portfolio.
+  Signature: infrastructure-grid atmosphere + precise signal-line hierarchy.
+  This layer intentionally sits above the existing page CSS and ScrollCraft runtime.
+*/
+
+:root {
+  --fd-ink: #050914;
+  --fd-ink-2: #0a1020;
+  --fd-panel: rgba(9, 17, 34, .64);
+  --fd-panel-strong: rgba(11, 21, 42, .82);
+  --fd-line: rgba(125, 178, 255, .16);
+  --fd-line-strong: rgba(125, 178, 255, .32);
+  --fd-blue: #4ea1ff;
+  --fd-blue-2: #89c5ff;
+  --fd-cyan: #6ed8ff;
+  --fd-text: #f5f8ff;
+  --fd-muted: #96a7bf;
+  --fd-radius: 18px;
+  --fd-display: 'Syne', 'IBM Plex Sans', sans-serif;
+  --fd-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --fd-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html { background: var(--fd-ink); }
+
+body {
+  font-family: var(--fd-body) !important;
+  background:
+    radial-gradient(circle at 16% 8%, rgba(78,161,255,.12), transparent 30rem),
+    radial-gradient(circle at 86% 22%, rgba(110,216,255,.08), transparent 34rem),
+    linear-gradient(rgba(5,9,20,.92), rgba(5,9,20,.97)),
+    url('/image.jpg') center / cover fixed !important;
+  color: var(--fd-text) !important;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(126,177,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126,177,255,.045) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), rgba(0,0,0,.22) 68%, transparent);
+}
+
+.container { max-width: 980px !important; }
+
+/* Navigation: reads like a control bar, not a glass pill template. */
+.nav {
+  border-radius: 14px !important;
+  border: 1px solid var(--fd-line) !important;
+  background: linear-gradient(180deg, rgba(12,22,44,.84), rgba(7,14,28,.72)) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 14px 40px rgba(0,0,0,.24) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
+  backdrop-filter: blur(18px) saturate(135%) !important;
+}
+
+.nav::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--fd-cyan);
+  box-shadow: 0 0 14px rgba(110,216,255,.7);
+  flex: 0 0 auto;
+}
+
+.nav-name {
+  margin-right: auto;
+  font-family: var(--fd-display) !important;
+  font-size: .93rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -.025em !important;
+}
+
+.nav-buttons { gap: 4px !important; }
+.btn-sm {
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  color: #8ea0b9 !important;
+  font-family: var(--fd-mono) !important;
+  font-size: .67rem !important;
+  letter-spacing: .02em;
+  padding: 8px 11px !important;
+}
+.btn-sm:hover { color: #fff !important; background: rgba(78,161,255,.08) !important; }
+.btn-sm.active {
+  color: #fff !important;
+  background: rgba(78,161,255,.14) !important;
+  box-shadow: inset 0 0 0 1px rgba(78,161,255,.26) !important;
+}
+.theme-toggle { color: #93a5be !important; }
+
+/* Typography: display has identity, body remains technical and calm. */
+h1, .hero h1, .page-header h1, .gallery-title, .project-name, .blog-title, .company, .tl-title {
+  font-family: var(--fd-display) !important;
+  letter-spacing: -.045em !important;
+}
+
+.hero h1, .page-header h1, .container > header h1 {
+  font-size: clamp(3rem, 8vw, 5.8rem) !important;
+  line-height: .93 !important;
+  text-wrap: balance;
+}
+
+.hero h1 em, .accent { color: var(--fd-blue-2) !important; }
+
+.hero-role, .headline, .hero-eyebrow, .eyebrow, .gallery-kicker,
+.worked-label, .section-title, .tl-year, .blog-tag, .ptag, .learned-label {
+  font-family: var(--fd-mono) !important;
+  text-transform: uppercase !important;
+  letter-spacing: .13em !important;
+}
+
+.hero-role, .headline { color: var(--fd-blue-2) !important; }
+.hero-sub, .intro, .tl-body, .project-desc, .blog-excerpt, .gallery-copy, .period,
+article p, article li { color: var(--fd-muted) !important; }
+
+/* Signature hero: infrastructure signal field around the actual subject. */
+.hero, .page-header, .container > header {
+  position: relative;
+  isolation: isolate;
+}
+.hero::before, .page-header::before, .container > header::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 44%;
+  width: min(720px, 92vw);
+  aspect-ratio: 1.8 / 1;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(78,161,255,.13);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(78,161,255,.09), transparent 44%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 38px, rgba(110,216,255,.055) 39px 40px);
+  mask-image: radial-gradient(circle, #000 0 56%, transparent 76%);
+  pointer-events: none;
+}
+.hero img, .container > header img {
+  border: 1px solid rgba(137,197,255,.42) !important;
+  box-shadow: 0 0 0 8px rgba(78,161,255,.045), 0 22px 60px rgba(0,0,0,.32) !important;
+}
+
+/* Structural labels should carry information, not decoration. */
+.section-title, .gallery-head {
+  color: #8ba0ba !important;
+  font-size: .7rem !important;
+  font-weight: 600 !important;
+}
+.section-title::after {
+  background: linear-gradient(90deg, rgba(78,161,255,.45), rgba(78,161,255,.06)) !important;
+}
+
+/* Surfaces: fewer rounded floating blobs, more architectural planes. */
+.glass, .glass-card, .project-card, .blog-card, .photo-item,
+.social-link, .social-btn, .meta-pill, .action-btn {
+  border-radius: var(--fd-radius) !important;
+  border: 1px solid var(--fd-line) !important;
+  background: linear-gradient(155deg, rgba(13,24,47,.72), rgba(7,14,29,.62)) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.035), 0 18px 46px rgba(0,0,0,.20) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(130%) !important;
+  backdrop-filter: blur(18px) saturate(130%) !important;
+}
+
+.glass-card:not(.nav), .project-card, .blog-card {
+  position: relative;
+  overflow: hidden;
+}
+.glass-card:not(.nav)::before, .project-card::before, .blog-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(var(--fd-blue), rgba(78,161,255,.05));
+  opacity: .8;
+}
+
+.project-card:hover, .blog-card:hover, .glass-card:not(.nav):hover {
+  border-color: var(--fd-line-strong) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.05), 0 24px 65px rgba(0,0,0,.28) !important;
+}
+
+/* Home */
+.worked-section { padding-top: 10px; }
+.logos-row { gap: 8px !important; }
+.logo-pill {
+  border-radius: 9px !important;
+  background: rgba(9,18,36,.48) !important;
+  border-color: rgba(137,197,255,.13) !important;
+}
+.timeline::before { width: 2px !important; background: linear-gradient(var(--fd-cyan), rgba(78,161,255,.06)) !important; }
+.tl-dot { background: var(--fd-ink) !important; border-color: var(--fd-cyan) !important; }
+.tl-item { padding-bottom: 4px; }
+.project-banner { height: 108px !important; border-bottom: 1px solid var(--fd-line); }
+.project-name { font-size: clamp(1.4rem,4vw,2rem) !important; }
+.project-learned { background: rgba(78,161,255,.055) !important; border-color: rgba(78,161,255,.15) !important; }
+.project-link { border-radius: 8px !important; font-family: var(--fd-mono) !important; }
+
+/* Experience */
+.exp-item { border-left: 1px solid rgba(78,161,255,.18); padding-left: 22px !important; }
+.company { font-size: clamp(1.45rem,4vw,2.05rem) !important; }
+.social-link { border-radius: 10px !important; }
+
+/* Blog: editorial, technical, not generic card marketplace. */
+.blog-grid { gap: 14px !important; }
+.blog-card { border-radius: 14px !important; }
+.blog-cover { border-bottom: 1px solid var(--fd-line); }
+.blog-title { line-height: 1.08 !important; }
+.blog-meta { font-family: var(--fd-mono) !important; font-size: .67rem !important; }
+.filter-pill {
+  border-radius: 7px !important;
+  font-family: var(--fd-mono) !important;
+  font-size: .67rem !important;
+  background: rgba(9,18,36,.5) !important;
+  border-color: rgba(137,197,255,.13) !important;
+}
+.filter-pill.active { background: rgba(78,161,255,.14) !important; color: #fff !important; }
+
+/* Social: photography remains the hero; UI recedes. */
+.photo-grid { column-gap: 12px !important; }
+.photo-item { border-radius: 8px !important; background: #050914 !important; }
+.photo-item img { transition: transform .6s cubic-bezier(.2,.75,.2,1), filter .35s ease !important; }
+.gallery-counter, .meta-pill { font-family: var(--fd-mono) !important; }
+.social-btn, .action-btn { border-radius: 8px !important; font-family: var(--fd-mono) !important; }
+
+/* Privacy: readable document plane. */
+html[data-sc-page='privacy'] article { max-width: 760px; margin-inline: auto; }
+html[data-sc-page='privacy'] article h2 { color: var(--fd-text) !important; }
+html[data-sc-page='privacy'] article a { color: var(--fd-blue-2) !important; text-underline-offset: 3px; }
+
+/* Light mode keeps the same identity instead of becoming a separate generic white theme. */
+html[data-theme='light'] {
+  --fd-ink: #eaf2fb;
+  --fd-ink-2: #dde9f6;
+  --fd-panel: rgba(247,251,255,.72);
+  --fd-panel-strong: rgba(249,252,255,.88);
+  --fd-line: rgba(44,100,160,.16);
+  --fd-line-strong: rgba(44,100,160,.28);
+  --fd-text: #0d1a2b;
+  --fd-muted: #52657d;
+}
+html[data-theme='light'] body {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(255,255,255,.96), transparent 28rem),
+    radial-gradient(circle at 86% 18%, rgba(78,161,255,.13), transparent 34rem),
+    linear-gradient(rgba(232,242,251,.91), rgba(224,236,248,.95)),
+    url('/image.jpg') center / cover fixed !important;
+  color: var(--fd-text) !important;
+}
+html[data-theme='light'] body::after {
+  background-image:
+    linear-gradient(rgba(40,91,145,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(40,91,145,.06) 1px, transparent 1px);
+}
+html[data-theme='light'] .nav,
+html[data-theme='light'] .glass,
+html[data-theme='light'] .glass-card,
+html[data-theme='light'] .project-card,
+html[data-theme='light'] .blog-card,
+html[data-theme='light'] .social-link,
+html[data-theme='light'] .social-btn,
+html[data-theme='light'] .meta-pill,
+html[data-theme='light'] .action-btn {
+  background: linear-gradient(155deg, rgba(255,255,255,.78), rgba(239,247,255,.60)) !important;
+  border-color: rgba(44,100,160,.16) !important;
+  box-shadow: inset 0 1px rgba(255,255,255,.9), 0 18px 44px rgba(55,86,120,.11) !important;
+  color: var(--fd-text) !important;
+}
+html[data-theme='light'] .btn-sm { color: #60738b !important; }
+html[data-theme='light'] .btn-sm.active { color: #0d1a2b !important; background: rgba(78,161,255,.12) !important; }
+html[data-theme='light'] h1,
+html[data-theme='light'] h2,
+html[data-theme='light'] .company,
+html[data-theme='light'] .project-name,
+html[data-theme='light'] .blog-title,
+html[data-theme='light'] .gallery-title { color: var(--fd-text) !important; }
+html[data-theme='light'] p,
+html[data-theme='light'] li,
+html[data-theme='light'] .hero-sub,
+html[data-theme='light'] .intro,
+html[data-theme='light'] .period,
+html[data-theme='light'] .project-desc,
+html[data-theme='light'] .blog-excerpt,
+html[data-theme='light'] .gallery-copy { color: var(--fd-muted) !important; }
+
+@media (min-width: 860px) {
+  /* Asymmetry is deliberate: copy sits slightly off-center while the nav stays aligned. */
+  .hero, .page-header, .container > header { padding-inline: 7%; }
+  .hero-sub, .page-header p, .intro { max-width: 620px !important; }
+  .projects-section .project-card:nth-child(even), .blog-card:nth-child(even) { margin-left: 4%; }
+  .projects-section .project-card:nth-child(odd), .blog-card:nth-child(odd) { margin-right: 4%; }
+}
+
+@media (max-width: 700px) {
+  body, html[data-theme='light'] body { background-attachment: scroll !important; }
+  body::after { background-size: 30px 30px; }
+  .container { padding-inline: 13px !important; }
+  .nav { border-radius: 12px !important; }
+  .nav::before { display: none; }
+  .nav-name { font-size: .9rem !important; }
+  .btn-sm { padding: 7px 9px !important; }
+  .hero h1, .page-header h1, .container > header h1 { font-size: clamp(2.75rem, 14vw, 4.3rem) !important; }
+  .hero::before, .page-header::before, .container > header::before { width: 115vw; top: 38%; }
+  .glass-card { padding: 22px !important; }
+  .project-body, .blog-body { padding: 20px !important; }
+  .section-title { margin-bottom: 22px !important; }
+  .photo-grid { column-gap: 8px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .page-header::before, .container > header::before { transform: translate(-50%, -50%) !important; }
+}
