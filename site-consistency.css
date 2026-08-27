@@ -1,0 +1,236 @@
+/* Shared visual-consistency layer for Home, Experience, Blog, Social and Privacy. */
+
+:root {
+    --site-content-width: 900px;
+    --site-page-pad: 16px;
+    --site-section-gap: 64px;
+    --site-heading-font: 'Playfair Display', Georgia, serif;
+    --site-body-font: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+    font-family: var(--site-body-font) !important;
+}
+
+.container {
+    width: 100% !important;
+    max-width: var(--site-content-width) !important;
+    margin-inline: auto !important;
+    padding-inline: var(--site-page-pad) !important;
+}
+
+/* One navigation system across every route. */
+.nav {
+    min-height: 64px;
+    padding: 12px 20px !important;
+    margin: 20px 0 40px !important;
+    border-radius: 32px !important;
+}
+
+.nav-name {
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+}
+
+.nav-buttons {
+    gap: 8px !important;
+}
+
+.btn-sm {
+    min-height: 38px !important;
+    padding: 7px 14px !important;
+    border-radius: 20px !important;
+    font-size: .78rem !important;
+    font-weight: 600 !important;
+}
+
+/* One hero language: same display face, scale and vertical rhythm. */
+.hero,
+.experience-hero,
+.blog-hero,
+.page-hero {
+    max-width: 720px !important;
+    margin-inline: auto !important;
+    padding-top: 18px !important;
+    padding-bottom: 56px !important;
+    text-align: center !important;
+}
+
+.hero h1,
+.experience-hero h1,
+.blog-hero h1,
+.page-hero h1,
+body:has(.photo-grid) .hero h1 {
+    font-family: var(--site-heading-font) !important;
+    font-size: clamp(2.6rem, 7vw, 4rem) !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.035em !important;
+    text-wrap: balance;
+}
+
+.hero h1 em,
+body:has(.photo-grid) .hero h1 em {
+    font-family: inherit !important;
+    font-style: normal !important;
+    color: var(--accent) !important;
+    font-weight: 900 !important;
+}
+
+.hero-role,
+.experience-hero .subtitle,
+.blog-hero .subtitle,
+.hero-eyebrow {
+    color: var(--accent) !important;
+}
+
+.hero-sub,
+.intro,
+.experience-hero p,
+.blog-hero p {
+    max-width: 580px;
+    margin-inline: auto;
+    line-height: 1.65 !important;
+}
+
+/* Shared section rhythm. */
+.section-title,
+.worked-label,
+.gallery-kicker,
+.filters-label {
+    font-size: .75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: .20em !important;
+    text-transform: uppercase !important;
+}
+
+.summary-section,
+.worked-section,
+.bio-section,
+.projects-section,
+.filters-section,
+.social-row,
+main > section {
+    scroll-margin-top: 24px;
+}
+
+.glass-card,
+.project-card,
+.blog-card,
+.social-btn,
+.photo-item {
+    border-radius: 20px;
+}
+
+/* Social should share the shell, but its gallery remains photography-first. */
+body:has(.photo-grid) .hero {
+    max-width: 720px !important;
+    margin: 0 auto 44px !important;
+    padding: 18px 0 0 !important;
+}
+
+body:has(.photo-grid) .hero h1 {
+    max-width: 680px;
+    margin-inline: auto;
+}
+
+body:has(.photo-grid) .hero-sub {
+    font-size: .95rem !important;
+}
+
+body:has(.photo-grid) .social-row {
+    margin-bottom: 64px !important;
+}
+
+body:has(.photo-grid) .gallery-title {
+    font-family: var(--site-heading-font) !important;
+    font-size: 1.65rem !important;
+    font-weight: 700 !important;
+}
+
+@media (max-width: 700px), (pointer: coarse) {
+    :root {
+        --site-page-pad: 16px;
+        --site-section-gap: 52px;
+    }
+
+    .nav,
+    body:has(.photo-grid) .nav {
+        min-height: auto;
+        padding: 12px 14px !important;
+        margin: 14px 0 40px !important;
+        gap: 10px !important;
+    }
+
+    .nav-name,
+    body:has(.photo-grid) .nav-name {
+        display: block !important;
+        order: 1 !important;
+        font-size: 1.05rem !important;
+    }
+
+    .theme-toggle {
+        order: 2 !important;
+        margin-left: auto !important;
+    }
+
+    .nav-buttons,
+    body:has(.photo-grid) .nav-buttons {
+        order: 3 !important;
+        flex-basis: 100% !important;
+        gap: 8px !important;
+    }
+
+    .btn-sm,
+    body:has(.photo-grid) .btn-sm {
+        min-height: 40px !important;
+        padding: 8px 13px !important;
+        font-size: .78rem !important;
+    }
+
+    .hero,
+    .experience-hero,
+    .blog-hero,
+    .page-hero,
+    body:has(.photo-grid) .hero {
+        padding-top: 10px !important;
+        padding-bottom: 48px !important;
+        margin-bottom: 0 !important;
+    }
+
+    .hero h1,
+    .experience-hero h1,
+    .blog-hero h1,
+    .page-hero h1,
+    body:has(.photo-grid) .hero h1 {
+        font-size: clamp(2.45rem, 12vw, 3.35rem) !important;
+        line-height: 1.06 !important;
+    }
+
+    .hero-sub,
+    .intro,
+    .experience-hero p,
+    .blog-hero p {
+        font-size: .95rem !important;
+        line-height: 1.65 !important;
+    }
+
+    body:has(.photo-grid) .social-row {
+        margin-top: 4px !important;
+        margin-bottom: 56px !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .nav-name,
+    body:has(.photo-grid) .nav-name {
+        display: block !important;
+    }
+
+    .btn-sm,
+    body:has(.photo-grid) .btn-sm {
+        padding-inline: 11px !important;
+        font-size: .74rem !important;
+    }
+}
