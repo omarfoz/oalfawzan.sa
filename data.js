@@ -1,3 +1,25 @@
+(() => {
+  if (!document.querySelector('link[data-random-background]')) {
+    const backgroundStyles = document.createElement('link');
+    backgroundStyles.rel = 'stylesheet';
+    backgroundStyles.href = '/random-background.css';
+    backgroundStyles.dataset.randomBackground = 'true';
+    document.head.appendChild(backgroundStyles);
+  }
+
+  const photoCount = 193;
+  let photoNumber = Math.floor(Math.random() * photoCount) + 1;
+  if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+    const randomValue = new Uint32Array(1);
+    window.crypto.getRandomValues(randomValue);
+    photoNumber = (randomValue[0] % photoCount) + 1;
+  }
+
+  const photoPath = `/social/photos/photo_${String(photoNumber).padStart(3, '0')}.jpg`;
+  document.documentElement.style.setProperty('--site-random-background', `url("${photoPath}")`);
+  document.documentElement.dataset.backgroundPhoto = String(photoNumber);
+})();
+
 // ============================================
 // OMAR ALFAWZAN — SITE DATA
 // Updated to first-person storytelling
