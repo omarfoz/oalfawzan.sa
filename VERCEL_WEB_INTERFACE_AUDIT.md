@@ -2,7 +2,7 @@
 
 Baseline: `3eae536f78caf75e4f504e78b6e493698df057a3`
 
-Guideline source: latest `vercel-labs/web-interface-guidelines/main/command.md`, fetched for this review as required by the `web-design-guidelines` skill.
+Guideline source: latest `vercel-labs/web-interface-guidelines/main/command.md`, fetched for this review as required by the `web-design-guidelines` skill. The requested `npx skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines` installer was also attempted, but the networked CLI operation timed out in the execution environment. The maintained skill instructions and their mandated live guideline source were therefore fetched directly rather than relying on memory or a stale local copy.
 
 ## Route inventory
 
@@ -69,6 +69,15 @@ No forms, authentication, dashboard, tables, search, dropdown menus, tabs, accor
 - Kept ScrollCraft on desktop but restricted visual animation to transform/opacity; touch/mobile gets stable readable content instead of sticky/opacity/parallax choreography.
 - Added `scripts/validate_interface.py` and wired it into GitHub Actions together with `node --check` for all shared JavaScript runtimes.
 
+## Re-audit and validation
+
+The latest guideline source was fetched again after remediation and the changes were re-reviewed against the current rules.
+
+- Existing production validator: PASS — 5 HTML files checked.
+- Interface regression validator: PASS — 5 user-facing routes checked.
+- Shared JavaScript syntax (`web-guidelines.js`, `theme.js`, `data.js`): PASS.
+- Package-manager lint/typecheck/test/build: not applicable; the repository has no `package.json` or framework build pipeline. The production quality gate is the static-site validator plus JavaScript syntax validation in GitHub Actions.
+
 ## Remaining source-level notes
 
-The legacy static HTML still contains a small number of `target="_blank"` links without full `rel` tokens and three routes rely on the shared runtime to insert their `<main>` landmark. These are normalized before interaction by `web-guidelines.js`; the regression validator reports them as warnings so they remain visible rather than silently ignored.
+The legacy static HTML still contains a small number of `target="_blank"` links without full `rel` tokens and three routes rely on the shared runtime to insert their `<main>` landmark. These are normalized before interaction by `web-guidelines.js`; the regression validator reports them as warnings so they remain visible rather than silently ignored. They are not runtime blockers, but source-level normalization would be the next cleanup if the static pages are later consolidated into shared templates.
