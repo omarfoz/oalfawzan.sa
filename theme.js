@@ -81,3 +81,16 @@
     systemTheme.addListener(syncSystemTheme);
   }
 })();
+
+// Social uses a photography-specific layout internally, but its page shell should
+// match the rest of the portfolio. Load the alignment layer only on /social/.
+(() => {
+  const path = location.pathname.replace(/\/+$/, '') || '/';
+  if (path !== '/social' || document.querySelector('link[data-social-shared]')) return;
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/social-shared.css';
+  link.dataset.socialShared = 'true';
+  document.head.appendChild(link);
+})();
