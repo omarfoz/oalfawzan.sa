@@ -1,4 +1,15 @@
 (() => {
+  // Home already defines the reference visual language in its page CSS.
+  // Other routes load this final shared layer so their shell, hero, type scale,
+  // spacing and navigation match Home consistently.
+  if (!document.querySelector('link[data-site-consistency]')) {
+    const consistencyStyles = document.createElement('link');
+    consistencyStyles.rel = 'stylesheet';
+    consistencyStyles.href = '/site-consistency.css';
+    consistencyStyles.dataset.siteConsistency = 'true';
+    document.head.appendChild(consistencyStyles);
+  }
+
   const nav = document.querySelector('.nav');
   if (!nav || document.getElementById('themeToggle')) return;
 
@@ -88,17 +99,4 @@
   } else if (typeof systemTheme.addListener === 'function') {
     systemTheme.addListener(syncSystemTheme);
   }
-})();
-
-// Social uses a photography-specific layout internally, but its page shell should
-// match the rest of the portfolio. Load the alignment layer only on /social/.
-(() => {
-  const path = location.pathname.replace(/\/+$/, '') || '/';
-  if (path !== '/social' || document.querySelector('link[data-social-shared]')) return;
-
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = '/social-shared.css';
-  link.dataset.socialShared = 'true';
-  document.head.appendChild(link);
 })();
