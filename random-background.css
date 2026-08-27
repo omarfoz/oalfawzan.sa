@@ -1,0 +1,72 @@
+/* Random full-site background sourced from /social/photos/. */
+
+html {
+    background: #010204;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background: transparent !important;
+    isolation: isolate;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+body::before {
+    z-index: -2;
+    inset: -4vw;
+    background-image: var(--site-random-background, url('/social/photos/photo_001.jpg'));
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: scale(1.04);
+    filter: blur(22px);
+    will-change: transform;
+}
+
+body::after {
+    z-index: -1;
+    background:
+        radial-gradient(circle at 50% 8%, rgba(11, 34, 70, .20), transparent 45%),
+        linear-gradient(rgba(4, 12, 28, .70), rgba(1, 2, 4, .86));
+}
+
+html[data-theme='light'] body::after {
+    background:
+        radial-gradient(circle at 50% 8%, rgba(255, 255, 255, .36), transparent 42%),
+        linear-gradient(rgba(224, 235, 248, .60), rgba(231, 239, 248, .78));
+}
+
+/* Mobile: keep the selected photograph sharp and naturally fitted to the screen. */
+@media (max-width: 700px), (pointer: coarse) {
+    body::before {
+        inset: 0;
+        transform: none;
+        filter: none;
+        background-attachment: scroll;
+        background-position: center center;
+    }
+
+    body::after {
+        background:
+            linear-gradient(rgba(5, 17, 38, .58), rgba(2, 7, 18, .78));
+    }
+
+    html[data-theme='light'] body::after {
+        background:
+            linear-gradient(rgba(235, 243, 252, .60), rgba(232, 240, 249, .78));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body::before {
+        will-change: auto;
+    }
+}
