@@ -1,0 +1,280 @@
+/*
+ * Vercel Web Interface Guidelines — site-wide compliance layer.
+ * Loaded by web-guidelines.js after the existing visual system so these rules
+ * correct interaction/accessibility/responsive behavior without redesigning it.
+ */
+
+:root {
+  --wg-focus: #8ecbff;
+  --wg-focus-dark: #005fcc;
+  --wg-touch: 44px;
+  --wg-content-gutter: clamp(12px, 3vw, 24px);
+}
+
+html {
+  overflow-x: clip;
+  scroll-padding-top: 7rem;
+}
+
+body {
+  min-width: 0;
+  overflow-x: clip;
+}
+
+/* Stable safe-area aware content gutters on notched devices. */
+.container {
+  padding-inline-start: max(var(--wg-content-gutter), env(safe-area-inset-left)) !important;
+  padding-inline-end: max(var(--wg-content-gutter), env(safe-area-inset-right)) !important;
+}
+
+:where(h1,h2,h3,h4,h5,h6,[id]) {
+  scroll-margin-top: 7rem;
+}
+
+:where(h1,h2,h3,.section-title,.project-name,.blog-title,.gallery-title,.company) {
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+:where(p,li,.tl-body,.project-desc,.blog-excerpt,.learned-text,.intro,.period,.pos) {
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+:where(.nav-buttons,.hero-ctas,.logos-row,.blog-meta,.gallery-head,.gallery-actions,.row) > * {
+  min-width: 0;
+}
+
+/* Keyboard focus is always clearly visible and never relies on color alone. */
+:where(a,button,[tabindex]):focus-visible {
+  outline: 3px solid var(--wg-focus) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 0 2px rgba(3, 9, 20, .88) !important;
+  scroll-margin-block: 7rem;
+}
+
+html[data-theme='light'] :where(a,button,[tabindex]):focus-visible {
+  outline-color: var(--wg-focus-dark) !important;
+  box-shadow: 0 0 0 2px rgba(255,255,255,.95) !important;
+}
+
+/* All primary controls meet a comfortable touch target floor. */
+:where(.btn-sm,.theme-toggle,.filter-pill,.social-link,.social-btn,.action-btn,.project-link,.lightbox-control) {
+  min-height: var(--wg-touch) !important;
+}
+
+:where(.btn-sm,.theme-toggle,.filter-pill,.action-btn,.lightbox-control) {
+  min-width: var(--wg-touch);
+}
+
+:where(a,button) {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(78,161,255,.16);
+}
+
+/* Navigation must remain usable at 320px without clipping labels. */
+.nav-buttons {
+  max-width: 100%;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline proximity;
+  padding-block: 3px;
+}
+
+.nav-buttons > a {
+  scroll-snap-align: start;
+}
+
+/* The accessibility skip link stays fully off-canvas until keyboard focus. */
+.skip-link {
+  position: fixed !important;
+  z-index: 10000 !important;
+  inset-block-start: max(10px, env(safe-area-inset-top)) !important;
+  inset-inline-start: max(10px, env(safe-area-inset-left)) !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 11px 15px !important;
+  margin: 0 !important;
+  border-radius: 10px;
+  color: #fff !important;
+  background: #066ed8 !important;
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(calc(-100% - 64px)) !important;
+  transition: transform 160ms ease, opacity 160ms ease !important;
+}
+
+.skip-link:focus-visible {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
+
+/* Shared structural semantics inserted by the runtime. */
+.wg-main {
+  display: block;
+  min-width: 0;
+}
+
+.wg-heading-reset {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+}
+
+/* Stateful filters remain horizontally usable without compressing labels. */
+.filter-row {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  padding-block: 3px 6px;
+}
+
+.filter-pill {
+  flex: 0 0 auto;
+}
+
+/* Long galleries are explicitly optimized per Vercel guidance. */
+.photo-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 320px 320px;
+}
+
+/* Dialog behavior: contain overscroll and keep controls inside safe areas. */
+.lightbox {
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
+.lightbox-stage {
+  touch-action: pan-y;
+}
+
+.lightbox-control {
+  touch-action: manipulation;
+}
+
+/* ScrollCraft is retained as identity, but expensive paint effects are removed.
+   The only permitted animated visual properties are transform and opacity. */
+.sc-motion {
+  filter: none !important;
+  clip-path: none !important;
+}
+
+html[data-scrollcraft-v2='true'] .sc-motion {
+  will-change: transform, opacity !important;
+}
+
+/* Mobile-first stability: no sticky chapter overlays, stacked-card pinning,
+   opacity dimming, or parallax transforms on touch-sized viewports. */
+@media (max-width: 760px), (pointer: coarse) {
+  body,
+  html[data-theme='light'] body {
+    background-attachment: scroll !important;
+  }
+
+  html[data-scrollcraft-v2='true'] .sc-motion,
+  html[data-scrollcraft-v2='true'] .section-title,
+  html[data-scrollcraft-v2='true'] .gallery-head,
+  html[data-scrollcraft-v2='true'] .tl-item,
+  html[data-scrollcraft-v2='true'] .exp-item,
+  html[data-scrollcraft-v2='true'] .social-link,
+  html[data-scrollcraft-v2='true'] .glass-card:not(.nav),
+  html[data-scrollcraft-v2='true'] article > h2,
+  html[data-scrollcraft-v2='true'] article > p,
+  html[data-scrollcraft-v2='true'] article > ul {
+    opacity: 1 !important;
+    filter: none !important;
+    clip-path: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  html[data-scrollcraft-v2='true'] .projects-section .project-card,
+  html[data-scrollcraft-v2='true'] .blog-card,
+  html[data-scrollcraft-v2='true'] .section-title,
+  html[data-scrollcraft-v2='true'] .bio-section > .section-title,
+  html[data-scrollcraft-v2='true'] article > h2 {
+    position: static !important;
+    inset: auto !important;
+  }
+
+  .nav {
+    row-gap: 8px !important;
+  }
+
+  .nav-buttons {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .hero h1,
+  .page-header h1,
+  .container > header h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    --wg-content-gutter: 12px;
+  }
+
+  .nav {
+    padding-inline: 12px !important;
+  }
+
+  .btn-sm {
+    padding-inline: 11px !important;
+  }
+
+  .glass-card:not(.nav),
+  .project-body,
+  .blog-body,
+  article.glass-card {
+    padding-inline: 18px !important;
+  }
+}
+
+/* Logical-direction support for mixed Arabic/English content. */
+[dir='rtl'] .row {
+  text-align: start;
+}
+
+[dir='rtl'] .desc-list li {
+  padding-inline-start: 18px;
+  padding-inline-end: 0;
+}
+
+[dir='rtl'] .desc-list li::before {
+  inset-inline-start: 0;
+  left: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .sc-motion,
+  html[data-scrollcraft-v2='true'] .sc-motion {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+    will-change: auto !important;
+  }
+}
