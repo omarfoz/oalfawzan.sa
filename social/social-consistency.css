@@ -1,0 +1,116 @@
+/* Social page alignment with the shared oalfawzan.sa visual system. */
+:root {
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-shine: rgba(255, 255, 255, 0.22);
+    --text-p: #ffffff;
+    --text-s: rgba(255, 255, 255, 0.55);
+}
+
+body {
+    color: var(--text-p) !important;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    background:
+        linear-gradient(rgba(13, 22, 45, 0.85), rgba(1, 2, 4, 0.95)),
+        url('/image.jpg') center / cover fixed !important;
+    background-color: var(--bg) !important;
+}
+
+.container {
+    max-width: 900px !important;
+    padding-inline: 16px !important;
+}
+
+/* Match the same navigation card used by Home, Experience and Blog. */
+.nav.glass {
+    background: var(--glass) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: inset 0 1px 0 0 var(--glass-shine) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+    backdrop-filter: blur(24px) saturate(160%) !important;
+    border-radius: 32px !important;
+    padding: 12px 20px !important;
+    margin: 20px 0 40px !important;
+}
+
+.nav-name {
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+}
+
+.nav-buttons { gap: 8px !important; }
+
+.btn-sm {
+    min-height: 32px;
+    padding: 6px 14px !important;
+    border-radius: 20px !important;
+    border: 1px solid var(--glass-border) !important;
+    background: rgba(255,255,255,0.05) !important;
+    color: var(--text-p) !important;
+    font-size: .75rem !important;
+}
+
+.btn-sm:hover,
+.btn-sm.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+}
+
+/* Keep the photography identity, but use the same page rhythm and hierarchy. */
+.hero {
+    max-width: 760px !important;
+    margin: 0 auto 40px !important;
+}
+
+.hero-eyebrow,
+.gallery-kicker {
+    color: var(--accent) !important;
+}
+
+.hero-sub,
+.gallery-copy,
+.gallery-counter {
+    color: var(--text-s) !important;
+}
+
+.social-row {
+    margin-bottom: 40px !important;
+}
+
+.social-btn,
+.meta-pill,
+.action-btn {
+    border-color: var(--glass-border) !important;
+    background: rgba(255,255,255,0.04) !important;
+}
+
+.gallery-head {
+    padding-top: 8px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.photo-item {
+    border-color: var(--glass-border) !important;
+    background: var(--glass) !important;
+}
+
+footer {
+    border-top: 1px solid var(--glass-border);
+    margin-top: 16px;
+    padding-top: 24px !important;
+}
+
+@media (max-width: 700px), (pointer: coarse) {
+    body { background-attachment: scroll !important; }
+
+    .nav.glass {
+        padding: 11px 14px !important;
+        margin-top: 14px !important;
+        margin-bottom: 40px !important;
+    }
+
+    .hero {
+        margin-bottom: 34px !important;
+        padding-inline: 4px !important;
+    }
+}

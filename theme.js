@@ -2,6 +2,14 @@
   const nav = document.querySelector('.nav');
   if (!nav || document.getElementById('themeToggle')) return;
 
+  if (document.querySelector('.photo-grid') && !document.getElementById('socialConsistencyStyles')) {
+    const socialStyles = document.createElement('link');
+    socialStyles.id = 'socialConsistencyStyles';
+    socialStyles.rel = 'stylesheet';
+    socialStyles.href = '/social/social-consistency.css';
+    document.head.appendChild(socialStyles);
+  }
+
   const root = document.documentElement;
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
