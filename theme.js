@@ -10,6 +10,28 @@
     document.head.appendChild(consistencyStyles);
   }
 
+  // Use one of the existing Social gallery photographs as the site background.
+  // A fresh photo is selected on every full page refresh/navigation.
+  if (!document.querySelector('link[data-random-background]')) {
+    const backgroundStyles = document.createElement('link');
+    backgroundStyles.rel = 'stylesheet';
+    backgroundStyles.href = '/random-background.css';
+    backgroundStyles.dataset.randomBackground = 'true';
+    document.head.appendChild(backgroundStyles);
+  }
+
+  const PHOTO_COUNT = 193;
+  let randomPhoto = 1;
+  if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+    const randomValue = new Uint32Array(1);
+    window.crypto.getRandomValues(randomValue);
+    randomPhoto = (randomValue[0] % PHOTO_COUNT) + 1;
+  } else {
+    randomPhoto = Math.floor(Math.random() * PHOTO_COUNT) + 1;
+  }
+  const randomPhotoPath = `/social/photos/photo_${String(randomPhoto).padStart(3, '0')}.jpg`;
+  document.documentElement.style.setProperty('--site-random-background', `url("${randomPhotoPath}")`);
+
   const nav = document.querySelector('.nav');
   if (!nav || document.getElementById('themeToggle')) return;
 
