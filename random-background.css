@@ -196,12 +196,12 @@ html[data-theme='light'] .period {
     text-shadow: none;
 }
 
-/* Mobile: keep the selected photograph sharp and naturally fitted to the screen. */
+/* Mobile keeps the same blur treatment, with a slightly lighter blur for performance. */
 @media (max-width: 700px), (pointer: coarse) {
     body::before {
-        inset: 0;
-        transform: none;
-        filter: none;
+        inset: -18px;
+        transform: scale(1.03);
+        filter: blur(16px);
         background-attachment: scroll;
         background-position: center center;
     }
