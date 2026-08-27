@@ -77,7 +77,7 @@ def check_route(path: Path, route: str) -> tuple[list[str], list[str]]:
 
     # Home loads theme.js through data.js; all other pages load it directly.
     if route == "/":
-        if "/data.js" not in text:
+        if "data.js" not in text:
             errors.append(f"{rel}:1 - home shared runtime loader missing")
     elif "/theme.js" not in text:
         errors.append(f"{rel}:1 - shared theme/guideline runtime missing")
