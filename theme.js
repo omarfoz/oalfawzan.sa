@@ -1,5 +1,10 @@
 (() => {
   const root = document.documentElement;
+  const isSocialPage = location.pathname.replace(/\/+$/, '') === '/social';
+
+  if (isSocialPage && document.body) {
+    document.body.classList.add('social-page');
+  }
 
   const iconPaths = {
     lock: '<rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>',
@@ -59,20 +64,26 @@
       .lightbox-control:has(.site-svg-icon)::before { display: none !important; }
       .gallery-actions a:has(.site-svg-icon)::after { display: none !important; }
 
-      /* Social keeps its gallery behavior, but the site shell matches every other page. */
-      body:has(.photo-grid) {
+      /* Social uses the same visual shell as Home/Experience/Blog. */
+      body.social-page {
+        --glass: rgba(255,255,255,.03);
+        --glass-border: rgba(255,255,255,.12);
+        --glass-shine: rgba(255,255,255,.22);
+        --text-p: #fff;
+        --text-s: rgba(255,255,255,.55);
         font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
         background:
           linear-gradient(rgba(13, 22, 45, .85), rgba(1, 2, 4, .95)),
           url('/image.jpg') center / cover fixed !important;
+        background-color: #010204 !important;
       }
-      body:has(.photo-grid) .container {
+      body.social-page .container {
         width: 100% !important;
         max-width: 900px !important;
         margin: 0 auto !important;
         padding: 0 16px !important;
       }
-      body:has(.photo-grid) .nav {
+      body.social-page .nav {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
@@ -82,59 +93,104 @@
         margin: 20px 0 40px !important;
         border-radius: 32px !important;
       }
-      body:has(.photo-grid) .nav-buttons { gap: 8px !important; }
-      body:has(.photo-grid) .btn-sm {
+      body.social-page .nav.glass {
+        background: var(--glass) !important;
+        border: 1px solid var(--glass-border) !important;
+        box-shadow: inset 0 1px 0 0 var(--glass-shine) !important;
+        -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+        backdrop-filter: blur(24px) saturate(160%) !important;
+      }
+      body.social-page .nav-buttons {
+        display: flex !important;
+        gap: 8px !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+      }
+      body.social-page .btn-sm {
+        min-height: 32px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: var(--text-p) !important;
         font-size: .75rem !important;
         font-weight: 600 !important;
         padding: 6px 14px !important;
         border-radius: 20px !important;
+        background: rgba(255,255,255,.05) !important;
+        border: 1px solid var(--glass-border) !important;
       }
-      body:has(.photo-grid) .hero {
+      body.social-page .btn-sm:hover,
+      body.social-page .btn-sm.active {
+        color: #fff !important;
+        background: var(--accent) !important;
+        border-color: var(--accent) !important;
+      }
+      body.social-page .hero {
         max-width: 720px !important;
         margin: 0 auto !important;
         padding: 20px 0 48px !important;
       }
-      body:has(.photo-grid) .hero-eyebrow {
+      body.social-page .hero-eyebrow {
         margin-bottom: 14px !important;
         font-size: .72rem !important;
         letter-spacing: .2em !important;
-        color: var(--text-s, var(--muted)) !important;
+        color: var(--text-s) !important;
       }
-      body:has(.photo-grid) .hero h1 {
+      body.social-page .hero h1 {
         font-family: 'Playfair Display', Georgia, serif !important;
         font-size: clamp(2.6rem, 6vw, 4rem) !important;
         font-weight: 900 !important;
         line-height: 1.1 !important;
         letter-spacing: -.03em !important;
       }
-      body:has(.photo-grid) .hero h1 em {
+      body.social-page .hero h1 em {
         color: var(--accent) !important;
         font-style: normal !important;
         font-weight: 900 !important;
       }
-      body:has(.photo-grid) .hero-sub {
+      body.social-page .hero-sub {
         max-width: 520px !important;
         margin: 12px auto 0 !important;
-        color: var(--text-s, var(--muted)) !important;
+        color: var(--text-s) !important;
         font-size: .95rem !important;
         font-weight: 300 !important;
         line-height: 1.6 !important;
       }
-      body:has(.photo-grid) .hero-meta { margin-top: 18px !important; }
-      body:has(.photo-grid) .social-row { margin-bottom: 48px !important; }
-      body:has(.photo-grid) .gallery-kicker {
+      body.social-page .hero-meta { margin-top: 18px !important; }
+      body.social-page .social-row { margin-bottom: 48px !important; }
+      body.social-page .gallery-kicker {
         font-size: .72rem !important;
         letter-spacing: .2em !important;
-        color: var(--text-s, var(--muted)) !important;
+        color: var(--text-s) !important;
       }
-      body:has(.photo-grid) .gallery-title {
+      body.social-page .gallery-title {
         font-family: 'Playfair Display', Georgia, serif !important;
         font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
         line-height: 1.1 !important;
       }
-      body:has(.photo-grid) footer {
+      body.social-page footer {
         padding: 40px 0 !important;
-        border-top: 1px solid var(--glass-border, var(--border)) !important;
+        border-top: 1px solid var(--glass-border) !important;
+      }
+
+      html[data-theme="light"] body.social-page .nav.glass {
+        background: linear-gradient(145deg, rgba(255,255,255,.46), rgba(242,248,255,.24)) !important;
+        border: 1px solid rgba(255,255,255,.80) !important;
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,1),
+          inset 0 -1px 0 rgba(148,163,184,.13),
+          0 16px 40px rgba(71,85,105,.11),
+          0 3px 10px rgba(15,23,42,.05) !important;
+      }
+      html[data-theme="light"] body.social-page .btn-sm {
+        background: linear-gradient(145deg, rgba(255,255,255,.42), rgba(248,251,255,.20)) !important;
+        border: 1px solid rgba(255,255,255,.76) !important;
+        color: #172033 !important;
+      }
+      html[data-theme="light"] body.social-page .btn-sm.active {
+        color: #fff !important;
+        background: linear-gradient(180deg, #1b8cff, #0077ed) !important;
+        border-color: rgba(255,255,255,.42) !important;
       }
 
       @media (max-width: 700px), (pointer: coarse) {
@@ -155,11 +211,36 @@
           -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
           backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
         }
-        body:has(.photo-grid) .hero {
+        body.social-page .container {
+          padding: 0 16px !important;
+        }
+        body.social-page .nav {
+          padding: 11px 14px !important;
+          margin-top: 14px !important;
+          margin-bottom: 40px !important;
+        }
+        body.social-page .nav-name {
+          display: block !important;
+          order: 1 !important;
+          font-size: 1.1rem !important;
+        }
+        body.social-page .theme-toggle {
+          order: 2 !important;
+          margin-left: auto !important;
+        }
+        body.social-page .nav-buttons {
+          order: 3 !important;
+          flex-basis: 100% !important;
+          gap: 8px !important;
+        }
+        body.social-page .btn-sm {
+          padding: 6px 14px !important;
+        }
+        body.social-page .hero {
           padding-top: 8px !important;
           padding-bottom: 40px !important;
         }
-        body:has(.photo-grid) .gallery-head {
+        body.social-page .gallery-head {
           align-items: flex-start !important;
         }
         .photo-item:hover img { transform: none !important; }
