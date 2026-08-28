@@ -56,6 +56,8 @@
       .gallery-actions .site-svg-icon { margin-left: .32em; }
       .social-icon .site-svg-icon { width: 15px; height: 15px; vertical-align: 0; }
       .lightbox-control .site-svg-icon { width: 20px; height: 20px; vertical-align: 0; }
+      .lightbox-control:has(.site-svg-icon)::before { display: none !important; }
+      .gallery-actions a:has(.site-svg-icon)::after { display: none !important; }
       @media (max-width: 700px), (pointer: coarse) {
         body, html[data-theme="light"] body { background-attachment: scroll !important; }
         .glass,
