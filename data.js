@@ -165,7 +165,7 @@ const siteData = {
     toggle.setAttribute('aria-pressed', String(isLight));
 
     if (themeMeta) {
-      themeMeta.setAttribute('content', isLight ? '#edf4fc' : '#010204');
+      themeMeta.setAttribute('content', isLight ? '#f3f6fb' : '#010204');
     }
 
     if (persist) {
@@ -193,5 +193,69 @@ const siteData = {
     systemTheme.addEventListener('change', syncSystemTheme);
   } else if (typeof systemTheme.addListener === 'function') {
     systemTheme.addListener(syncSystemTheme);
+  }
+})();
+
+// ── HOME UI POLISH ─────────────────────────
+(() => {
+  const applyHomePolish = () => {
+    if (!document.getElementById('homeRuntimePolish')) {
+      const style = document.createElement('style');
+      style.id = 'homeRuntimePolish';
+      style.textContent = `
+        .nav-name {
+          display: block !important;
+          font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "DM Sans", sans-serif !important;
+          font-size: 1.1rem !important;
+          font-weight: 800 !important;
+          line-height: 1.2 !important;
+          letter-spacing: -.02em !important;
+          white-space: nowrap;
+        }
+        .learned-label .site-svg-icon {
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          margin-right: 6px;
+          vertical-align: -.12em;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.8;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+        @media (max-width: 700px), (pointer: coarse) {
+          body, html[data-theme="light"] body { background-attachment: scroll !important; }
+          .glass-card, .project-card, .nav {
+            -webkit-backdrop-filter: blur(14px) saturate(145%) !important;
+            backdrop-filter: blur(14px) saturate(145%) !important;
+          }
+          html[data-theme="light"] .glass-card,
+          html[data-theme="light"] .project-card,
+          html[data-theme="light"] .nav {
+            -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
+            backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    const bulb = '<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 22h4"></path><path d="M8.4 14.5A6 6 0 1 1 15.6 14.5C14.6 15.2 14 16.2 14 17H10c0-.8-.6-1.8-1.6-2.5Z"></path></svg>';
+    document.querySelectorAll('.learned-label').forEach(label => {
+      if (label.textContent.includes('\u{1F4A1}')) {
+        label.innerHTML = `${bulb}<span>What I Learned</span>`;
+      }
+    });
+
+    document.querySelectorAll('.nav-name').forEach(el => {
+      el.textContent = 'Omar Alfawzan';
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyHomePolish, { once: true });
+  } else {
+    applyHomePolish();
   }
 })();
