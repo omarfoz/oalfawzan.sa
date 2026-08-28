@@ -58,6 +58,85 @@
       .lightbox-control .site-svg-icon { width: 20px; height: 20px; vertical-align: 0; }
       .lightbox-control:has(.site-svg-icon)::before { display: none !important; }
       .gallery-actions a:has(.site-svg-icon)::after { display: none !important; }
+
+      /* Social keeps its gallery behavior, but the site shell matches every other page. */
+      body:has(.photo-grid) {
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        background:
+          linear-gradient(rgba(13, 22, 45, .85), rgba(1, 2, 4, .95)),
+          url('/image.jpg') center / cover fixed !important;
+      }
+      body:has(.photo-grid) .container {
+        width: 100% !important;
+        max-width: 900px !important;
+        margin: 0 auto !important;
+        padding: 0 16px !important;
+      }
+      body:has(.photo-grid) .nav {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        padding: 12px 20px !important;
+        margin: 20px 0 40px !important;
+        border-radius: 32px !important;
+      }
+      body:has(.photo-grid) .nav-buttons { gap: 8px !important; }
+      body:has(.photo-grid) .btn-sm {
+        font-size: .75rem !important;
+        font-weight: 600 !important;
+        padding: 6px 14px !important;
+        border-radius: 20px !important;
+      }
+      body:has(.photo-grid) .hero {
+        max-width: 720px !important;
+        margin: 0 auto !important;
+        padding: 20px 0 48px !important;
+      }
+      body:has(.photo-grid) .hero-eyebrow {
+        margin-bottom: 14px !important;
+        font-size: .72rem !important;
+        letter-spacing: .2em !important;
+        color: var(--text-s, var(--muted)) !important;
+      }
+      body:has(.photo-grid) .hero h1 {
+        font-family: 'Playfair Display', Georgia, serif !important;
+        font-size: clamp(2.6rem, 6vw, 4rem) !important;
+        font-weight: 900 !important;
+        line-height: 1.1 !important;
+        letter-spacing: -.03em !important;
+      }
+      body:has(.photo-grid) .hero h1 em {
+        color: var(--accent) !important;
+        font-style: normal !important;
+        font-weight: 900 !important;
+      }
+      body:has(.photo-grid) .hero-sub {
+        max-width: 520px !important;
+        margin: 12px auto 0 !important;
+        color: var(--text-s, var(--muted)) !important;
+        font-size: .95rem !important;
+        font-weight: 300 !important;
+        line-height: 1.6 !important;
+      }
+      body:has(.photo-grid) .hero-meta { margin-top: 18px !important; }
+      body:has(.photo-grid) .social-row { margin-bottom: 48px !important; }
+      body:has(.photo-grid) .gallery-kicker {
+        font-size: .72rem !important;
+        letter-spacing: .2em !important;
+        color: var(--text-s, var(--muted)) !important;
+      }
+      body:has(.photo-grid) .gallery-title {
+        font-family: 'Playfair Display', Georgia, serif !important;
+        font-size: clamp(1.6rem, 4vw, 2.2rem) !important;
+        line-height: 1.1 !important;
+      }
+      body:has(.photo-grid) footer {
+        padding: 40px 0 !important;
+        border-top: 1px solid var(--glass-border, var(--border)) !important;
+      }
+
       @media (max-width: 700px), (pointer: coarse) {
         body, html[data-theme="light"] body { background-attachment: scroll !important; }
         .glass,
@@ -75,6 +154,13 @@
         html[data-theme="light"] .nav {
           -webkit-backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
           backdrop-filter: blur(16px) saturate(150%) brightness(1.03) !important;
+        }
+        body:has(.photo-grid) .hero {
+          padding-top: 8px !important;
+          padding-bottom: 40px !important;
+        }
+        body:has(.photo-grid) .gallery-head {
+          align-items: flex-start !important;
         }
         .photo-item:hover img { transform: none !important; }
       }
