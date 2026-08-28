@@ -13,10 +13,11 @@ HTML_FILES = sorted(ROOT.rglob("*.html"))
 REQUIRED_FILES = [ROOT / "index.html", ROOT / "robots.txt", ROOT / "sitemap.xml", ROOT / "CNAME"]
 BRAND_NAME = "Omar Alfawzan"
 
-# These legacy source glyphs are intentionally converted to inline/path SVGs by theme.js.
+# These legacy source glyphs are intentionally converted to inline/path SVGs by data.js/theme.js.
 # Any new emoji-like glyph outside this allow-list should fail CI so it cannot silently
 # reintroduce platform-dependent emoji rendering.
 HANDLED_GLYPHS_BY_FILE = {
+    "index.html": {"💡"},
     "blog/index.html": {"🔒", "☁️", "☁", "⚡", "🏆", "🚢", "🐳", "🌐", "↗"},
     "social/index.html": {"✕", "‹", "›", "↗"},
 }
