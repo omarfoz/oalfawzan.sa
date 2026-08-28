@@ -78,7 +78,7 @@ const siteData = {
   // ── PROJECTS ────────────────────────────
   projects: [
     {
-      emoji: "🎟️",
+      emoji: "",
       bannerClass: "banner-elhaq",
       tags: ["iOS App", "IBM Cloud"],
       year: "2019",
@@ -89,7 +89,7 @@ const siteData = {
       linkLabel: null
     },
     {
-      emoji: "☕",
+      emoji: "",
       bannerClass: "banner-coffee",
       tags: ["Web App", "Directory"],
       year: "2020",
@@ -100,7 +100,7 @@ const siteData = {
       linkLabel: null
     },
     {
-      emoji: "🎙️",
+      emoji: "",
       bannerClass: "banner-podcast",
       tags: ["Podcast", "Entrepreneurship"],
       year: "Paused",
@@ -108,10 +108,10 @@ const siteData = {
       description: "I launched this Arabic podcast around <strong>entrepreneurship and the difficult first step of building something</strong>. The name captured the core question I wanted to explore: how do people actually begin? Through the podcast, I spoke about early-stage ideas, founder journeys, and the uncertainty that comes with starting. It is currently paused, but the conversations were honest and meaningful.",
       learned: "Hosting a podcast taught me how to ask better questions, listen more carefully, and turn complex personal journeys into clear, relatable conversations. It also reminded me that starting is rarely neat or linear and that there is real value in documenting the messy part of growth.",
       link: "https://creators.spotify.com/pod/profile/chlontbda/",
-      linkLabel: "🎧 Listen on Spotify ↗"
+      linkLabel: "Listen on Spotify"
     },
     {
-      emoji: "🏠",
+      emoji: "",
       bannerClass: "banner-restate",
       tags: ["iOS App", "Graduation Project"],
       year: "2017–2018",
