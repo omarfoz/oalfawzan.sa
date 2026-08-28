@@ -23,6 +23,46 @@
     return paths ? `<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` : '';
   };
 
+  /* Experience keeps its old content, but its top area mirrors Home exactly. */
+  const isExperience = /^\/experience\/?$/.test(window.location.pathname);
+  if (isExperience) {
+    document.body.classList.add('experience-home-match');
+
+    if (!document.querySelector('link[data-experience-home]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/experience-home.css?v=e39821ae';
+      link.dataset.experienceHome = 'true';
+      document.head.appendChild(link);
+    }
+
+    const header = document.querySelector('.container > header');
+    if (header) {
+      header.className = 'hero';
+      header.removeAttribute('style');
+
+      const portrait = header.querySelector('img');
+      if (portrait) portrait.removeAttribute('style');
+
+      const heading = header.querySelector('h1');
+      if (heading) heading.innerHTML = 'Omar <em>Alfawzan</em>';
+
+      const role = header.querySelector('.headline, p');
+      if (role) {
+        role.className = 'hero-role';
+        role.textContent = 'Cloud Technical Lead @ SITE';
+      }
+
+      let sub = header.querySelector('.hero-sub');
+      if (!sub) {
+        sub = document.createElement('p');
+        sub.className = 'hero-sub';
+        header.appendChild(sub);
+      }
+      sub.textContent = 'Cloud Technical Lead with 8+ years of experience shaping cloud solutions, from pre-sales to delivery, containers to AI.';
+    }
+  }
+
   document.querySelectorAll('.nav-name').forEach(el => {
     el.textContent = 'Omar Alfawzan';
   });
