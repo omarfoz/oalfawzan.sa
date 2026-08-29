@@ -1,6 +1,17 @@
 (() => {
   const root = document.documentElement;
 
+  const ensureStylesheet = (href, marker) => {
+    if (document.querySelector(`link[data-${marker}]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.dataset[marker] = 'true';
+    document.head.appendChild(link);
+  };
+
+  ensureStylesheet('/site.css', 'siteCss');
+
   const iconPaths = {
     lock: '<rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>',
     cloud: '<path d="M7 18h10a4 4 0 0 0 .8-7.92A6 6 0 0 0 6.3 8.2 4.5 4.5 0 0 0 7 18Z"></path>',
@@ -23,18 +34,11 @@
     return paths ? `<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` : '';
   };
 
-  /* Experience keeps its old content, but its top area mirrors Home exactly. */
+  /* Experience keeps its content, with its page-specific styling colocated under /experience/. */
   const isExperience = /^\/experience\/?$/.test(window.location.pathname);
   if (isExperience) {
     document.body.classList.add('experience-home-match');
-
-    if (!document.querySelector('link[data-experience-home]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/experience-home.css?v=e39821ae';
-      link.dataset.experienceHome = 'true';
-      document.head.appendChild(link);
-    }
+    ensureStylesheet('/experience/style.css', 'experienceCss');
 
     const header = document.querySelector('.container > header');
     if (header) {
@@ -154,5 +158,5 @@
     if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
   };
   if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
-  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
+  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener('change', syncSystemTheme);
 })();
