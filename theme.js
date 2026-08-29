@@ -1,16 +1,15 @@
 (() => {
   const root = document.documentElement;
 
-  const ensureStylesheet = (href, marker) => {
-    if (document.querySelector(`link[data-${marker}]`)) return;
+  const ensureStylesheet = href => {
+    if (document.querySelector(`link[href="${href}"]`)) return;
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = href;
-    link.dataset[marker] = 'true';
     document.head.appendChild(link);
   };
 
-  ensureStylesheet('/site.css', 'siteCss');
+  ensureStylesheet('/site.css');
 
   const iconPaths = {
     lock: '<rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>',
@@ -38,7 +37,7 @@
   const isExperience = /^\/experience\/?$/.test(window.location.pathname);
   if (isExperience) {
     document.body.classList.add('experience-home-match');
-    ensureStylesheet('/experience/style.css', 'experienceCss');
+    ensureStylesheet('/experience/style.css');
 
     const header = document.querySelector('.container > header');
     if (header) {
@@ -158,5 +157,5 @@
     if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
   };
   if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
-  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener('change', syncSystemTheme);
+  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
 })();
