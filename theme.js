@@ -33,12 +33,9 @@
     return paths ? `<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` : '';
   };
 
-  /* Experience keeps its content, with its page-specific styling colocated under /experience/. */
+  /* Experience keeps its content while using the same shared visual system as every other page. */
   const isExperience = /^\/experience\/?$/.test(window.location.pathname);
   if (isExperience) {
-    document.body.classList.add('experience-home-match');
-    ensureStylesheet('/experience/style.css');
-
     const header = document.querySelector('.container > header');
     if (header) {
       header.className = 'hero';
