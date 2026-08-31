@@ -228,6 +228,16 @@ def validate_performance_assets() -> list[str]:
         errors.append("site.css: shared hero portrait styling is required on Home and Experience")
     if "body:has(.exp-item) .glass-card:not(.nav)" not in site_css:
         errors.append("site.css: Experience card spacing must not override shared navigation spacing")
+    light_mode_markers = [
+        "--site-text: #111827",
+        "--site-text-muted: rgba(24,33,49,.76)",
+        "--site-glass-fill: rgba(255,255,255,.50)",
+        'html[data-theme="light"] .hero-eyebrow',
+        'html[data-theme="light"] .meta-pill {\n  color',
+    ]
+    for marker in light_mode_markers:
+        if marker not in site_css:
+            errors.append(f"site.css: missing readable light-mode treatment: {marker}")
 
     for required_asset in [ROOT / "image-1600.webp", ROOT / "omaralfawzan-240.webp", ROOT / "analytics.js"]:
         if not required_asset.exists():

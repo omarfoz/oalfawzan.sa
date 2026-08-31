@@ -59,17 +59,17 @@
 
 html[data-theme="light"] {
   color-scheme: light;
-  --site-bg: #f2f2f7;
-  --site-accent: #007aff;
-  --site-text: #1d1d1f;
-  --site-text-muted: rgba(60,60,67,.70);
-  --site-text-faint: rgba(60,60,67,.50);
-  --site-glass-fill: rgba(255,255,255,.12);
-  --site-glass-fill-strong: rgba(255,255,255,.18);
-  --site-glass-border: rgba(255,255,255,.42);
-  --site-glass-highlight: rgba(255,255,255,.68);
-  --site-glass-shadow: rgba(60,60,67,.07);
-  --border-strong: rgba(60,60,67,.17);
+  --site-bg: #dce8f5;
+  --site-accent: #0062cc;
+  --site-text: #111827;
+  --site-text-muted: rgba(24,33,49,.76);
+  --site-text-faint: rgba(24,33,49,.68);
+  --site-glass-fill: rgba(255,255,255,.50);
+  --site-glass-fill-strong: rgba(255,255,255,.66);
+  --site-glass-border: rgba(255,255,255,.82);
+  --site-glass-highlight: rgba(255,255,255,.98);
+  --site-glass-shadow: rgba(46,65,90,.16);
+  --border-strong: rgba(55,75,102,.28);
 }
 
 * {
@@ -106,8 +106,8 @@ body {
 
 html[data-theme="light"] body {
   background:
-    radial-gradient(circle at 18% 3%, rgba(255,255,255,.35), transparent 28rem),
-    linear-gradient(rgba(242,242,247,.58), rgba(242,242,247,.72)),
+    radial-gradient(circle at 18% 3%, rgba(255,255,255,.30), transparent 28rem),
+    linear-gradient(rgba(220,232,245,.38), rgba(210,225,241,.54)),
     url('/image-1600.webp') center / cover fixed !important;
   background-color: var(--site-bg) !important;
 }
@@ -270,12 +270,13 @@ html[data-theme="light"] .action-btn,
 html[data-theme="light"] .pill,
 html[data-theme="light"] .logo-pill {
   background:
-    linear-gradient(145deg, rgba(255,255,255,.25), rgba(255,255,255,.025) 62%),
+    linear-gradient(145deg, rgba(255,255,255,.78), rgba(255,255,255,.24) 62%),
     var(--site-glass-fill) !important;
   border-color: var(--site-glass-border) !important;
   box-shadow:
     inset 0 1px 0 var(--site-glass-highlight),
-    0 8px 24px var(--site-glass-shadow) !important;
+    inset 0 -1px 0 rgba(71,85,105,.10),
+    0 12px 32px var(--site-glass-shadow) !important;
 }
 
 .glass-card,
@@ -307,8 +308,12 @@ body:has(.photo-grid) .nav {
 html[data-theme="light"] .nav,
 html[data-theme="light"] .nav.glass-card {
   background:
-    linear-gradient(145deg, rgba(255,255,255,.30), rgba(255,255,255,.04) 62%),
+    linear-gradient(145deg, rgba(255,255,255,.82), rgba(255,255,255,.30) 62%),
     var(--site-glass-fill) !important;
+  box-shadow:
+    inset 0 1px 0 var(--site-glass-highlight),
+    inset 0 -1px 0 rgba(71,85,105,.10),
+    0 12px 32px var(--site-glass-shadow) !important;
 }
 
 .nav-name {
@@ -356,10 +361,10 @@ html[data-theme="light"] .nav.glass-card {
 }
 
 html[data-theme="light"] .btn-sm {
-  color: #1d1d1f !important;
-  background: rgba(255,255,255,.10) !important;
-  border-color: rgba(255,255,255,.36) !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.48) !important;
+  color: var(--site-text) !important;
+  background: rgba(255,255,255,.42) !important;
+  border-color: rgba(255,255,255,.78) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.96), 0 3px 10px rgba(46,65,90,.08) !important;
 }
 
 .btn-sm.active {
@@ -426,9 +431,27 @@ html[data-theme="light"] .filter-pill,
 html[data-theme="light"] .social-btn,
 html[data-theme="light"] .cta-secondary,
 html[data-theme="light"] .action-btn:not(.primary) {
-  color: #1d1d1f !important;
-  background: rgba(255,255,255,.09) !important;
-  border-color: rgba(255,255,255,.34) !important;
+  color: var(--site-text) !important;
+  background: rgba(255,255,255,.44) !important;
+  border-color: rgba(255,255,255,.78) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.96), 0 4px 12px rgba(46,65,90,.08) !important;
+}
+
+html[data-theme="light"] .btn-sm.active,
+html[data-theme="light"] .filter-pill.active,
+html[data-theme="light"] .action-btn.primary,
+html[data-theme="light"] .cta-primary {
+  color: #fff !important;
+  background: #0062cc !important;
+  border-color: rgba(255,255,255,.62) !important;
+}
+
+html[data-theme="light"] .hero-eyebrow {
+  color: var(--site-text-faint) !important;
+}
+
+html[data-theme="light"] .meta-pill {
+  color: var(--site-text-muted) !important;
 }
 
 .filter-pill.active,
@@ -512,8 +535,8 @@ body:has(.photo-grid) {
 }
 html[data-theme="light"] body:has(.photo-grid) {
   background:
-    radial-gradient(circle at 18% 3%, rgba(255,255,255,.35), transparent 28rem),
-    linear-gradient(rgba(242,242,247,.58), rgba(242,242,247,.72)),
+    radial-gradient(circle at 18% 3%, rgba(255,255,255,.30), transparent 28rem),
+    linear-gradient(rgba(220,232,245,.38), rgba(210,225,241,.54)),
     url('/image-1600.webp') center / cover fixed !important;
 }
 body:has(.photo-grid) .hero {
