@@ -93,6 +93,7 @@ select {
 
 body {
   min-height: 100vh;
+  display: flow-root;
   color: var(--site-text) !important;
   font-size: 16px;
   line-height: 1.6;

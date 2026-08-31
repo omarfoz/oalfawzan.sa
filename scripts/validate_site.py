@@ -222,6 +222,8 @@ def validate_performance_assets() -> list[str]:
         errors.append("site.css: render-blocking CSS imports are not allowed")
     if "url('/image.jpg')" in site_css:
         errors.append("site.css: use the optimized background image")
+    if "display: flow-root" not in site_css:
+        errors.append("site.css: body must contain top margins so the page background reaches the viewport edge")
 
     for required_asset in [ROOT / "image-1600.webp", ROOT / "omaralfawzan-240.webp", ROOT / "analytics.js"]:
         if not required_asset.exists():
