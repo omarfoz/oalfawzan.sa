@@ -450,6 +450,18 @@ html[data-theme="light"] .logo-pill svg {
 .page-header,
 body:has(.photo-grid) .hero { text-align: center; }
 
+.hero img {
+  width: 120px;
+  height: 120px;
+  display: block;
+  object-fit: cover;
+  border: 2px solid var(--site-glass-border);
+  border-radius: 50%;
+  margin: 0 auto 24px;
+}
+
+.hero-role { color: var(--site-accent) !important; }
+
 .hero { padding: 10px 0 46px !important; }
 .page-header,
 body:has(.photo-grid) .hero { margin-bottom: 42px !important; }
@@ -486,7 +498,7 @@ body:has(.blog-grid) .blog-card { margin-bottom: 0 !important; }
 
 /* Experience */
 body:has(.exp-item) header { margin-bottom: 44px !important; }
-body:has(.exp-item) .glass-card { padding: 26px !important; }
+body:has(.exp-item) .glass-card:not(.nav) { padding: 26px !important; }
 body:has(.exp-item) .exp-item { margin-bottom: 26px !important; padding-bottom: 26px !important; }
 body:has(.exp-item) .pill { border-radius: 12px !important; padding: 5px 10px !important; }
 
@@ -714,7 +726,7 @@ img, svg { max-width: 100%; }
     backdrop-filter: blur(14px) saturate(145%) !important;
   }
 
-  body:has(.exp-item) .glass-card,
+  body:has(.exp-item) .glass-card:not(.nav),
   body:has(article) article.glass-card { padding: 22px !important; }
 
   .photo-item:hover img { transform: none !important; }

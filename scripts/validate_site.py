@@ -224,12 +224,21 @@ def validate_performance_assets() -> list[str]:
         errors.append("site.css: use the optimized background image")
     if "display: flow-root" not in site_css:
         errors.append("site.css: body must contain top margins so the page background reaches the viewport edge")
+    if ".hero img" not in site_css:
+        errors.append("site.css: shared hero portrait styling is required on Home and Experience")
+    if "body:has(.exp-item) .glass-card:not(.nav)" not in site_css:
+        errors.append("site.css: Experience card spacing must not override shared navigation spacing")
 
     for required_asset in [ROOT / "image-1600.webp", ROOT / "omaralfawzan-240.webp", ROOT / "analytics.js"]:
         if not required_asset.exists():
             errors.append(f"missing performance asset: {required_asset.relative_to(ROOT)}")
 
     social_html = html_by_path.get("social/index.html", "")
+    experience_html = html_by_path.get("experience/index.html", "")
+    if "experience-3aa201.css" in experience_html or "experience-home.css" in experience_html:
+        errors.append("experience/index.html: legacy styles must not override the shared Home design")
+    if "experience-home-match" in experience_html:
+        errors.append("experience/index.html: legacy Experience body class must not override shared styles")
     if "photo.thumb" not in social_html:
         errors.append("social/index.html: gallery grid must load thumbnails instead of original photos")
     if "index < 4 ? 'eager' : 'lazy'" not in social_html:
