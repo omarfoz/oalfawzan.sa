@@ -25,9 +25,8 @@
     <meta name="twitter:image:alt" content="Photography gallery by Omar Alfawzan">
 
     <link rel="icon" type="image/svg+xml" href="/cloud-favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/social/thumbs/photo_001.webp" type="image/webp" fetchpriority="high">
+
 
     <script type="application/ld+json">
     {
@@ -40,13 +39,6 @@
     }
     </script>
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FF5QTH48B5');
-    </script>
 
     <style>
         :root {
@@ -71,7 +63,7 @@
             background:
                 radial-gradient(circle at 20% -10%, rgba(0,122,255,.17), transparent 34rem),
                 linear-gradient(rgba(8,14,28,.88), rgba(1,2,4,.97)),
-                url('/image.jpg') center / cover fixed;
+                url('/image-1600.webp') center / cover fixed;
             background-color: var(--bg);
             overflow-x: hidden;
         }
@@ -500,8 +492,9 @@
             .nav { justify-content: center; }
         }
     </style>
-    <link rel="stylesheet" href="/accessibility.css">
+    <link rel="stylesheet" href="/site.css">
     <script src="/theme.js" defer></script>
+    <script src="/analytics.js" defer></script>
 </head>
 <body>
 <div class="container">
@@ -513,6 +506,7 @@
             <a href="/blog/" class="btn-sm">Blog</a>
             <a href="/social/" class="btn-sm active" aria-current="page">Social</a>
         </div>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme"></button>
     </nav>
 
     <header class="hero">
@@ -544,7 +538,11 @@
                 <div class="gallery-counter" id="galleryCounter" aria-live="polite">0 / 193</div>
             </div>
 
-            <div class="photo-grid" id="photoGrid" aria-label="Photography gallery"></div>
+            <div class="photo-grid" id="photoGrid" aria-label="Photography gallery">
+                <button id="initialPhoto" type="button" class="photo-item" aria-label="Open photo 1 of 193">
+                    <img src="thumbs/photo_001.webp" alt="Photography by Omar Alfawzan — photo 1" width="1958" height="3487" loading="eager" fetchpriority="high" decoding="async">
+                </button>
+            </div>
 
             <div class="gallery-actions">
                 <button id="loadMoreBtn" class="action-btn primary" type="button">Load more</button>
@@ -565,6 +563,7 @@
     <div class="lightbox-info" id="lightboxCaption"><span id="lightboxCount">Photo 1 of 193</span><span>Original quality</span></div>
 </div>
 
+<script src="/social/photo-metadata.js"></script>
 <script>
 const PHOTO_COUNT = 193;
 const PAGE_SIZE = 12;
@@ -616,7 +615,17 @@ function getPhotoOrder(forceNew = false) {
 }
 
 function buildPhotoList(forceNew = false) {
-    return getPhotoOrder(forceNew).map(n => ({ src: `photos/photo_${String(n).padStart(3, '0')}.jpg` }));
+    const order = getPhotoOrder(forceNew);
+    return [1, ...order.filter(n => n !== 1)].map(n => {
+        const filename = `photo_${String(n).padStart(3, '0')}`;
+        const [width, height] = PHOTO_DIMENSIONS[n - 1];
+        return {
+            src: `photos/${filename}.jpg`,
+            thumb: `thumbs/${filename}.webp`,
+            width,
+            height
+        };
+    });
 }
 
 function createPhotoItem(photo, index) {
@@ -626,9 +635,12 @@ function createPhotoItem(photo, index) {
     button.setAttribute('aria-label', `Open photo ${index + 1} of ${PHOTO_COUNT}`);
 
     const img = document.createElement('img');
-    img.src = photo.src;
+    img.src = photo.thumb;
     img.alt = `Photography by Omar Alfawzan — photo ${index + 1}`;
-    img.loading = 'lazy';
+    img.width = photo.width;
+    img.height = photo.height;
+    img.loading = index < 4 ? 'eager' : 'lazy';
+    img.fetchPriority = index < 4 ? 'high' : 'low';
     img.decoding = 'async';
     img.setAttribute('data-loading', 'true');
     img.addEventListener('load', () => img.removeAttribute('data-loading'), { once: true });
@@ -640,8 +652,8 @@ function createPhotoItem(photo, index) {
 
 function updateGalleryCounter() { galleryCounter.textContent = `${loadedCount} / ${PHOTO_COUNT}`; }
 
-function renderNextPage() {
-    const end = Math.min(loadedCount + PAGE_SIZE, photos.length);
+function renderNextPage(count = PAGE_SIZE) {
+    const end = Math.min(loadedCount + count, photos.length);
     const fragment = document.createDocumentFragment();
     for (let i = loadedCount; i < end; i++) fragment.appendChild(createPhotoItem(photos[i], i));
     grid.appendChild(fragment);
@@ -694,9 +706,12 @@ function nextPhoto() { showLightboxPhoto(lightboxIndex + 1); }
 function previousPhoto() { showLightboxPhoto(lightboxIndex - 1); }
 
 photos = buildPhotoList();
-renderNextPage();
+document.getElementById('initialPhoto').addEventListener('click', () => openLightbox(0));
+loadedCount = 1;
+updateGalleryCounter();
+requestAnimationFrame(() => window.setTimeout(() => renderNextPage(PAGE_SIZE - 1), 0));
 
-loadMoreBtn.addEventListener('click', renderNextPage);
+loadMoreBtn.addEventListener('click', () => renderNextPage());
 shuffleBtn.addEventListener('click', renderFreshMix);
 lightboxClose.addEventListener('click', closeLightbox);
 lightboxNext.addEventListener('click', nextPhoto);

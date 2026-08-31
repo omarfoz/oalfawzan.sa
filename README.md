@@ -17,21 +17,23 @@ The site intentionally uses plain HTML, CSS, and vanilla JavaScript. There is no
 ### Shared files
 
 - `data.js` — homepage biography and project data
-- `accessibility.css` — shared focus, reduced-motion, and mobile accessibility rules
+- `site.css` — shared visual, accessibility, and mobile-performance rules
+- `analytics.js` — interaction/idle-delayed Google Analytics loader
 - `robots.txt` — crawler directives
 - `sitemap.xml` — search-engine sitemap
 - `CNAME` — GitHub Pages custom domain
 
 ## Photography workflow
 
-The source photographs in `social/photos/` are treated as originals and should not be overwritten by optimization scripts.
+The source photographs in `social/photos/` are treated as originals and are never overwritten by optimization scripts. The gallery grid uses generated WebP thumbnails from `social/thumbs/`; the lightbox still opens the original JPEG.
 
 The gallery loads a small number of images at a time and opens the original JPEG in the lightbox. When adding photos:
 
 1. Add sequentially named files such as `photo_194.jpg`.
-2. Update `PHOTO_COUNT` in `social/index.html`.
-3. Update the visible photograph count in the social-page hero.
-4. Update `sitemap.xml` when the page content meaningfully changes.
+2. Run `python3 scripts/generate_performance_images.py` (requires Pillow) to regenerate thumbnails and image metadata.
+3. Update `PHOTO_COUNT` in `social/index.html`.
+4. Update the visible photograph count in the social-page hero.
+5. Update `sitemap.xml` when the page content meaningfully changes.
 
 ## Local development
 

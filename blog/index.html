@@ -74,7 +74,7 @@
         body {
             color: var(--text-p);
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            background: linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)), url('/image.jpg');
+            background: linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)), url('/image-1600.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -203,16 +203,9 @@
             .blog-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link rel="stylesheet" href="/accessibility.css">
+    <link rel="stylesheet" href="/site.css">
     <script src="/theme.js" defer></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FF5QTH48B5');
-    </script>
+    <script src="/analytics.js" defer></script>
 </head>
 <body>
 <div class="container">
@@ -225,6 +218,7 @@
             <a href="/blog/" class="btn-sm active">Blog</a>
             <a href="/social/" class="btn-sm">Social</a>
         </div>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme"></button>
     </nav>
 
     <div class="page-header">

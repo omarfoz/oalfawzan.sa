@@ -78,7 +78,7 @@
             font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
             background:
                 linear-gradient(rgba(13, 22, 45, 0.8), rgba(1, 2, 4, 0.9)),
-                url('/image.jpg');
+                url('/image-1600.webp');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -198,18 +198,13 @@
             .row { flex-direction: column; }
         }
     </style>
-    <link rel="stylesheet" href="/accessibility.css">
+    <link rel="stylesheet" href="/site.css">
+    <link rel="stylesheet" href="/experience-3aa201.css">
+    <link rel="stylesheet" href="/experience-home.css">
     <script src="/theme.js" defer></script>
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FF5QTH48B5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FF5QTH48B5');
-    </script>
+    <script src="/analytics.js" defer></script>
 </head>
-<body>
+<body class="experience-home-match">
 
     <div class="container">
         <nav class="nav glass-card">
@@ -220,13 +215,14 @@
                 <a href="/blog/" class="btn-sm">Blog</a>
                 <a href="/social/" class="btn-sm">Social</a>
             </div>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle color theme"></button>
         </nav>
 
-        <header style="text-align: center; margin-bottom: 60px;">
-            <img src="/omaralfawzan.png" alt="Omar Alfawzan"
-                 style="width: 120px; height: 120px; border-radius: 50%; border: 2px solid var(--glass-border); margin-bottom: 24px;">
-            <h1>Omar Alfawzan</h1>
-            <p class="headline">Cloud Technical Lead @ SITE | Cloud Pre-Sales & Delivery</p>
+        <header class="hero">
+            <img src="/omaralfawzan-240.webp" alt="Omar Alfawzan" width="120" height="120" fetchpriority="high">
+            <h1>Omar <em>Alfawzan</em></h1>
+            <p class="hero-role">Cloud Technical Lead @ SITE</p>
+            <p class="hero-sub">Cloud Technical Lead with 8+ years of experience shaping cloud solutions, from pre-sales to delivery, containers to AI.</p>
         </header>
 
         <h2 class="section-title">Summary</h2>

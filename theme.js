@@ -23,45 +23,6 @@
     return paths ? `<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` : '';
   };
 
-  /* Experience keeps its old content, but its top area mirrors Home exactly. */
-  const isExperience = /^\/experience\/?$/.test(window.location.pathname);
-  if (isExperience) {
-    document.body.classList.add('experience-home-match');
-
-    if (!document.querySelector('link[data-experience-home]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = '/experience-home.css?v=e39821ae';
-      link.dataset.experienceHome = 'true';
-      document.head.appendChild(link);
-    }
-
-    const header = document.querySelector('.container > header');
-    if (header) {
-      header.className = 'hero';
-      header.removeAttribute('style');
-
-      const portrait = header.querySelector('img');
-      if (portrait) portrait.removeAttribute('style');
-
-      const heading = header.querySelector('h1');
-      if (heading) heading.innerHTML = 'Omar <em>Alfawzan</em>';
-
-      const role = header.querySelector('.headline, p');
-      if (role) {
-        role.className = 'hero-role';
-        role.textContent = 'Cloud Technical Lead @ SITE';
-      }
-
-      let sub = header.querySelector('.hero-sub');
-      if (!sub) {
-        sub = document.createElement('p');
-        sub.className = 'hero-sub';
-        header.appendChild(sub);
-      }
-      sub.textContent = 'Cloud Technical Lead with 8+ years of experience shaping cloud solutions, from pre-sales to delivery, containers to AI.';
-    }
-  }
 
   document.querySelectorAll('.nav-name').forEach(el => {
     el.textContent = 'Omar Alfawzan';
@@ -100,20 +61,15 @@
     if (el) el.innerHTML = svgIcon(icon);
   });
 
-  document.querySelectorAll('.photo-item img').forEach((img, index) => {
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    if ('fetchPriority' in img) img.fetchPriority = index < 6 ? 'auto' : 'low';
-  });
 
   const nav = document.querySelector('.nav');
-  if (!nav || document.getElementById('themeToggle')) return;
+  if (!nav) return;
 
   const themeMeta = document.querySelector('meta[name="theme-color"]');
   const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
   const storageKey = 'oalfawzan-theme';
 
-  const toggle = document.createElement('button');
+  const toggle = document.getElementById('themeToggle') || document.createElement('button');
   toggle.id = 'themeToggle';
   toggle.className = 'theme-toggle';
   toggle.type = 'button';
@@ -125,7 +81,7 @@
       <circle cx="12" cy="12" r="3.4"></circle>
       <path d="M12 3v1.8M12 19.2V21M3 12h1.8M19.2 12H21M5.64 5.64l1.27 1.27M17.09 17.09l1.27 1.27M5.64 18.36l1.27-1.27M17.09 6.91l1.27-1.27"></path>
     </svg>`;
-  nav.appendChild(toggle);
+  if (!toggle.isConnected) nav.appendChild(toggle);
 
   const getSavedTheme = () => {
     try { return localStorage.getItem(storageKey); } catch (_) { return null; }

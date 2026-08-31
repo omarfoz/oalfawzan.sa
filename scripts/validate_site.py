@@ -200,6 +200,58 @@ def validate_sitemap() -> list[str]:
     return errors
 
 
+def validate_performance_assets() -> list[str]:
+    errors: list[str] = []
+    html_by_path = {
+        path.relative_to(ROOT).as_posix(): path.read_text(encoding="utf-8")
+        for path in HTML_FILES
+    }
+
+    for relative, html in html_by_path.items():
+        if "fonts.googleapis.com" in html or "fonts.gstatic.com" in html:
+            errors.append(f"{relative}: external web fonts delay first render")
+        if "www.googletagmanager.com/gtag/js" in html:
+            errors.append(f"{relative}: analytics must be loaded through the deferred local loader")
+        if 'href="/accessibility.css"' in html:
+            errors.append(f"{relative}: CSS must be linked directly instead of through the @import entry point")
+        if 'src="/theme.js"' in html and 'id="themeToggle"' not in html:
+            errors.append(f"{relative}: reserve theme-toggle space in HTML to prevent layout shift")
+
+    site_css = (ROOT / "site.css").read_text(encoding="utf-8")
+    if "@import" in site_css:
+        errors.append("site.css: render-blocking CSS imports are not allowed")
+    if "url('/image.jpg')" in site_css:
+        errors.append("site.css: use the optimized background image")
+
+    for required_asset in [ROOT / "image-1600.webp", ROOT / "omaralfawzan-240.webp", ROOT / "analytics.js"]:
+        if not required_asset.exists():
+            errors.append(f"missing performance asset: {required_asset.relative_to(ROOT)}")
+
+    social_html = html_by_path.get("social/index.html", "")
+    if "photo.thumb" not in social_html:
+        errors.append("social/index.html: gallery grid must load thumbnails instead of original photos")
+    if "index < 4 ? 'eager' : 'lazy'" not in social_html:
+        errors.append("social/index.html: above-the-fold gallery images must load eagerly")
+    if 'src="thumbs/photo_001.webp"' not in social_html:
+        errors.append("social/index.html: the first gallery image must be discoverable in initial HTML")
+    if 'rel="preload" as="image" href="/social/thumbs/photo_001.webp"' not in social_html:
+        errors.append("social/index.html: preload the gallery LCP image")
+    if "requestAnimationFrame(() => window.setTimeout" not in social_html:
+        errors.append("social/index.html: defer non-critical gallery rendering until after the first frame")
+
+    photo_sources = sorted((ROOT / "social" / "photos").glob("photo_*.jpg"))
+    thumbnails = sorted((ROOT / "social" / "thumbs").glob("photo_*.webp"))
+    if len(thumbnails) != len(photo_sources):
+        errors.append(
+            f"social/thumbs: expected {len(photo_sources)} optimized thumbnails, found {len(thumbnails)}"
+        )
+    oversized = [path.name for path in thumbnails if path.stat().st_size > 150_000]
+    if oversized:
+        errors.append(f"social/thumbs: {len(oversized)} thumbnails exceed the 150 KB budget")
+
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -210,6 +262,7 @@ def main() -> int:
     errors.extend(validate_html())
     errors.extend(validate_project_data())
     errors.extend(validate_sitemap())
+    errors.extend(validate_performance_assets())
 
     if errors:
         print("Site validation failed:\n")
