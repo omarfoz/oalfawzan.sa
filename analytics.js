@@ -1,4 +1,13 @@
 (() => {
+  /* Home historically did not include theme.js. Keep analytics.js as the
+     universal bootstrap so every page gets the same theme controller. */
+  if (!document.querySelector('script[src^="/theme.js"]') && !window.__oalfawzanThemeInitialized) {
+    const themeScript = document.createElement('script');
+    themeScript.src = '/theme.js?v=20260901';
+    themeScript.defer = true;
+    document.head.appendChild(themeScript);
+  }
+
   const measurementId = 'G-FF5QTH48B5';
   let loaded = false;
 
