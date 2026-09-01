@@ -1,30 +1,5 @@
 (() => {
-  if (window.__oalfawzanThemeInitialized) return;
-  window.__oalfawzanThemeInitialized = true;
-
   const root = document.documentElement;
-  const storageKey = 'oalfawzan-theme';
-  const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
-
-  const getSavedTheme = () => {
-    try {
-      const saved = localStorage.getItem(storageKey);
-      return saved === 'light' || saved === 'dark' ? saved : null;
-    } catch (_) {
-      return null;
-    }
-  };
-
-  const initialTheme = getSavedTheme() || (systemTheme.matches ? 'light' : 'dark');
-  root.dataset.theme = initialTheme;
-
-  if (!document.querySelector('link[data-light-mode-v2]')) {
-    const lightStyles = document.createElement('link');
-    lightStyles.rel = 'stylesheet';
-    lightStyles.href = '/light-mode.css?v=20260901';
-    lightStyles.dataset.lightModeV2 = 'true';
-    document.head.appendChild(lightStyles);
-  }
 
   const iconPaths = {
     lock: '<rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>',
@@ -47,6 +22,7 @@
     const paths = iconPaths[name];
     return paths ? `<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` : '';
   };
+
 
   document.querySelectorAll('.nav-name').forEach(el => {
     el.textContent = 'Omar Alfawzan';
@@ -80,18 +56,20 @@
     ['.social-btn[href*="x.com"] .social-icon', 'x'],
     ['.social-btn[href*="vsco.co"] .social-icon', 'vsco']
   ];
-
   iconTargets.forEach(([selector, icon]) => {
     const el = document.querySelector(selector);
     if (el) el.innerHTML = svgIcon(icon);
   });
 
+
   const nav = document.querySelector('.nav');
   if (!nav) return;
 
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const toggle = document.getElementById('themeToggle') || document.createElement('button');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+  const storageKey = 'oalfawzan-theme';
 
+  const toggle = document.getElementById('themeToggle') || document.createElement('button');
   toggle.id = 'themeToggle';
   toggle.className = 'theme-toggle';
   toggle.type = 'button';
@@ -103,30 +81,25 @@
       <circle cx="12" cy="12" r="3.4"></circle>
       <path d="M12 3v1.8M12 19.2V21M3 12h1.8M19.2 12H21M5.64 5.64l1.27 1.27M17.09 17.09l1.27 1.27M5.64 18.36l1.27-1.27M17.09 6.91l1.27-1.27"></path>
     </svg>`;
-
   if (!toggle.isConnected) nav.appendChild(toggle);
 
-  const updateToggle = theme => {
-    const light = theme === 'light';
-    toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-    toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
-    toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#f3f6fa' : '#010204');
+  const getSavedTheme = () => {
+    try { return localStorage.getItem(storageKey); } catch (_) { return null; }
   };
 
   const setTheme = (theme, persist = false) => {
-    const nextTheme = theme === 'light' ? 'light' : 'dark';
-    root.dataset.theme = nextTheme;
-    updateToggle(nextTheme);
-
+    const light = theme === 'light';
+    root.dataset.theme = light ? 'light' : 'dark';
+    toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+    toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
+    toggle.setAttribute('aria-pressed', String(light));
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#f2f2f7' : '#050507');
     if (persist) {
-      try { localStorage.setItem(storageKey, nextTheme); } catch (_) {}
+      try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
     }
-
-    window.dispatchEvent(new CustomEvent('oalfawzan:themechange', { detail: { theme: nextTheme } }));
   };
 
-  updateToggle(initialTheme);
+  setTheme(getSavedTheme() || (systemTheme.matches ? 'light' : 'dark'));
 
   toggle.addEventListener('click', () => {
     setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
@@ -136,10 +109,6 @@
   const syncSystemTheme = event => {
     if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
   };
-
-  if (typeof systemTheme.addEventListener === 'function') {
-    systemTheme.addEventListener('change', syncSystemTheme);
-  } else if (typeof systemTheme.addListener === 'function') {
-    systemTheme.addListener(syncSystemTheme);
-  }
+  if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
+  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener('change', syncSystemTheme);
 })();
