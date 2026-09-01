@@ -110,5 +110,5 @@
     if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
   };
   if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
-  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener('change', syncSystemTheme);
+  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
 })();
