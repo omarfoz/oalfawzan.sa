@@ -66,7 +66,7 @@
   if (!nav) return;
 
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+
   const storageKey = 'oalfawzan-theme';
 
   const toggle = document.getElementById('themeToggle') || document.createElement('button');
@@ -93,22 +93,18 @@
     toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
     toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
     toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#f2f2f7' : '#050507');
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#dce8f5' : '#010204');
     if (persist) {
       try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
     }
   };
 
-  setTheme(getSavedTheme() || (systemTheme.matches ? 'light' : 'dark'));
+  setTheme(getSavedTheme() || 'dark');
 
   toggle.addEventListener('click', () => {
     setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true);
     toggle.blur();
   });
 
-  const syncSystemTheme = event => {
-    if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
-  };
-  if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
-  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
+
 })();

@@ -131,7 +131,7 @@ const siteData = {
 
   const root = document.documentElement;
   const themeMeta = document.querySelector('meta[name="theme-color"]');
-  const systemTheme = window.matchMedia('(prefers-color-scheme: light)');
+
   const storageKey = 'oalfawzan-theme';
 
   const toggle = document.createElement('button');
@@ -158,20 +158,16 @@ const siteData = {
     toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
     toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
     toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#f3f6fb' : '#010204');
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#dce8f5' : '#010204');
     if (persist) {
       try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
     }
   };
 
-  setTheme(getSavedTheme() || (systemTheme.matches ? 'light' : 'dark'));
+  setTheme(getSavedTheme() || 'dark');
   toggle.addEventListener('click', () => setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true));
 
-  const syncSystemTheme = event => {
-    if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
-  };
-  if (typeof systemTheme.addEventListener === 'function') systemTheme.addEventListener('change', syncSystemTheme);
-  else if (typeof systemTheme.addListener === 'function') systemTheme.addListener(syncSystemTheme);
+
 
   const bulb = '<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 22h4"></path><path d="M8.4 14.5A6 6 0 1 1 15.6 14.5C14.6 15.2 14 16.2 14 17H10c0-.8-.6-1.8-1.6-2.5Z"></path></svg>';
   document.querySelectorAll('.learned-label').forEach(label => {

@@ -55,6 +55,30 @@ Run it locally with:
 python3 scripts/validate_site.py
 ```
 
+### Optional browser theme tests
+
+Dark mode is the default. An explicitly saved light/dark choice takes precedence;
+operating-system theme changes do not override it. Light mode keeps the background
+photograph's natural colors.
+
+With the local server running, install the optional test dependencies outside the site:
+
+```bash
+npm install --prefix /tmp/light-audit playwright axe-core
+export AUDIT_DEPS=/tmp/light-audit
+export AUDIT_BASE=http://127.0.0.1:8000
+# Use an installed Chrome/Chromium executable (adjust this path for your machine).
+export AUDIT_BROWSER=/usr/bin/google-chrome-stable
+node scripts/theme-default-test.mjs
+node scripts/theme-loading-test.mjs
+node scripts/light-mode-audit.mjs
+AUDIT_THEME=dark AUDIT_OUT=/tmp/oalfawzan-dark-audit node scripts/light-mode-audit.mjs
+```
+
+The audit saves screenshots and JSON under `/tmp/oalfawzan-light-audit` by default.
+Axe's incomplete contrast results over photographs/gradients require visual review;
+zero reported violations does not establish full contrast compliance.
+
 ## Deployment
 
 GitHub Pages publishes from the `main` branch using the custom domain in `CNAME`.

@@ -106,8 +106,6 @@ body {
 
 html[data-theme="light"] body {
   background:
-    radial-gradient(circle at 18% 3%, rgba(255,255,255,.30), transparent 28rem),
-    linear-gradient(rgba(220,232,245,.38), rgba(210,225,241,.54)),
     url('/image-1600.webp') center / cover fixed !important;
   background-color: var(--site-bg) !important;
 }
@@ -468,6 +466,36 @@ html[data-theme="light"] .logo-pill svg {
   opacity: .72 !important;
 }
 
+html[data-theme="light"] .logo-pill {
+  color: var(--site-text) !important;
+}
+
+/* Artwork stays intentionally dark in both themes; keep its glyphs legible. */
+.blog-cover .site-svg-icon {
+  color: rgba(255,255,255,.88) !important;
+}
+
+html[data-theme="light"] a[href^="mailto:"] svg {
+  fill: var(--site-accent) !important;
+}
+
+html[data-theme="light"] body:has(article) article a {
+  color: var(--site-accent) !important;
+  text-decoration-color: rgba(0,98,204,.45);
+}
+
+html[data-theme="light"] body:has(article) article a:hover {
+  color: #004fa8 !important;
+  text-decoration-color: currentColor;
+}
+
+html[data-theme="light"] .project-link:hover,
+html[data-theme="light"] .project-link:focus-visible {
+  color: #fff !important;
+  background: var(--site-accent) !important;
+  border-color: var(--site-accent) !important;
+}
+
 /* Shared page rhythm */
 .hero,
 .page-header,
@@ -535,8 +563,6 @@ body:has(.photo-grid) {
 }
 html[data-theme="light"] body:has(.photo-grid) {
   background:
-    radial-gradient(circle at 18% 3%, rgba(255,255,255,.30), transparent 28rem),
-    linear-gradient(rgba(220,232,245,.38), rgba(210,225,241,.54)),
     url('/image-1600.webp') center / cover fixed !important;
 }
 body:has(.photo-grid) .hero {
@@ -670,6 +696,10 @@ img, svg { max-width: 100%; }
   .cta-secondary:hover {
     background: var(--site-glass-fill-strong) !important;
     border-color: var(--border-strong) !important;
+  }
+
+  .theme-toggle:hover {
+    background: var(--site-glass-fill-strong) !important;
   }
 }
 
