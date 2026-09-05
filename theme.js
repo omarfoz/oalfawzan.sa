@@ -1,6 +1,98 @@
 (() => {
   const root = document.documentElement;
 
+  // Light mode uses borders + translucency for depth. Keep outer shadows restrained,
+  // and remove them almost entirely on touch devices where they read as heavy halos.
+  const lightShadowStyle = document.createElement('style');
+  lightShadowStyle.id = 'light-shadow-tuning';
+  lightShadowStyle.textContent = `
+    html[data-theme="light"][data-theme="light"] {
+      --site-glass-shadow: rgba(38,55,78,.06) !important;
+      --border-strong: rgba(51,65,85,.22) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] .glass,
+    html[data-theme="light"][data-theme="light"] .glass-card,
+    html[data-theme="light"][data-theme="light"] .project-card,
+    html[data-theme="light"][data-theme="light"] .blog-card,
+    html[data-theme="light"][data-theme="light"] .social-link,
+    html[data-theme="light"][data-theme="light"] .meta-pill,
+    html[data-theme="light"][data-theme="light"] .pill,
+    html[data-theme="light"][data-theme="light"] .logo-pill {
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.96),
+        inset 0 -1px 0 rgba(51,65,85,.04),
+        0 4px 14px rgba(38,55,78,.045) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] .nav,
+    html[data-theme="light"][data-theme="light"] .nav.glass-card,
+    html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.98),
+        0 2px 8px rgba(38,55,78,.035) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] .btn-sm,
+    html[data-theme="light"][data-theme="light"] .filter-pill,
+    html[data-theme="light"][data-theme="light"] .social-btn,
+    html[data-theme="light"][data-theme="light"] .cta-secondary,
+    html[data-theme="light"][data-theme="light"] .action-btn:not(.primary),
+    html[data-theme="light"][data-theme="light"] .project-link,
+    html[data-theme="light"][data-theme="light"] .theme-toggle {
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.94) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] .btn-sm.active,
+    html[data-theme="light"][data-theme="light"] .filter-pill.active,
+    html[data-theme="light"][data-theme="light"] .action-btn.primary,
+    html[data-theme="light"][data-theme="light"] .cta-primary {
+      border-color: rgba(0,78,166,.16) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.20) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] .tl-dot {
+      box-shadow:
+        0 0 0 2px rgba(0,98,204,.06),
+        0 0 6px rgba(0,98,204,.08) !important;
+    }
+
+    html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .photo-item {
+      box-shadow: 0 3px 12px rgba(38,55,78,.05) !important;
+    }
+
+    @media (hover:hover) and (pointer:fine) {
+      html[data-theme="light"][data-theme="light"] .social-link:hover,
+      html[data-theme="light"][data-theme="light"] .project-card:hover,
+      html[data-theme="light"][data-theme="light"] .blog-card:hover {
+        box-shadow:
+          inset 0 1px 0 rgba(255,255,255,.98),
+          0 8px 20px rgba(38,55,78,.07) !important;
+      }
+    }
+
+    @media (max-width:700px), (pointer:coarse) {
+      html[data-theme="light"][data-theme="light"] .glass,
+      html[data-theme="light"][data-theme="light"] .glass-card,
+      html[data-theme="light"][data-theme="light"] .project-card,
+      html[data-theme="light"][data-theme="light"] .blog-card,
+      html[data-theme="light"][data-theme="light"] .social-link,
+      html[data-theme="light"][data-theme="light"] .meta-pill,
+      html[data-theme="light"][data-theme="light"] .pill,
+      html[data-theme="light"][data-theme="light"] .logo-pill,
+      html[data-theme="light"][data-theme="light"] .nav,
+      html[data-theme="light"][data-theme="light"] .nav.glass-card,
+      html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
+        box-shadow: inset 0 1px 0 rgba(255,255,255,.96) !important;
+      }
+
+      html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .photo-item {
+        box-shadow: none !important;
+      }
+    }
+  `;
+  document.head.appendChild(lightShadowStyle);
+
   const iconPaths = {
     lock: '<rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path>',
     cloud: '<path d="M7 18h10a4 4 0 0 0 .8-7.92A6 6 0 0 0 6.3 8.2 4.5 4.5 0 0 0 7 18Z"></path>',
