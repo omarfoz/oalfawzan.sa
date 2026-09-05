@@ -19,10 +19,10 @@
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta) meta.content = topColor;
 
-  // Safari 26 derives the top/status-bar tint from the document canvas/background.
-  // site.css uses #010204 as the body fallback; that exact color is what was appearing
-  // in the black strip. Override only the fallback canvas color while preserving the
-  // existing background image and gradient.
+  // Keep the iOS canvas aligned with the page background. In light mode, render the
+  // wallpaper on a fixed pseudo-element so only the wallpaper is blurred — never the content.
+  // The duplicated [data-theme] selector deliberately outranks site.css even though this
+  // synchronous style is inserted before the shared stylesheet finishes loading.
   const style = document.createElement('style');
   style.textContent = `
     html[data-theme="dark"] {
@@ -34,8 +34,23 @@
     html[data-theme="light"] {
       background-color: ${lightTop} !important;
     }
-    html[data-theme="light"] body {
-      background-color: ${lightTop} !important;
+    html[data-theme="light"][data-theme="light"] body {
+      position: relative;
+      isolation: isolate;
+      background: ${lightTop} !important;
+    }
+    html[data-theme="light"][data-theme="light"] body::before {
+      content: "";
+      position: fixed;
+      inset: -28px;
+      z-index: -1;
+      pointer-events: none;
+      background: url('/image-1600.webp') center / cover no-repeat;
+      filter: blur(18px);
+      -webkit-filter: blur(18px);
+      transform: scale(1.06);
+      transform-origin: center;
+      opacity: 0.90;
     }
     body {
       min-height: 100dvh;
