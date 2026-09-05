@@ -9,18 +9,33 @@
   const lightTop = '#dce8f5';
   const topColor = theme === 'light' ? lightTop : darkTop;
 
-  // iOS Safari decides viewport/status-bar treatment while parsing <head>.
-  // Insert these synchronously rather than changing the existing tags afterwards.
-  document.write('<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">');
-  document.write('<meta name="theme-color" content="' + topColor + '">');
-  document.write('<meta name="apple-mobile-web-app-capable" content="yes">');
-  document.write('<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">');
+  // Apply viewport-fit and theme color synchronously to the existing first meta tags.
+  // This avoids duplicate viewport/theme-color tags and keeps older Safari versions aligned.
+  const viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport && !viewport.content.includes('viewport-fit=cover')) {
+    viewport.content = `${viewport.content}, viewport-fit=cover`;
+  }
 
-  // Keep the document canvas the same colour all the way through the iOS safe area.
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.content = topColor;
+
+  // Safari 26 derives the top/status-bar tint from the document canvas/background.
+  // site.css uses #010204 as the body fallback; that exact color is what was appearing
+  // in the black strip. Override only the fallback canvas color while preserving the
+  // existing background image and gradient.
   const style = document.createElement('style');
   style.textContent = `
-    html {
-      background-color: ${topColor} !important;
+    html[data-theme="dark"] {
+      background-color: ${darkTop} !important;
+    }
+    html[data-theme="dark"] body {
+      background-color: ${darkTop} !important;
+    }
+    html[data-theme="light"] {
+      background-color: ${lightTop} !important;
+    }
+    html[data-theme="light"] body {
+      background-color: ${lightTop} !important;
     }
     body {
       min-height: 100dvh;
@@ -35,7 +50,4 @@
     }
   `;
   document.head.appendChild(style);
-
-  const meta = document.querySelector('meta[name="theme-color"]:last-of-type');
-  if (meta) meta.content = topColor;
 })();
