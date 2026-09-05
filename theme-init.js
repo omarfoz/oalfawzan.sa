@@ -34,6 +34,11 @@
     html[data-theme="light"] {
       background-color: ${lightTop} !important;
     }
+    html[data-theme="light"][data-theme="light"] {
+      --site-text: #0f172a !important;
+      --site-text-muted: rgba(15, 23, 42, 0.92) !important;
+      --site-text-faint: rgba(15, 23, 42, 0.80) !important;
+    }
     html[data-theme="light"][data-theme="light"] body {
       position: relative;
       isolation: isolate;
@@ -45,12 +50,14 @@
       inset: -28px;
       z-index: -1;
       pointer-events: none;
-      background: url('/image-1600.webp') center / cover no-repeat;
+      background:
+        linear-gradient(rgba(220, 232, 245, 0.62), rgba(220, 232, 245, 0.62)),
+        url('/image-1600.webp') center / cover no-repeat;
       filter: blur(18px);
       -webkit-filter: blur(18px);
       transform: scale(1.06);
       transform-origin: center;
-      opacity: 0.90;
+      opacity: 1;
     }
     body {
       min-height: 100dvh;
