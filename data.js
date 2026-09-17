@@ -124,51 +124,8 @@ const siteData = {
   ]
 };
 
-// HOME: keep behavior here because Home loads data.js directly, but do not inject styles.
+// Home-only content polish. Shared navigation and theme behavior live in theme.js.
 (() => {
-  const nav = document.querySelector('.nav');
-  if (!nav || document.getElementById('themeToggle')) return;
-
-  const root = document.documentElement;
-  const themeMeta = document.querySelector('meta[name="theme-color"]');
-
-  const storageKey = 'oalfawzan-theme';
-
-  const toggle = document.createElement('button');
-  toggle.id = 'themeToggle';
-  toggle.className = 'theme-toggle';
-  toggle.type = 'button';
-  toggle.innerHTML = `
-    <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M19.8 15.1A8 8 0 0 1 8.9 4.2 8 8 0 1 0 19.8 15.1Z"></path>
-    </svg>
-    <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="3.4"></circle>
-      <path d="M12 3v1.8M12 19.2V21M3 12h1.8M19.2 12H21M5.64 5.64l1.27 1.27M17.09 17.09l1.27 1.27M5.64 18.36l1.27-1.27M17.09 6.91l1.27-1.27"></path>
-    </svg>`;
-  nav.appendChild(toggle);
-
-  const getSavedTheme = () => {
-    try { return localStorage.getItem(storageKey); } catch (_) { return null; }
-  };
-
-  const setTheme = (theme, persist = false) => {
-    const light = theme === 'light';
-    root.dataset.theme = light ? 'light' : 'dark';
-    toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-    toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
-    toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#dce8f5' : '#010204');
-    if (persist) {
-      try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
-    }
-  };
-
-  setTheme(getSavedTheme() || 'dark');
-  toggle.addEventListener('click', () => setTheme(root.dataset.theme === 'light' ? 'dark' : 'light', true));
-
-
-
   const bulb = '<svg class="site-svg-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 22h4"></path><path d="M8.4 14.5A6 6 0 1 1 15.6 14.5C14.6 15.2 14 16.2 14 17H10c0-.8-.6-1.8-1.6-2.5Z"></path></svg>';
   document.querySelectorAll('.learned-label').forEach(label => {
     if (label.textContent.includes('\u{1F4A1}')) label.innerHTML = `${bulb}<span>What I Learned</span>`;

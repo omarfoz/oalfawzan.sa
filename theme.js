@@ -185,7 +185,7 @@
     toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
     toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
     toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#dce8f5' : '#010204');
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#e7eff8' : '#1b2942');
     if (persist) {
       try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
     }

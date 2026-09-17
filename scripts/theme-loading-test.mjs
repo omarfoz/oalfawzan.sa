@@ -20,7 +20,7 @@ try {
     try {
       await page.locator('.nav').waitFor({ state: 'visible' });
       assert.equal(await page.locator('html').getAttribute('data-theme'), 'light', `${route}: light mode must apply before deferred scripts load`);
-      assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'), '#dce8f5');
+      assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'), '#e7eff8');
     } finally {
       release();
       await navigation;
