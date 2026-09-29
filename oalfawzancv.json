@@ -1,0 +1,514 @@
+{
+  "picture": {
+    "hidden": true,
+    "fit": "cover",
+    "url": "",
+    "size": 80,
+    "rotation": 0,
+    "aspectRatio": 1,
+    "borderRadius": 0,
+    "borderColor": "rgba(0, 0, 0, 0.5)",
+    "borderWidth": 0,
+    "shadowColor": "rgba(0, 0, 0, 0.5)",
+    "shadowWidth": 0
+  },
+  "basics": {
+    "name": "Omar Alfawzan",
+    "headline": "Cloud Technical Lead | Pre-Sales, Architecture & Delivery",
+    "email": "contact@oalfawzan.sa",
+    "phone": "+966533553665",
+    "location": "Riyadh, Saudi Arabia",
+    "website": {
+      "url": "https://oalfawzan.sa",
+      "label": "oalfawzan.sa"
+    },
+    "customFields": [
+      {
+        "id": "019dd5da-d031-717b-a433-11da0af7b169",
+        "icon": "linkedin-logo",
+        "text": "linkedin.com/in/omarfoz",
+        "link": "https://www.linkedin.com/in/omarfoz"
+      }
+    ]
+  },
+  "summary": {
+    "title": "Summary",
+    "icon": "",
+    "columns": 1,
+    "hidden": false,
+    "keepTogether": true,
+    "startOnNewPage": false,
+    "content": "<p>Cloud Technical Lead with 8+ years of experience across cloud transformation, pre-sales, solution architecture, and service delivery. Experience spans the full customer journey, from discovery, RFPs, proposals and BoQs through solution design, migration, and managed-services handover. Led the migration of 15,000 email users and 400+ VMs to the cloud, including re-architecture and the application of security and governance standards. Previously managed cloud product portfolios across Public Cloud, DRaaS, Co-location, and FWaaS at Mobily and solutions by stc, and established a Cloud Partnership Program and redefined the Cloud Life Cycle Process at Mobily. Hands-on foundation in IBM Cloud, Kubernetes, Docker, and private cloud, with supporting AI pre-sales experience. Bridges business, architecture, engineering, delivery, and cloud product strategy.</p>"
+  },
+  "sections": {
+    "profiles": {
+      "title": "Profiles",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "experience": {
+      "title": "Experience",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "uxed8wfzqk3nkxl30vtxievo",
+          "hidden": false,
+          "company": "SITE",
+          "position": "Cloud Technical Lead",
+          "location": "Riyadh, Saudi Arabia",
+          "period": "Sep 2024 - Present",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<ul><li><p>Led the migration of 15,000 email users and 400+ virtual machines from on-premises to the cloud, including system re-architecture and the application of security and governance standards throughout.</p></li><li><p>Designed and delivered a secure cloud file-sharing platform built to serve 15,000 users reliably.</p></li><li><p>Owned cloud delivery end to end - from infrastructure setup to customer handover - covering migrations, professional services, and managed services.</p></li><li><p>Owned RFP responses, writing tailored proposals, defining project scope, and creating detailed Bills of Quantities (BoQs) for cloud, professional services, and managed services.</p></li><li><p>Led customer discovery meetings, solution design, and technical workshops to align needs with the right cloud solutions.</p></li><li><p>Assessed customer AI use cases and their feasibility on cloud platforms to support AI pre-sales.</p></li></ul>",
+          "roles": []
+        },
+        {
+          "id": "tqtsysj0h5laxo88sq107f4z",
+          "hidden": false,
+          "company": "Mobily",
+          "position": "DC & Cloud Solutions Principal",
+          "location": "Riyadh, Saudi Arabia",
+          "period": "Mar 2023 - Sep 2024",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<ul><li><p>Managed Mobily's cloud product portfolio - Public Cloud, DRaaS, Co-location, and custom solutions - keeping offerings competitive and well-positioned in the market.</p></li><li><p>Established a Cloud Partnership Program and redefined the Cloud Life Cycle Process, making partner onboarding and service delivery smoother and more consistent.</p></li><li><p>Enabled the sales team to position cloud products effectively and win more deals.</p></li></ul>",
+          "roles": []
+        },
+        {
+          "id": "vyyarzvyltvz2900dl0hbmkn",
+          "hidden": false,
+          "company": "solutions by stc",
+          "position": "Product Manager",
+          "location": "Riyadh, Saudi Arabia",
+          "period": "Sep 2021 - Mar 2023",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<ul><li><p>Built and launched a Disaster Recovery as a Service (DRaaS) product on the stc cloud platform, taking it from initial concept all the way to market launch.</p></li><li><p>Managed a portfolio of cloud products - Virtual Data Center, Co-Location, and FWaaS - covering vendor management, customer billing, revenue tracking, business case development, budget requests, service performance, and customer satisfaction.</p></li><li><p>Equipped the sales team with technical knowledge and insights, and improved products based on customer feedback and market trends.</p></li></ul>",
+          "roles": []
+        },
+        {
+          "id": "k8b7oa7o17yqi07ihm3qpwf0",
+          "hidden": false,
+          "company": "solutions by stc",
+          "position": "Business Development Specialist",
+          "location": "Riyadh, Saudi Arabia",
+          "period": "Aug 2019 - Sep 2021",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<ul><li><p>Analyzed competitors and market trends to position cloud and IoT products more effectively.</p></li><li><p>Tracked product performance and proposed improvements to support adoption and service quality.</p></li><li><p>Built forecasts, pipeline reports, and data analysis to support business decisions.</p></li><li><p>Managed cloud service partners within the stc marketplace to grow the partner ecosystem.</p></li><li><p>Organized 35+ meetups and webinars for the Cloud and IoT portfolio, building community and raising product awareness.</p></li></ul>",
+          "roles": []
+        }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": true,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "arrlb8jt905wj7qhbyp25o5w",
+          "hidden": false,
+          "school": "King Saud University",
+          "degree": "Bachelor's degree",
+          "area": "Computer Information Systems",
+          "grade": "4.59/5",
+          "location": "",
+          "period": "Aug 2014 - May 2018",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        }
+      ]
+    },
+    "projects": {
+      "title": "Projects",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "skills": {
+      "title": "Skills",
+      "icon": "",
+      "columns": 2,
+      "hidden": false,
+      "keepTogether": true,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "e16zibuovvyzhxqrmm6yfgom",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Cloud Architecture & Delivery",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Solution Architecture",
+            "Cloud Migration",
+            "System Re-architecture",
+            "Private Cloud",
+            "OpenStack",
+            "IaaS",
+            "PaaS",
+            "Docker",
+            "Kubernetes",
+            "DR & Backup"
+          ]
+        },
+        {
+          "id": "qeop5y7c948rzs4obcb5nut4",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Pre-Sales & Solutions",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Technical Pre-Sales",
+            "RFP Responses",
+            "Proposals & BoQs",
+            "Customer Discovery & Workshops",
+            "Solution Design",
+            "Client Onboarding"
+          ]
+        },
+        {
+          "id": "kiyw2fzttzov3q61x72apvni",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Product & Strategy",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Product Management",
+            "Portfolio Management",
+            "Product Life Cycle",
+            "Stakeholder Alignment",
+            "Business Case Development",
+            "Budget Planning",
+            "Market Research",
+            "Partner Ecosystem",
+            "Cost Management",
+            "Agile",
+            "Digital Transformation"
+          ]
+        },
+        {
+          "id": "019bf032-9c8b-710e-96ce-992da1b05763",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "Service Delivery & Governance",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "Service Delivery",
+            "Managed Services",
+            "Cloud Life Cycle",
+            "Security & Governance Standards",
+            "Vendor Management",
+            "Cloud Governance",
+            "IT Service Management (ITIL)"
+          ]
+        },
+        {
+          "id": "019bf032-9c8b-710e-96ce-992da1b057a",
+          "hidden": false,
+          "icon": "",
+          "iconColor": "",
+          "name": "AI (Supporting)",
+          "proficiency": "",
+          "level": 0,
+          "keywords": [
+            "GenAI",
+            "LLMs",
+            "RAG",
+            "Agentic AI",
+            "AI Solution Assessment"
+          ]
+        }
+      ],
+      "keywordLayout": "inline",
+      "layout": "default"
+    },
+    "languages": {
+      "title": "Languages",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": true,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "lang-arabic-native-0001",
+          "hidden": false,
+          "language": "Arabic",
+          "fluency": "Native"
+        },
+        {
+          "id": "lang-english-prof-0002",
+          "hidden": false,
+          "language": "English",
+          "fluency": "Professional Working Proficiency"
+        }
+      ]
+    },
+    "interests": {
+      "title": "Interests",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "awards": {
+      "title": "Awards",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "certifications": {
+      "title": "Certifications",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": true,
+      "startOnNewPage": false,
+      "items": [
+        {
+          "id": "cert-mongodb-ai-agents-001",
+          "hidden": false,
+          "title": "Building AI Agents with MongoDB",
+          "issuer": "MongoDB",
+          "date": "Dec 2025",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        },
+        {
+          "id": "cert-mongodb-overview-002",
+          "hidden": false,
+          "title": "MongoDB Overview: Core Concepts and Architecture",
+          "issuer": "MongoDB",
+          "date": "Dec 2025",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        },
+        {
+          "id": "seq6u966r49ziywk7orlhvq0",
+          "hidden": false,
+          "title": "ITIL® Foundation",
+          "issuer": "AXELOS Global Best Practice",
+          "date": "Oct 2023",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        },
+        {
+          "id": "naahn6psd59tcdcj7w3re5o8",
+          "hidden": false,
+          "title": "Certified Product Manager (CPM)",
+          "issuer": "AIPMM The Association of International Product Marketing and Management",
+          "date": "Nov 2022",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        },
+        {
+          "id": "pbfqml04215rofvbfursde3t",
+          "hidden": false,
+          "title": "Alibaba Cloud Associate Cloud Computing",
+          "issuer": "Alibaba Cloud",
+          "date": "May 2021",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        },
+        {
+          "id": "qkrorsjea3gat75drg1py2ql",
+          "hidden": false,
+          "title": "Associate - Information Storage and Management Version 3.0",
+          "issuer": "Dell EMC",
+          "date": "May 2018",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": ""
+        }
+      ]
+    },
+    "publications": {
+      "title": "Publications",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "volunteer": {
+      "title": "Volunteering",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    },
+    "references": {
+      "title": "References",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "keepTogether": false,
+      "startOnNewPage": false,
+      "items": []
+    }
+  },
+  "customSections": [
+    {
+      "title": "Experience",
+      "icon": "",
+      "columns": 1,
+      "hidden": false,
+      "showHeading": false,
+      "keepTogether": true,
+      "startOnNewPage": false,
+      "id": "b2562139-0592-4d60-a72c-bfa7bf65c578",
+      "type": "experience",
+      "items": [
+        {
+          "id": "yg70epjo6eq8s9gof75mgcov",
+          "hidden": false,
+          "company": "IBM",
+          "position": "Developer Advocate",
+          "location": "Riyadh, Saudi Arabia",
+          "period": "Jul 2018 - Jul 2019",
+          "website": {
+            "url": "",
+            "label": "",
+            "inlineLink": false
+          },
+          "description": "<ul><li><p>Hosted 15+ workshops and mentored developers across 35+ workshops for community developers and enterprise customers on IBM Cloud, microservices, Kubernetes, Docker, Cloud Foundry, Watson Assistant, and related cloud technologies.</p></li><li><p>Engaged with 7+ customers on IBM Cloud Private, Watson Assistant, and mobile development use cases.</p></li><li><p>Installed IBM Private Cloud for a Saudi banking customer using RHEL 7, Docker, and Kubernetes, including deployment of IBM and third-party applications.</p></li><li><p>Built a customer chatbot using Watson Assistant, Node.js, and Telegram.</p></li></ul>",
+          "roles": []
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "template": "lapras",
+    "layout": {
+      "sidebarWidth": 10,
+      "pages": [
+        {
+          "fullWidth": true,
+          "main": [
+            "summary",
+            "experience",
+            "b2562139-0592-4d60-a72c-bfa7bf65c578",
+            "education",
+            "skills",
+            "certifications",
+            "languages"
+          ],
+          "sidebar": []
+        }
+      ]
+    },
+    "page": {
+      "gapX": 8,
+      "gapY": 5,
+      "marginX": 14,
+      "marginY": 14,
+      "format": "a4",
+      "locale": "en-US",
+      "hideLinkUnderline": false,
+      "hideIcons": false,
+      "hideSectionIcons": true
+    },
+    "design": {
+      "level": {
+        "icon": "star",
+        "type": "circle"
+      },
+      "colors": {
+        "primary": "rgb(0, 0, 0)",
+        "text": "rgba(0, 0, 0, 1)",
+        "background": "rgba(255, 255, 255, 1)"
+      }
+    },
+    "typography": {
+      "body": {
+        "fontFamily": "Open Sans",
+        "fontWeights": [
+          "400",
+          "600"
+        ],
+        "fontSize": 9.5,
+        "lineHeight": 1.3
+      },
+      "heading": {
+        "fontFamily": "Open Sans",
+        "fontWeights": [
+          "500"
+        ],
+        "fontSize": 12.5,
+        "lineHeight": 1.35
+      }
+    },
+    "notes": "",
+    "styleRules": []
+  }
+}
