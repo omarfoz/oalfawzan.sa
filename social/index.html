@@ -7,7 +7,7 @@
     <meta name="description" content="Photography by Omar Alfawzan. Landscapes, street, and travel — shot on iPhone and Fujifilm X100F.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#010204">
-    <script src="/theme-init.js"></script>
+    <script>(()=>{let t;try{t=localStorage.getItem('oalfawzan-theme')}catch(_){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:'dark'})()</script>
     <link rel="canonical" href="https://oalfawzan.sa/social/">
 
     <meta property="og:type" content="website">
@@ -30,14 +30,32 @@
 
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ImageGallery",
-      "name": "Social — Omar Alfawzan Photography",
-      "url": "https://oalfawzan.sa/social/",
-      "author": {"@type": "Person", "name": "Omar Alfawzan", "url": "https://oalfawzan.sa/"},
-      "inLanguage": "en"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "ImageGallery",
+  "name": "Social — Omar Alfawzan Photography",
+  "url": "https://oalfawzan.sa/social/",
+  "author": {
+    "@type": "Person",
+    "@id": "https://oalfawzan.sa/#person",
+    "name": "Omar Alfawzan",
+    "url": "https://oalfawzan.sa/"
+  },
+  "inLanguage": "en",
+  "@id": "https://oalfawzan.sa/social/#gallery",
+  "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://oalfawzan.sa/#website",
+    "name": "Omar Alfawzan",
+    "url": "https://oalfawzan.sa/"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "contentUrl": "https://oalfawzan.sa/social/photos/photo_001.jpg",
+    "thumbnailUrl": "https://oalfawzan.sa/social/thumbs/photo_001.webp",
+    "caption": "Photography by Omar Alfawzan — photo 1"
+  }
+}
     </script>
 
 
@@ -498,6 +516,7 @@
     <script src="/analytics.js" defer></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to Content</a>
 <div class="container">
     <nav class="nav glass" aria-label="Primary navigation">
         <div class="nav-name">Omar Alfawzan</div>
@@ -528,7 +547,7 @@
         <a href="https://vsco.co/omarfoz/gallery" target="_blank" rel="noopener noreferrer" class="social-btn"><span class="social-icon" aria-hidden="true">VS</span>VSCO</a>
     </div>
 
-    <main>
+    <main id="main-content">
         <section aria-labelledby="galleryTitle">
             <div class="gallery-head">
                 <div>
@@ -553,7 +572,7 @@
         </section>
     </main>
 
-    <footer>© 2026 Omar Alfawzan · oalfawzan.sa</footer>
+    <footer>© 2026 Omar Alfawzan · oalfawzan.sa · <a href="/privacy/">Privacy</a></footer>
 </div>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" aria-hidden="true" tabindex="-1">
@@ -680,6 +699,8 @@ function preloadAdjacent(index) {
 function showLightboxPhoto(index) {
     lightboxIndex = (index + photos.length) % photos.length;
     const photo = photos[lightboxIndex];
+    lightboxImg.width = photo.width;
+    lightboxImg.height = photo.height;
     lightboxImg.src = photo.src;
     lightboxImg.alt = `Photography by Omar Alfawzan — photo ${lightboxIndex + 1} of ${photos.length}`;
     lightboxCount.textContent = `Photo ${lightboxIndex + 1} of ${photos.length}`;

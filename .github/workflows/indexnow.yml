@@ -41,6 +41,8 @@ jobs:
 
           def page_url(path):
               path = path.replace("\\", "/").lstrip("/")
+              if path == "404.html":
+                  return None
               if path == "index.html":
                   return f"https://{domain}/"
               if path.endswith("/index.html"):

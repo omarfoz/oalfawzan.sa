@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 HTML_FILES = sorted(ROOT.rglob("*.html"))
-REQUIRED_FILES = [ROOT / "index.html", ROOT / "robots.txt", ROOT / "sitemap.xml", ROOT / "CNAME"]
+REQUIRED_FILES = [ROOT / "index.html", ROOT / "404.html", ROOT / "robots.txt", ROOT / "sitemap.xml", ROOT / "CNAME"]
 BRAND_NAME = "Omar Alfawzan"
 
 # These legacy source glyphs are intentionally converted to inline/path SVGs by data.js/theme.js.
@@ -134,10 +134,48 @@ def validate_html() -> list[str]:
             continue
 
         relative = path.relative_to(ROOT)
+        relative_name = relative.as_posix()
         if not parser.has_title:
             errors.append(f"{relative}: missing <title>")
         if not parser.has_description:
             errors.append(f"{relative}: missing meta description")
+
+        h1_count = len(re.findall(r"<h1\b", raw_html, flags=re.IGNORECASE))
+        if h1_count != 1:
+            errors.append(f"{relative}: expected exactly one H1, found {h1_count}")
+        if not re.search(r"<main\b", raw_html, flags=re.IGNORECASE):
+            errors.append(f"{relative}: missing semantic <main> landmark")
+        if 'class="skip-link"' not in raw_html:
+            errors.append(f"{relative}: missing skip-to-content link")
+        if not re.search(r"<nav\b[^>]*aria-label=", raw_html, flags=re.IGNORECASE):
+            errors.append(f"{relative}: primary navigation needs an accessible label")
+
+        canonical_match = re.search(r'<link\b[^>]*rel=["\']canonical["\'][^>]*href=["\']([^"\']+)["\']', raw_html, flags=re.IGNORECASE)
+        is_404 = relative_name == "404.html"
+        if is_404:
+            if "noindex" not in raw_html.lower():
+                errors.append("404.html: custom error page must be noindex")
+            if canonical_match:
+                errors.append("404.html: do not canonicalize an error page to a valid URL")
+        else:
+            expected_path = "/" if relative_name == "index.html" else "/" + relative.parent.as_posix().strip("/") + "/"
+            expected_canonical = "https://oalfawzan.sa" + expected_path
+            if not canonical_match:
+                errors.append(f"{relative}: missing canonical URL")
+            elif canonical_match.group(1) != expected_canonical:
+                errors.append(f"{relative}: canonical {canonical_match.group(1)} does not match {expected_canonical}")
+            if "noindex" in raw_html.lower():
+                errors.append(f"{relative}: indexable page contains noindex")
+            for required_meta in ["og:title", "og:description", "og:url", "og:image", "og:type", "twitter:card"]:
+                if required_meta not in raw_html:
+                    errors.append(f"{relative}: missing social metadata: {required_meta}")
+
+        for schema_body in re.findall(r'<script\b[^>]*type=["\']application/ld\+json["\'][^>]*>(.*?)</script>', raw_html, flags=re.IGNORECASE | re.DOTALL):
+            try:
+                import json
+                json.loads(schema_body)
+            except Exception as exc:
+                errors.append(f"{relative}: invalid JSON-LD: {exc}")
 
         if not parser.nav_names:
             errors.append(f"{relative}: missing .nav-name brand label")
@@ -194,8 +232,23 @@ def validate_sitemap() -> list[str]:
 
     for location in locations:
         parsed = urlparse(location)
-        if parsed.netloc != "oalfawzan.sa":
-            errors.append(f"sitemap.xml: unexpected host: {location}")
+        if parsed.scheme != "https" or parsed.netloc != "oalfawzan.sa":
+            errors.append(f"sitemap.xml: unexpected URL: {location}")
+
+    expected_locations = set()
+    for html_path in HTML_FILES:
+        relative = html_path.relative_to(ROOT).as_posix()
+        raw_html = html_path.read_text(encoding="utf-8")
+        if relative == "404.html" or "noindex" in raw_html.lower():
+            continue
+        url_path = "/" if relative == "index.html" else "/" + html_path.parent.relative_to(ROOT).as_posix().strip("/") + "/"
+        expected_locations.add("https://oalfawzan.sa" + url_path)
+
+    actual_locations = set(locations)
+    for missing in sorted(expected_locations - actual_locations):
+        errors.append(f"sitemap.xml: missing indexable page: {missing}")
+    for extra in sorted(actual_locations - expected_locations):
+        errors.append(f"sitemap.xml: contains non-indexable or unknown page: {extra}")
 
     return errors
 
@@ -208,6 +261,10 @@ def validate_performance_assets() -> list[str]:
     }
 
     for relative, html in html_by_path.items():
+        if 'src="/theme-init.js"' in html:
+            errors.append(f"{relative}: do not add a parser-blocking theme-init.js request; use the tiny inline theme bootstrap")
+        if "viewport-fit=cover" not in html:
+            errors.append(f"{relative}: viewport must include viewport-fit=cover for mobile safe areas")
         if "fonts.googleapis.com" in html or "fonts.gstatic.com" in html:
             errors.append(f"{relative}: external web fonts delay first render")
         if "www.googletagmanager.com/gtag/js" in html:
@@ -244,7 +301,12 @@ def validate_performance_assets() -> list[str]:
             errors.append(f"missing performance asset: {required_asset.relative_to(ROOT)}")
 
     social_html = html_by_path.get("social/index.html", "")
+    home_html = html_by_path.get("index.html", "")
     experience_html = html_by_path.get("experience/index.html", "")
+    if 'src="data.js"' in home_html or 'src="/data.js"' in home_html:
+        errors.append("index.html: biography and projects must remain in initial HTML instead of client-side rendering")
+    if '<div class="timeline" id="timeline"></div>' in home_html or '<div id="projects"></div>' in home_html:
+        errors.append("index.html: important biography/project content must not be empty placeholders")
     if "experience-3aa201.css" in experience_html or "experience-home.css" in experience_html:
         errors.append("experience/index.html: legacy styles must not override the shared Home design")
     if "experience-home-match" in experience_html:
