@@ -7,13 +7,13 @@ First classify the target as static HTML, React/Next.js, Vue, Svelte, or another
 For plain HTML use:
 
 1. Copy `assets/oalfawzan.css` and `assets/theme.js` to the target project's local public/assets folder.
-2. Place the theme bootstrap snippet from `assets/demo.html` in the document head before CSS to avoid light-theme flashing.
+2. Place the theme bootstrap snippet from `assets/demo.htm` in the document head before CSS to avoid light-theme flashing.
 3. Add `class="og-app"` to the body, link the stylesheet, and load the script with `defer`.
 4. Use `og-container`, `og-nav`, `og-glass`, `og-card`, `og-btn`, `og-btn--primary`, `og-eyebrow`, `og-hero` and `og-muted` where appropriate.
 5. Supply a **project-owned** optional backdrop with `--og-background-image: url('./your-background.webp')` on `:root`. An image is not bundled intentionally.
 6. Retain original content, anchors, routing and interactive logic. Customize classes/markup only where needed.
 
-The bundled `assets/demo.html` is an isolated visual example, **not** a drop-in replacement for the site's real homepage.
+The bundled `assets/demo.htm` is an isolated visual example, **not** a drop-in replacement for the site's real homepage.
 
 ## Components
 
