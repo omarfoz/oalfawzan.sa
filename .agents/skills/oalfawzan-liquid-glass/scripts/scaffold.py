@@ -41,6 +41,22 @@ def build_site(args: argparse.Namespace) -> Path:
         background_file = Path(args.background).expanduser().resolve()
         if not background_file.is_file() or background_file.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp", ".avif"}:
             raise ValueError("--background must be an existing local image (jpg/png/webp/avif)")
+    ar = args.lang == "ar"
+    labels = ({
+        "about": "نبذة", "work": "الأعمال", "contact": "تواصل",
+        "contact_title": "التواصل", "contact_help": "عندك استفسار؟ تواصل معنا.",
+        "cta": "تواصل مع", "work_title": "أعمال مختارة", "view": "عرض",
+        "skip": "تجاوز إلى المحتوى", "theme": "الوضع الفاتح",
+        "footer": "تم إنشاء الموقع باستخدام تصميم OAlfawzan Liquid Glass.",
+        "eyebrow": "ملف شخصي" if args.kind == "portfolio" else "صفحة تعريفية",
+    } if ar else {
+        "about": "About", "work": "Work", "contact": "Contact",
+        "contact_title": "Contact", "contact_help": "Have a question? Get in touch.",
+        "cta": "Contact", "work_title": "Selected work", "view": "View",
+        "skip": "Skip to content", "theme": "Light mode",
+        "footer": "Built with the OAlfawzan Liquid Glass design system.",
+        "eyebrow": args.kind.title(),
+    })
     items = [parse_item(item) for item in args.item]
     for _title, _desc, url in items:
         if url.startswith("#") and url not in {"#main", "#about", "#work", "#contact"}:
@@ -50,15 +66,15 @@ def build_site(args: argparse.Namespace) -> Path:
     about = args.about.strip() if args.about else ""
     nav = []
     if about:
-        nav.append('<a class="og-btn" href="#about">About</a>')
+        nav.append(f'<a class="og-btn" href="#about">{e(labels["about"])}</a>')
     if items:
-        nav.append('<a class="og-btn" href="#work">Work</a>')
-    nav.append('<a class="og-btn" href="#contact">Contact</a>')
+        nav.append(f'<a class="og-btn" href="#work">{e(labels["work"])}</a>')
+    nav.append(f'<a class="og-btn" href="#contact">{e(labels["contact"])}</a>')
     about_section = ""
     if about:
         about_section = (
             '      <section class="og-section" id="about" aria-labelledby="about-heading">\n'
-            '        <h2 class="og-section-title" id="about-heading">About</h2>\n'
+            f'        <h2 class="og-section-title" id="about-heading">{e(labels["about"])}</h2>\n'
             f'        <div class="og-card"><p class="og-body">{e(about)}</p></div>\n'
             '      </section>'
         )
@@ -70,22 +86,30 @@ def build_site(args: argparse.Namespace) -> Path:
             f'            <p class="og-muted og-body">{e(description)}</p>\n'
             f'            <a class="og-btn" href="{e(url)}"'
             f'{" rel=\"noopener noreferrer\"" if url.startswith(("https://", "http://")) else ""}'
-            f'>View {e(title)}</a>\n'
+            f'>{e(labels["view"])} {e(title)}</a>\n'
             '          </article>'
             for title, description, url in items
         )
         work_section = (
             '      <section class="og-section" id="work" aria-labelledby="work-heading">\n'
-            '        <h2 class="og-section-title" id="work-heading">Selected work</h2>\n'
+            f'        <h2 class="og-section-title" id="work-heading">{e(labels["work_title"])}</h2>\n'
             f'        <div class="og-grid">\n{cards}\n        </div>\n'
             '      </section>'
         )
     mapping = {
+        "LANG": "ar" if ar else "en",
+        "DIR": "rtl" if ar else "ltr",
+        "SKIP_LABEL": e(labels["skip"]),
+        "THEME_LABEL": e(labels["theme"]),
+        "CTA_LABEL": e(labels["cta"]),
+        "CONTACT_LABEL": e(labels["contact_title"]),
+        "CONTACT_HELP": e(labels["contact_help"]),
+        "FOOTER_LINE": e(labels["footer"]),
         "META_DESCRIPTION": e(args.description[:155]),
         "SITE_TITLE": e(f"{args.name} | {args.headline}"),
         "BRAND": e(args.name),
         "NAV_LINKS": "".join(nav),
-        "EYEBROW": e(args.eyebrow or args.kind.title()),
+        "EYEBROW": e(args.eyebrow or labels["eyebrow"]),
         "HEADLINE": e(args.headline),
         "DESCRIPTION": e(args.description),
         "ABOUT_SECTION": about_section,
@@ -123,6 +147,7 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--output", required=True, help="New/empty output directory")
     p.add_argument("--kind", choices=("portfolio", "landing"), default="portfolio")
+    p.add_argument("--lang", choices=("en", "ar"), default="en")
     p.add_argument("--name", required=True)
     p.add_argument("--headline", required=True)
     p.add_argument("--description", required=True)
