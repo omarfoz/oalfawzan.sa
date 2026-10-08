@@ -14,13 +14,27 @@ From a project root with Node.js installed:
 npx skills add https://github.com/omarfoz/oalfawzan.sa/tree/main/.agents/skills/oalfawzan-liquid-glass
 ~~~
 
-The command above is for **after this contribution is merged into main**. During PR review, use the skill folder from this branch or install from a local checkout. The skill is discoverable in `.agents/skills/` in supported agents, including OpenCode. Check your agent's installation instructions if necessary.
+Run the installation in your project terminal (or an agent with shell access), **not as prose inside a regular chat**. The command does not install anything merely because it appears in a Gemini/ChatGPT message. The skill is discoverable in `.agents/skills/` in supported agents, including OpenCode. Check your agent's installation instructions if necessary.
 
 For manual install, copy the `oalfawzan-liquid-glass` directory to `.agents/skills/oalfawzan-liquid-glass/` in your project. OpenCode also supports `.opencode/skills/oalfawzan-liquid-glass/`.
 
 ## Ask your agent
 
 > Apply the oalfawzan-liquid-glass skill to the entire website. Treat the main oalfawzan.sa repository as the only design authority. Preserve all routes, features, copy and SEO. Make dark/light, navigation, typography, forms, cards and charts consistent; check mobile, touch, accessibility and reduced motion.
+
+## Prevent the common wrong result
+
+Do **not** ask an assistant to "make the portfolio a stunning liquid-glass dark theme" and assume it knows this design. That usually produces an unrelated neon/gradient site.
+
+The coding agent must load the actual skill, read the main site's code and **preserve the target site's original content and functionality**. It must not invent purple/cyan heading gradients, animated blobs, cursor glows or new text. It should not force a light-first target into dark mode without explicit direction.
+
+**Recommended prompt after installing in a code-capable environment:**
+
+> First confirm you can read the installed `oalfawzan-liquid-glass/SKILL.md` file and the main repo's `site.css`. Show me the concrete design tokens you found. Then apply the MAIN oalfawzan.sa visual system only to this project's styling. Preserve all original text, branding, CTAs, routes, structure, interactions and any existing theme preference. Do not introduce neon gradients, animated blobs, pointer glows or unrelated new design ideas. Update all pages consistently and validate before/after screenshots in light and dark; if you cannot access the skill or source, stop and explain what is missing.
+
+In a **chat-only tool without local project access**, paste the actual contents of `SKILL.md` (not just the installation command), the relevant source files and the target site's code. A screenshot alone may let the model approximate a style, but cannot guarantee source-code fidelity.
+
+See `references/fidelity-tests.md` for the failed-vs-expected visual example.
 
 ## Contents
 

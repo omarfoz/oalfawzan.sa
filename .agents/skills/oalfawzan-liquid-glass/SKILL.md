@@ -20,6 +20,29 @@ Apply the visual language of the **main website, https://oalfawzan.sa/**. The ca
 
 If any example differs from the main portfolio, **follow the main portfolio**. See `references/design-authority.md`.
 
+## Visual fidelity contract: do NOT invent a new theme
+
+**This is a reference-reproduction skill, not a generative "liquid glass" aesthetic prompt.** The target is the visual identity implemented by **the MAIN oalfawzan.sa website**, not a generic glowing UI associated with those words. Treat any user-provided screenshot of another website as **the site to transform**, not as permission to rewrite its content.
+
+Before any edit:
+1. **Verify the skill was actually loaded**: read this `SKILL.md` file from the project workspace. A phrase such as `npx skills add ...` appearing in a chat message is not proof of an executed installation. If running in a text-only assistant without shell/repository access, tell the user you cannot install or edit the site; instead supply actionable code/instructions, explicitly labeled as unexecuted.
+2. **Read the actual canonical implementation**: fetch main `site.css`, `theme.js` and representative markup from `oalfawzan.sa`, or use the bundled portable tokens if offline. Before coding, explicitly identify at least the source's dark/light palettes, translucent material recipe, radius scale, typography, background treatment and responsive rules. Do not claim to have inspected the site unless you did.
+3. **Take a visual baseline**: establish the target site's current copy, component structure, CTA labels, spacing, content ordering, active color theme, navigation, and all pages. If the user supplied before screenshots, use them to check content/structure preservation.
+4. **Implement faithfully, not creatively**: change styling through a common token/component layer while leaving original language, brand, headings, labels, routes, interaction, links, and content intact. Keep the target's explicit theme choice/default preference unless the user authorizes changing it. The reference site has both dark and light designs; **"use this design" does not mean "force everything to dark."**
+5. **Verify visual outcomes**: compare target screenshots with canonical oalfawzan.sa at a matched viewport and corresponding light/dark theme if visual tooling is available. If not, state exactly which aspects are source-derived and that screenshot parity is unverified.
+
+**Forbidden substitutions unless explicitly demanded by the user or present in the canonical main implementation:**
+- No neon cyan/purple hero gradients, rainbow-colored name text, abstract animated gradient blobs, or rotating light orbs.
+- No cursor-following ambient glows, reactive refraction, parallax spectacles, or unnecessary animation libraries.
+- No full-page dark-only overhaul of a light site just because the word "glass" appeared.
+- No reworded bio, job title, value proposition, CTA copy, or different button order as a side effect of styling.
+- No rewriting the entire app, breaking mobile navigation, replacing site content with a generic portfolio template, or wholesale refactoring of working logic to apply CSS.
+- No borrowed personal photograph from oalfawzan.sa in a public template without separate permission; **the reference's photographic backdrop is central to its look**, so ask for a user-owned background if precise backdrop matching is desired. Explain that without the photo, pixel-level fidelity is impossible.
+
+**Fail-fast rule:** If you cannot load this skill OR inspect either the canonical source or the bundled baseline, **stop rather than guessing**. Never claim you have applied "OAlfawzan Liquid Glass" after merely implementing generic dark glassmorphism.
+
+Read `references/fidelity-tests.md` for a concrete before/after failure case and the release acceptance checklist.
+
 ## When to use
 
 - Build a website with the same design language as oalfawzan.sa.
@@ -35,7 +58,7 @@ Do not use this skill when the user explicitly requests a different design or wi
 2. **Consult the authority.** If GitHub/network access is available, read the latest main site's `site.css`, theme scripts and markup. Pay attention to later cascading light-mode overrides in `site.css` (the first light declaration is not the final effective palette). When offline, use the bundled baseline and explicitly state that live parity could not be verified.
 3. **Preserve the product.** Keep the current framework, routing, functionality, copy, analytics, SEO metadata, external integrations, accessibility and user data flows. Do not rewrite working JavaScript for cosmetic changes. Back up/commit current state before broad edits.
 4. **Centralize the system.** Use a shared semantic-token layer and reusable materials rather than per-page overrides. For a plain HTML/CSS site, start from `assets/oalfawzan.css` and `assets/theme.js`; for React, Vue, Next.js or similar, translate the tokens and components into that project's existing conventions. Avoid introducing a new framework just to apply the design.
-5. **Match the design.** Apply one blue accent, restrained translucent panels with an inner highlight, typography and spacing from the main portfolio, calm controls, consistent navigation, and the photo/gradient backdrop treatment. Allow users to supply their **own** background photo; do not hotlink the owner's personal image.
+5. **Match the design, not a trend.** Never invent animated blobs, neon gradients, cursor glow or additional material engines. Apply one blue accent, restrained translucent panels with an inner highlight, typography and spacing from the main portfolio, calm controls, consistent navigation, and the photo/gradient backdrop treatment. Allow users to supply their **own** background photo; do not hotlink the owner's personal image.
 6. **Retain light/dark.** Dark is the default unless the target already has a preference policy. Honor an explicitly selected theme, prevent first-paint flashing, use accessible toggle controls, and ensure all content is legible in both modes.
 7. **Adapt specialized components.** Tables, visualizations and diagrams should use the same shell, border, type and elevation. Keep semantic chart colors only when they encode meaning, and ensure the chart remains readable in both themes. Do not turn every chart into a heavily blurred glass panel.
 8. **Check every route.** Validate wide desktop, tablet and mobile widths, touch, keyboard, focus, disabled/error/empty states, reduced-motion preferences, browser fallback for backdrop-filter, RTL if the site uses Arabic, and readable contrast.
@@ -56,7 +79,10 @@ Use the full token and component detail in `references/design-authority.md` and 
 
 ## Completion checklist
 
+- [ ] Skill file was actually loaded by the agent; installation was not merely pasted into chat.
 - [ ] Canonical main site was consulted, or offline limitation was disclosed.
+- [ ] Original page copy, CTA text, content hierarchy, routes and preferred theme remain intact.
+- [ ] No invented gradients, animated background blobs, cursor glows or other generic glassmorphism additions.
 - [ ] Shared tokens replace competing page palettes and inconsistent radius/blur rules.
 - [ ] Home and **every** relevant route use the same design language.
 - [ ] Dark and light are intentionally designed, not auto-inverted.

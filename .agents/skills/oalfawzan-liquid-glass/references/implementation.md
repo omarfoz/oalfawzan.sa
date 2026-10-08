@@ -47,13 +47,14 @@ For other sites that already have established theme preference keys, keep their 
 
 ## Apply-to-existing-site procedure
 
-1. Inventory every CSS entry point, route and interactive state.
+1. Confirm the skill was actually loaded from the workspace (the install command copied into a chat is not installation). Inventory every CSS entry point, route, current labels and interactive state.
 2. Map target's colors to `--site-*` tokens; identify and eliminate contradictory definitions.
 3. Create/attach one shared material class; adapt headers, cards, buttons and forms.
 4. Keep content and data display intact; do not delete domain-specific color semantics.
 5. Test every page at 390, 768 and 1440px widths, or the nearest practical sizes.
 6. Test both themes, motion preferences, keyboard and touch.
-7. Report what was and was not visually compared with the upstream main website.
+7. Check for accidental neon/cyan/purple gradients, gradient blobs, pointer-follow glows, altered copy, changed CTA labels, altered button ordering or forced dark mode. These indicate drift from the skill.
+8. Report what was and was not visually compared with the upstream main website.
 
 ## Example user prompts
 
