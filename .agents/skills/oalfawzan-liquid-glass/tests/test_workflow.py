@@ -19,7 +19,7 @@ class WorkflowTests(unittest.TestCase):
         self.root = Path(self.temp.name)
 
     def args(self, **extra):
-        d = dict(output=str(self.root / "site"), kind="portfolio", name="Example Studio", headline="Real work, clearly presented", description="Small friendly web studio", email="hello@example.org", eyebrow="Portfolio", about="We make useful products", item=["Website|An independent project|https://example.org"] , background=None)
+        d = dict(output=str(self.root / "site"), kind="portfolio", name="Example Studio", headline="Real work, clearly presented", lang="en", description="Small friendly web studio", email="hello@example.org", eyebrow="Portfolio", about="We make useful products", item=["Website|An independent project|https://example.org"] , background=None)
         d.update(extra)
         return argparse.Namespace(**d)
 
@@ -119,6 +119,14 @@ class WorkflowTests(unittest.TestCase):
         f = out / 'index.html'
         f.write_text(f.read_text().replace('localStorage.getItem("oalfawzan-theme")', 'localStorage.getItem("other-theme")'))
         self.assertTrue(any('bootstrap' in err.lower() for err in validate(out)))
+
+    def test_arabic_rtl_localized_site(self):
+        out = build_site(self.args(lang="ar", name="استوديو كمر", headline="تصميم يلائم رؤيتك", description="مساحات عملية بتفاصيل أنيقة", item=[], about="نعمل على مشاريع مميزة"))
+        html = (out / "index.html").read_text()
+        self.assertIn('lang="ar" dir="rtl"', html)
+        self.assertIn("تواصل معنا", html)
+        self.assertIn("نبذة", html)
+        self.assertEqual(validate(out), [])
 
     def test_cli_and_validation_smoke(self):
         output = self.root / 'via-cli'
