@@ -233,3 +233,27 @@ html[data-theme="light"] .og-btn {
   .og-glass, .og-card, .og-nav { background: #171d27; }
   html[data-theme="light"] :is(.og-glass,.og-card,.og-nav) { background: rgba(248,251,255,.96); }
 }
+
+/* v2 layout contract: mirror the main site's brand | navigation | theme hierarchy. */
+.og-nav {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto auto;
+  gap: 8px 10px;
+  align-items: center;
+}
+.og-nav-links { grid-column: 2; justify-content: flex-end; }
+.og-theme-toggle { grid-column: 3; white-space: nowrap; }
+.og-card h3 { margin: 0 0 10px; font-size: 1.05rem; font-weight: 600; line-height: 1.35; }
+.og-card p { margin-block: 0 16px; }
+.og-card > .og-btn { margin-top: 6px; }
+.og-hero > .og-btn { margin-top: 12px; }
+.og-btn:focus-visible, .og-input:focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .og-nav { grid-template-columns: minmax(0,1fr) auto; }
+  .og-nav .og-brand { grid-column: 1; grid-row: 1; }
+  .og-nav .og-theme-toggle { grid-column: 2; grid-row: 1; }
+  .og-nav .og-nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; }
+}
