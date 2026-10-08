@@ -32,6 +32,8 @@ cd ./new-site && python -m http.server 8000
 
 The commands above assume your shell is in the **installed skill folder**. When inside a different project folder, use the actual path to the installed skill's scripts. In OpenCode, the agent should resolve that path first, then run the commands. Omit `--about`/`--item` if you don't have real content. Optional `--background ./your-owned-photo.webp` copies a user-supplied photo into the project.
 
+Use `--lang ar` to create an Arabic RTL site with Arabic UI labels; the content parameters should also be supplied in Arabic.
+
 The output is a ready-to-run site containing `index.html`, `assets/oalfawzan.css` and `assets/theme.js`. The builder does not overwrite a populated folder.
 
 ## Quick OpenCode prompt
