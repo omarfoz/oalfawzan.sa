@@ -59,3 +59,21 @@ jobs:
           python .agents/skills/oalfawzan-liquid-glass/scripts/browser_smoke.py \
             --site "$RUNNER_TEMP/oalfawzan-skill-site-ar" \
             --screenshots "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar"
+      - name: Collect screenshot evidence
+        if: always()
+        run: |
+          mkdir -p skill-v2-screenshots
+          if [ -d "$RUNNER_TEMP/oalfawzan-skill-screenshots" ]; then
+            cp -a "$RUNNER_TEMP/oalfawzan-skill-screenshots" skill-v2-screenshots/en
+          fi
+          if [ -d "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar" ]; then
+            cp -a "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar" skill-v2-screenshots/ar
+          fi
+      - name: Upload screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: liquid-glass-v2-browser-screenshots
+          path: skill-v2-screenshots/
+          if-no-files-found: warn
+          retention-days: 7
