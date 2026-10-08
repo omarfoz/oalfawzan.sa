@@ -1,62 +1,69 @@
-# OAlfawzan Liquid Glass Skill
+# OAlfawzan Liquid Glass — Agent Skill v2
 
-A reusable, agent-readable design skill, distilled from [oalfawzan.sa](https://oalfawzan.sa).
+A reusable, small-model-friendly design implementation skill based **only on the main [oalfawzan.sa](https://oalfawzan.sa)**. The [tools](https://tools.oalfawzan.sa) and [AI](https://ai.oalfawzan.sa) sites are examples, not design authorities.
 
-**Main site = the sole source of truth.** The [main portfolio code](https://github.com/omarfoz/oalfawzan.sa) defines colors, material, typography, visual hierarchy and dark/light behavior. The [tools site](https://tools.oalfawzan.sa) and [AI site](https://ai.oalfawzan.sa) are examples, **not competing design authorities**.
+The v1 experiment showed that an agent could copy CSS but still put navigation *below* the hero, ignore components and add unwired project buttons. v2 supplies a deterministic scaffold and a real validation loop.
 
-This package follows the Agent Skills `SKILL.md` convention, so AI coding agents can use it to build or reskin sites without cloning the owner's personal content.
+## Install in OpenCode
 
-## Install
+From your project root (the installation command must execute in a terminal):
 
-From a project root with Node.js installed:
+```sh
+npx skills add omarfoz/oalfawzan.sa --skill oalfawzan-liquid-glass -a opencode
+```
 
-~~~bash
-npx skills add https://github.com/omarfoz/oalfawzan.sa/tree/main/.agents/skills/oalfawzan-liquid-glass
-~~~
+Open a new OpenCode session and explicitly tell it to read the installed `oalfawzan-liquid-glass/SKILL.md`. A command pasted as chat text is not installation.
 
-Run the installation in your project terminal (or an agent with shell access), **not as prose inside a regular chat**. The command does not install anything merely because it appears in a Gemini/ChatGPT message. The skill is discoverable in `.agents/skills/` in supported agents, including OpenCode. Check your agent's installation instructions if necessary.
+## Create a fresh static website
 
-For manual install, copy the `oalfawzan-liquid-glass` directory to `.agents/skills/oalfawzan-liquid-glass/` in your project. OpenCode also supports `.opencode/skills/oalfawzan-liquid-glass/`.
+Requires Python 3.10+ to generate and validate sites. The generator requires factual site content; do not invent a fake email or projects:
 
-## Ask your agent
+```sh
+python scripts/scaffold.py --output ./new-site \
+  --name 'Example Studio' \
+  --headline 'Thoughtful digital experiences.' \
+  --description 'Independent design and development for real people.' \
+  --email 'contact@example.org' \
+  --about 'We work with thoughtful clients.' \
+  --item 'Example project|A practical web tool|https://example.org'
+python scripts/validate.py --site ./new-site
+cd ./new-site && python -m http.server 8000
+```
 
-> Apply the oalfawzan-liquid-glass skill to the entire website. Treat the main oalfawzan.sa repository as the only design authority. Preserve all routes, features, copy and SEO. Make dark/light, navigation, typography, forms, cards and charts consistent; check mobile, touch, accessibility and reduced motion.
+The commands above assume your shell is in the **installed skill folder**. When inside a different project folder, use the actual path to the installed skill's scripts. In OpenCode, the agent should resolve that path first, then run the commands. Omit `--about`/`--item` if you don't have real content. Optional `--background ./your-owned-photo.webp` copies a user-supplied photo into the project.
 
-## Prevent the common wrong result
+Use `--lang ar` to create an Arabic RTL site with Arabic UI labels; the content parameters should also be supplied in Arabic.
 
-Do **not** ask an assistant to "make the portfolio a stunning liquid-glass dark theme" and assume it knows this design. That usually produces an unrelated neon/gradient site.
+The output is a ready-to-run site containing `index.html`, `assets/oalfawzan.css` and `assets/theme.js`. The builder does not overwrite a populated folder.
 
-The coding agent must load the actual skill, read the main site's code and **preserve the target site's original content and functionality**. It must not invent purple/cyan heading gradients, animated blobs, cursor glows or new text. It should not force a light-first target into dark mode without explicit direction.
+## Quick OpenCode prompt
 
-**Recommended prompt after installing in a code-capable environment:**
+> Load `oalfawzan-liquid-glass/SKILL.md`. Build a NEW site using the skill's `scripts/scaffold.py`, not manual HTML. My real site details are: [name, headline, description, email, projects]. Main oalfawzan.sa is the single design authority. Run `scripts/validate.py`; if available run `scripts/browser_smoke.py` in both themes and at mobile/tablet/desktop sizes. Fix validation failures and rerun, preserving the original visual identity. Report skipped tests honestly.
 
-> First confirm you can read the installed `oalfawzan-liquid-glass/SKILL.md` file and the main repo's `site.css`. Show me the concrete design tokens you found. Then apply the MAIN oalfawzan.sa visual system only to this project's styling. Preserve all original text, branding, CTAs, routes, structure, interactions and any existing theme preference. Do not introduce neon gradients, animated blobs, pointer glows or unrelated new design ideas. Update all pages consistently and validate before/after screenshots in light and dark; if you cannot access the skill or source, stop and explain what is missing.
+## Validate in a loop
 
-In a **chat-only tool without local project access**, paste the actual contents of `SKILL.md` (not just the installation command), the relevant source files and the target site's code. A screenshot alone may let the model approximate a style, but cannot guarantee source-code fidelity.
+```sh
+python scripts/validate.py --site ./new-site
+python scripts/browser_smoke.py --site ./new-site --screenshots ./screenshots
+```
 
-See `references/fidelity-tests.md` for the failed-vs-expected visual example.
+`validate.py` uses Python standard library. `browser_smoke.py` optionally uses Playwright (`pip install playwright`, plus a working Chromium installation; specify `--chromium /path/to/chromium` when needed). Browser screenshots are diagnostic and are **not** proof of pixel parity with the source site.
 
-## Contents
+## Files
 
-- `SKILL.md`: agent instructions, source-of-truth hierarchy, workflow and checklist.
-- `references/design-authority.md`: exact canonical tokens, source links and final light-mode cascade.
-- `references/implementation.md`: integration and component guidance.
-- `assets/oalfawzan.css`: portable reference implementation using namespaced `og-` classes.
-- `assets/theme.js`: dependency-free light/dark toggle implementation.
-- `assets/demo.htm`: local standalone visual starter.
+- `SKILL.md` short deterministic workflow, readable by smaller models.
+- `templates/site.htm` entire canonical-structure HTML template with substitution tokens.
+- `components/` reusable navigation, hero and card snippets.
+- `assets/` local portable CSS and JS, no personal photograph or identity.
+- `scripts/scaffold.py` safe new-project creation, no overwrites, no fake content.
+- `scripts/validate.py` structural/component/path/theme checks.
+- `scripts/browser_smoke.py` optional actual browser smoke and screenshots.
+- `references/small-model.md` step-by-step execution guide.
+- `references/design-authority.md` canonical source tokens and cascading light mode details.
+- `references/implementation.md` existing-site integration.
+- `references/acceptance.md` and `references/fidelity-tests.md` failure conditions.
+- `tests/test_workflow.py` regression tests for scaffold and validator.
 
-## Preview
+## License
 
-Open `assets/demo.htm` through a local HTTP server (e.g., `python3 -m http.server`) and navigate to the file. It references only files bundled in the same directory.
-
-The portable version uses a neutral background by default. For the photo-backed effect, provide your **own** local image:
-
-~~~css
-:root { --og-background-image: url("./my-background.webp"); }
-~~~
-
-## License and credit
-
-MIT for this skill and bundled portable implementation. Copyright (c) 2026 Omar Alfawzan.
-
-The original website remains the definitive design reference and may include personal content and images **not** licensed by this skill. Reusing the style does not grant rights to the owner's identity, content, photographs, logos or trademarks.
+MIT for the skill's code and portable assets. The license does **not** grant rights to the source owner's personal images, identity, trademark or published content. Photo-backed fidelity requires a project-owned photo; without it, the portable baseline is an approximation.

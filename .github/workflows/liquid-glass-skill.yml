@@ -1,0 +1,79 @@
+name: OAlfawzan Liquid Glass Skill v2
+
+on:
+  pull_request:
+    paths:
+      - '.agents/skills/oalfawzan-liquid-glass/**'
+      - '.github/workflows/liquid-glass-skill.yml'
+  push:
+    paths:
+      - '.agents/skills/oalfawzan-liquid-glass/**'
+      - '.github/workflows/liquid-glass-skill.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  skill-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Python regression tests
+        working-directory: .agents/skills/oalfawzan-liquid-glass
+        run: python -m unittest discover -s tests -v
+      - name: Compile and scaffold a working site
+        run: |
+          SKILL=.agents/skills/oalfawzan-liquid-glass
+          python -m compileall -q "$SKILL/scripts" "$SKILL/tests"
+          python "$SKILL/scripts/scaffold.py" \
+            --output "$RUNNER_TEMP/oalfawzan-skill-site" \
+            --name 'Test Studio' \
+            --headline 'Building useful experiences.' \
+            --description 'A sample test page generated with the skill.' \
+            --email 'test@example.org' \
+            --about 'A simple example for automated validation.' \
+            --item 'Example|A functional external project|https://example.org'
+          python "$SKILL/scripts/validate.py" --site "$RUNNER_TEMP/oalfawzan-skill-site"
+          python "$SKILL/scripts/scaffold.py" \
+            --output "$RUNNER_TEMP/oalfawzan-skill-site-ar" \
+            --lang ar \
+            --name 'استوديو الاختبار' \
+            --headline 'واجهات عملية وأنيقة' \
+            --description 'صفحة عربية لاختبار الاتجاه والخطوط' \
+            --email 'test@example.org' \
+            --about 'نعمل على مواقع واضحة' \
+            --item 'مشروع|عرض لأحد المشاريع|https://example.org'
+          python "$SKILL/scripts/validate.py" --site "$RUNNER_TEMP/oalfawzan-skill-site-ar"
+      - name: Browser dependency
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Twelve real-browser smoke checks (English and Arabic)
+        run: |
+          python .agents/skills/oalfawzan-liquid-glass/scripts/browser_smoke.py \
+            --site "$RUNNER_TEMP/oalfawzan-skill-site" \
+            --screenshots "$RUNNER_TEMP/oalfawzan-skill-screenshots"
+          python .agents/skills/oalfawzan-liquid-glass/scripts/browser_smoke.py \
+            --site "$RUNNER_TEMP/oalfawzan-skill-site-ar" \
+            --screenshots "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar"
+      - name: Collect screenshot evidence
+        if: always()
+        run: |
+          mkdir -p skill-v2-screenshots
+          if [ -d "$RUNNER_TEMP/oalfawzan-skill-screenshots" ]; then
+            cp -a "$RUNNER_TEMP/oalfawzan-skill-screenshots" skill-v2-screenshots/en
+          fi
+          if [ -d "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar" ]; then
+            cp -a "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar" skill-v2-screenshots/ar
+          fi
+      - name: Upload screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: liquid-glass-v2-browser-screenshots
+          path: skill-v2-screenshots/
+          if-no-files-found: warn
+          retention-days: 7

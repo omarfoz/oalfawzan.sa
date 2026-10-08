@@ -14,11 +14,12 @@
     const mode = root.dataset.theme === "light" ? "light" : "dark";
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = mode === "light" ? "#e7eff8" : "#010204";
+    const ar = root.lang.toLowerCase().startsWith("ar");
     document.querySelectorAll("[data-og-theme-toggle]").forEach(button => {
-      button.setAttribute("aria-label", mode === "light" ? "Switch to dark theme" : "Switch to light theme");
+      button.setAttribute("aria-label", mode === "light" ? (ar ? "التبديل إلى الوضع الداكن" : "Switch to dark theme") : (ar ? "التبديل إلى الوضع الفاتح" : "Switch to light theme"));
       button.setAttribute("aria-pressed", String(mode === "light"));
       const label = button.querySelector("[data-og-theme-label]");
-      if (label) label.textContent = mode === "light" ? "Dark mode" : "Light mode";
+      if (label) label.textContent = mode === "light" ? (ar ? "الوضع الداكن" : "Dark mode") : (ar ? "الوضع الفاتح" : "Light mode");
     });
   }
   root.dataset.theme = readTheme();

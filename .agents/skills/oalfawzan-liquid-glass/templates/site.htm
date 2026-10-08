@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="{{LANG}}" dir="{{DIR}}" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#010204">
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <title>{{SITE_TITLE}}</title>
+  <script>
+    (() => {
+      let theme = "dark";
+      try { if (localStorage.getItem("oalfawzan-theme") === "light") theme = "light"; } catch (_) {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="./assets/oalfawzan.css">
+  <script defer src="./assets/theme.js"></script>
+</head>
+<body class="og-app">
+  <a class="og-skip" href="#main">{{SKIP_LABEL}}</a>
+  <div class="og-container">
+    <header>
+      <nav class="og-nav" aria-label="Primary navigation">
+        <a class="og-brand" href="#main">{{BRAND}}</a>
+        <div class="og-nav-links">{{NAV_LINKS}}</div>
+        <button class="og-btn og-theme-toggle" type="button" data-og-theme-toggle aria-pressed="false" aria-label="Switch to light theme"><span data-og-theme-label>{{THEME_LABEL}}</span></button>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="og-hero" aria-labelledby="hero-heading">
+        <p class="og-eyebrow">{{EYEBROW}}</p>
+        <h1 id="hero-heading">{{HEADLINE}}</h1>
+        <p class="og-muted og-body">{{DESCRIPTION}}</p>
+        <a class="og-btn og-btn--primary" href="#contact">{{CTA_LABEL}} {{BRAND}}</a>
+      </section>
+{{ABOUT_SECTION}}
+{{WORK_SECTION}}
+      <section class="og-section" id="contact" aria-labelledby="contact-heading">
+        <h2 class="og-section-title" id="contact-heading">{{CONTACT_LABEL}}</h2>
+        <p class="og-muted og-body">{{CONTACT_HELP}}</p>
+        <a class="og-btn og-btn--primary" href="mailto:{{EMAIL_ATTR}}">{{EMAIL_TEXT}}</a>
+      </section>
+    </main>
+    <footer class="og-footer">{{BRAND}}. {{FOOTER_LINE}}</footer>
+  </div>
+</body>
+</html>
