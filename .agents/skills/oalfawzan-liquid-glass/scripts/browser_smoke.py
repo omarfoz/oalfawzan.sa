@@ -35,6 +35,10 @@ def exercise(site: Path, screenshots: Path, browser_exe: str | None = None) -> l
                         page.evaluate("theme => localStorage.setItem('oalfawzan-theme',theme)", theme)
                         page.reload(wait_until="load")
                         actual = page.locator("html").get_attribute("data-theme")
+                        ar = (page.locator("html").get_attribute("lang") or "en").lower().startswith("ar")
+                        expected_dir = "rtl" if ar else "ltr"
+                        if page.locator("html").get_attribute("dir") != expected_dir:
+                            errors.append(f"{width}/{theme}: wrong text direction")
                         if actual != theme:
                             errors.append(f"{width}/{theme}: loaded theme {actual}")
                         nav_y = page.locator(".og-nav").bounding_box()["y"]
@@ -56,7 +60,8 @@ def exercise(site: Path, screenshots: Path, browser_exe: str | None = None) -> l
                         if js_errors:
                             errors.append(f"{width}/{theme}: script errors {js_errors}")
                         if width == 390:
-                            page.get_by_role("button", name=("Switch to light theme" if theme == "dark" else "Switch to dark theme")).click()
+                            label = (("التبديل إلى الوضع الفاتح" if theme == "dark" else "التبديل إلى الوضع الداكن") if ar else ("Switch to light theme" if theme == "dark" else "Switch to dark theme"))
+                            page.get_by_role("button", name=label).click()
                             switched = page.locator("html").get_attribute("data-theme")
                             expected = "light" if theme == "dark" else "dark"
                             if switched != expected:
