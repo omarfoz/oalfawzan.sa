@@ -29,11 +29,11 @@ For manual install, copy the `oalfawzan-liquid-glass` directory to `.agents/skil
 - `references/implementation.md`: integration and component guidance.
 - `assets/oalfawzan.css`: portable reference implementation using namespaced `og-` classes.
 - `assets/theme.js`: dependency-free light/dark toggle implementation.
-- `assets/demo.html`: local standalone visual starter.
+- `assets/demo.htm`: local standalone visual starter.
 
 ## Preview
 
-Open `assets/demo.html` through a local HTTP server (e.g., `python3 -m http.server`) and navigate to the file. It references only files bundled in the same directory.
+Open `assets/demo.htm` through a local HTTP server (e.g., `python3 -m http.server`) and navigate to the file. It references only files bundled in the same directory.
 
 The portable version uses a neutral background by default. For the photo-backed effect, provide your **own** local image:
 
