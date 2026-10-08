@@ -21,7 +21,7 @@ metadata:
 
 ## NEW website: mandatory path
 
-1. Collect actual name, headline, description and email; optional about, projects and owned backdrop. Ask for missing essential inputs.
+1. Collect actual name, headline, description, email and language; optional about, projects and owned backdrop. Use --lang ar for Arabic RTL sites. Ask for missing essential inputs.
 2. **RUN `scripts/scaffold.py`** (details in `references/small-model.md`). It creates the complete website with the correct `nav → hero → content → footer` structure and copies CSS/theme JS. Do NOT improvise initial HTML when the scaffold tool is available.
 3. Customize copy/sections carefully and add only functionality the user requested.
 4. **RUN `scripts/validate.py --site <output>`**. Fix and rerun until PASS. If browser tooling is available, also run `scripts/browser_smoke.py` and visually inspect screenshots.
