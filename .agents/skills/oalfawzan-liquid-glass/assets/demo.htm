@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#010204">
+  <title>OAlfawzan Liquid Glass – portable demo</title>
+  <script>
+    (() => {
+      let theme = "dark";
+      try { if (localStorage.getItem("oalfawzan-theme") === "light") theme = "light"; } catch (_) {}
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="stylesheet" href="./oalfawzan.css">
+  <script src="./theme.js" defer></script>
+</head>
+<body class="og-app">
+  <a class="og-skip" href="#main">Skip to content</a>
+  <div class="og-container">
+    <nav class="og-nav" aria-label="Main navigation">
+      <a class="og-brand" href="#main">Your Brand</a>
+      <div class="og-nav-links">
+        <a class="og-btn" href="#overview">Overview</a>
+        <a class="og-btn" href="#example">Examples</a>
+        <button class="og-btn" type="button" data-og-theme-toggle aria-label="Switch to light theme" aria-pressed="false">
+          <span data-og-theme-label>Light mode</span>
+        </button>
+      </div>
+    </nav>
+    <main id="main">
+      <section class="og-hero">
+        <span class="og-eyebrow">Simple. Clear. Consistent.</span>
+        <h1>Design that feels <em>quietly polished.</em></h1>
+        <p class="og-muted">An independent, customizable Liquid Glass design based on the main oalfawzan.sa portfolio. Replace this copy and add your own background photograph.</p>
+        <a class="og-btn og-btn--primary" href="#overview">Explore the design</a>
+      </section>
+      <section class="og-section" id="overview">
+        <h2 class="og-section-title">Reusable building blocks</h2>
+        <div class="og-grid">
+          <article class="og-card">
+            <span class="og-eyebrow">01 / Surface</span>
+            <h3>Glass panel</h3>
+            <p class="og-muted og-body">Subtle light, soft blur and a delicate border keep the content first.</p>
+          </article>
+          <article class="og-card">
+            <span class="og-eyebrow">02 / Theme</span>
+            <h3>Light and dark</h3>
+            <p class="og-muted og-body">The milky light treatment is intentionally distinct from the dark treatment.</p>
+          </article>
+        </div>
+      </section>
+      <section class="og-section" id="example">
+        <div class="og-card">
+          <span class="og-eyebrow">03 / Interaction</span>
+          <h2 class="og-section-title">Simple controls</h2>
+          <label class="og-field" for="demo-email">Example input
+            <input class="og-input" type="email" id="demo-email" placeholder="name@example.com">
+          </label>
+          <p class="og-muted og-body">This example is visual only. Wire controls to your application's own behavior.</p>
+          <button class="og-btn og-btn--primary" type="button" disabled>Example action (disabled)</button>
+        </div>
+      </section>
+    </main>
+    <footer class="og-footer">Design concept by Omar Alfawzan. Demo content is intentionally generic.</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/*
+  OAlfawzan Liquid Glass portable baseline.
+  Design authority: https://github.com/omarfoz/oalfawzan.sa/blob/main/site.css
+  This is intentionally portable, not a verbatim copy of site.css.
+  It does not bundle or hotlink the author's background photo.
+*/
+:root {
+  color-scheme: dark;
+  --site-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --site-bg: #010204;
+  --site-accent: #007aff;
+  --site-text: #fff;
+  --site-text-muted: rgba(255,255,255,.60);
+  --site-text-faint: rgba(255,255,255,.44);
+  --site-glass-fill: rgba(255,255,255,.032);
+  --site-glass-fill-strong: rgba(255,255,255,.050);
+  --site-glass-border: rgba(255,255,255,.13);
+  --site-glass-highlight: rgba(255,255,255,.20);
+  --site-glass-shadow: rgba(0,0,0,.14);
+  --site-glass-blur: 20px;
+  --site-glass-saturation: 160%;
+  --site-width: 900px;
+  --site-page-pad: 16px;
+  --site-radius-card: 24px;
+  --site-radius-nav: 28px;
+  --site-radius-control: 18px;
+  --site-space-1: 4px;
+  --site-space-2: 8px;
+  --site-space-3: 12px;
+  --site-space-4: 16px;
+  --site-space-5: 24px;
+  --site-space-6: 32px;
+  --site-space-7: 48px;
+  --site-space-8: 64px;
+  --site-type-hero: clamp(2.55rem, 6vw, 3.35rem);
+  --site-type-page: clamp(2.20rem, 5vw, 2.85rem);
+  --site-type-body: .96rem;
+  --site-type-label: .72rem;
+  --og-background-image: none;
+}
+html[data-theme="light"] {
+  color-scheme: light;
+  --site-bg: #e7eff8;
+  --site-accent: #0062cc;
+  --site-text: #0f172a;
+  --site-text-muted: #334155;
+  --site-text-faint: #415166;
+  --site-glass-fill: rgba(255,255,255,.70);
+  --site-glass-fill-strong: rgba(255,255,255,.84);
+  --site-glass-border: rgba(71,85,105,.16);
+  --site-glass-highlight: rgba(255,255,255,.96);
+  --site-glass-shadow: rgba(38,55,78,.06);
+  --site-glass-blur: 22px;
+  --site-glass-saturation: 135%;
+}
+.og-app, .og-app * { box-sizing: border-box; }
+html { background: var(--site-bg); }
+body.og-app {
+  min-height: 100dvh;
+  margin: 0;
+  color: var(--site-text);
+  background-color: var(--site-bg);
+  background-image:
+    linear-gradient(rgba(13,22,45,.84),rgba(1,2,4,.94)),
+    var(--og-background-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font: 400 16px/1.6 var(--site-font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  isolation: isolate;
+}
+html[data-theme="light"] body.og-app {
+  background: var(--site-bg);
+}
+html[data-theme="light"] body.og-app::before {
+  content: "";
+  position: fixed;
+  inset: -34px;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(231,239,248,.82),rgba(231,239,248,.86)),
+    var(--og-background-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(22px) saturate(.72) brightness(1.06);
+  transform: scale(1.08);
+  transform-origin: center;
+}
+.og-app button, .og-app input, .og-app textarea, .og-app select {
+  font: inherit;
+}
+.og-app a { color: inherit; }
+.og-container {
+  width: min(var(--site-width),100%);
+  margin-inline: auto;
+  padding-inline: max(var(--site-page-pad), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
+}
+.og-glass, .og-card, .og-nav {
+  border: 1px solid var(--site-glass-border);
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.004) 58%),
+    var(--site-glass-fill);
+  box-shadow:
+    inset 0 1px 0 var(--site-glass-highlight),
+    0 8px 26px var(--site-glass-shadow);
+  -webkit-backdrop-filter: blur(var(--site-glass-blur)) saturate(var(--site-glass-saturation));
+  backdrop-filter: blur(var(--site-glass-blur)) saturate(var(--site-glass-saturation));
+}
+html[data-theme="light"] :is(.og-glass,.og-card,.og-nav) {
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.78),rgba(255,255,255,.24) 62%),
+    var(--site-glass-fill);
+  box-shadow: inset 0 1px 0 var(--site-glass-highlight), 0 4px 14px var(--site-glass-shadow);
+}
+.og-card, .og-glass { border-radius: var(--site-radius-card); }
+.og-card { padding: var(--site-space-5); }
+.og-nav {
+  margin-block: 16px 38px;
+  padding: 10px 14px;
+  border-radius: var(--site-radius-nav);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+}
+.og-brand { text-decoration: none; font-size: 1.02rem; font-weight: 600; letter-spacing: -.02em; }
+.og-nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; }
+.og-hero { padding-block: 12px 46px; }
+.og-hero h1 {
+  max-width: 760px;
+  margin: 0 0 var(--site-space-4);
+  font-size: var(--site-type-hero);
+  line-height: 1.06;
+  font-weight: 700;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.og-heading { font-size: var(--site-type-page); line-height: 1.08; font-weight: 700; letter-spacing: -.035em; }
+.og-hero h1 em, .og-accent { color: var(--site-accent); font-style: normal; }
+.og-muted { color: var(--site-text-muted); }
+.og-hero p, .og-body { max-width: 65ch; font-size: var(--site-type-body); line-height: 1.65; }
+.og-eyebrow {
+  display: inline-block;
+  margin: 0 0 16px;
+  color: var(--site-text-muted);
+  font-size: var(--site-type-label);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.og-section { margin-block: 48px; }
+.og-section-title { font-size: 1.35rem; font-weight: 600; letter-spacing: -.02em; margin: 0 0 20px; }
+.og-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,250px),1fr)); gap: 16px; }
+.og-btn {
+  min-height: 44px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--site-glass-border);
+  border-radius: var(--site-radius-control);
+  background: rgba(255,255,255,.035);
+  color: var(--site-text);
+  text-decoration: none;
+  font-size: .82rem;
+  line-height: 1.1;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(12px) saturate(145%);
+  backdrop-filter: blur(12px) saturate(145%);
+  transition: background-color .16s ease, border-color .16s ease;
+}
+html[data-theme="light"] .og-btn {
+  background: rgba(255,255,255,.44);
+  border-color: rgba(255,255,255,.78);
+}
+.og-btn--primary, html[data-theme="light"] .og-btn--primary {
+  background: var(--site-accent);
+  border-color: var(--site-accent);
+  color: #fff;
+}
+.og-btn:hover { background: var(--site-glass-fill-strong); }
+.og-btn--primary:hover { background: var(--site-accent); filter: brightness(1.08); }
+.og-btn:disabled { cursor: not-allowed; opacity: .55; }
+.og-field { display: grid; gap: 7px; font-size: .84rem; }
+.og-input {
+  min-height: 44px;
+  width: 100%;
+  border-radius: var(--site-radius-control);
+  padding: 10px 14px;
+  border: 1px solid var(--site-glass-border);
+  background: var(--site-glass-fill-strong);
+  color: var(--site-text);
+}
+.og-input::placeholder { color: var(--site-text-muted); }
+:is(.og-app a,.og-app button,.og-app input,.og-app select,.og-app textarea):focus-visible {
+  outline: 2px solid var(--site-accent);
+  outline-offset: 3px;
+}
+.og-skip {
+  position: fixed;
+  z-index: 200;
+  top: 10px;
+  inset-inline-start: 10px;
+  transform: translateY(-160%);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--site-accent);
+  color: #fff !important;
+  text-decoration: none;
+}
+.og-skip:focus { transform: translateY(0); }
+.og-footer { padding-block: 32px; border-top: 1px solid var(--site-glass-border); color: var(--site-text-muted); font-size: .84rem; }
+@media (max-width:700px), (pointer:coarse) {
+  :root { --site-page-pad: 14px; --site-glass-blur: 14px; --site-glass-saturation: 145%; --site-type-hero: 2.48rem; }
+  body.og-app { background-attachment: scroll; }
+  .og-nav { margin-block: 12px 34px; padding: 10px 12px; border-radius: 26px; }
+  .og-nav-links { width: 100%; }
+  .og-hero { padding-block: 4px 38px; }
+  .og-section { margin-block: 40px; }
+  .og-glass, .og-card, .og-nav { -webkit-backdrop-filter: blur(14px) saturate(145%); backdrop-filter: blur(14px) saturate(145%); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .og-app *, .og-app *::before, .og-app *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+  .og-glass, .og-card, .og-nav { background: #171d27; }
+  html[data-theme="light"] :is(.og-glass,.og-card,.og-nav) { background: rgba(248,251,255,.96); }
+}
