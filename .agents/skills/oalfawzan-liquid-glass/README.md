@@ -16,7 +16,7 @@ Open a new OpenCode session and explicitly tell it to read the installed `oalfaw
 
 ## Create a fresh static website
 
-The skill's generator requires factual site content; do not invent a fake email or projects:
+Requires Python 3.10+ to generate and validate sites. The generator requires factual site content; do not invent a fake email or projects:
 
 ```sh
 python scripts/scaffold.py --output ./new-site \
