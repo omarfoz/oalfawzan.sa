@@ -80,16 +80,16 @@ def build_site(args: argparse.Namespace) -> Path:
         )
     work_section = ""
     if items:
-        cards = "\n".join(
-            '          <article class="og-card">\n'
-            f'            <h3>{e(title)}</h3>\n'
-            f'            <p class="og-muted og-body">{e(description)}</p>\n'
-            f'            <a class="og-btn" href="{e(url)}"'
-            f'{" rel=\"noopener noreferrer\"" if url.startswith(("https://", "http://")) else ""}'
-            f'>{e(labels["view"])} {e(title)}</a>\n'
-            '          </article>'
-            for title, description, url in items
-        )
+        def card_markup(title: str, description: str, url: str) -> str:
+            rel = ' rel="noopener noreferrer"' if url.startswith(("https://", "http://")) else ""
+            return (
+                '          <article class="og-card">\n'
+                f'            <h3>{e(title)}</h3>\n'
+                f'            <p class="og-muted og-body">{e(description)}</p>\n'
+                f'            <a class="og-btn" href="{e(url)}"{rel}>{e(labels["view"])} {e(title)}</a>\n'
+                '          </article>'
+            )
+        cards = "\n".join(card_markup(title, description, url) for title, description, url in items)
         work_section = (
             '      <section class="og-section" id="work" aria-labelledby="work-heading">\n'
             f'        <h2 class="og-section-title" id="work-heading">{e(labels["work_title"])}</h2>\n'
