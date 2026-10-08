@@ -37,12 +37,25 @@ jobs:
             --about 'A simple example for automated validation.' \
             --item 'Example|A functional external project|https://example.org'
           python "$SKILL/scripts/validate.py" --site "$RUNNER_TEMP/oalfawzan-skill-site"
+          python "$SKILL/scripts/scaffold.py" \
+            --output "$RUNNER_TEMP/oalfawzan-skill-site-ar" \
+            --lang ar \
+            --name 'استوديو الاختبار' \
+            --headline 'واجهات عملية وأنيقة' \
+            --description 'صفحة عربية لاختبار الاتجاه والخطوط' \
+            --email 'test@example.org' \
+            --about 'نعمل على مواقع واضحة' \
+            --item 'مشروع|عرض لأحد المشاريع|https://example.org'
+          python "$SKILL/scripts/validate.py" --site "$RUNNER_TEMP/oalfawzan-skill-site-ar"
       - name: Browser dependency
         run: |
           python -m pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Six real-browser smoke checks
+      - name: Twelve real-browser smoke checks (English and Arabic)
         run: |
           python .agents/skills/oalfawzan-liquid-glass/scripts/browser_smoke.py \
             --site "$RUNNER_TEMP/oalfawzan-skill-site" \
             --screenshots "$RUNNER_TEMP/oalfawzan-skill-screenshots"
+          python .agents/skills/oalfawzan-liquid-glass/scripts/browser_smoke.py \
+            --site "$RUNNER_TEMP/oalfawzan-skill-site-ar" \
+            --screenshots "$RUNNER_TEMP/oalfawzan-skill-screenshots-ar"
