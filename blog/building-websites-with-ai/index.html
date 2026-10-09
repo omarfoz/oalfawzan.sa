@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تجربتي في بناء المواقع باستخدام الذكاء الاصطناعي | عمر الفوزان</title>
+<meta name="description" content="تجربتي في بناء موقعي الشخصي والنطاقات الفرعية باستخدام ChatGPT وCodex وOpenCode، من حجز نطاق .sa والبريد الإلكتروني إلى الاستضافة على GitHub Pages.">
+<meta name="author" content="Omar Alfawzan">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#010204">
+<link rel="canonical" href="https://oalfawzan.sa/blog/building-websites-with-ai/">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:site_name" content="Omar Alfawzan">
+<meta property="og:url" content="https://oalfawzan.sa/blog/building-websites-with-ai/">
+<meta property="og:title" content="تجربتي في بناء المواقع باستخدام الذكاء الاصطناعي">
+<meta property="og:description" content="من حجز نطاق سعودي إلى بناء ونشر ثلاثة مواقع باستخدام أدوات الذكاء الاصطناعي. تجربة عملية بالصور.">
+<meta property="og:image" content="https://oalfawzan.sa/blog/building-websites-with-ai/images/00-three-websites-original.webp">
+<meta property="og:image:alt" content="لقطات أصلية من oalfawzan.sa وtools.oalfawzan.sa وai.oalfawzan.sa">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="تجربتي في بناء المواقع باستخدام الذكاء الاصطناعي">
+<meta name="twitter:description" content="رحلتي مع ChatGPT وCodex وOpenCode لبناء المواقع ونشرها على GitHub Pages.">
+<meta name="twitter:image" content="https://oalfawzan.sa/blog/building-websites-with-ai/images/00-three-websites-original.webp">
+<link rel="icon" type="image/svg+xml" href="/cloud-favicon.svg">
+<script>(()=>{let t;try{t=localStorage.getItem('oalfawzan-theme')}catch(_){}document.documentElement.dataset.theme=t==='light'||t==='dark'?t:'dark'})()</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "تجربتي في بناء المواقع باستخدام الذكاء الاصطناعي", "description": "تجربة عمر الفوزان في تسجيل نطاق سعودي، إنشاء البريد الإلكتروني، بناء المواقع باستخدام ChatGPT وCodex وOpenCode، ونشرها على GitHub Pages.", "inLanguage": "ar-SA", "datePublished": "2026-10-09", "dateModified": "2026-10-09", "mainEntityOfPage": "https://oalfawzan.sa/blog/building-websites-with-ai/", "author": {"@type": "Person", "name": "Omar Alfawzan", "url": "https://oalfawzan.sa/"}, "publisher": {"@type": "Person", "name": "Omar Alfawzan"}, "image": "https://oalfawzan.sa/blog/building-websites-with-ai/images/00-three-websites-original.webp"}</script>
+<style>
+:root{--bg:#010204;--glass:rgba(255,255,255,.03);--glass-border:rgba(255,255,255,.13);--glass-shine:rgba(255,255,255,.20);--accent:#007aff;--text-p:#fff;--text-s:rgba(255,255,255,.62)}
+*{box-sizing:border-box}
+body{margin:0;color:var(--text-p);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif}
+a{color:inherit}
+.container{max-width:900px;margin:auto;padding:0 16px}
+.glass-card{background:var(--glass);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--glass-border);border-radius:24px;padding:28px;box-shadow:inset 0 1px 0 var(--glass-shine)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:16px 0 38px;padding:10px 14px;border-radius:28px}
+.nav-name{font-weight:700;font-size:1rem;direction:ltr;white-space:nowrap}
+.nav-buttons{display:flex;align-items:center;gap:7px;white-space:nowrap;overflow:auto;scrollbar-width:none}
+.btn-sm{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:7px 13px;border-radius:18px;text-decoration:none;font-size:.8rem;font-weight:600;background:rgba(255,255,255,.04);border:1px solid var(--glass-border)}
+.btn-sm.active{background:var(--accent);color:white;border-color:rgba(255,255,255,.2)}
+.theme-toggle{width:34px;height:34px;border:0;border-radius:50%;background:transparent;color:var(--text-p);cursor:pointer}
+.article-header{text-align:center;margin:0 auto 24px;max-width:760px}
+.eyebrow{color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:.03em;margin:0 0 18px}
+.article-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;line-height:1.3;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.meta{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:var(--text-s);font-size:.84rem}
+.meta img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.article-intro{font-size:1.05rem;line-height:2;color:var(--text-s);max-width:720px;margin:22px auto 30px;text-align:center}
+.toc{margin:20px 0 24px}
+.toc summary{cursor:pointer;font-size:.94rem;font-weight:700}
+.toc-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.toc a{display:inline-block;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid var(--glass-border);padding:7px 12px;border-radius:16px;font-size:.78rem}
+.article-content{padding:clamp(18px,4.5vw,42px);overflow-wrap:anywhere}
+.article-content>p,.article-content>ul{font-size:1.04rem;line-height:2.05;margin:0 0 20px}
+.article-content h2{font-size:clamp(1.25rem,3vw,1.65rem);line-height:1.55;margin:48px 0 20px;color:var(--text-p);scroll-margin-top:30px}
+.article-content h3{font-size:1.18rem;margin:32px 0 16px;scroll-margin-top:30px}
+.article-content h2:first-child{margin-top:0}
+.article-content strong{font-weight:750;color:var(--text-p)}
+.article-content a:not(.figure-link){color:var(--accent);text-decoration:underline;text-underline-offset:4px}
+.article-content li{margin:.2em 1em .2em 0;padding-right:.2em}
+.article-figure{margin:30px 0 36px}
+.figure-link{display:block;background:rgba(10,20,40,.45);border:1px solid var(--glass-border);border-radius:18px;overflow:hidden;line-height:0}
+.article-figure img{width:100%;height:auto;display:block;object-fit:contain}
+.article-figure figcaption{font-size:.82rem;line-height:1.8;color:var(--text-s);margin-top:12px;text-align:center}
+.article-next{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0}
+.article-next a{font-size:.88rem;text-decoration:none}
+footer{border-top:1px solid var(--glass-border);color:var(--text-s);font-size:.82rem;text-align:center;margin-top:44px;padding:28px 0 44px}
+html[data-theme="light"] .toc a{background:rgba(255,255,255,.45)}
+html[data-theme="light"] .figure-link{background:rgba(255,255,255,.25)}
+@media(max-width:650px){.nav{flex-wrap:nowrap}.nav-name{font-size:.8rem}.nav-buttons{gap:4px}.btn-sm{font-size:.72rem;padding:7px 9px}.article-header h1{font-size:2rem}.article-content{padding:20px}.article-content>p,.article-content>ul{font-size:1rem;line-height:1.95}.article-figure{margin:24px -10px 30px}.article-figure .figure-link{border-radius:12px}.article-next{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<link rel="stylesheet" href="/site.css">
+<script src="/theme.js" defer></script>
+<script src="/analytics.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#main-content">تخطي إلى المحتوى</a>
+<div class="container">
+<nav class="nav glass-card" aria-label="التنقل الرئيسي">
+  <a class="nav-name" href="/" style="text-decoration:none">Omar Alfawzan</a>
+  <div class="nav-buttons" dir="ltr">
+    <a class="btn-sm" href="/">Home</a><a class="btn-sm" href="/experience/">Experience</a><a class="btn-sm active" href="/blog/" aria-current="page">Blog</a><a class="btn-sm" href="/social/">Social</a>
+  </div>
+  <button id="themeToggle" class="theme-toggle" type="button" aria-label="تغيير مظهر الموقع"></button>
+</nav>
+<main id="main-content">
+<header class="article-header">
+  <p class="eyebrow">تجربة شخصية · الذكاء الاصطناعي وتطوير المواقع</p>
+  <h1>تجربتي في بناء المواقع باستخدام الذكاء الاصطناعي</h1>
+  <div class="meta"><img src="/omaralfawzan-240.webp" width="32" height="32" alt="صورة عمر الفوزان"><span>عمر الفوزان</span><span aria-hidden="true">·</span><time datetime="2026-10-09">9 أكتوبر 2026</time><span aria-hidden="true">·</span><span>تجربة عملية</span></div>
+</header>
+<details class="toc glass-card">
+<summary>محتويات المقالة</summary><div class="toc-links"><a href="#section-1">حجز النطاق السعودي (.sa)</a>
+<a href="#section-2">إعداد البريد الإلكتروني</a>
+<a href="#section-3">بناء الموقع باستخدام أدوات الذكاء الاصطناعي</a>
+<a href="#section-4">استضافة الموقع باستخدام GitHub Pages</a>
+<a href="#section-5">تطوير الموقع من خلال المحادثة</a>
+<a href="#section-6">من موقع شخصي إلى عدة مشاريع</a>
+<a href="#section-7">التكاليف باختصار</a>
+<a href="#section-8">هل تحتاج إلى خبرة في البرمجة؟</a>
+<a href="#section-9">الخلاصة</a></div>
+</details>
+<article class="glass-card article-content" lang="ar" dir="rtl">
+<p>في مقالتي السابقة «تجربتي لبناء تطبيقات الذكاء الاصطناعي التطبيقي في السحابة السيادية» تحدثت عن تجربتي مع نماذج الذكاء الاصطناعي، بداية من LLMs وRAG وصولًا إلى Agentic Workflows، وكيف يمكن الاستفادة منها في بناء تطبيقات عملية.</p>
+<p>في هذه المقالة أحببت أن أشارككم تجربة أخرى، وهي الاستفادة من أدوات الذكاء الاصطناعي في <strong>إنشاء موقعي الشخصي</strong>، بداية من حجز النطاق وإعداد البريد الإلكتروني إلى بناء الموقع ونشره وتطويره. وخلال التجربة توسع الموضوع من موقع واحد إلى عدة مواقع وأدوات.</p>
+<p>بذكر لكم الخطوات التي اتبعتها، والأدوات التي استخدمتها، وبعض الملاحظات التي خرجت فيها من التجربة.</p>
+<figure class="article-figure" id="figure-1"><a class="figure-link" href="images/00-three-websites-original.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/00-three-websites-original.webp" src="images/00-three-websites-original.webp" alt="المواقع الثلاثة باستخدام صور حقيقية من صفحاتها: الموقع الشخصي وموقع الأدوات وموقع الذكاء الاصطناعي" width="1600" height="636" loading="eager" decoding="async"></a><figcaption>المواقع الثلاثة التي بنيتها: oalfawzan.sa وtools.oalfawzan.sa وai.oalfawzan.sa. الصورة تجمع لقطات حقيقية من واجهاتها.</figcaption></figure>
+<h2 id="section-1">حجز النطاق السعودي (.sa)</h2>
+<p>في البداية كنت أحتاج نطاقًا خاصًا بالموقع، وفضلت أن يكون نطاقًا سعوديًا يحمل اسمي، فاخترت <strong><a href="https://oalfawzan.sa/">oalfawzan.sa</a></strong>.</p>
+<p>استخدمت <strong>Souq T2</strong> لحجز النطاق، وكانت تجربتي معهم ممتازة من ناحية سهولة استخدام الموقع ووضوح إجراءات التسجيل. كنت أتوقع أن إجراءات النطاقات السعودية تكون أصعب قليلًا، لكن عملية البحث عن النطاق وتسجيله كانت واضحة ومباشرة.</p>
+<p>بعد تسجيل النطاق أصبح بإمكاني استخدامه للموقع الرئيسي، وإضافة نطاقات فرعية (Subdomains) لمشاريع أخرى مستقبلًا. وبلغت تكلفة النطاق في تجربتي <strong>60 ريالًا سنويًا</strong>.</p>
+<figure class="article-figure" id="figure-2"><a class="figure-link" href="images/02-souq-t2-dns.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/02-souq-t2-dns.webp" src="images/02-souq-t2-dns.webp" alt="لوحة إدارة سجلات DNS للنطاق في Souq T2" width="1360" height="728" loading="lazy" decoding="async"></a><figcaption>لوحة إدارة DNS لدى Souq T2، والتي استخدمتها لربط النطاق بخدمات الموقع والبريد الإلكتروني.</figcaption></figure>
+<h2 id="section-2">إعداد البريد الإلكتروني</h2>
+<p>بعد حجز النطاق، انتقلت إلى إنشاء بريد إلكتروني مرتبط به. بحثت عن عدة خدمات لاستضافة البريد الإلكتروني، لكن احتياجي كان بسيطًا ولا يتطلب جميع المميزات التي توفرها باقات البريد الموجهة للشركات.</p>
+<p>اخترت <strong>Purelymail</strong> لأن تكلفته منخفضة ويؤدي الغرض بالنسبة لي، حيث بلغت التكلفة تقريبًا <strong>40 ريالًا سنويًا</strong>.</p>
+<p>طبعًا بعد الاشتراك تحتاج إلى ضبط سجلات DNS الخاصة بالبريد، مثل MX وSPF وDKIM. وهنا استفدت من ChatGPT في فهم وظيفة السجلات ومراجعة الإعدادات المطلوبة قبل تطبيقها.</p>
+<p>الشيء الذي لاحظته خلال هذه الخطوة أن الاستفادة من الذكاء الاصطناعي لا تقتصر على البرمجة. حتى الإجراءات التقنية المحيطة بالمشروع أصبحت أسهل من ناحية البحث والفهم والتنفيذ.</p>
+<h2 id="section-3">بناء الموقع باستخدام أدوات الذكاء الاصطناعي</h2>
+<p>بعد الانتهاء من النطاق والبريد الإلكتروني بدأت المرحلة الأساسية، وهي بناء الموقع.</p>
+<p>عادةً يحتاج تطوير المواقع إلى معرفة بلغات مثل HTML وCSS وJavaScript، بالإضافة إلى التعامل مع التصميم وتجربة المستخدم والتأكد من عمل الصفحات على مختلف الأجهزة. هذه المهارات ما زالت مهمة، لكن طريقة تنفيذ المشروع تغيرت بشكل كبير مع أدوات الذكاء الاصطناعي.</p>
+<p>خلال تجربتي استخدمت <strong>ChatGPT وCodex وOpenCode</strong>. استخدمت ChatGPT لمناقشة الأفكار وترتيب المحتوى والتصميم ومراجعة الملاحظات، ثم استخدمت Codex وOpenCode للتعامل مع ملفات المشروع وتنفيذ التعديلات البرمجية.</p>
+<p>في البداية كنت أشرح المطلوب، مثل طريقة عرض الخبرات المهنية والمشاريع، واختيار التصميم المناسب، وطريقة التنقل بين الصفحات. وبعدها أراجع النتيجة وأطلب التعديلات التي أحتاجها.</p>
+<p>من أكثر الأشياء التي أعجبتني أني ما عدت أحتاج أبدأ دائمًا من كتابة الكود. بدلًا من البحث عن طريقة تنفيذ كل تفصيلة، أصبحت أشرح <strong>النتيجة التي أريد الوصول إليها</strong> ثم أراجع الحل وأجربه.</p>
+<p>مثلًا، أقدر أطلب تحسين تصميم قسم معين مع المحافظة على الهوية الحالية للموقع، أو إضافة صفحة جديدة، أو معالجة مشكلة تظهر فقط على شاشة الجوال.</p>
+<figure class="article-figure" id="figure-3"><a class="figure-link" href="images/03-codex.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/03-codex.webp" src="images/03-codex.webp" alt="محادثة حقيقية في Codex وتنفيذ تعديل على ملفات الموقع" width="1360" height="805" loading="lazy" decoding="async"></a><figcaption>مثال من Codex أثناء تعديل ملفات الموقع، ثم مراجعة التغييرات قبل اعتمادها.</figcaption></figure>
+<figure class="article-figure" id="figure-4"><a class="figure-link" href="images/04-opencode.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/04-opencode.webp" src="images/04-opencode.webp" alt="واجهة OpenCode أثناء التعامل مع ملفات مشروع الموقع" width="1360" height="854" loading="lazy" decoding="async"></a><figcaption>استخدمت أيضًا OpenCode للتعامل مع المشروع وتنفيذ أعمال تطوير إضافية.</figcaption></figure>
+<p>طبعًا النتائج ليست صحيحة دائمًا من المحاولة الأولى. أحيانًا يتم تعديل جزء غير مطلوب، أو يكون الحل أعقد من اللازم، ولذلك أراجع التغييرات وأختبرها قبل نشرها.</p>
+<h2 id="section-4">استضافة الموقع باستخدام GitHub Pages</h2>
+<p>بعد بناء النسخة الأولى، احتجت إلى استضافة لنشر الموقع على الإنترنت. اخترت <strong>GitHub Pages</strong>، وهي خدمة تسمح بنشر المواقع الثابتة (Static Websites) من مستودعات GitHub.</p>
+<p>بما أن الموقع مبني باستخدام HTML وCSS وJavaScript، كانت الخدمة مناسبة لاحتياجي. أنشأت مستودعًا (Repository) للموقع، ثم فعّلت GitHub Pages وربطته بالنطاق الخاص بي عن طريق إعداد Custom Domain وسجلات DNS المطلوبة.</p>
+<p>استفدت من ChatGPT أيضًا في هذه الخطوة، خصوصًا في فهم إعدادات الربط والتحقق من السجلات المطلوبة.</p>
+<figure class="article-figure" id="figure-5"><a class="figure-link" href="images/05-github-pages.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/05-github-pages.webp" src="images/05-github-pages.webp" alt="إعداد GitHub Pages ونطاق الموقع المخصص" width="1349" height="662" loading="lazy" decoding="async"></a><figcaption>إعدادات GitHub Pages للموقع الرئيسي، وتظهر فيها حالة النشر وربط النطاق oalfawzan.sa.</figcaption></figure>
+<p>الميزة بالنسبة لي أن ملفات الموقع أصبحت موجودة على GitHub، وعند اعتماد تغييرات جديدة يمكن نشرها من نفس المستودع، دون الحاجة إلى إدارة خادم أو رفع الملفات يدويًا في كل مرة.</p>
+<h2 id="section-5">تطوير الموقع من خلال المحادثة</h2>
+<p>من أكثر الأمور التي استفدت منها خلال التجربة سهولة تعديل الموقع <strong>بعد نشره</strong>.</p>
+<p>عادةً تظهر أفكار وملاحظات جديدة مع استخدام الموقع، سواء في التصميم أو المحتوى أو تجربة الجوال. والآن أصبحت كثير من هذه التعديلات تبدأ بمحادثة مع ChatGPT.</p>
+<p>أحد الأمثلة الفعلية كان في موقع <strong>ai.oalfawzan.sa</strong>، عندما لاحظت أن شريط التنقل (Toolbar) لا يتطابق مع تصميم موقعي الرئيسي. أرسلت صورًا للموقعين وطلبت مقارنة التصميم ثم معالجة الاختلاف مع المحافظة على الروابط والوظائف الموجودة.</p>
+<figure class="article-figure" id="figure-6"><a class="figure-link" href="images/06-chatgpt-request.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/06-chatgpt-request.webp" src="images/06-chatgpt-request.webp" alt="طلب تعديل شريط التنقل ومقارنته بالموقع الرئيسي عبر ChatGPT" width="736" height="1600" loading="lazy" decoding="async"></a><figcaption>مثال من المحادثة: طلبت توحيد تصميم شريط التنقل بين الموقع الرئيسي وموقع الذكاء الاصطناعي.</figcaption></figure>
+<p>بعدها راجعت الأداة ملفات المشروع وحددت الفروقات في CSS، ثم عرضت لي ملخصًا بالتعديلات المنفذة ورفعها إلى GitHub، مع توضيح أن التحقق من النتيجة النهائية على الموقع المنشور يبقى خطوة مستقلة.</p>
+<figure class="article-figure" id="figure-7"><a class="figure-link" href="images/07-chatgpt-change.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/07-chatgpt-change.webp" src="images/07-chatgpt-change.webp" alt="ملخص ChatGPT للتغييرات ورفعها إلى GitHub" width="736" height="1600" loading="lazy" decoding="async"></a><figcaption>نتيجة المحادثة تضمنت شرح التغييرات البرمجية وحالة رفعها إلى GitHub.</figcaption></figure>
+<p>هذا النوع من التعديلات يوضح الفكرة التي أقصدها: بدل ما أبدأ كل مرة من مراجعة الملفات يدويًا، أشرح المشكلة، وتساعدني الأداة على تحديد السبب وتنفيذ الحل، وبعدها أراجع النتيجة.</p>
+<h2 id="section-6">من موقع شخصي إلى عدة مشاريع</h2>
+<p>في البداية كان الهدف إنشاء موقع شخصي لعرض الخبرة والمشاريع والمقالات. وبعد إطلاق <strong><a href="https://oalfawzan.sa/">oalfawzan.sa</a></strong> بدأت أستفيد من نفس التجربة في تنفيذ أفكار أخرى.</p>
+<figure class="article-figure" id="figure-8"><a class="figure-link" href="images/01-portfolio.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/01-portfolio.webp" src="images/01-portfolio.webp" alt="الصفحة الرئيسية الأصلية لموقع عمر الفوزان الشخصي" width="1600" height="1583" loading="lazy" decoding="async"></a><figcaption>الموقع الشخصي oalfawzan.sa الذي كان نقطة البداية للمشاريع التالية.</figcaption></figure>
+<h3>موقع الأدوات tools.oalfawzan.sa</h3>
+<p>أنشأت <strong><a href="https://tools.oalfawzan.sa/">tools.oalfawzan.sa</a></strong> ليكون مساحة لأدوات بسيطة ومفيدة يمكن استخدامها مباشرة من المتصفح.</p>
+<p>الفكرة أن بعض الاحتياجات اليومية ما تحتاج تطبيقًا كبيرًا. أحيانًا تكون عندي فكرة صغيرة، وأقدر أشرحها لأدوات الذكاء الاصطناعي وأبني نسخة أولية ثم أجربها وأعدل عليها.</p>
+<figure class="article-figure" id="figure-9"><a class="figure-link" href="images/08-tools-site.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/08-tools-site.webp" src="images/08-tools-site.webp" alt="الصفحة الرئيسية الفعلية لموقع tools.oalfawzan.sa" width="1341" height="670" loading="lazy" decoding="async"></a><figcaption>الصفحة الرئيسية لموقع الأدوات، بتصميم مرتبط بهوية الموقع الشخصي.</figcaption></figure>
+<h3>موقع الذكاء الاصطناعي ai.oalfawzan.sa</h3>
+<p>كذلك أنشأت <strong><a href="https://ai.oalfawzan.sa/">ai.oalfawzan.sa</a></strong> لعرض بعض المفاهيم والتجارب المتعلقة بالذكاء الاصطناعي، مع تقديمها بشكل تفاعلي.</p>
+<p>من الأشياء التي استفدت منها في تطوير هذه المواقع إمكانية المحافظة على الهوية البصرية نفسها، وإعادة استخدام بعض المكونات بدل البدء من الصفر في كل مرة.</p>
+<figure class="article-figure" id="figure-10"><a class="figure-link" href="images/09-ai-site.webp" target="_blank" rel="noopener" aria-label="فتح الصورة بالحجم الكامل"><img data-asset="images/09-ai-site.webp" src="images/09-ai-site.webp" alt="الصفحة الرئيسية الفعلية لموقع ai.oalfawzan.sa" width="1360" height="681" loading="lazy" decoding="async"></a><figcaption>الصفحة الرئيسية لموقع الذكاء الاصطناعي، مع المحافظة على عناصر التصميم المشتركة مع بقية المواقع.</figcaption></figure>
+<h2 id="section-7">التكاليف باختصار</h2>
+<p>بلغت تكلفة النطاق السعودي في تجربتي حوالي <strong>60 ريالًا سنويًا</strong>، والبريد الإلكتروني عبر Purelymail حوالي <strong>40 ريالًا سنويًا</strong>، أما استضافة المواقع الثابتة باستخدام GitHub Pages فكانت دون تكلفة إضافية.</p>
+<p>وبالنسبة إلى ChatGPT، فأستخدم اشتراكًا بحوالي <strong>90 ريالًا شهريًا</strong>، لكن هذا الاشتراك أستفيد منه في العمل والبحث والتطوير واستخدامات أخرى، وليس مخصصًا للمواقع فقط. وقد تختلف تكاليف أدوات البرمجة حسب طريقة استخدامها والاشتراكات المرتبطة بها.</p>
+<h2 id="section-8">هل تحتاج إلى خبرة في البرمجة؟</h2>
+<p>من خلال تجربتي، أرى أن وجود خلفية تقنية يساعد كثيرًا في فهم الحلول ومراجعة جودتها واكتشاف الأخطاء، خصوصًا عند التعامل مع أمور مثل DNS أو GitHub أو ملفات المشروع.</p>
+<p>لكن في المقابل، أصبح بإمكان الشخص الذي ليست لديه خبرة متقدمة أن يبدأ بموقع بسيط، ويسأل عن الخطوات التي لا يعرفها، ويتعلم أثناء التنفيذ.</p>
+<p>وهذا لا يعني الاعتماد على الذكاء الاصطناعي دون مراجعة. من المهم التحقق من النتائج، والاحتفاظ بنسخ من العمل، وعدم مشاركة كلمات المرور أو المعلومات السرية مع الأدوات.</p>
+<h2 id="section-9">الخلاصة</h2>
+<p>في مقالتي السابقة تحدثت عن بناء تطبيقات الذكاء الاصطناعي، أما في هذه المقالة فكانت التجربة في <strong>استخدام الذكاء الاصطناعي لبناء مواقع ونشرها وتطويرها</strong>.</p>
+<p>بدأت بموقع شخصي، ثم توسعت التجربة إلى موقع للأدوات وموقع لتجارب الذكاء الاصطناعي. وخلال هذه الرحلة استخدمت الأدوات في التخطيط والتصميم والبرمجة وحل المشكلات والنشر.</p>
+<p>أهم ما لاحظته هو أن المسافة بين الفكرة وتنفيذها أصبحت أقصر بكثير، وأصبحت أقدر أجرب أفكارًا صغيرة وأطورها بشكل مستمر، بدلًا من تأجيلها بسبب الوقت المطلوب لتنفيذها.</p>
+<p>أحببت مشاركة هذه التجربة لعلها تكون مفيدة لأي شخص يفكر في إنشاء موقع شخصي أو تجربة مشروع بسيط باستخدام الذكاء الاصطناعي.</p>
+
+</article>
+<nav class="article-next" aria-label="التنقل بين المقالات"><a class="btn-sm" href="/blog/">← جميع المقالات</a><a class="btn-sm" href="https://tools.oalfawzan.sa/" target="_blank" rel="noopener noreferrer">تصفح موقع الأدوات ↗</a></nav>
+</main>
+<footer>© 2026 Omar Alfawzan · <a href="/">oalfawzan.sa</a> · <a href="/privacy/">Privacy</a></footer>
+</div>
+</body></html>
