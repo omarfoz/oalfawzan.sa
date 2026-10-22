@@ -1,4 +1,21 @@
 (() => {
+  /* Shared theme bootstrap.
+     Some older pages only load analytics.js, so ensure the common theme assets
+     are present without requiring page-by-page markup changes. */
+  if (!document.querySelector('link[href="/lightmode.css"]')) {
+    const themeStyles = document.createElement('link');
+    themeStyles.rel = 'stylesheet';
+    themeStyles.href = '/lightmode.css';
+    document.head.appendChild(themeStyles);
+  }
+
+  if (!document.querySelector('script[src="/theme.js"]')) {
+    const themeScript = document.createElement('script');
+    themeScript.src = '/theme.js';
+    themeScript.async = false;
+    document.head.appendChild(themeScript);
+  }
+
   const measurementId = 'G-FF5QTH48B5';
   let loaded = false;
 
