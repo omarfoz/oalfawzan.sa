@@ -1472,101 +1472,6 @@ html[data-theme="light"] body::after {
   }
 }
 
-/* ---------- Light mode background (v2) ----------
-   Replaces the blurred, white-washed photo with a clean surface: cool
-   off-white base, soft aurora at the top and a faint dot grid that fades
-   out as the page continues. No image download, no full-screen blur. */
-html[data-theme="light"][data-theme="light"] body,
-html[data-theme="light"][data-theme="light"] body:has(.photo-grid) {
-  background: #f5f7fb !important;
-}
-html[data-theme="light"][data-theme="light"] body::before,
-html[data-theme="light"][data-theme="light"] body:has(.photo-grid)::before {
-  inset: 0 !important;
-  transform: none !important;
-  filter: none !important;
-  -webkit-filter: none !important;
-  background:
-    radial-gradient(60% 50% at 50% -8%, rgba(0,113,227,.17), transparent 72%),
-    radial-gradient(38% 34% at 92% 6%, rgba(94,92,230,.11), transparent 70%),
-    radial-gradient(38% 34% at 6% 14%, rgba(48,176,199,.11), transparent 70%),
-    radial-gradient(circle, rgba(15,23,42,.085) 1px, transparent 1.4px) 0 0 / 22px 22px !important;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 92%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 92%);
-}
-html[data-theme="light"][data-theme="light"] body::after {
-  background:
-    radial-gradient(closest-side at 25% 40%, rgba(0,113,227,.06), transparent),
-    radial-gradient(closest-side at 75% 70%, rgba(94,92,230,.05), transparent);
-}
-
-/* ---------- Light mode liquid glass ----------
-   Glass needs colour behind it: soft colour fields drift on the fixed
-   ambient layer, and surfaces become genuinely translucent with specular
-   top/bottom rims, a hairline edge and a saturated backdrop blur. */
-html[data-theme="light"][data-theme="light"] body::after {
-  background:
-    radial-gradient(closest-side at 18% 22%, rgba(0,113,227,.30), transparent),
-    radial-gradient(closest-side at 84% 38%, rgba(124,92,250,.24), transparent),
-    radial-gradient(closest-side at 30% 78%, rgba(20,184,196,.22), transparent),
-    radial-gradient(closest-side at 78% 86%, rgba(255,140,105,.16), transparent);
-}
-
-html[data-theme="light"][data-theme="light"] {
-  --site-glass-blur: 22px !important;
-  --site-glass-saturation: 190% !important;
-}
-
-html[data-theme="light"][data-theme="light"] :is(.glass, .glass-card, .project-card, .blog-card, .social-link, .meta-pill, .pill, .logo-pill) {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,.22) 42%, rgba(255,255,255,.10) 58%, rgba(255,255,255,.34) 100%),
-    rgba(255,255,255,.30) !important;
-  border-color: rgba(255,255,255,.72) !important;
-  box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.95),
-    inset 0 -1px 1px rgba(255,255,255,.55),
-    inset 1px 0 0 rgba(255,255,255,.40),
-    inset 0 0 0 .5px rgba(15,23,42,.07),
-    0 1px 2px rgba(15,23,42,.05),
-    0 14px 34px -10px rgba(30,50,90,.18) !important;
-  -webkit-backdrop-filter: blur(var(--site-glass-blur)) saturate(var(--site-glass-saturation)) brightness(1.05) !important;
-  backdrop-filter: blur(var(--site-glass-blur)) saturate(var(--site-glass-saturation)) brightness(1.05) !important;
-}
-
-html[data-theme="light"][data-theme="light"] :is(.nav, .nav.glass-card),
-html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
-  background:
-    linear-gradient(135deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.38) 50%, rgba(255,255,255,.52) 100%),
-    rgba(255,255,255,.40) !important;
-  border-color: rgba(255,255,255,.80) !important;
-  box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.98),
-    inset 0 -1px 1px rgba(255,255,255,.60),
-    inset 0 0 0 .5px rgba(15,23,42,.08),
-    0 10px 30px -10px rgba(30,50,90,.22) !important;
-  -webkit-backdrop-filter: blur(24px) saturate(190%) brightness(1.06) !important;
-  backdrop-filter: blur(24px) saturate(190%) brightness(1.06) !important;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  html[data-theme="light"][data-theme="light"] :is(.project-card, .blog-card, .social-link):hover {
-    border-color: rgba(255,255,255,.9) !important;
-    box-shadow:
-      inset 0 1px 1px #fff,
-      inset 0 -1px 1px rgba(255,255,255,.65),
-      inset 0 0 0 .5px rgba(0,98,204,.22),
-      0 2px 4px rgba(15,23,42,.05),
-      0 20px 44px -12px rgba(0,98,204,.22) !important;
-  }
-}
-
-@media (max-width: 700px), (pointer: coarse) {
-  html[data-theme="light"][data-theme="light"] {
-    --site-glass-blur: 16px !important;
-    --site-glass-saturation: 175% !important;
-  }
-}
-
 /* ---------- Primary CTA: Apple-style prominent Liquid Glass ----------
    Modelled on iOS 26 / macOS Tahoe `.glassProminent` buttons: a flat accent
    tint (no gloss band), a thin specular rim that is brighter on the lit
@@ -1608,4 +1513,173 @@ html:not([data-theme="light"]) .cta-primary:active,
 html[data-theme="light"][data-theme="light"] .cta-primary:active {
   scale: 1.05;
   filter: brightness(1.15);
+}
+
+/* =====================================================================
+   Light mode: Apple Liquid Glass system
+   Follows Apple's two-layer model (iOS 26 / macOS Tahoe):
+   - Controls layer: clear Liquid Glass capsules that float above content
+     (nav bar, buttons, chips) with a directional specular rim.
+   - Content layer: calm frosted material for cards, no glass effects.
+   Apple palette: #f5f5f7 canvas, #1d1d1f label, #0066cc link, #0071e3 fill.
+   ===================================================================== */
+html[data-theme="light"][data-theme="light"] {
+  --site-bg: #f5f5f7 !important;
+  --site-text: #1d1d1f !important;
+  --site-text-muted: rgba(60,60,67,.80) !important;
+  --site-text-faint: rgba(60,60,67,.70) !important;
+  --site-accent: #0066cc !important;
+  --lg-hairline: rgba(0,0,0,.07);
+  --site-glass-blur: 18px !important;
+  --site-glass-saturation: 180% !important;
+}
+
+/* Canvas: Apple grey with soft colour so the glass has something to refract */
+html[data-theme="light"][data-theme="light"] body,
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid) {
+  background: #f5f5f7 !important;
+}
+html[data-theme="light"][data-theme="light"] body::before,
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid)::before {
+  inset: 0 !important;
+  transform: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  background:
+    radial-gradient(60% 50% at 50% -8%, rgba(0,113,227,.14), transparent 72%),
+    radial-gradient(38% 34% at 92% 6%, rgba(175,82,222,.09), transparent 70%),
+    radial-gradient(38% 34% at 6% 14%, rgba(48,176,199,.10), transparent 70%) !important;
+}
+html[data-theme="light"][data-theme="light"] body::after {
+  background:
+    radial-gradient(closest-side at 18% 24%, rgba(0,113,227,.20), transparent),
+    radial-gradient(closest-side at 84% 40%, rgba(175,82,222,.14), transparent),
+    radial-gradient(closest-side at 30% 78%, rgba(48,176,199,.15), transparent),
+    radial-gradient(closest-side at 78% 88%, rgba(255,149,0,.08), transparent);
+}
+
+/* ---- Content layer: frosted material ---- */
+html[data-theme="light"][data-theme="light"] :is(.glass, .glass-card, .project-card, .blog-card, .social-link, .logo-pill) {
+  background: rgba(255,255,255,.76) !important;
+  border-color: transparent !important;
+  box-shadow:
+    inset 0 0 0 .5px var(--lg-hairline),
+    inset 0 1px 0 rgba(255,255,255,.9),
+    0 1px 2px rgba(0,0,0,.04),
+    0 10px 30px rgba(0,0,0,.06) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) !important;
+  backdrop-filter: blur(28px) saturate(180%) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"][data-theme="light"] :is(.project-card, .blog-card, .social-link, .logo-pill-link .logo-pill):hover {
+    border-color: transparent !important;
+    box-shadow:
+      inset 0 0 0 .5px var(--lg-hairline),
+      inset 0 1px 0 rgba(255,255,255,.9),
+      0 2px 4px rgba(0,0,0,.04),
+      0 18px 44px rgba(0,0,0,.10) !important;
+  }
+}
+
+/* Tags and small labels: Apple system fills, no outlines */
+html[data-theme="light"][data-theme="light"] :is(.ptag, .pill, .meta-pill, .blog-badge) {
+  color: #3a3a3f !important;
+  background: rgba(118,118,128,.12) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html[data-theme="light"][data-theme="light"] .blog-badge.local {
+  color: #0066cc !important;
+  background: rgba(0,113,227,.10) !important;
+}
+
+/* ---- Controls layer: clear Liquid Glass ---- */
+html[data-theme="light"][data-theme="light"] :is(.nav, .nav.glass-card, .toc.glass-card),
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
+  background: rgba(255,255,255,.58) !important;
+  border-color: transparent !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.95),
+    inset -1px -1px 0 rgba(255,255,255,.55),
+    inset 0 0 0 .5px rgba(0,0,0,.06),
+    inset 0 0 14px rgba(255,255,255,.40),
+    0 8px 28px rgba(0,0,0,.08) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(190%) !important;
+  backdrop-filter: blur(18px) saturate(190%) !important;
+}
+html[data-theme="light"][data-theme="light"] :is(.nav, .nav.glass-card),
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
+  border-radius: 999px !important;
+}
+
+/* Items inside the bar are flat, like an iOS tab bar */
+html[data-theme="light"][data-theme="light"] .nav :is(.btn-sm, .theme-toggle) {
+  color: #1d1d1f !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  border-radius: 999px !important;
+}
+/* Selected tab: tinted glass lens */
+html[data-theme="light"][data-theme="light"] .nav .btn-sm.active {
+  color: #0066cc !important;
+  font-weight: 600 !important;
+  background: rgba(0,113,227,.11) !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.85),
+    inset 0 0 0 .5px rgba(0,113,227,.14) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"][data-theme="light"] .nav :is(.btn-sm:not(.active), .theme-toggle):hover {
+    color: #1d1d1f !important;
+    background: rgba(0,0,0,.05) !important;
+    border-color: transparent !important;
+  }
+}
+
+/* Standalone glass buttons and chips */
+html[data-theme="light"][data-theme="light"] :is(.cta-secondary, .filter-pill, .social-btn, .action-btn:not(.primary), .project-link) {
+  color: #1d1d1f !important;
+  background: rgba(255,255,255,.60) !important;
+  border-color: transparent !important;
+  border-radius: 999px !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.95),
+    inset -1px -1px 0 rgba(255,255,255,.50),
+    inset 0 0 0 .5px rgba(0,0,0,.08),
+    inset 0 0 10px rgba(255,255,255,.35),
+    0 4px 14px rgba(0,0,0,.07) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  transition: scale .35s cubic-bezier(.34,1.56,.64,1), background-color .2s ease !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html[data-theme="light"][data-theme="light"] :is(.cta-secondary, .filter-pill:not(.active), .social-btn, .action-btn:not(.primary), .project-link):hover {
+    color: #1d1d1f !important;
+    background: rgba(255,255,255,.82) !important;
+    border-color: transparent !important;
+  }
+}
+
+/* Prominent (tinted) glass: primary actions and the selected filter */
+html[data-theme="light"][data-theme="light"] :is(.cta-primary, .action-btn.primary, .filter-pill.active) {
+  color: #fff !important;
+  background: rgba(0,113,227,.92) !important;
+  border-color: transparent !important;
+  border-radius: 999px !important;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,.45),
+    inset -1px -1px 0 rgba(255,255,255,.16),
+    inset 0 0 0 .5px rgba(255,255,255,.20),
+    inset 0 0 10px rgba(255,255,255,.12),
+    0 4px 14px rgba(0,60,140,.18) !important;
+}
+
+/* Press: Apple-style swell instead of shrink */
+html[data-theme="light"][data-theme="light"] :is(.cta-primary, .cta-secondary, .filter-pill, .social-btn, .action-btn, .nav .btn-sm, .theme-toggle):active {
+  scale: 1.05;
 }
