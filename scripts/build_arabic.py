@@ -8,6 +8,7 @@ missing the build stops, so a changed English page is never half-translated.
 """
 from __future__ import annotations
 
+import json
 import re
 import sys
 from pathlib import Path
@@ -324,8 +325,8 @@ BLOG = [
 # ---------------------------------------------------------------- social
 SOCIAL = [
     ("<title>Photography by Omar Alfawzan | Landscapes, Street &amp; Travel</title>", "<title>التصوير | عمر الفوزان، مناظر طبيعية وشوارع وسفر</title>"),
-    ('content="Photography by Omar Alfawzan. Landscapes, street, and travel, shot on iPhone and Fujifilm X100F."',
-     'content="صور بعدسة عمر الفوزان: مناظر طبيعية وشوارع وسفر، بكاميرا iPhone وFujifilm X100F."'),
+    ('content="Photography by Omar Alfawzan, a Cloud Technical Lead in Riyadh. Landscapes, street and travel photos, shot on iPhone and Fujifilm X100F."',
+     'content="صور بعدسة عمر الفوزان، Cloud Technical Lead في الرياض: مناظر طبيعية وشوارع وسفر، بكاميرا iPhone وFujifilm X100F."'),
     ('content="Omar Alfawzan | Photography"', 'content="عمر الفوزان | التصوير"'),
     ('content="Landscapes, street, and travel photography by Omar Alfawzan."', 'content="صور مناظر طبيعية وشوارع وسفر بعدسة عمر الفوزان."'),
     ('content="Omar Alfawzan, Cloud Technical Lead"', 'content="عمر الفوزان، Cloud Technical Lead"'),
@@ -370,6 +371,32 @@ PAGES = [
 ]
 
 
+ARABIC_FONT_PRELOAD = '<link rel="preload" href="/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>'
+CRUMB_NAMES = {"Home": "الرئيسية", "Experience": "الخبرات", "Blog": "المدونة", "Photography": "التصوير"}
+LD_BLOCK = re.compile(r'(<script type="application/ld\+json">\n)(.*?)(\n    </script>)', re.S)
+
+
+def localize_jsonld(html: str, title_ar: str, problems: list[str], source: str) -> str:
+    """Point the breadcrumb trail and the home ProfilePage at the Arabic pages."""
+    def fix(match: re.Match) -> str:
+        data = json.loads(match.group(2))
+        kind = data.get("@type")
+        if kind == "BreadcrumbList":
+            for item in data["itemListElement"]:
+                if item["name"] not in CRUMB_NAMES:
+                    problems.append(f"{source}: no Arabic breadcrumb name for {item['name']}")
+                    continue
+                item["name"] = CRUMB_NAMES[item["name"]]
+                item["item"] = item["item"].replace("https://oalfawzan.sa/", "https://oalfawzan.sa/ar/", 1)
+        elif kind == "ProfilePage" and data.get("@id") == "https://oalfawzan.sa/#webpage":
+            data.update({"@id": "https://oalfawzan.sa/ar/#webpage", "url": "https://oalfawzan.sa/ar/",
+                         "name": title_ar, "inLanguage": "ar"})
+        else:
+            return match.group(0)
+        return match.group(1) + json.dumps(data, ensure_ascii=False, indent=2) + match.group(3)
+    return LD_BLOCK.sub(fix, html)
+
+
 def replace_all(text: str, pairs: list[tuple[str, str]], source: str, problems: list[str]) -> str:
     for en, ar in pairs:
         if en not in text:
@@ -387,10 +414,15 @@ def build_page(source: str, path: str, pairs: list[tuple[str, str]], problems: l
     if canonical_en not in html:
         problems.append(f"{source}: canonical not found")
     html = html.replace(canonical_en, f'<link rel="canonical" href="https://oalfawzan.sa/ar/{path}">', 1)
+    # The Arabic body font is needed for first paint; fetch it with the page, not after the CSS.
+    html = html.replace('<link rel="stylesheet" href="/site.css">',
+                        f'{ARABIC_FONT_PRELOAD}\n    <link rel="stylesheet" href="/site.css">', 1)
     html = html.replace(f'<meta property="og:url" content="https://oalfawzan.sa/{path}">',
                         f'<meta property="og:url" content="https://oalfawzan.sa/ar/{path}">', 1)
 
     html = replace_all(html, COMMON + pairs, source, problems)
+    title = re.search(r"<title>(.*?)</title>", html)
+    html = localize_jsonld(html, title.group(1) if title else "", problems, source)
     for en, ar in NAV:
         html = html.replace(en, ar)
     leftover = NAV_LEFTOVER.search(html)

@@ -31,6 +31,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@oyf_96">
+    <meta name="twitter:creator" content="@oyf_96">
     <meta name="twitter:title" content="Experience | Omar Alfawzan, Cloud Technical Lead">
     <meta name="twitter:description" content="Omar Alfawzan’s cloud experience across SITE, Mobily, solutions by stc and IBM, spanning pre-sales, architecture, migration delivery and cloud products.">
     <meta name="twitter:image" content="https://oalfawzan.sa/og-image.jpg">
@@ -41,10 +43,19 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://oalfawzan.sa/#person",
   "name": "Omar Alfawzan",
   "alternateName": "عمر الفوزان",
-  "url": "https://oalfawzan.sa",
-  "image": "https://oalfawzan.sa/omaralfawzan.png",
+  "givenName": "Omar",
+  "familyName": "Alfawzan",
+  "url": "https://oalfawzan.sa/",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://oalfawzan.sa/omaralfawzan.png",
+    "width": 800,
+    "height": 800
+  },
+  "description": "Cloud Technical Lead in Riyadh, Saudi Arabia, with 8+ years in cloud transformation, pre-sales, solution architecture and service delivery.",
   "jobTitle": "Cloud Technical Lead",
   "worksFor": {
     "@type": "Organization",
@@ -52,13 +63,15 @@
   },
   "alumniOf": {
     "@type": "CollegeOrUniversity",
-    "name": "King Saud University"
+    "name": "King Saud University",
+    "url": "https://ksu.edu.sa/"
   },
   "knowsAbout": [
     "Cloud Computing",
     "Technical Pre-Sales",
     "Solution Architecture",
     "Cloud Migration",
+    "Sovereign Cloud",
     "LLMs",
     "RAG",
     "Agentic AI",
@@ -68,17 +81,22 @@
     "Service Delivery",
     "Managed Services"
   ],
+  "knowsLanguage": [
+    "ar",
+    "en"
+  ],
   "sameAs": [
     "https://www.linkedin.com/in/omarfoz",
+    "https://x.com/oyf_96",
     "https://www.instagram.com/oyf_96",
-    "https://x.com/oyf_96"
+    "https://vsco.co/omarfoz/gallery",
+    "https://www.snapchat.com/add/oyf_96"
   ],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Riyadh",
     "addressCountry": "SA"
-  },
-  "@id": "https://oalfawzan.sa/#person"
+  }
 }
     </script>
 
@@ -103,6 +121,27 @@
   "mainEntity": {
     "@id": "https://oalfawzan.sa/#person"
   }
+}
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://oalfawzan.sa/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Experience",
+      "item": "https://oalfawzan.sa/experience/"
+    }
+  ]
 }
     </script>
 

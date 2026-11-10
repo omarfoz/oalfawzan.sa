@@ -33,6 +33,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@oyf_96">
+    <meta name="twitter:creator" content="@oyf_96">
     <meta name="twitter:title" content="مقالات في السحابة والذكاء الاصطناعي | مدونة عمر الفوزان">
     <meta name="twitter:description" content="مقالات عمر الفوزان عن الحوسبة السحابية والذكاء الاصطناعي والنماذج اللغوية الكبيرة وإدارة المنتجات والحاويات، بالعربية والإنجليزية.">
     <meta name="twitter:image" content="https://oalfawzan.sa/og-image.jpg">
@@ -43,10 +45,19 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://oalfawzan.sa/#person",
   "name": "Omar Alfawzan",
   "alternateName": "عمر الفوزان",
-  "url": "https://oalfawzan.sa",
-  "image": "https://oalfawzan.sa/omaralfawzan.png",
+  "givenName": "Omar",
+  "familyName": "Alfawzan",
+  "url": "https://oalfawzan.sa/",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://oalfawzan.sa/omaralfawzan.png",
+    "width": 800,
+    "height": 800
+  },
+  "description": "Cloud Technical Lead in Riyadh, Saudi Arabia, with 8+ years in cloud transformation, pre-sales, solution architecture and service delivery.",
   "jobTitle": "Cloud Technical Lead",
   "worksFor": {
     "@type": "Organization",
@@ -54,29 +65,40 @@
   },
   "alumniOf": {
     "@type": "CollegeOrUniversity",
-    "name": "King Saud University"
+    "name": "King Saud University",
+    "url": "https://ksu.edu.sa/"
   },
   "knowsAbout": [
     "Cloud Computing",
     "Technical Pre-Sales",
+    "Solution Architecture",
+    "Cloud Migration",
+    "Sovereign Cloud",
     "LLMs",
     "RAG",
-    "Cloud Migration",
+    "Agentic AI",
     "Docker",
     "Kubernetes",
-    "Product Management"
+    "Product Management",
+    "Service Delivery",
+    "Managed Services"
+  ],
+  "knowsLanguage": [
+    "ar",
+    "en"
   ],
   "sameAs": [
     "https://www.linkedin.com/in/omarfoz",
+    "https://x.com/oyf_96",
     "https://www.instagram.com/oyf_96",
-    "https://x.com/oyf_96"
+    "https://vsco.co/omarfoz/gallery",
+    "https://www.snapchat.com/add/oyf_96"
   ],
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Riyadh",
     "addressCountry": "SA"
-  },
-  "@id": "https://oalfawzan.sa/#person"
+  }
 }
     </script>
 
@@ -100,6 +122,27 @@
   "author": {
     "@id": "https://oalfawzan.sa/#person"
   }
+}
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "https://oalfawzan.sa/ar/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "المدونة",
+      "item": "https://oalfawzan.sa/ar/blog/"
+    }
+  ]
 }
     </script>
 
@@ -204,6 +247,7 @@
             .blog-grid { grid-template-columns: 1fr; }
         }
     </style>
+    <link rel="preload" href="/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="/site.css">
     <script src="/theme.js" defer></script>
     <script src="/analytics.js" defer></script>
