@@ -186,7 +186,7 @@
     toggle.setAttribute('aria-label', ar ? (light ? 'التبديل إلى الوضع الداكن' : 'التبديل إلى الوضع الفاتح') : (light ? 'Switch to dark mode' : 'Switch to light mode'));
     toggle.setAttribute('title', ar ? (light ? 'الوضع الداكن' : 'الوضع الفاتح') : (light ? 'Dark mode' : 'Light mode'));
     toggle.setAttribute('aria-pressed', String(light));
-    if (themeMeta) themeMeta.setAttribute('content', light ? '#e7eff8' : '#1b2942');
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#e7eff8' : '#16233d');
     if (persist) {
       try { localStorage.setItem(storageKey, light ? 'light' : 'dark'); } catch (_) {}
     }

@@ -1750,3 +1750,11 @@ html:root :is(.btn-sm, .filter-pill):lang(ar) {
   padding-top: 5px !important;
   padding-bottom: 5px !important;
 }
+
+/* iOS Safari tints the status bar / browser chrome from the page's base colour:
+   match it to the navy at the top of the dark background instead of black. */
+html:not([data-theme="light"]),
+html:not([data-theme="light"]) body,
+html:not([data-theme="light"]) body:has(.photo-grid) {
+  background-color: #16233d !important;
+}
