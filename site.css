@@ -1683,3 +1683,61 @@ html[data-theme="light"][data-theme="light"] :is(.cta-primary, .action-btn.prima
 html[data-theme="light"][data-theme="light"] :is(.cta-primary, .cta-secondary, .filter-pill, .social-btn, .action-btn, .nav .btn-sm, .theme-toggle):active {
   scale: 1.05;
 }
+
+/* =====================================================================
+   Arabic pages (/ar/): right-to-left layout and Arabic typography
+   ===================================================================== */
+/* Arabic letters join, so tracking and uppercase styling must be off.
+   The repeated attribute raises specificity above the label rules. */
+html[lang="ar"][lang="ar"][lang="ar"][lang="ar"] body * {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+html[lang="ar"] body { line-height: 1.75; }
+html[lang="ar"] :is(.tl-body, .project-desc, .learned-text, .blog-excerpt, .desc-list, .hero-sub, .page-header p, .summary-section p) {
+  line-height: 1.9 !important;
+}
+html[lang="ar"] :is(.section-title, .worked-label, .tl-year, .learned-label, .ptag, .blog-tag, .hero-eyebrow, .gallery-kicker) {
+  font-size: calc(var(--type-label, .75rem) + .08rem) !important;
+  font-weight: 700 !important;
+}
+html[dir="rtl"] .nav-name { direction: rtl !important; }
+
+/* Language switch */
+.lang-switch { font-weight: 600 !important; }
+.lang-switch[lang="ar"] { font-family: var(--site-font) !important; }
+
+/* Biography timeline: line and dots move to the right */
+html[dir="rtl"] .timeline {
+  padding-left: 0 !important;
+  padding-right: var(--timeline-gutter) !important;
+}
+html[dir="rtl"] .timeline::before {
+  left: auto !important;
+  right: var(--timeline-line) !important;
+}
+html[dir="rtl"] .tl-dot {
+  left: auto !important;
+  right: calc(var(--timeline-line) - var(--timeline-gutter)) !important;
+  transform: translateX(50%) !important;
+}
+html[dir="rtl"] .tl-item { transform: none; }
+
+/* Experience bullets and skill pills */
+html[dir="rtl"] .desc-list li { padding-left: 0; padding-right: 18px; }
+html[dir="rtl"] .desc-list li::before { left: auto; right: 0; }
+html[dir="rtl"] .pill { margin: 0 0 8px 4px; }
+
+/* Blog card footer reads right to left in Arabic */
+html[dir="rtl"] .blog-meta { direction: rtl; }
+
+/* Mobile nav with the language switch: keep every tab reachable. `safe`
+   stops end-aligned overflow from being clipped (it falls back to start),
+   and small phones get slightly tighter tabs so all five fit. */
+@media (max-width:700px), (pointer:coarse) {
+  .nav-buttons { justify-content: safe flex-end !important; }
+}
+@media (max-width:420px) {
+  .nav .nav-buttons { gap: 2px !important; }
+  .nav .btn-sm { padding: 7px 6px !important; }
+}

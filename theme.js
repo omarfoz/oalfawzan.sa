@@ -117,7 +117,7 @@
 
 
   document.querySelectorAll('.nav-name').forEach(el => {
-    el.textContent = 'Omar Alfawzan';
+    el.textContent = (document.documentElement.lang || '').startsWith('ar') ? 'عمر الفوزان' : 'Omar Alfawzan';
   });
 
   const replacements = [
@@ -182,8 +182,9 @@
   const setTheme = (theme, persist = false) => {
     const light = theme === 'light';
     root.dataset.theme = light ? 'light' : 'dark';
-    toggle.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
-    toggle.setAttribute('title', light ? 'Dark mode' : 'Light mode');
+    const ar = (document.documentElement.lang || '').startsWith('ar');
+    toggle.setAttribute('aria-label', ar ? (light ? 'التبديل إلى الوضع الداكن' : 'التبديل إلى الوضع الفاتح') : (light ? 'Switch to dark mode' : 'Switch to light mode'));
+    toggle.setAttribute('title', ar ? (light ? 'الوضع الداكن' : 'الوضع الفاتح') : (light ? 'Dark mode' : 'Light mode'));
     toggle.setAttribute('aria-pressed', String(light));
     if (themeMeta) themeMeta.setAttribute('content', light ? '#e7eff8' : '#1b2942');
     if (persist) {

@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML_FILES = sorted(ROOT.rglob("*.html"))
 REQUIRED_FILES = [ROOT / "index.html", ROOT / "404.html", ROOT / "robots.txt", ROOT / "sitemap.xml", ROOT / "CNAME"]
 BRAND_NAME = "Omar Alfawzan"
+BRAND_NAME_AR = "عمر الفوزان"
 
 # These legacy source glyphs are intentionally converted to inline/path SVGs by data.js/theme.js.
 # Any new emoji-like glyph outside this allow-list should fail CI so it cannot silently
@@ -20,6 +21,9 @@ HANDLED_GLYPHS_BY_FILE = {
     "index.html": {"💡"},
     "blog/index.html": {"🔒", "☁️", "☁", "⚡", "🏆", "🚢", "🐳", "🌐", "↗"},
     "social/index.html": {"✕", "‹", "›", "↗"},
+    "ar/index.html": {"💡"},
+    "ar/blog/index.html": {"🔒", "☁️", "☁", "⚡", "🏆", "🚢", "🐳", "🌐", "↗"},
+    "ar/social/index.html": {"✕", "‹", "›", "↗"},
 }
 UI_GLYPHS = {"↗", "✕", "‹", "›"}
 
@@ -180,10 +184,11 @@ def validate_html() -> list[str]:
         if not parser.nav_names:
             errors.append(f"{relative}: missing .nav-name brand label")
         else:
+            expected_brand = BRAND_NAME_AR if relative_name.startswith("ar/") else BRAND_NAME
             for nav_name in parser.nav_names:
-                if nav_name != BRAND_NAME:
+                if nav_name != expected_brand:
                     errors.append(
-                        f"{relative}: inconsistent .nav-name '{nav_name}' (expected '{BRAND_NAME}')"
+                        f"{relative}: inconsistent .nav-name '{nav_name}' (expected '{expected_brand}')"
                     )
 
         for link in parser.links:
