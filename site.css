@@ -1567,45 +1567,45 @@ html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .nav {
   }
 }
 
-/* ---------- Primary CTA: tinted liquid glass ----------
-   Translucent accent fill with a top gloss, specular rims and a coloured
-   glow; light mode keeps more fill so white text stays above 4.5:1. */
+/* ---------- Primary CTA: Apple-style prominent Liquid Glass ----------
+   Modelled on iOS 26 / macOS Tahoe `.glassProminent` buttons: a flat accent
+   tint (no gloss band), a thin specular rim that is brighter on the lit
+   top-left edge, a faint inner lensing glow, a soft neutral shadow, a
+   capsule shape, and a springy "swell" on press. */
 html:not([data-theme="light"]) .cta-primary,
 html[data-theme="light"][data-theme="light"] .cta-primary {
-  position: relative;
-  border: 1px solid rgba(255,255,255,.30) !important;
-  text-shadow: 0 1px 1px rgba(0,40,100,.25);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  backdrop-filter: blur(14px) saturate(180%);
-  transition: box-shadow .25s ease, transform .25s ease, filter .25s ease !important;
-}
-html:not([data-theme="light"]) .cta-primary {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.30) 0%, rgba(255,255,255,.06) 48%, rgba(255,255,255,0) 52%),
-    linear-gradient(180deg, rgba(56,152,255,.78), rgba(0,98,224,.66)) !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: rgba(10,132,255,.78) !important;
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.60),
-    inset 0 -1px 1px rgba(255,255,255,.22),
-    inset 0 -10px 18px -10px rgba(140,200,255,.55),
-    0 8px 24px -6px rgba(0,122,255,.55) !important;
+    inset 1px 1px 0 rgba(255,255,255,.42),
+    inset -1px -1px 0 rgba(255,255,255,.14),
+    inset 0 0 0 .5px rgba(255,255,255,.18),
+    inset 0 0 10px rgba(255,255,255,.12),
+    0 4px 14px rgba(0,0,0,.20) !important;
+  -webkit-backdrop-filter: blur(10px) saturate(180%);
+  backdrop-filter: blur(10px) saturate(180%);
+  transition: scale .35s cubic-bezier(.34,1.56,.64,1), filter .2s ease !important;
 }
 html[data-theme="light"][data-theme="light"] .cta-primary {
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.32) 0%, rgba(255,255,255,.06) 48%, rgba(255,255,255,0) 52%),
-    linear-gradient(180deg, rgba(0,104,214,.88), rgba(0,82,180,.92)) !important;
-  border-color: rgba(255,255,255,.70) !important;
+  background: rgba(0,110,230,.86) !important;
   box-shadow:
-    inset 0 1px 1px rgba(255,255,255,.70),
-    inset 0 -1px 1px rgba(255,255,255,.25),
-    inset 0 -10px 18px -10px rgba(120,190,255,.55),
-    0 0 0 .5px rgba(0,70,160,.25),
-    0 10px 24px -8px rgba(0,98,204,.50) !important;
+    inset 1px 1px 0 rgba(255,255,255,.50),
+    inset -1px -1px 0 rgba(255,255,255,.18),
+    inset 0 0 0 .5px rgba(255,255,255,.22),
+    inset 0 0 10px rgba(255,255,255,.14),
+    0 4px 14px rgba(15,30,60,.14) !important;
 }
 @media (hover: hover) and (pointer: fine) {
   html:not([data-theme="light"]) .cta-primary:hover,
   html[data-theme="light"][data-theme="light"] .cta-primary:hover {
     opacity: 1 !important;
-    filter: brightness(1.08) saturate(1.1);
-    transform: translateY(-1px);
+    filter: brightness(1.08);
   }
+}
+html:not([data-theme="light"]) .cta-primary:active,
+html[data-theme="light"][data-theme="light"] .cta-primary:active {
+  scale: 1.05;
+  filter: brightness(1.15);
 }
