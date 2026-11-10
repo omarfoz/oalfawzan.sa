@@ -1493,3 +1493,31 @@ html[data-theme="light"] body::after {
     }
   }
 }
+
+/* ---------- Light mode background (v2) ----------
+   Replaces the blurred, white-washed photo with a clean surface: cool
+   off-white base, soft aurora at the top and a faint dot grid that fades
+   out as the page continues. No image download, no full-screen blur. */
+html[data-theme="light"][data-theme="light"] body,
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid) {
+  background: #f5f7fb !important;
+}
+html[data-theme="light"][data-theme="light"] body::before,
+html[data-theme="light"][data-theme="light"] body:has(.photo-grid)::before {
+  inset: 0 !important;
+  transform: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+  background:
+    radial-gradient(60% 50% at 50% -8%, rgba(0,113,227,.17), transparent 72%),
+    radial-gradient(38% 34% at 92% 6%, rgba(94,92,230,.11), transparent 70%),
+    radial-gradient(38% 34% at 6% 14%, rgba(48,176,199,.11), transparent 70%),
+    radial-gradient(circle, rgba(15,23,42,.085) 1px, transparent 1.4px) 0 0 / 22px 22px !important;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 92%);
+}
+html[data-theme="light"][data-theme="light"] body::after {
+  background:
+    radial-gradient(closest-side at 25% 40%, rgba(0,113,227,.06), transparent),
+    radial-gradient(closest-side at 75% 70%, rgba(94,92,230,.05), transparent);
+}
