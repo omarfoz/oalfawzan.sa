@@ -282,7 +282,7 @@ def validate_performance_assets() -> list[str]:
     if "display: flow-root" not in site_css:
         errors.append("site.css: body must contain top margins so the page background reaches the viewport edge")
     if ".hero img" not in site_css:
-        errors.append("site.css: shared hero portrait styling is required on Home and Experience")
+        errors.append("site.css: shared hero portrait styling is required on Home")
     if "body:has(.exp-item) .glass-card:not(.nav)" not in site_css:
         errors.append("site.css: Experience card spacing must not override shared navigation spacing")
     light_mode_markers = [

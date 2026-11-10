@@ -97,15 +97,6 @@
     <link rel="icon" type="image/svg+xml" href="/cloud-favicon.svg">
 
     <style>
-        :root {
-            --bg: #010204;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-shine: rgba(255, 255, 255, 0.22);
-            --accent: #007AFF;
-            --text-p: #ffffff;
-            --text-s: rgba(255, 255, 255, 0.55);
-        }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
         html { scroll-behavior: smooth; }
         body {
@@ -126,76 +117,6 @@
             box-shadow: inset 0 1px 0 0 var(--glass-shine);
             border-radius: 24px; padding: 32px; margin-bottom: 24px;
         }
-
-        /* Nav */
-      /* NAV CONTAINER */
-.nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px;
-    margin:20px 0 40px;
-    border-radius:32px;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-/* NAV CONTAINER */
-.nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:12px 20px;
-    margin:20px 0 40px;
-    border-radius:32px;
-    gap:10px;
-}
-
-/* NAME */
-.nav-name{
-    font-weight:800;
-    font-size:1.1rem;
-    letter-spacing:-0.02em;
-}
-
-/* BUTTON CONTAINER */
-.nav-buttons{
-    display:flex;
-    gap:8px;
-    overflow-x:auto;
-    white-space:nowrap;
-    -webkit-overflow-scrolling:touch;
-}
-
-/* hide scrollbar */
-.nav-buttons::-webkit-scrollbar{
-    display:none;
-}
-
-/* BUTTON STYLE */
-.btn-sm{
-    text-decoration:none;
-    color:var(--text-p);
-    font-size:0.75rem;
-    font-weight:600;
-    padding:6px 14px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.05);
-    border:1px solid var(--glass-border);
-    transition:0.25s ease;
-}
-
-/* HOVER */
-.btn-sm:hover{
-    background:var(--accent);
-    border-color:var(--accent);
-}
-
-/* ACTIVE PAGE */
-.btn-sm.active{
-    background:var(--accent);
-    border-color:var(--accent);
-}
         /* Hero */
         .hero { text-align: center; padding: 20px 0 56px; }
         .hero img {
@@ -234,7 +155,6 @@
             border: 1px solid var(--glass-border); transition: 0.3s;
         }
         .cta-secondary:hover { border-color: rgba(255,255,255,0.3); }
-
         /* Worked With */
         .worked-section { margin-bottom: 64px; }
         .worked-label {
@@ -257,7 +177,6 @@
         .logo-pill svg { height: 20px; width: auto; display: block; }
         .logo-pill img { filter: brightness(0) invert(1); opacity: 0.7; height: 20px; width: auto; object-fit: contain; }
         .logo-pill:hover img { opacity: 1; }
-
         /* Section title */
         .section-title {
             font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.22em;
@@ -265,10 +184,8 @@
             display: flex; align-items: center; gap: 16px;
         }
         .section-title::after { content: ''; flex: 1; height: 1px; background: var(--glass-border); }
-
         /* Summary */
         .summary-section { margin-bottom: 64px; }
-
         /* Timeline */
         .bio-section { margin-bottom: 80px; }
         .timeline {
@@ -310,7 +227,6 @@
         .tl-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
         .tl-body { color: var(--text-s); font-size: 0.92rem; line-height: 1.7; font-weight: 300; }
         .tl-body strong { color: var(--text-p); font-weight: 500; }
-
         /* Projects */
         .projects-section { margin-bottom: 80px; }
         .project-card {
@@ -367,9 +283,7 @@
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); transition: 0.3s;
         }
         .project-link:hover { background: var(--accent); border-color: var(--accent); }
-
         footer { padding: 40px 0; text-align: center; font-size: 0.9rem; color: var(--text-s); border-top: 1px solid var(--glass-border); }
-
         @media (max-width: 600px) {
             .hero h1 { font-size: 2.4rem; }
             .tl-title { font-size: 1.1rem; }
@@ -418,8 +332,12 @@
         <img src="/omaralfawzan-240.webp" alt="Omar Alfawzan" width="120" height="120" fetchpriority="high" decoding="async">
         <h1>Omar <em>Alfawzan</em></h1>
         <p class="hero-role">Cloud Technical Lead | Pre-Sales, Architecture & Delivery</p>
-        <p class="hero-sub">Cloud Technical Lead with 8+ years across cloud transformation, pre-sales, solution architecture, and service delivery.</p>
-           </header>
+        <p class="hero-sub">8+ years helping organisations in Saudi Arabia shape, win, and deliver their move to the cloud — from the first workshop to production.</p>
+        <div class="hero-ctas">
+            <a href="/experience/#connect" class="cta-primary">Get in touch</a>
+            <a href="/experience/" class="cta-secondary">View experience</a>
+        </div>
+    </header>
 
     <!-- Worked With -->
     <section class="worked-section" aria-labelledby="worked-title">

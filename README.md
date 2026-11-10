@@ -17,6 +17,7 @@ The site intentionally uses plain HTML, CSS, and vanilla JavaScript. There is no
 ### Shared files
 
 - `data.js` — homepage biography and project data
+- `fonts/` — self-hosted IBM Plex Sans Arabic (SIL OFL 1.1), loaded only on pages that contain Arabic text
 - `site.css` — shared visual, accessibility, and mobile-performance rules
 - `analytics.js` — interaction/idle-delayed Google Analytics loader
 - `robots.txt` — crawler directives

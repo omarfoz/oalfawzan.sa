@@ -1,9 +1,44 @@
 /* oalfawzan.sa — shared visual system
    Loaded directly after each page's local structural CSS. */
 
+/* Arabic text: IBM Plex Sans Arabic (SIL OFL 1.1, see /fonts/IBM-Plex-Sans-Arabic-OFL.txt).
+   unicode-range limits downloads to pages that actually contain Arabic. */
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-sans-arabic-arabic-500-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-sans-arabic-arabic-600-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/ibm-plex-sans-arabic-arabic-700-normal.woff2") format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
 :root {
   color-scheme: dark;
-  --site-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --site-font: "IBM Plex Sans Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 
   --site-bg: #010204;
   --site-accent: #007aff;
@@ -338,6 +373,7 @@ html[data-theme="light"] .nav.glass-card {
   line-height: 1.2 !important;
   letter-spacing: -.02em !important;
   white-space: nowrap;
+  direction: ltr;
 }
 
 .nav-buttons {
@@ -370,6 +406,8 @@ html[data-theme="light"] .nav.glass-card {
   box-shadow: inset 0 1px 0 rgba(255,255,255,.06) !important;
   -webkit-backdrop-filter: blur(12px) saturate(145%) !important;
   backdrop-filter: blur(12px) saturate(145%) !important;
+  flex: 0 0 auto;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
 }
 
 html[data-theme="light"] .btn-sm {
@@ -1148,4 +1186,113 @@ footer a {
 footer a:hover,
 footer a:focus-visible {
   color: var(--site-accent);
+}
+
+/* UX phase 1: page headers, hero actions, compact mobile nav, logo grid */
+.page-header p {
+  color: var(--site-text-muted) !important;
+}
+.page-header p a {
+  color: var(--site-accent);
+  font-weight: 600;
+  text-underline-offset: .18em;
+}
+
+.hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+.cta-primary,
+.cta-secondary {
+  min-height: 40px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 20px !important;
+  border-radius: var(--site-radius-control) !important;
+  font-family: var(--site-font) !important;
+  font-size: .86rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none;
+}
+.cta-secondary { color: var(--site-text) !important; }
+
+@media (max-width:700px), (pointer:coarse) {
+  /* One-row nav: monogram, scrollable links, theme toggle */
+  .nav,
+  .nav.glass-card,
+  body:has(.photo-grid) .nav {
+    grid-template-columns: auto minmax(0,1fr) auto !important;
+    padding: 8px 8px 8px 14px !important;
+  }
+  .nav-name {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .nav-buttons {
+    grid-column: 2;
+    grid-row: 1;
+    width: auto;
+    justify-content: flex-end;
+    gap: 5px !important;
+  }
+  .btn-sm {
+    padding: 7px 10px !important;
+    font-size: .76rem !important;
+  }
+  .theme-toggle {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+@media (max-width:520px) {
+  /* Even 2x2 grid instead of an orphaned last logo */
+  .logos-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 10px;
+  }
+  .logo-pill { width: 100%; }
+
+  .nav-name { font-size: 0 !important; }
+  .nav-name::before {
+    content: 'OA';
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+  }
+}
+
+@media (max-width:360px) {
+  .nav-buttons { justify-content: flex-start; }
+  .btn-sm { padding: 7px 8px !important; }
+}
+
+/* Light mode: soft tinted artwork instead of dark slabs */
+html[data-theme="light"][data-theme="light"] .banner-elhaq   { background: linear-gradient(135deg, #e3f6ec, #c9ecda 55%, #e6f7ee) !important; color: #0b6b45; }
+html[data-theme="light"][data-theme="light"] .banner-coffee  { background: linear-gradient(135deg, #f8eddf, #efd9bd 55%, #f9efe2) !important; color: #8a5317; }
+html[data-theme="light"][data-theme="light"] .banner-podcast { background: linear-gradient(135deg, #fcebe0, #f6d3bd 55%, #fdeee4) !important; color: #a3460f; }
+html[data-theme="light"][data-theme="light"] .banner-restate { background: linear-gradient(135deg, #e2effa, #c8def3 55%, #e6f1fb) !important; color: #0a5a96; }
+html[data-theme="light"][data-theme="light"] .banner-icon { color: inherit !important; }
+html[data-theme="light"][data-theme="light"] .banner-grid {
+  opacity: .08;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 24px, rgba(15,23,42,.5) 24px, rgba(15,23,42,.5) 25px),
+    repeating-linear-gradient(90deg, transparent, transparent 24px, rgba(15,23,42,.5) 24px, rgba(15,23,42,.5) 25px);
+}
+
+html[data-theme="light"][data-theme="light"] .cv-ai      { background: linear-gradient(135deg, #e3f6ec, #cdeedd) !important; color: #0b6b45; }
+html[data-theme="light"][data-theme="light"] .cv-cloud   { background: linear-gradient(135deg, #e4eefb, #cddff5) !important; color: #0a4f96; }
+html[data-theme="light"][data-theme="light"] .cv-product { background: linear-gradient(135deg, #faf0dc, #f1dfb8) !important; color: #845a0c; }
+html[data-theme="light"][data-theme="light"] .cv-cont    { background: linear-gradient(135deg, #e6e9fb, #d0d6f5) !important; color: #2f3f9a; }
+html[data-theme="light"][data-theme="light"] .cv-multi   { background: linear-gradient(135deg, #e0f2fa, #c6e5f3) !important; color: #0a6283; }
+html[data-theme="light"][data-theme="light"] .cv-stc     { background: linear-gradient(135deg, #e7ebf8, #d3dbf1) !important; color: #2b3f7c; }
+html[data-theme="light"][data-theme="light"] .blog-cover[class*="cv-"] *,
+html[data-theme="light"][data-theme="light"] .blog-cover[class*="cv-"] .site-svg-icon {
+  color: inherit !important;
 }

@@ -60,18 +60,7 @@
 
 
     <style>
-        :root {
-            --bg: #010204;
-            --surface: rgba(255,255,255,.045);
-            --surface-strong: rgba(255,255,255,.075);
-            --border: rgba(255,255,255,.12);
-            --border-strong: rgba(255,255,255,.22);
-            --accent: #007AFF;
-            --text: #fff;
-            --muted: rgba(255,255,255,.58);
-            --radius: 22px;
-        }
-
+        :root { --radius: 22px; } /* other tokens come from /site.css */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body {
@@ -86,17 +75,14 @@
             background-color: var(--bg);
             overflow-x: hidden;
         }
-
         button, a { -webkit-tap-highlight-color: transparent; }
         button { font: inherit; }
-
         .container {
             width: 100%;
             max-width: 1120px;
             margin: 0 auto;
             padding: 0 18px;
         }
-
         .glass {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -104,48 +90,6 @@
             backdrop-filter: blur(24px) saturate(155%);
             box-shadow: inset 0 1px rgba(255,255,255,.08), 0 18px 60px rgba(0,0,0,.16);
         }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 14px;
-            margin: 18px 0 56px;
-            padding: 11px 14px 11px 20px;
-            border-radius: 999px;
-        }
-        .nav-name {
-            flex: 0 0 auto;
-            font-size: .95rem;
-            font-weight: 700;
-            letter-spacing: -.02em;
-        }
-        .nav-buttons {
-            display: flex;
-            gap: 5px;
-            overflow-x: auto;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-        .nav-buttons::-webkit-scrollbar { display: none; }
-        .btn-sm {
-            flex: 0 0 auto;
-            color: var(--muted);
-            text-decoration: none;
-            font-size: .73rem;
-            font-weight: 600;
-            padding: 7px 12px;
-            border-radius: 999px;
-            border: 1px solid transparent;
-            transition: color .2s ease, background .2s ease, border-color .2s ease;
-        }
-        .btn-sm:hover { color: var(--text); background: rgba(255,255,255,.06); }
-        .btn-sm.active {
-            color: #fff;
-            background: var(--accent);
-            border-color: rgba(255,255,255,.16);
-        }
-
         .hero {
             text-align: center;
             max-width: 720px;
@@ -208,7 +152,6 @@
             font-size: .72rem;
             font-weight: 500;
         }
-
         .social-row {
             display: flex;
             justify-content: center;
@@ -249,7 +192,6 @@
         }
         .social-btn.instagram:hover .social-icon { background: rgba(225,48,108,.2); }
         .social-btn.snapchat:hover .social-icon { background: rgba(255,252,0,.16); }
-
         .gallery-head {
             display: flex;
             align-items: flex-end;
@@ -282,7 +224,6 @@
             font-size: .72rem;
             font-weight: 600;
         }
-
         .photo-grid {
             column-count: 4;
             column-gap: 10px;
@@ -311,7 +252,15 @@
             transform: scale(1.001);
             transition: transform .45s cubic-bezier(.2,.75,.2,1), filter .35s ease, opacity .25s ease;
         }
-        .photo-item img[data-loading="true"] { opacity: .5; }
+        .photo-item img[data-loading="true"] { opacity: 0; }
+        .photo-item:has(img[data-loading="true"]) {
+            background: linear-gradient(110deg, rgba(255,255,255,.03) 30%, rgba(255,255,255,.09) 50%, rgba(255,255,255,.03) 70%) 0 0 / 250% 100%;
+            animation: photoShimmer 1.4s ease-in-out infinite;
+        }
+        html[data-theme="light"][data-theme="light"] body:has(.photo-grid) .photo-item:has(img[data-loading="true"]) {
+            background: linear-gradient(110deg, rgba(255,255,255,.35) 30%, rgba(255,255,255,.75) 50%, rgba(255,255,255,.35) 70%) 0 0 / 250% 100% !important;
+        }
+        @keyframes photoShimmer { from { background-position: 100% 0; } to { background-position: -150% 0; } }
         .photo-item::after {
             content: 'View';
             position: absolute;
@@ -336,7 +285,6 @@
         .photo-item:hover img { transform: scale(1.025); }
         .photo-item:hover::after,
         .photo-item:focus-visible::after { opacity: 1; transform: none; }
-
         .gallery-actions {
             display: flex;
             justify-content: center;
@@ -372,7 +320,6 @@
             color: #fff;
         }
         .action-btn[hidden] { display: none; }
-
         .lightbox {
             display: none;
             position: fixed;
@@ -469,23 +416,18 @@
             white-space: nowrap;
         }
         .lightbox-info span:first-child { color: #fff; }
-
         footer {
             padding: 12px 0 44px;
             text-align: center;
             color: rgba(255,255,255,.42);
             font-size: .76rem;
         }
-
         @media (max-width: 900px) {
             .photo-grid { column-count: 3; }
         }
         @media (max-width: 640px) {
             body { background-attachment: scroll; }
             .container { padding: 0 12px; }
-            .nav { margin-top: 12px; margin-bottom: 44px; padding-left: 15px; }
-            .nav-name { font-size: .84rem; }
-            .btn-sm { padding-inline: 10px; }
             .hero { margin-bottom: 30px; }
             .hero-sub { font-size: .88rem; }
             .social-row { margin-bottom: 44px; }
@@ -505,10 +447,7 @@
             .lightbox-info { bottom: max(76px, calc(env(safe-area-inset-bottom) + 66px)); }
             .lightbox img { max-width: 96vw; max-height: 82vh; }
         }
-
         @media (max-width: 390px) {
-            .nav-name { display: none; }
-            .nav { justify-content: center; }
         }
     </style>
     <link rel="stylesheet" href="/site.css">
@@ -663,7 +602,9 @@ function createPhotoItem(photo, index) {
     img.fetchPriority = index < 4 ? 'high' : 'low';
     img.decoding = 'async';
     img.setAttribute('data-loading', 'true');
-    img.addEventListener('load', () => img.removeAttribute('data-loading'), { once: true });
+    const settle = () => img.removeAttribute('data-loading');
+    img.addEventListener('load', settle, { once: true });
+    img.addEventListener('error', settle, { once: true });
 
     button.appendChild(img);
     button.addEventListener('click', () => openLightbox(index));
