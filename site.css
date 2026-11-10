@@ -151,6 +151,7 @@ body {
     url('/image-1600.webp') center / cover fixed !important;
   background-color: var(--site-bg) !important;
   overflow-x: hidden;
+  overflow-x: clip; /* clip, unlike hidden, keeps position: sticky working */
 }
 
 html[data-theme="light"] body {
@@ -1295,4 +1296,37 @@ html[data-theme="light"][data-theme="light"] .cv-stc     { background: linear-gr
 html[data-theme="light"][data-theme="light"] .blog-cover[class*="cv-"] *,
 html[data-theme="light"][data-theme="light"] .blog-cover[class*="cv-"] .site-svg-icon {
   color: inherit !important;
+}
+
+/* Sticky nav: stays reachable while scrolling, clear of the iPhone status bar */
+.nav,
+.nav.glass-card,
+body:has(.photo-grid) .nav {
+  position: sticky !important;
+  top: max(10px, env(safe-area-inset-top));
+  z-index: 50;
+}
+
+/* Hero: balanced role line, tighter rhythm */
+.hero-role-rest { white-space: nowrap; }
+
+@media (max-width:520px) {
+  .hero-role { font-size: .95rem !important; }
+  .hero-role-sep { display: none; }
+  .hero-role-rest { display: block; color: var(--site-text-muted); font-weight: 500; }
+  .hero-sub { margin-bottom: 22px !important; }
+  body:has(.timeline) .worked-section { margin-bottom: 8px !important; }
+  .worked-label { text-align: center; margin-bottom: 12px !important; }
+
+  /* One compact logo strip instead of four tall tiles */
+  .logos-row {
+    grid-template-columns: repeat(4, minmax(0,1fr)) !important;
+    gap: 8px !important;
+  }
+  .logo-pill {
+    height: 44px !important;
+    padding: 0 6px !important;
+    border-radius: 12px !important;
+  }
+  .logo-pill svg { height: 15px !important; max-width: 100%; }
 }
