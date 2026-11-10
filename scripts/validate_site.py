@@ -192,6 +192,11 @@ def validate_html() -> list[str]:
 
         errors.extend(validate_glyphs(path, raw_html))
 
+        # House style: no long dashes in page copy (they read as AI-written).
+        for line_no, line in enumerate(raw_html.splitlines(), 1):
+            if any(d in line for d in ("—", "–", "&mdash;", "&ndash;")):
+                errors.append(f"{relative}:{line_no}: long dash found; use a comma, colon, full stop or brackets")
+
     return errors
 
 
