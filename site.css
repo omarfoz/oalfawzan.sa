@@ -1406,3 +1406,90 @@ body:has(.timeline) .tl-item { margin-bottom: 36px; }
     }
   }
 }
+
+/* ---------- Ambient life ----------
+   Background photo moves from `background-attachment: fixed` (repainted on
+   every scroll frame) to a fixed, composited layer: smoother scrolling.
+   Soft light glows drift slowly on their own layer; only `transform`
+   animates, so the GPU moves a texture and nothing repaints. */
+html:not([data-theme="light"]) body,
+html:not([data-theme="light"]) body:has(.photo-grid) {
+  position: relative;
+  isolation: isolate;
+  background: var(--site-bg) !important;
+}
+html:not([data-theme="light"]) body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(rgba(13,22,45,.84), rgba(1,2,4,.94)),
+    url('/image-1600.webp') center / cover no-repeat;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: -25vmax;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side at 28% 30%, rgba(0,122,255,.16), transparent),
+    radial-gradient(closest-side at 72% 62%, rgba(94,92,230,.12), transparent),
+    radial-gradient(closest-side at 45% 85%, rgba(48,176,199,.09), transparent);
+}
+html[data-theme="light"] body::after {
+  background:
+    radial-gradient(closest-side at 28% 30%, rgba(0,122,255,.10), transparent),
+    radial-gradient(closest-side at 72% 62%, rgba(94,92,230,.08), transparent),
+    radial-gradient(closest-side at 45% 85%, rgba(48,176,199,.08), transparent);
+}
+
+/* Portrait ring on the home hero */
+.hero:has(> img) { position: relative; }
+.hero:has(> img) > img { position: relative; z-index: 1; }
+.hero:has(> img)::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 130px;
+  height: 130px;
+  margin-left: -65px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(from 0deg, var(--site-accent), rgba(94,92,230,.15), rgba(48,176,199,.75), rgba(0,122,255,.1), var(--site-accent));
+  opacity: .75;
+}
+@media (max-width: 700px) {
+  .hero:has(> img)::before { top: -1px; }
+}
+
+@keyframes siteDrift {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(5vmax, -3vmax, 0) rotate(6deg); }
+  100% { transform: translate3d(-4vmax, 3vmax, 0) rotate(-4deg); }
+}
+@keyframes siteSpin { to { transform: rotate(360deg); } }
+@keyframes siteDraw { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  body::after { animation: siteDrift 36s ease-in-out infinite alternate; will-change: transform; }
+  .hero:has(> img)::before { animation: siteSpin 14s linear infinite; }
+
+  /* Press feedback on buttons */
+  .cta-primary:active, .cta-secondary:active, .btn-sm:active,
+  .filter-pill:active, .theme-toggle:active, .tl-more:active { scale: .96; }
+
+  /* Biography line draws itself as you read down the timeline */
+  @supports (animation-timeline: view()) {
+    .timeline { view-timeline: --site-tl block; }
+    .timeline::before {
+      transform-origin: top center;
+      animation: siteDraw linear both;
+      animation-timeline: --site-tl;
+      animation-range: entry 40% exit 40%;
+    }
+  }
+}
