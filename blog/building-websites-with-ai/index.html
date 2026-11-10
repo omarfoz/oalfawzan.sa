@@ -37,6 +37,8 @@ a{color:inherit}
 .meta{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:var(--text-s);font-size:.84rem}
 .meta img{width:32px;height:32px;border-radius:50%;object-fit:cover}
 .article-intro{font-size:1.05rem;line-height:2;color:var(--text-s);max-width:720px;margin:22px auto 30px;text-align:center}
+.reading-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;pointer-events:none}
+.reading-progress span{display:block;height:100%;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:right center;will-change:transform}
 .toc{margin:20px 0 24px}
 .toc summary{cursor:pointer;font-size:.94rem;font-weight:700}
 .toc-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
@@ -75,11 +77,12 @@ html[data-theme="light"] .figure-link{background:rgba(255,255,255,.25)}
   </div>
   <button id="themeToggle" class="theme-toggle" type="button" aria-label="تغيير مظهر الموقع"></button>
 </nav>
+<div class="reading-progress" aria-hidden="true"><span id="readingProgress"></span></div>
 <main id="main-content">
 <header class="article-header">
   <p class="eyebrow">تجربة شخصية · الذكاء الاصطناعي وتطوير المواقع</p>
   <h1>تجربتي في إنشاء موقعي الشخصي والبريد الإلكتروني بمساعدة الذكاء الاصطناعي</h1>
-  <div class="meta"><img src="/omaralfawzan-240.webp" width="32" height="32" alt="صورة عمر الفوزان"><span>عمر الفوزان</span><span aria-hidden="true">·</span><time datetime="2026-10-09">9 أكتوبر 2026</time><span aria-hidden="true">·</span><span>تجربة عملية</span></div>
+  <div class="meta"><img src="/omaralfawzan-240.webp" width="32" height="32" alt="صورة عمر الفوزان"><span>عمر الفوزان</span><span aria-hidden="true">·</span><time datetime="2026-10-09">9 أكتوبر 2026</time><span aria-hidden="true">·</span><span>تجربة عملية</span><span aria-hidden="true">·</span><span>7 دقائق قراءة</span></div>
 </header>
 <details class="toc glass-card">
 <summary>محتويات المقالة</summary><div class="toc-links"><a href="#section-1">حجز النطاق السعودي (.sa)</a>
@@ -162,4 +165,23 @@ html[data-theme="light"] .figure-link{background:rgba(255,255,255,.25)}
 </main>
 <footer>© 2026 Omar Alfawzan · <a href="/">oalfawzan.sa</a> · <a href="/privacy/">Privacy</a></footer>
 </div>
+<script>
+(() => {
+    const bar = document.getElementById('readingProgress');
+    const article = document.querySelector('.article-content');
+    if (!bar || !article) return;
+    let queued = false;
+    const update = () => {
+        queued = false;
+        const start = article.getBoundingClientRect().top + scrollY;
+        const end = start + article.offsetHeight - innerHeight;
+        const p = end > start ? (scrollY - start) / (end - start) : 1;
+        bar.style.transform = `scaleX(${Math.min(1, Math.max(0, p))})`;
+    };
+    const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    addEventListener('scroll', onScroll, { passive: true });
+    addEventListener('resize', onScroll);
+    update();
+})();
+</script>
 </body></html>

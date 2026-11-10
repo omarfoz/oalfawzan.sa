@@ -546,5 +546,30 @@
 
 </div>
 
+<script>
+(() => {
+    const timeline = document.getElementById('timeline');
+    if (!timeline) return;
+    timeline.classList.add('is-collapsible');
+    timeline.querySelectorAll('.tl-item').forEach((item, i) => {
+        const body = item.querySelector('.tl-body');
+        if (!body) return;
+        body.id = body.id || `tl-body-${i + 1}`;
+        if (body.scrollHeight <= body.clientHeight + 2) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tl-more';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', body.id);
+        btn.textContent = 'Read more';
+        btn.addEventListener('click', () => {
+            const open = item.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', String(open));
+            btn.textContent = open ? 'Show less' : 'Read more';
+        });
+        body.after(btn);
+    });
+})();
+</script>
 </body>
 </html>

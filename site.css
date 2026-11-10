@@ -1330,3 +1330,26 @@ body:has(.photo-grid) .nav {
   }
   .logo-pill svg { height: 15px !important; max-width: 100%; }
 }
+
+/* Biography: bodies collapse to three lines once JS confirms they overflow */
+.timeline.is-collapsible .tl-item:not(.is-open) .tl-body {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+.tl-more {
+  margin-top: 8px;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--site-accent);
+  font: 600 .84rem/1.2 var(--site-font);
+  cursor: pointer;
+}
+.tl-more:hover { text-decoration: underline; text-underline-offset: .2em; }
+body:has(.timeline) .tl-item { margin-bottom: 36px; }
+
+/* Anchor targets land below the sticky nav */
+[id] { scroll-margin-top: calc(max(10px, env(safe-area-inset-top)) + 80px); }
