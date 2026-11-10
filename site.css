@@ -1703,10 +1703,6 @@ html[lang="ar"] :is(.section-title, .worked-label, .tl-year, .learned-label, .pt
 }
 html[dir="rtl"] .nav-name { direction: rtl !important; }
 
-/* Language switch */
-.lang-switch { font-weight: 600 !important; }
-.lang-switch[lang="ar"] { font-family: var(--site-font) !important; }
-
 /* Biography timeline: line and dots move to the right */
 html[dir="rtl"] .timeline {
   padding-left: 0 !important;
@@ -1731,13 +1727,26 @@ html[dir="rtl"] .pill { margin: 0 0 8px 4px; }
 /* Blog card footer reads right to left in Arabic */
 html[dir="rtl"] .blog-meta { direction: rtl; }
 
-/* Mobile nav with the language switch: keep every tab reachable. `safe`
-   stops end-aligned overflow from being clipped (it falls back to start),
-   and small phones get slightly tighter tabs so all five fit. */
+/* Mobile nav: `safe` stops end-aligned overflow from being clipped (it
+   falls back to start), so every tab stays reachable on narrow phones. */
 @media (max-width:700px), (pointer:coarse) {
   .nav-buttons { justify-content: safe flex-end !important; }
 }
-@media (max-width:420px) {
-  .nav .nav-buttons { gap: 2px !important; }
-  .nav .btn-sm { padding: 7px 6px !important; }
+
+/* Arabic line spacing: IBM Plex Sans Arabic has taller letters and deeper
+   dots than Latin fonts, so the tight English line heights made Arabic
+   lines touch and clipped dots in buttons. Applies wherever text is Arabic,
+   including Arabic titles on English pages. */
+html:root :is(h1, h2, h3, h4, .blog-title, .project-name, .tl-title, .gallery-title, .article-header h1):lang(ar) {
+  line-height: 1.45 !important;
+}
+html:root :is(.section-title, .worked-label, .tl-year, .learned-label, .ptag, .blog-tag, .hero-eyebrow, .gallery-kicker, .hero-role, .pos, .company, .period):lang(ar) {
+  line-height: 1.6 !important;
+}
+html:root :is(.btn-sm, .cta-primary, .cta-secondary, .filter-pill, .tl-more, .nav-name, .blog-badge, .pill, .meta-pill, .social-btn, .action-btn, .project-link, .social-link):lang(ar) {
+  line-height: 1.5 !important;
+}
+html:root :is(.btn-sm, .filter-pill):lang(ar) {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
 }

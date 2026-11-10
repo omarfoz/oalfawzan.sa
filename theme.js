@@ -117,7 +117,7 @@
 
 
   document.querySelectorAll('.nav-name').forEach(el => {
-    el.textContent = (document.documentElement.lang || '').startsWith('ar') ? 'عمر الفوزان' : 'Omar Alfawzan';
+    el.textContent = location.pathname.startsWith('/ar/') ? 'عمر الفوزان' : 'Omar Alfawzan';
   });
 
   const replacements = [
@@ -182,7 +182,7 @@
   const setTheme = (theme, persist = false) => {
     const light = theme === 'light';
     root.dataset.theme = light ? 'light' : 'dark';
-    const ar = (document.documentElement.lang || '').startsWith('ar');
+    const ar = location.pathname.startsWith('/ar/');
     toggle.setAttribute('aria-label', ar ? (light ? 'التبديل إلى الوضع الداكن' : 'التبديل إلى الوضع الفاتح') : (light ? 'Switch to dark mode' : 'Switch to light mode'));
     toggle.setAttribute('title', ar ? (light ? 'الوضع الداكن' : 'الوضع الفاتح') : (light ? 'Dark mode' : 'Light mode'));
     toggle.setAttribute('aria-pressed', String(light));
