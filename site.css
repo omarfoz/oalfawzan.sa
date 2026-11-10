@@ -1353,3 +1353,56 @@ body:has(.timeline) .tl-item { margin-bottom: 36px; }
 
 /* Anchor targets land below the sticky nav */
 [id] { scroll-margin-top: calc(max(10px, env(safe-area-inset-top)) + 80px); }
+
+/* ---------- Motion ----------
+   CSS only, no JavaScript. Animates opacity and the independent `translate`
+   property, both composited on the GPU, so nothing re-lays out the page and
+   hover transforms still work. Scroll reveals use the browser's scroll
+   timeline (no scroll listeners); browsers without it show everything
+   statically. Fully disabled for prefers-reduced-motion and print. */
+@keyframes siteRiseIn {
+  from { opacity: 0; translate: 0 18px; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  /* Page intro: hero / page header children rise in, lightly staggered */
+  .hero > *,
+  .page-header > *,
+  .article-header > * {
+    animation: siteRiseIn .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .hero > :nth-child(2), .page-header > :nth-child(2), .article-header > :nth-child(2) { animation-delay: .06s; }
+  .hero > :nth-child(3), .page-header > :nth-child(3), .article-header > :nth-child(3) { animation-delay: .12s; }
+  .hero > :nth-child(4), .page-header > :nth-child(4), .article-header > :nth-child(4) { animation-delay: .18s; }
+  .hero > :nth-child(n+5), .page-header > :nth-child(n+5), .article-header > :nth-child(n+5) { animation-delay: .24s; }
+
+  /* Gentle lift on hover for project cards (blog cards already lift) */
+  @media (hover: hover) and (pointer: fine) {
+    .project-card { transition: transform .3s ease, border-color .3s, box-shadow .3s; }
+    .project-card:hover { transform: translateY(-3px); }
+  }
+
+  @supports (animation-timeline: view()) {
+    .section-title,
+    .worked-section .logos-row,
+    .summary-section .glass-card,
+    .project-card,
+    .blog-card,
+    .exp-item,
+    main .glass-card:not(.nav):not(.toc):not(.article-content):not(:has(.exp-item)),
+    .photo-item,
+    body:has(.timeline) .tl-item {
+      animation: siteRiseIn linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    /* Timeline items: replace the old on-load slide (which also played for
+       items far below the fold) with the scroll reveal */
+    body:has(.timeline) .tl-item {
+      opacity: 1;
+      transform: none;
+      animation-delay: 0s !important;
+    }
+  }
+}
