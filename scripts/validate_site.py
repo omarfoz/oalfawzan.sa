@@ -9,7 +9,10 @@ from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-HTML_FILES = sorted(ROOT.rglob("*.html"))
+# Self-contained interactive apps that are not part of the site's page system.
+# They skip the page checks below but must stay out of search (noindex).
+STANDALONE_PAGES = {"office/index.html"}
+HTML_FILES = sorted(p for p in ROOT.rglob("*.html") if p.relative_to(ROOT).as_posix() not in STANDALONE_PAGES)
 REQUIRED_FILES = [ROOT / "index.html", ROOT / "404.html", ROOT / "robots.txt", ROOT / "sitemap.xml", ROOT / "CNAME"]
 BRAND_NAME = "Omar Alfawzan"
 BRAND_NAME_AR = "عمر الفوزان"
@@ -345,6 +348,17 @@ def validate_performance_assets() -> list[str]:
     return errors
 
 
+def validate_standalone_pages() -> list[str]:
+    errors: list[str] = []
+    for relative in sorted(STANDALONE_PAGES):
+        path = ROOT / relative
+        if not path.exists():
+            errors.append(f"{relative}: listed in STANDALONE_PAGES but missing")
+        elif "noindex" not in path.read_text(encoding="utf-8").lower():
+            errors.append(f"{relative}: standalone page must be noindex")
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -356,6 +370,7 @@ def main() -> int:
     errors.extend(validate_project_data())
     errors.extend(validate_sitemap())
     errors.extend(validate_performance_assets())
+    errors.extend(validate_standalone_pages())
 
     if errors:
         print("Site validation failed:\n")
